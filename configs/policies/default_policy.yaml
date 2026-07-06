@@ -1,0 +1,14 @@
+policy:
+  version: 1
+  mode: shadow
+
+severity_actions:
+  0: IGNORE
+  1: LOG
+  2: LOG
+  3: REVIEW
+  4: REVIEW
+  5: REVIEW
+
+limits:
+  require_human_review: true

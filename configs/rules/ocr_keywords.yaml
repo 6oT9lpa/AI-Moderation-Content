@@ -1,0 +1,19 @@
+ocr_keywords:
+  finance_markers:
+    - balance
+    - transfer
+    - usd
+
+  promo_markers:
+    - bonus
+    - promo
+    - giveaway
+    - reward
+
+  action_markers:
+    - deposit
+    - withdraw
+
+risk:
+  medium_threshold: 40
+  high_threshold: 70

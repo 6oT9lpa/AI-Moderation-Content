@@ -4,7 +4,7 @@ import re
 import string
 
 from src.domain import MessageFeatures
-from src.modules.preprocessing import TextNormalizer
+from src.modules.preprocessing.text_normalizer import TextNormalizer
 
 _WORD_RE = re.compile(r"[A-Za-zА-Яа-яЁё0-9]+", re.UNICODE)
 _EMOJI_RANGES = (

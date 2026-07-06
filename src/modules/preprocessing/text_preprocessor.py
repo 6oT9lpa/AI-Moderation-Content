@@ -5,9 +5,9 @@ from datetime import datetime, timezone
 
 from src.contracts import MessagePreprocessInputSchema
 from src.domain import MessageContext
-from src.modules.preprocessing import TextFeatureExtractor
-from src.modules.preprocessing import TextNormalizer
-from src.modules.preprocessing import UrlExtractor
+from src.modules.preprocessing.text_feature_extractor import TextFeatureExtractor
+from src.modules.preprocessing.text_normalizer import TextNormalizer
+from src.modules.preprocessing.url_extractor import UrlExtractor
 
 
 class TextPreprocessor:

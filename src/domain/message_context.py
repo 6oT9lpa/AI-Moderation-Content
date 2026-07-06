@@ -4,7 +4,7 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any
 
-from src.domain import MessageFeatures
+from src.domain.message_features import MessageFeatures
 
 
 @dataclass(slots=True, frozen=True)

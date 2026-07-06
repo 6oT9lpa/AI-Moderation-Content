@@ -4,12 +4,15 @@ import re
 from urllib.parse import urlparse
 
 _URL_RE = re.compile(
-    r"(?i)\b(?:https?://|www\.)[^\s<>()]+|\b[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)+(?:/[^\s<>()]*)?"
+    r"\b(?:https?://|www\.)[^\s<>()]+|"
+    r"\b[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?"
+    r"(?:\.[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?)+"
+    r"(?:/[^\s<>()]*)?",
+    flags=re.IGNORECASE,
 )
 
 _DISCORD_INVITE_RE = re.compile(
     r"""
-    (?ix)
     \b
     (?:
         (?:https?://)?
@@ -27,31 +30,48 @@ _DISCORD_INVITE_RE = re.compile(
         (?P<code>[a-z0-9_-]{2,64})
     )
     (?=$|[\s?#/&.,!)]|\b)
-    """
+    """,
+    flags=re.IGNORECASE | re.VERBOSE,
 )
 
 _OBFUSCATED_DISCORD_INVITE_RE = re.compile(
     r"""
-    (?ix)
     \b
     discord
-    \s*
     (?:
-        \.
+        \s+\.\s*
         |
-        \[\s*\.\s*\]
+        \s*\.\s+
         |
-        \(\s*\.\s*\)
+        \s*\[\s*\.\s*\]\s*
         |
-        dot
+        \s*\(\s*\.\s*\)\s*
+        |
+        \s+dot\s+
     )
-    \s*
     gg
     \s*
-    [\/\\]
+    [\/\\]+
     \s*
     (?P<code>[a-z0-9_-]{2,64})
-    """
+    """,
+    flags=re.IGNORECASE | re.VERBOSE,
+)
+
+_BACKSLASH_DISCORD_INVITE_RE = re.compile(
+    r"""
+    \b
+    (?:
+        (?:https?://)?
+        (?:www\.)?
+        discord\.gg
+    )
+    \s*
+    \\+
+    \s*
+    (?P<code>[a-z0-9_-]{2,64})
+    """,
+    flags=re.IGNORECASE | re.VERBOSE,
 )
 
 _TRAILING_PUNCTUATION = ".,!?;:)]}>'\""
@@ -91,26 +111,29 @@ class UrlExtractor:
         return bool(
             _DISCORD_INVITE_RE.search(text or "")
             or _OBFUSCATED_DISCORD_INVITE_RE.search(text or "")
+            or _BACKSLASH_DISCORD_INVITE_RE.search(text or "")
         )
 
     @staticmethod
     def has_obfuscated_discord_invite(text: str) -> bool:
-        return bool(_OBFUSCATED_DISCORD_INVITE_RE.search(text or ""))
+        return bool(
+            _OBFUSCATED_DISCORD_INVITE_RE.search(text or "")
+            or _BACKSLASH_DISCORD_INVITE_RE.search(text or "")
+        )
 
     @staticmethod
     def extract_discord_invites(text: str) -> tuple[str, ...]:
         invites: list[str] = []
 
-        for match in _DISCORD_INVITE_RE.finditer(text or ""):
-            invite_code = match.group("code").lower()
+        for pattern in (
+            _DISCORD_INVITE_RE,
+            _OBFUSCATED_DISCORD_INVITE_RE,
+            _BACKSLASH_DISCORD_INVITE_RE,
+        ):
+            for match in pattern.finditer(text or ""):
+                invite_code = match.group("code").lower()
 
-            if invite_code and invite_code not in invites:
-                invites.append(invite_code)
-
-        for match in _OBFUSCATED_DISCORD_INVITE_RE.finditer(text or ""):
-            invite_code = match.group("code").lower()
-
-            if invite_code and invite_code not in invites:
-                invites.append(invite_code)
+                if invite_code and invite_code not in invites:
+                    invites.append(invite_code)
 
         return tuple(invites)

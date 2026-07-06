@@ -1,0 +1,8 @@
+anonymization:
+  hash_user_id: true
+  hash_space_id: true
+  hash_channel_id: true
+  mask_emails: true
+  mask_phones: true
+  mask_tokens: true
+  mask_private_links: true

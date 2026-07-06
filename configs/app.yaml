@@ -1,0 +1,25 @@
+app:
+  name: ai-moderation-content
+  environment: local
+  debug: true
+
+pipeline:
+  shadow_mode: true
+  dry_run: true
+  enable_media_analysis: true
+  enable_ai_classifier: false
+  enable_fallback: false
+
+database:
+  url_env: DATABASE_URL
+  echo: false
+
+queue:
+  backend: memory
+  max_size: 1000
+
+privacy:
+  config_path: configs/privacy/retention.yaml
+
+logging:
+  config_path: configs/logging.yaml

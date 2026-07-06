@@ -1,35 +1,44 @@
-from dataclasses import dataclass
+from __future__ import annotations
+
+from typing import Annotated
+
+from pydantic import BaseModel, ConfigDict, Field
+
+Ratio = Annotated[float, Field(ge=0.0, le=1.0)]
 
 
-@dataclass(slots=True, frozen=True)
-class MessageFeatures:
+class MessageFeatures(BaseModel):
+    model_config = ConfigDict(
+        frozen=True,
+        extra="forbid",
+    )
 
-    message_length: int
-    words_count: int
+    message_length: int = Field(ge=0)
+    words_count: int = Field(ge=0)
 
-    emoji_count: int
+    emoji_count: int = Field(ge=0)
 
-    mentions_count: int
-    role_mentions_count: int
+    mentions_count: int = Field(ge=0)
+    role_mentions_count: int = Field(ge=0)
 
-    caps_ratio: float
-    digits_ratio: float
+    caps_ratio: Ratio = 0.0
+    digits_ratio: Ratio = 0.0
 
-    repeated_chars: bool
+    repeated_chars: bool = False
 
-    punctuation_count: int
-    punctuation_ratio: float
+    punctuation_count: int = Field(ge=0)
+    punctuation_ratio: Ratio = 0.0
 
-    newline_count: int
+    newline_count: int = Field(ge=0)
 
-    unique_chars: int
+    unique_chars: int = Field(ge=0)
 
-    spaces_count: int
+    spaces_count: int = Field(ge=0)
 
-    average_word_length: float
+    average_word_length: float = Field(ge=0.0)
 
-    longest_word: int
+    longest_word: int = Field(ge=0)
 
-    has_cyrillic: bool
-    has_latin: bool
-    mixed_alphabet: bool
+    has_cyrillic: bool = False
+    has_latin: bool = False
+    mixed_alphabet: bool = False

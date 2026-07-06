@@ -1,12 +1,18 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any
 
+from pydantic import BaseModel, ConfigDict, Field
 
-@dataclass(slots=True, frozen=True)
-class MessageContext:
+
+class MessageContext(BaseModel):
+    model_config = ConfigDict(
+        frozen=True,
+        extra="forbid",
+        validate_assignment=True,
+    )
+
     guild_id: int
     channel_id: int
     author_id: int
@@ -42,4 +48,4 @@ class MessageContext:
 
     recent_messages: tuple[str, ...] = ()
 
-    metadata: dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = Field(default_factory=dict)

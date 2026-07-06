@@ -1,0 +1,19 @@
+logging:
+  level: INFO
+  format: json
+  include_correlation_id: true
+  include_stage: true
+  include_latency_ms: true
+
+outputs:
+  console:
+    enabled: true
+  file:
+    enabled: true
+    path: logs/app.log
+
+redaction:
+  mask_tokens: true
+  mask_emails: true
+  mask_phones: true
+  mask_private_links: true

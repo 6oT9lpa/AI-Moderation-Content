@@ -1,0 +1,24 @@
+signals:
+  - signal_id: suspicious_url
+    enabled: true
+    risk_delta: 20
+
+  - signal_id: caps_spam
+    enabled: true
+    risk_delta: 10
+
+  - signal_id: emoji_spam
+    enabled: true
+    risk_delta: 10
+
+  - signal_id: repeated_message
+    enabled: true
+    risk_delta: 20
+
+  - signal_id: new_account_link
+    enabled: true
+    risk_delta: 15
+
+  - signal_id: mixed_unicode_evasion
+    enabled: true
+    risk_delta: 20

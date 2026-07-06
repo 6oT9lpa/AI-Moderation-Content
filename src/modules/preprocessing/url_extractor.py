@@ -51,7 +51,7 @@ _OBFUSCATED_DISCORD_INVITE_RE = re.compile(
     )
     gg
     \s*
-    [\/\\]+
+    [/\\]+
     \s*
     (?P<code>[a-z0-9_-]{2,64})
     """,
@@ -74,7 +74,7 @@ _BACKSLASH_DISCORD_INVITE_RE = re.compile(
     flags=re.IGNORECASE | re.VERBOSE,
 )
 
-_TRAILING_PUNCTUATION = ".,!?;:)]}>'\""
+_TRAILING_PUNCTUATION = ".,!?;:)]}>\'\""
 
 
 class UrlExtractor:

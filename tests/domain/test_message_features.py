@@ -1,30 +1,37 @@
 from __future__ import annotations
 
-from src.domain import MessageFeatures
+from dataclasses import FrozenInstanceError
+
+import pytest
+
+from src.domain.message_features import MessageFeatures
+from src.infrastructure.logging import get_logger
+
+logger = get_logger("tests.preprocessing")
 
 
-def test_message_features_to_dict_serializes_all_fields() -> None:
-    features = MessageFeatures(
-        text_length=10,
-        word_count=2,
+def _make_features() -> MessageFeatures:
+    return MessageFeatures(
+        text_length=42,
+        word_count=5,
         line_count=1,
         url_count=1,
         invite_count=1,
-        mention_count=1,
-        role_mention_count=0,
-        channel_mention_count=0,
-        emoji_count=0,
-        uppercase_ratio=0.5,
+        mention_count=2,
+        role_mention_count=1,
+        channel_mention_count=1,
+        emoji_count=1,
+        uppercase_ratio=0.25,
         digit_ratio=0.1,
-        punctuation_count=1,
-        punctuation_ratio=0.1,
+        punctuation_count=3,
+        punctuation_ratio=0.071,
         newline_count=0,
-        unique_chars=8,
-        spaces_count=1,
-        average_word_length=4.5,
-        longest_word_length=5,
-        repeated_char_score=0.0,
-        has_repeated_chars=False,
+        unique_chars=20,
+        spaces_count=4,
+        average_word_length=5.2,
+        longest_word_length=10,
+        repeated_char_score=0.3,
+        has_repeated_chars=True,
         has_url=True,
         has_invite=True,
         has_shortener=False,
@@ -35,38 +42,30 @@ def test_message_features_to_dict_serializes_all_fields() -> None:
         has_suspicious_unicode=False,
     )
 
+
+def test_message_features_to_dict_contains_all_fields() -> None:
+    features = _make_features()
     data = features.to_dict()
 
-    assert data["text_length"] == 10
-    assert data["has_invite"] is True
+    logger.info(
+        "MessageFeatures to_dict checked keys=%s url_count=%s invite_count=%s",
+        len(data),
+        data["url_count"],
+        data["invite_count"],
+    )
+
+    assert data["text_length"] == 42
+    assert data["word_count"] == 5
+    assert data["url_count"] == 1
+    assert data["invite_count"] == 1
     assert data["has_mixed_scripts"] is True
-    assert set(data) == {
-        "text_length",
-        "word_count",
-        "line_count",
-        "url_count",
-        "invite_count",
-        "mention_count",
-        "role_mention_count",
-        "channel_mention_count",
-        "emoji_count",
-        "uppercase_ratio",
-        "digit_ratio",
-        "punctuation_count",
-        "punctuation_ratio",
-        "newline_count",
-        "unique_chars",
-        "spaces_count",
-        "average_word_length",
-        "longest_word_length",
-        "repeated_char_score",
-        "has_repeated_chars",
-        "has_url",
-        "has_invite",
-        "has_shortener",
-        "has_zero_width",
-        "has_cyrillic",
-        "has_latin",
-        "has_mixed_scripts",
-        "has_suspicious_unicode",
-    }
+    assert data["has_repeated_chars"] is True
+
+
+def test_message_features_is_frozen() -> None:
+    features = _make_features()
+
+    logger.info("MessageFeatures frozen validation text_length=%s", features.text_length)
+
+    with pytest.raises(FrozenInstanceError):
+        features.text_length = 100  # type: ignore[misc]

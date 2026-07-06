@@ -3,8 +3,8 @@ from __future__ import annotations
 import hashlib
 from datetime import datetime, timezone
 
-from src.contracts import MessagePreprocessInputSchema
-from src.domain import MessageContext
+from src.contracts.message_preprocess_input_schema import MessagePreprocessInputSchema
+from src.domain.message_context import MessageContext
 from src.modules.preprocessing.text_feature_extractor import TextFeatureExtractor
 from src.modules.preprocessing.text_normalizer import TextNormalizer
 from src.modules.preprocessing.url_extractor import UrlExtractor

@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 import string
 
-from src.domain import MessageFeatures
+from src.domain.message_features import MessageFeatures
 from src.modules.preprocessing.text_normalizer import TextNormalizer
 
 _WORD_RE = re.compile(r"[A-Za-zА-Яа-яЁё0-9]+", re.UNICODE)

@@ -1,0 +1,8 @@
+retention:
+  raw_text_days: 30
+  ocr_text_days: 30
+  audit_days: 180
+
+storage:
+  keep_hashes: true
+  keep_anonymized_text: true

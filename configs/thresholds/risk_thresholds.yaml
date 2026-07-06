@@ -1,0 +1,6 @@
+risk_thresholds:
+  low_max: 19
+  medium_max: 49
+  classifier_min: 50
+  classifier_max: 74
+  high_min: 75

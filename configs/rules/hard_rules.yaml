@@ -1,0 +1,24 @@
+rules:
+  - rule_id: forbidden_invite
+    enabled: true
+    severity: 4
+    confidence: 0.95
+    description: Detects forbidden platform invites.
+
+  - rule_id: known_scam_domain
+    enabled: true
+    severity: 5
+    confidence: 0.98
+    description: Detects known scam domains.
+
+  - rule_id: mass_mentions
+    enabled: true
+    severity: 3
+    confidence: 0.85
+    description: Detects excessive mentions.
+
+  - rule_id: known_scam_image_hash
+    enabled: true
+    severity: 5
+    confidence: 0.99
+    description: Detects known bad image hashes.

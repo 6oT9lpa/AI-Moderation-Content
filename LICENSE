@@ -1,21 +1,57 @@
-MIT License
+AI Moderation Content Proprietary License
 
-Copyright (c) 2026 Alexandr Spivak
+Copyright (c) 2026 Alexandr Spivak.
+All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This software, source code, documentation, configuration files, datasets,
+tests, and related materials (the "Software") are proprietary and are owned by
+Alexandr Spivak, unless a separate written agreement states otherwise.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+No Permission Granted
+
+Except for rights expressly granted in a separate written license agreement,
+commercial agreement, or other written permission from the copyright holder, no
+permission is granted to:
+
+- use the Software in production, commercial, hosted, internal, or public
+  services;
+- copy, reproduce, publish, distribute, sell, sublicense, lease, rent, or share
+  the Software;
+- modify, adapt, translate, merge, decompile, reverse engineer, or create
+  derivative works from the Software;
+- remove, hide, or alter copyright notices, authorship notices, license text,
+  or attribution information;
+- use the author's name, project name, trademarks, or branding to endorse or
+  promote derived products.
+
+Repository Access
+
+If this repository is visible to you, that visibility does not grant a license
+to use, modify, copy, distribute, or commercialize the Software. Viewing the
+repository is allowed only to the extent permitted by the platform hosting the
+repository and applicable law.
+
+Commercial Licensing
+
+Commercial use, private modification, integration, white-label deployment,
+resale rights, SaaS use, or source-code redistribution may be granted only under
+a separate written commercial license or contract signed or otherwise expressly
+approved by the copyright holder.
+
+Attribution
+
+Any permitted use must preserve the following notice in source code copies,
+documentation, and other reasonable attribution locations:
+
+Copyright (c) 2026 Alexandr Spivak. All rights reserved.
+
+No Warranty
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, SECURITY, RELIABILITY, OR
+AVAILABILITY. THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGES,
+LOSSES, OR OTHER LIABILITY ARISING FROM OR RELATED TO THE SOFTWARE OR ITS USE.
+
+If you need permission to use this Software, contact the copyright holder and
+obtain a separate written license before using it.

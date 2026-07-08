@@ -1,0 +1,1557 @@
+{
+  "label": "NSFW",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "NSFW_001",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-2",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-001",
+        "message_id": "nsfw-001",
+        "raw_text": "adult only roleplay ad, 18 plus chat sample 1",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_002",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-3",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-002",
+        "message_id": "nsfw-002",
+        "raw_text": "explicit content link hidden behind age gate 2",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_003",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-4",
+        "channel_id": "channel-nsfw-4",
+        "user_id": "user-nsfw-003",
+        "message_id": "nsfw-003",
+        "raw_text": "selling adult private photos, DM only 3",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_004",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-5",
+        "channel_id": "channel-nsfw-1",
+        "user_id": "user-nsfw-004",
+        "message_id": "nsfw-004",
+        "raw_text": "NSFW server promo with adult channels 4",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_005",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-1",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-005",
+        "message_id": "nsfw-005",
+        "raw_text": "18+ stream invite, minors stay away 5",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_006",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-2",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-006",
+        "message_id": "nsfw-006",
+        "raw_text": "adult dating spam in general chat 6",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_007",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-3",
+        "channel_id": "channel-nsfw-4",
+        "user_id": "user-nsfw-007",
+        "message_id": "nsfw-007",
+        "raw_text": "private explicit pack advertisement sample 7",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_008",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-4",
+        "channel_id": "channel-nsfw-1",
+        "user_id": "user-nsfw-008",
+        "message_id": "nsfw-008",
+        "raw_text": "NSFW profile promotion with paid access 8",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_009",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-5",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-009",
+        "message_id": "nsfw-009",
+        "raw_text": "adult content bot invite request 9",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_010",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-1",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-010",
+        "message_id": "nsfw-010",
+        "raw_text": "restricted 18 plus media channel promo 10",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_011",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-2",
+        "channel_id": "channel-nsfw-4",
+        "user_id": "user-nsfw-011",
+        "message_id": "nsfw-011",
+        "raw_text": "adult only roleplay ad, 18 plus chat sample 11",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_012",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-3",
+        "channel_id": "channel-nsfw-1",
+        "user_id": "user-nsfw-012",
+        "message_id": "nsfw-012",
+        "raw_text": "explicit content link hidden behind age gate 12",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_013",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-4",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-013",
+        "message_id": "nsfw-013",
+        "raw_text": "selling adult private photos, DM only 13",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_014",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-5",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-014",
+        "message_id": "nsfw-014",
+        "raw_text": "NSFW server promo with adult channels 14",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_015",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-1",
+        "channel_id": "channel-nsfw-4",
+        "user_id": "user-nsfw-015",
+        "message_id": "nsfw-015",
+        "raw_text": "18+ stream invite, minors stay away 15",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_016",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-2",
+        "channel_id": "channel-nsfw-1",
+        "user_id": "user-nsfw-016",
+        "message_id": "nsfw-016",
+        "raw_text": "adult dating spam in general chat 16",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_017",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-3",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-017",
+        "message_id": "nsfw-017",
+        "raw_text": "private explicit pack advertisement sample 17",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_018",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-4",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-018",
+        "message_id": "nsfw-018",
+        "raw_text": "NSFW profile promotion with paid access 18",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_019",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-5",
+        "channel_id": "channel-nsfw-4",
+        "user_id": "user-nsfw-019",
+        "message_id": "nsfw-019",
+        "raw_text": "adult content bot invite request 19",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_020",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-1",
+        "channel_id": "channel-nsfw-1",
+        "user_id": "user-nsfw-020",
+        "message_id": "nsfw-020",
+        "raw_text": "restricted 18 plus media channel promo 20",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_021",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-2",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-021",
+        "message_id": "nsfw-021",
+        "raw_text": "adult only roleplay ad, 18 plus chat sample 21",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_022",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-3",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-022",
+        "message_id": "nsfw-022",
+        "raw_text": "explicit content link hidden behind age gate 22",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_023",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-4",
+        "channel_id": "channel-nsfw-4",
+        "user_id": "user-nsfw-023",
+        "message_id": "nsfw-023",
+        "raw_text": "selling adult private photos, DM only 23",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_024",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-5",
+        "channel_id": "channel-nsfw-1",
+        "user_id": "user-nsfw-024",
+        "message_id": "nsfw-024",
+        "raw_text": "NSFW server promo with adult channels 24",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_025",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-1",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-025",
+        "message_id": "nsfw-025",
+        "raw_text": "18+ stream invite, minors stay away 25",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_026",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-2",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-026",
+        "message_id": "nsfw-026",
+        "raw_text": "adult dating spam in general chat 26",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_027",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-3",
+        "channel_id": "channel-nsfw-4",
+        "user_id": "user-nsfw-027",
+        "message_id": "nsfw-027",
+        "raw_text": "private explicit pack advertisement sample 27",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_028",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-4",
+        "channel_id": "channel-nsfw-1",
+        "user_id": "user-nsfw-028",
+        "message_id": "nsfw-028",
+        "raw_text": "NSFW profile promotion with paid access 28",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_029",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-5",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-029",
+        "message_id": "nsfw-029",
+        "raw_text": "adult content bot invite request 29",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_030",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-1",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-030",
+        "message_id": "nsfw-030",
+        "raw_text": "restricted 18 plus media channel promo 30",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_031",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-2",
+        "channel_id": "channel-nsfw-4",
+        "user_id": "user-nsfw-031",
+        "message_id": "nsfw-031",
+        "raw_text": "adult only roleplay ad, 18 plus chat sample 31",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_032",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-3",
+        "channel_id": "channel-nsfw-1",
+        "user_id": "user-nsfw-032",
+        "message_id": "nsfw-032",
+        "raw_text": "explicit content link hidden behind age gate 32",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_033",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-4",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-033",
+        "message_id": "nsfw-033",
+        "raw_text": "selling adult private photos, DM only 33",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_034",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-5",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-034",
+        "message_id": "nsfw-034",
+        "raw_text": "NSFW server promo with adult channels 34",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_035",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-1",
+        "channel_id": "channel-nsfw-4",
+        "user_id": "user-nsfw-035",
+        "message_id": "nsfw-035",
+        "raw_text": "18+ stream invite, minors stay away 35",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_036",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-2",
+        "channel_id": "channel-nsfw-1",
+        "user_id": "user-nsfw-036",
+        "message_id": "nsfw-036",
+        "raw_text": "adult dating spam in general chat 36",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_037",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-3",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-037",
+        "message_id": "nsfw-037",
+        "raw_text": "private explicit pack advertisement sample 37",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_038",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-4",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-038",
+        "message_id": "nsfw-038",
+        "raw_text": "NSFW profile promotion with paid access 38",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_039",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-5",
+        "channel_id": "channel-nsfw-4",
+        "user_id": "user-nsfw-039",
+        "message_id": "nsfw-039",
+        "raw_text": "adult content bot invite request 39",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_040",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-1",
+        "channel_id": "channel-nsfw-1",
+        "user_id": "user-nsfw-040",
+        "message_id": "nsfw-040",
+        "raw_text": "restricted 18 plus media channel promo 40",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_041",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-2",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-041",
+        "message_id": "nsfw-041",
+        "raw_text": "adult only roleplay ad, 18 plus chat sample 41",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_042",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-3",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-042",
+        "message_id": "nsfw-042",
+        "raw_text": "explicit content link hidden behind age gate 42",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_043",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-4",
+        "channel_id": "channel-nsfw-4",
+        "user_id": "user-nsfw-043",
+        "message_id": "nsfw-043",
+        "raw_text": "selling adult private photos, DM only 43",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_044",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-5",
+        "channel_id": "channel-nsfw-1",
+        "user_id": "user-nsfw-044",
+        "message_id": "nsfw-044",
+        "raw_text": "NSFW server promo with adult channels 44",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_045",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-1",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-045",
+        "message_id": "nsfw-045",
+        "raw_text": "18+ stream invite, minors stay away 45",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_046",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-2",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-046",
+        "message_id": "nsfw-046",
+        "raw_text": "adult dating spam in general chat 46",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_047",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-3",
+        "channel_id": "channel-nsfw-4",
+        "user_id": "user-nsfw-047",
+        "message_id": "nsfw-047",
+        "raw_text": "private explicit pack advertisement sample 47",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_048",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-nsfw-4",
+        "channel_id": "channel-nsfw-1",
+        "user_id": "user-nsfw-048",
+        "message_id": "nsfw-048",
+        "raw_text": "NSFW profile promotion with paid access 48",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_049",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-5",
+        "channel_id": "channel-nsfw-2",
+        "user_id": "user-nsfw-049",
+        "message_id": "nsfw-049",
+        "raw_text": "adult content bot invite request 49",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "NSFW_050",
+      "primary_label": "NSFW",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-nsfw-1",
+        "channel_id": "channel-nsfw-3",
+        "user_id": "user-nsfw-050",
+        "message_id": "nsfw-050",
+        "raw_text": "restricted 18 plus media channel promo 50",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "NSFW",
+          "expected_primary_label": "NSFW"
+        }
+      },
+      "expected": {
+        "labels": [
+          "NSFW"
+        ],
+        "primary_label": "NSFW"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    }
+  ]
+}

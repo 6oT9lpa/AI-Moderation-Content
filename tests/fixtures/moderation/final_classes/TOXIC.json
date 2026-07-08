@@ -1,0 +1,1557 @@
+{
+  "label": "TOXIC",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "TOXIC_001",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-2",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-001",
+        "message_id": "toxic-001",
+        "raw_text": "you are useless at this game sample 1",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_002",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-3",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-002",
+        "message_id": "toxic-002",
+        "raw_text": "stop talking, nobody wants your opinion 2",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_003",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-4",
+        "channel_id": "channel-toxic-4",
+        "user_id": "user-toxic-003",
+        "message_id": "toxic-003",
+        "raw_text": "that was pathetic, leave the match 3",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_004",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-5",
+        "channel_id": "channel-toxic-1",
+        "user_id": "user-toxic-004",
+        "message_id": "toxic-004",
+        "raw_text": "your play was trash and embarrassing 4",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_005",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-1",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-005",
+        "message_id": "toxic-005",
+        "raw_text": "you ruin every team you join 5",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_006",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-2",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-006",
+        "message_id": "toxic-006",
+        "raw_text": "learn basics before typing here 6",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_007",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-3",
+        "channel_id": "channel-toxic-4",
+        "user_id": "user-toxic-007",
+        "message_id": "toxic-007",
+        "raw_text": "nobody asked you, go away 7",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_008",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-4",
+        "channel_id": "channel-toxic-1",
+        "user_id": "user-toxic-008",
+        "message_id": "toxic-008",
+        "raw_text": "your idea is dumb and annoying 8",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_009",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-5",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-009",
+        "message_id": "toxic-009",
+        "raw_text": "you are the worst player in queue 9",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_010",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-1",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-010",
+        "message_id": "toxic-010",
+        "raw_text": "quit whining and be quiet sample 10",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_011",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-2",
+        "channel_id": "channel-toxic-4",
+        "user_id": "user-toxic-011",
+        "message_id": "toxic-011",
+        "raw_text": "you are useless at this game sample 11",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_012",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-3",
+        "channel_id": "channel-toxic-1",
+        "user_id": "user-toxic-012",
+        "message_id": "toxic-012",
+        "raw_text": "stop talking, nobody wants your opinion 12",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_013",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-4",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-013",
+        "message_id": "toxic-013",
+        "raw_text": "that was pathetic, leave the match 13",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_014",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-5",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-014",
+        "message_id": "toxic-014",
+        "raw_text": "your play was trash and embarrassing 14",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_015",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-1",
+        "channel_id": "channel-toxic-4",
+        "user_id": "user-toxic-015",
+        "message_id": "toxic-015",
+        "raw_text": "you ruin every team you join 15",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_016",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-2",
+        "channel_id": "channel-toxic-1",
+        "user_id": "user-toxic-016",
+        "message_id": "toxic-016",
+        "raw_text": "learn basics before typing here 16",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_017",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-3",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-017",
+        "message_id": "toxic-017",
+        "raw_text": "nobody asked you, go away 17",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_018",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-4",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-018",
+        "message_id": "toxic-018",
+        "raw_text": "your idea is dumb and annoying 18",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_019",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-5",
+        "channel_id": "channel-toxic-4",
+        "user_id": "user-toxic-019",
+        "message_id": "toxic-019",
+        "raw_text": "you are the worst player in queue 19",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_020",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-1",
+        "channel_id": "channel-toxic-1",
+        "user_id": "user-toxic-020",
+        "message_id": "toxic-020",
+        "raw_text": "quit whining and be quiet sample 20",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_021",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-2",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-021",
+        "message_id": "toxic-021",
+        "raw_text": "you are useless at this game sample 21",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_022",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-3",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-022",
+        "message_id": "toxic-022",
+        "raw_text": "stop talking, nobody wants your opinion 22",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_023",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-4",
+        "channel_id": "channel-toxic-4",
+        "user_id": "user-toxic-023",
+        "message_id": "toxic-023",
+        "raw_text": "that was pathetic, leave the match 23",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_024",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-5",
+        "channel_id": "channel-toxic-1",
+        "user_id": "user-toxic-024",
+        "message_id": "toxic-024",
+        "raw_text": "your play was trash and embarrassing 24",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_025",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-1",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-025",
+        "message_id": "toxic-025",
+        "raw_text": "you ruin every team you join 25",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_026",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-2",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-026",
+        "message_id": "toxic-026",
+        "raw_text": "learn basics before typing here 26",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_027",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-3",
+        "channel_id": "channel-toxic-4",
+        "user_id": "user-toxic-027",
+        "message_id": "toxic-027",
+        "raw_text": "nobody asked you, go away 27",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_028",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-4",
+        "channel_id": "channel-toxic-1",
+        "user_id": "user-toxic-028",
+        "message_id": "toxic-028",
+        "raw_text": "your idea is dumb and annoying 28",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_029",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-5",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-029",
+        "message_id": "toxic-029",
+        "raw_text": "you are the worst player in queue 29",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_030",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-1",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-030",
+        "message_id": "toxic-030",
+        "raw_text": "quit whining and be quiet sample 30",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_031",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-2",
+        "channel_id": "channel-toxic-4",
+        "user_id": "user-toxic-031",
+        "message_id": "toxic-031",
+        "raw_text": "you are useless at this game sample 31",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_032",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-3",
+        "channel_id": "channel-toxic-1",
+        "user_id": "user-toxic-032",
+        "message_id": "toxic-032",
+        "raw_text": "stop talking, nobody wants your opinion 32",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_033",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-4",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-033",
+        "message_id": "toxic-033",
+        "raw_text": "that was pathetic, leave the match 33",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_034",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-5",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-034",
+        "message_id": "toxic-034",
+        "raw_text": "your play was trash and embarrassing 34",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_035",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-1",
+        "channel_id": "channel-toxic-4",
+        "user_id": "user-toxic-035",
+        "message_id": "toxic-035",
+        "raw_text": "you ruin every team you join 35",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_036",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-2",
+        "channel_id": "channel-toxic-1",
+        "user_id": "user-toxic-036",
+        "message_id": "toxic-036",
+        "raw_text": "learn basics before typing here 36",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_037",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-3",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-037",
+        "message_id": "toxic-037",
+        "raw_text": "nobody asked you, go away 37",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_038",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-4",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-038",
+        "message_id": "toxic-038",
+        "raw_text": "your idea is dumb and annoying 38",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_039",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-5",
+        "channel_id": "channel-toxic-4",
+        "user_id": "user-toxic-039",
+        "message_id": "toxic-039",
+        "raw_text": "you are the worst player in queue 39",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_040",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-1",
+        "channel_id": "channel-toxic-1",
+        "user_id": "user-toxic-040",
+        "message_id": "toxic-040",
+        "raw_text": "quit whining and be quiet sample 40",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_041",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-2",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-041",
+        "message_id": "toxic-041",
+        "raw_text": "you are useless at this game sample 41",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_042",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-3",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-042",
+        "message_id": "toxic-042",
+        "raw_text": "stop talking, nobody wants your opinion 42",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_043",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-4",
+        "channel_id": "channel-toxic-4",
+        "user_id": "user-toxic-043",
+        "message_id": "toxic-043",
+        "raw_text": "that was pathetic, leave the match 43",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_044",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-5",
+        "channel_id": "channel-toxic-1",
+        "user_id": "user-toxic-044",
+        "message_id": "toxic-044",
+        "raw_text": "your play was trash and embarrassing 44",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_045",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-1",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-045",
+        "message_id": "toxic-045",
+        "raw_text": "you ruin every team you join 45",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_046",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-2",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-046",
+        "message_id": "toxic-046",
+        "raw_text": "learn basics before typing here 46",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_047",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-3",
+        "channel_id": "channel-toxic-4",
+        "user_id": "user-toxic-047",
+        "message_id": "toxic-047",
+        "raw_text": "nobody asked you, go away 47",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_048",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-toxic-4",
+        "channel_id": "channel-toxic-1",
+        "user_id": "user-toxic-048",
+        "message_id": "toxic-048",
+        "raw_text": "your idea is dumb and annoying 48",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_049",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-5",
+        "channel_id": "channel-toxic-2",
+        "user_id": "user-toxic-049",
+        "message_id": "toxic-049",
+        "raw_text": "you are the worst player in queue 49",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "TOXIC_050",
+      "primary_label": "TOXIC",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-toxic-1",
+        "channel_id": "channel-toxic-3",
+        "user_id": "user-toxic-050",
+        "message_id": "toxic-050",
+        "raw_text": "quit whining and be quiet sample 50",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "TOXIC",
+          "expected_primary_label": "TOXIC"
+        }
+      },
+      "expected": {
+        "labels": [
+          "TOXIC"
+        ],
+        "primary_label": "TOXIC"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    }
+  ]
+}

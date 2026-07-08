@@ -1,0 +1,1557 @@
+{
+  "label": "THREAT",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "THREAT_001",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-2",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-001",
+        "message_id": "threat-001",
+        "raw_text": "I will find your account and make you regret this 1",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_002",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-3",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-002",
+        "message_id": "threat-002",
+        "raw_text": "delete that message or I will dox your profile 2",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_003",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-4",
+        "channel_id": "channel-threat-4",
+        "user_id": "user-threat-003",
+        "message_id": "threat-003",
+        "raw_text": "keep talking and I will ruin your reputation 3",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_004",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-5",
+        "channel_id": "channel-threat-1",
+        "user_id": "user-threat-004",
+        "message_id": "threat-004",
+        "raw_text": "I will mass report you until you lose access 4",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_005",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-1",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-005",
+        "message_id": "threat-005",
+        "raw_text": "say that again and I will target your account 5",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_006",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-2",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-006",
+        "message_id": "threat-006",
+        "raw_text": "I know where to post your private data sample 6",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_007",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-3",
+        "channel_id": "channel-threat-4",
+        "user_id": "user-threat-007",
+        "message_id": "threat-007",
+        "raw_text": "apologize or your account is finished 7",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_008",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-4",
+        "channel_id": "channel-threat-1",
+        "user_id": "user-threat-008",
+        "message_id": "threat-008",
+        "raw_text": "I will make sure you cannot play here again 8",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_009",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-5",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-009",
+        "message_id": "threat-009",
+        "raw_text": "one more word and I will expose your details 9",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_010",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-1",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-010",
+        "message_id": "threat-010",
+        "raw_text": "I am coming after your profile next sample 10",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_011",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-2",
+        "channel_id": "channel-threat-4",
+        "user_id": "user-threat-011",
+        "message_id": "threat-011",
+        "raw_text": "I will find your account and make you regret this 11",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_012",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-3",
+        "channel_id": "channel-threat-1",
+        "user_id": "user-threat-012",
+        "message_id": "threat-012",
+        "raw_text": "delete that message or I will dox your profile 12",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_013",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-4",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-013",
+        "message_id": "threat-013",
+        "raw_text": "keep talking and I will ruin your reputation 13",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_014",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-5",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-014",
+        "message_id": "threat-014",
+        "raw_text": "I will mass report you until you lose access 14",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_015",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-1",
+        "channel_id": "channel-threat-4",
+        "user_id": "user-threat-015",
+        "message_id": "threat-015",
+        "raw_text": "say that again and I will target your account 15",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_016",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-2",
+        "channel_id": "channel-threat-1",
+        "user_id": "user-threat-016",
+        "message_id": "threat-016",
+        "raw_text": "I know where to post your private data sample 16",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_017",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-3",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-017",
+        "message_id": "threat-017",
+        "raw_text": "apologize or your account is finished 17",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_018",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-4",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-018",
+        "message_id": "threat-018",
+        "raw_text": "I will make sure you cannot play here again 18",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_019",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-5",
+        "channel_id": "channel-threat-4",
+        "user_id": "user-threat-019",
+        "message_id": "threat-019",
+        "raw_text": "one more word and I will expose your details 19",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_020",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-1",
+        "channel_id": "channel-threat-1",
+        "user_id": "user-threat-020",
+        "message_id": "threat-020",
+        "raw_text": "I am coming after your profile next sample 20",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_021",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-2",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-021",
+        "message_id": "threat-021",
+        "raw_text": "I will find your account and make you regret this 21",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_022",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-3",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-022",
+        "message_id": "threat-022",
+        "raw_text": "delete that message or I will dox your profile 22",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_023",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-4",
+        "channel_id": "channel-threat-4",
+        "user_id": "user-threat-023",
+        "message_id": "threat-023",
+        "raw_text": "keep talking and I will ruin your reputation 23",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_024",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-5",
+        "channel_id": "channel-threat-1",
+        "user_id": "user-threat-024",
+        "message_id": "threat-024",
+        "raw_text": "I will mass report you until you lose access 24",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_025",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-1",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-025",
+        "message_id": "threat-025",
+        "raw_text": "say that again and I will target your account 25",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_026",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-2",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-026",
+        "message_id": "threat-026",
+        "raw_text": "I know where to post your private data sample 26",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_027",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-3",
+        "channel_id": "channel-threat-4",
+        "user_id": "user-threat-027",
+        "message_id": "threat-027",
+        "raw_text": "apologize or your account is finished 27",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_028",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-4",
+        "channel_id": "channel-threat-1",
+        "user_id": "user-threat-028",
+        "message_id": "threat-028",
+        "raw_text": "I will make sure you cannot play here again 28",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_029",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-5",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-029",
+        "message_id": "threat-029",
+        "raw_text": "one more word and I will expose your details 29",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_030",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-1",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-030",
+        "message_id": "threat-030",
+        "raw_text": "I am coming after your profile next sample 30",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_031",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-2",
+        "channel_id": "channel-threat-4",
+        "user_id": "user-threat-031",
+        "message_id": "threat-031",
+        "raw_text": "I will find your account and make you regret this 31",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_032",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-3",
+        "channel_id": "channel-threat-1",
+        "user_id": "user-threat-032",
+        "message_id": "threat-032",
+        "raw_text": "delete that message or I will dox your profile 32",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_033",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-4",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-033",
+        "message_id": "threat-033",
+        "raw_text": "keep talking and I will ruin your reputation 33",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_034",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-5",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-034",
+        "message_id": "threat-034",
+        "raw_text": "I will mass report you until you lose access 34",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_035",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-1",
+        "channel_id": "channel-threat-4",
+        "user_id": "user-threat-035",
+        "message_id": "threat-035",
+        "raw_text": "say that again and I will target your account 35",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_036",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-2",
+        "channel_id": "channel-threat-1",
+        "user_id": "user-threat-036",
+        "message_id": "threat-036",
+        "raw_text": "I know where to post your private data sample 36",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_037",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-3",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-037",
+        "message_id": "threat-037",
+        "raw_text": "apologize or your account is finished 37",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_038",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-4",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-038",
+        "message_id": "threat-038",
+        "raw_text": "I will make sure you cannot play here again 38",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_039",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-5",
+        "channel_id": "channel-threat-4",
+        "user_id": "user-threat-039",
+        "message_id": "threat-039",
+        "raw_text": "one more word and I will expose your details 39",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_040",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-1",
+        "channel_id": "channel-threat-1",
+        "user_id": "user-threat-040",
+        "message_id": "threat-040",
+        "raw_text": "I am coming after your profile next sample 40",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_041",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-2",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-041",
+        "message_id": "threat-041",
+        "raw_text": "I will find your account and make you regret this 41",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_042",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-3",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-042",
+        "message_id": "threat-042",
+        "raw_text": "delete that message or I will dox your profile 42",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_043",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-4",
+        "channel_id": "channel-threat-4",
+        "user_id": "user-threat-043",
+        "message_id": "threat-043",
+        "raw_text": "keep talking and I will ruin your reputation 43",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_044",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-5",
+        "channel_id": "channel-threat-1",
+        "user_id": "user-threat-044",
+        "message_id": "threat-044",
+        "raw_text": "I will mass report you until you lose access 44",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_045",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-1",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-045",
+        "message_id": "threat-045",
+        "raw_text": "say that again and I will target your account 45",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_046",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-2",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-046",
+        "message_id": "threat-046",
+        "raw_text": "I know where to post your private data sample 46",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_047",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-3",
+        "channel_id": "channel-threat-4",
+        "user_id": "user-threat-047",
+        "message_id": "threat-047",
+        "raw_text": "apologize or your account is finished 47",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_048",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-threat-4",
+        "channel_id": "channel-threat-1",
+        "user_id": "user-threat-048",
+        "message_id": "threat-048",
+        "raw_text": "I will make sure you cannot play here again 48",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_049",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-5",
+        "channel_id": "channel-threat-2",
+        "user_id": "user-threat-049",
+        "message_id": "threat-049",
+        "raw_text": "one more word and I will expose your details 49",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "THREAT_050",
+      "primary_label": "THREAT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-threat-1",
+        "channel_id": "channel-threat-3",
+        "user_id": "user-threat-050",
+        "message_id": "threat-050",
+        "raw_text": "I am coming after your profile next sample 50",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "THREAT",
+          "expected_primary_label": "THREAT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "THREAT"
+        ],
+        "primary_label": "THREAT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    }
+  ]
+}

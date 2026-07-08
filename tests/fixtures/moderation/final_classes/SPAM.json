@@ -1,0 +1,1557 @@
+{
+  "label": "SPAM",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "SPAM_001",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-2",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-001",
+        "message_id": "spam-001",
+        "raw_text": "BUY NOW BUY NOW BUY NOW limited drop 1",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_002",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-3",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-002",
+        "message_id": "spam-002",
+        "raw_text": "free points free points free points message 2",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_003",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-4",
+        "channel_id": "channel-spam-4",
+        "user_id": "user-spam-003",
+        "message_id": "spam-003",
+        "raw_text": "join my channel join my channel join my channel 3",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_004",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-5",
+        "channel_id": "channel-spam-1",
+        "user_id": "user-spam-004",
+        "message_id": "spam-004",
+        "raw_text": "click fast click fast click fast reward 4",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_005",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-1",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-005",
+        "message_id": "spam-005",
+        "raw_text": "cheap boost cheap boost cheap boost order 5",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_006",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-2",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-006",
+        "message_id": "spam-006",
+        "raw_text": "promo promo promo promo code sample 6",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_007",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-3",
+        "channel_id": "channel-spam-4",
+        "user_id": "user-spam-007",
+        "message_id": "spam-007",
+        "raw_text": "win win win win win today 7",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_008",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-4",
+        "channel_id": "channel-spam-1",
+        "user_id": "user-spam-008",
+        "message_id": "spam-008",
+        "raw_text": "fast level service fast level service 8",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_009",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-5",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-009",
+        "message_id": "spam-009",
+        "raw_text": "DM me DM me DM me for offer 9",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_010",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-1",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-010",
+        "message_id": "spam-010",
+        "raw_text": "sale sale sale sale server package 10",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_011",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-2",
+        "channel_id": "channel-spam-4",
+        "user_id": "user-spam-011",
+        "message_id": "spam-011",
+        "raw_text": "BUY NOW BUY NOW BUY NOW limited drop 11",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_012",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-3",
+        "channel_id": "channel-spam-1",
+        "user_id": "user-spam-012",
+        "message_id": "spam-012",
+        "raw_text": "free points free points free points message 12",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_013",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-4",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-013",
+        "message_id": "spam-013",
+        "raw_text": "join my channel join my channel join my channel 13",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_014",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-5",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-014",
+        "message_id": "spam-014",
+        "raw_text": "click fast click fast click fast reward 14",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_015",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-1",
+        "channel_id": "channel-spam-4",
+        "user_id": "user-spam-015",
+        "message_id": "spam-015",
+        "raw_text": "cheap boost cheap boost cheap boost order 15",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_016",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-2",
+        "channel_id": "channel-spam-1",
+        "user_id": "user-spam-016",
+        "message_id": "spam-016",
+        "raw_text": "promo promo promo promo code sample 16",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_017",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-3",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-017",
+        "message_id": "spam-017",
+        "raw_text": "win win win win win today 17",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_018",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-4",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-018",
+        "message_id": "spam-018",
+        "raw_text": "fast level service fast level service 18",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_019",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-5",
+        "channel_id": "channel-spam-4",
+        "user_id": "user-spam-019",
+        "message_id": "spam-019",
+        "raw_text": "DM me DM me DM me for offer 19",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_020",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-1",
+        "channel_id": "channel-spam-1",
+        "user_id": "user-spam-020",
+        "message_id": "spam-020",
+        "raw_text": "sale sale sale sale server package 20",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_021",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-2",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-021",
+        "message_id": "spam-021",
+        "raw_text": "BUY NOW BUY NOW BUY NOW limited drop 21",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_022",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-3",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-022",
+        "message_id": "spam-022",
+        "raw_text": "free points free points free points message 22",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_023",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-4",
+        "channel_id": "channel-spam-4",
+        "user_id": "user-spam-023",
+        "message_id": "spam-023",
+        "raw_text": "join my channel join my channel join my channel 23",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_024",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-5",
+        "channel_id": "channel-spam-1",
+        "user_id": "user-spam-024",
+        "message_id": "spam-024",
+        "raw_text": "click fast click fast click fast reward 24",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_025",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-1",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-025",
+        "message_id": "spam-025",
+        "raw_text": "cheap boost cheap boost cheap boost order 25",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_026",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-2",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-026",
+        "message_id": "spam-026",
+        "raw_text": "promo promo promo promo code sample 26",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_027",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-3",
+        "channel_id": "channel-spam-4",
+        "user_id": "user-spam-027",
+        "message_id": "spam-027",
+        "raw_text": "win win win win win today 27",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_028",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-4",
+        "channel_id": "channel-spam-1",
+        "user_id": "user-spam-028",
+        "message_id": "spam-028",
+        "raw_text": "fast level service fast level service 28",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_029",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-5",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-029",
+        "message_id": "spam-029",
+        "raw_text": "DM me DM me DM me for offer 29",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_030",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-1",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-030",
+        "message_id": "spam-030",
+        "raw_text": "sale sale sale sale server package 30",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_031",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-2",
+        "channel_id": "channel-spam-4",
+        "user_id": "user-spam-031",
+        "message_id": "spam-031",
+        "raw_text": "BUY NOW BUY NOW BUY NOW limited drop 31",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_032",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-3",
+        "channel_id": "channel-spam-1",
+        "user_id": "user-spam-032",
+        "message_id": "spam-032",
+        "raw_text": "free points free points free points message 32",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_033",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-4",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-033",
+        "message_id": "spam-033",
+        "raw_text": "join my channel join my channel join my channel 33",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_034",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-5",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-034",
+        "message_id": "spam-034",
+        "raw_text": "click fast click fast click fast reward 34",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_035",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-1",
+        "channel_id": "channel-spam-4",
+        "user_id": "user-spam-035",
+        "message_id": "spam-035",
+        "raw_text": "cheap boost cheap boost cheap boost order 35",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_036",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-2",
+        "channel_id": "channel-spam-1",
+        "user_id": "user-spam-036",
+        "message_id": "spam-036",
+        "raw_text": "promo promo promo promo code sample 36",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_037",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-3",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-037",
+        "message_id": "spam-037",
+        "raw_text": "win win win win win today 37",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_038",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-4",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-038",
+        "message_id": "spam-038",
+        "raw_text": "fast level service fast level service 38",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_039",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-5",
+        "channel_id": "channel-spam-4",
+        "user_id": "user-spam-039",
+        "message_id": "spam-039",
+        "raw_text": "DM me DM me DM me for offer 39",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_040",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-1",
+        "channel_id": "channel-spam-1",
+        "user_id": "user-spam-040",
+        "message_id": "spam-040",
+        "raw_text": "sale sale sale sale server package 40",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_041",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-2",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-041",
+        "message_id": "spam-041",
+        "raw_text": "BUY NOW BUY NOW BUY NOW limited drop 41",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_042",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-3",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-042",
+        "message_id": "spam-042",
+        "raw_text": "free points free points free points message 42",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_043",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-4",
+        "channel_id": "channel-spam-4",
+        "user_id": "user-spam-043",
+        "message_id": "spam-043",
+        "raw_text": "join my channel join my channel join my channel 43",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_044",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-5",
+        "channel_id": "channel-spam-1",
+        "user_id": "user-spam-044",
+        "message_id": "spam-044",
+        "raw_text": "click fast click fast click fast reward 44",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_045",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-1",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-045",
+        "message_id": "spam-045",
+        "raw_text": "cheap boost cheap boost cheap boost order 45",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_046",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-2",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-046",
+        "message_id": "spam-046",
+        "raw_text": "promo promo promo promo code sample 46",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_047",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-3",
+        "channel_id": "channel-spam-4",
+        "user_id": "user-spam-047",
+        "message_id": "spam-047",
+        "raw_text": "win win win win win today 47",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_048",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-spam-4",
+        "channel_id": "channel-spam-1",
+        "user_id": "user-spam-048",
+        "message_id": "spam-048",
+        "raw_text": "fast level service fast level service 48",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_049",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-5",
+        "channel_id": "channel-spam-2",
+        "user_id": "user-spam-049",
+        "message_id": "spam-049",
+        "raw_text": "DM me DM me DM me for offer 49",
+        "mention_count": 2,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SPAM_050",
+      "primary_label": "SPAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-spam-1",
+        "channel_id": "channel-spam-3",
+        "user_id": "user-spam-050",
+        "message_id": "spam-050",
+        "raw_text": "sale sale sale sale server package 50",
+        "mention_count": 5,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SPAM",
+          "expected_primary_label": "SPAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SPAM"
+        ],
+        "primary_label": "SPAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    }
+  ]
+}

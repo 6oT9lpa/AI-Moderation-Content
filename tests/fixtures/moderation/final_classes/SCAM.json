@@ -1,0 +1,1557 @@
+{
+  "label": "SCAM",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "SCAM_001",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-2",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-001",
+        "message_id": "scam-001",
+        "raw_text": "fake support asks to confirm wallet recovery phrase sample 1",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_002",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-3",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-002",
+        "message_id": "scam-002",
+        "raw_text": "claim prize on fake verification portal reward 2",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_003",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-4",
+        "channel_id": "channel-scam-4",
+        "user_id": "user-scam-003",
+        "message_id": "scam-003",
+        "raw_text": "limited giveaway requires login token proof 3",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_004",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-5",
+        "channel_id": "channel-scam-1",
+        "user_id": "user-scam-004",
+        "message_id": "scam-004",
+        "raw_text": "account unlock service asks for password sample 4",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_005",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-1",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-005",
+        "message_id": "scam-005",
+        "raw_text": "free nitro style claim page asks for credentials 5",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_006",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-2",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-006",
+        "message_id": "scam-006",
+        "raw_text": "moderator impostor requests backup codes sample 6",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_007",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-3",
+        "channel_id": "channel-scam-4",
+        "user_id": "user-scam-007",
+        "message_id": "scam-007",
+        "raw_text": "crypto airdrop asks to connect wallet seed 7",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_008",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-4",
+        "channel_id": "channel-scam-1",
+        "user_id": "user-scam-008",
+        "message_id": "scam-008",
+        "raw_text": "payment proof is fake and asks for deposit 8",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_009",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-5",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-009",
+        "message_id": "scam-009",
+        "raw_text": "security check link tries to steal session 9",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_010",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-1",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-010",
+        "message_id": "scam-010",
+        "raw_text": "support ticket demands private auth code 10",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_011",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-2",
+        "channel_id": "channel-scam-4",
+        "user_id": "user-scam-011",
+        "message_id": "scam-011",
+        "raw_text": "fake support asks to confirm wallet recovery phrase sample 11",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_012",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-3",
+        "channel_id": "channel-scam-1",
+        "user_id": "user-scam-012",
+        "message_id": "scam-012",
+        "raw_text": "claim prize on fake verification portal reward 12",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_013",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-4",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-013",
+        "message_id": "scam-013",
+        "raw_text": "limited giveaway requires login token proof 13",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_014",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-5",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-014",
+        "message_id": "scam-014",
+        "raw_text": "account unlock service asks for password sample 14",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_015",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-1",
+        "channel_id": "channel-scam-4",
+        "user_id": "user-scam-015",
+        "message_id": "scam-015",
+        "raw_text": "free nitro style claim page asks for credentials 15",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_016",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-2",
+        "channel_id": "channel-scam-1",
+        "user_id": "user-scam-016",
+        "message_id": "scam-016",
+        "raw_text": "moderator impostor requests backup codes sample 16",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_017",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-3",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-017",
+        "message_id": "scam-017",
+        "raw_text": "crypto airdrop asks to connect wallet seed 17",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_018",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-4",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-018",
+        "message_id": "scam-018",
+        "raw_text": "payment proof is fake and asks for deposit 18",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_019",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-5",
+        "channel_id": "channel-scam-4",
+        "user_id": "user-scam-019",
+        "message_id": "scam-019",
+        "raw_text": "security check link tries to steal session 19",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_020",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-1",
+        "channel_id": "channel-scam-1",
+        "user_id": "user-scam-020",
+        "message_id": "scam-020",
+        "raw_text": "support ticket demands private auth code 20",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_021",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-2",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-021",
+        "message_id": "scam-021",
+        "raw_text": "fake support asks to confirm wallet recovery phrase sample 21",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_022",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-3",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-022",
+        "message_id": "scam-022",
+        "raw_text": "claim prize on fake verification portal reward 22",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_023",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-4",
+        "channel_id": "channel-scam-4",
+        "user_id": "user-scam-023",
+        "message_id": "scam-023",
+        "raw_text": "limited giveaway requires login token proof 23",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_024",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-5",
+        "channel_id": "channel-scam-1",
+        "user_id": "user-scam-024",
+        "message_id": "scam-024",
+        "raw_text": "account unlock service asks for password sample 24",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_025",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-1",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-025",
+        "message_id": "scam-025",
+        "raw_text": "free nitro style claim page asks for credentials 25",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_026",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-2",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-026",
+        "message_id": "scam-026",
+        "raw_text": "moderator impostor requests backup codes sample 26",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_027",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-3",
+        "channel_id": "channel-scam-4",
+        "user_id": "user-scam-027",
+        "message_id": "scam-027",
+        "raw_text": "crypto airdrop asks to connect wallet seed 27",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_028",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-4",
+        "channel_id": "channel-scam-1",
+        "user_id": "user-scam-028",
+        "message_id": "scam-028",
+        "raw_text": "payment proof is fake and asks for deposit 28",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_029",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-5",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-029",
+        "message_id": "scam-029",
+        "raw_text": "security check link tries to steal session 29",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_030",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-1",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-030",
+        "message_id": "scam-030",
+        "raw_text": "support ticket demands private auth code 30",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_031",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-2",
+        "channel_id": "channel-scam-4",
+        "user_id": "user-scam-031",
+        "message_id": "scam-031",
+        "raw_text": "fake support asks to confirm wallet recovery phrase sample 31",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_032",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-3",
+        "channel_id": "channel-scam-1",
+        "user_id": "user-scam-032",
+        "message_id": "scam-032",
+        "raw_text": "claim prize on fake verification portal reward 32",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_033",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-4",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-033",
+        "message_id": "scam-033",
+        "raw_text": "limited giveaway requires login token proof 33",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_034",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-5",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-034",
+        "message_id": "scam-034",
+        "raw_text": "account unlock service asks for password sample 34",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_035",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-1",
+        "channel_id": "channel-scam-4",
+        "user_id": "user-scam-035",
+        "message_id": "scam-035",
+        "raw_text": "free nitro style claim page asks for credentials 35",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_036",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-2",
+        "channel_id": "channel-scam-1",
+        "user_id": "user-scam-036",
+        "message_id": "scam-036",
+        "raw_text": "moderator impostor requests backup codes sample 36",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_037",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-3",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-037",
+        "message_id": "scam-037",
+        "raw_text": "crypto airdrop asks to connect wallet seed 37",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_038",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-4",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-038",
+        "message_id": "scam-038",
+        "raw_text": "payment proof is fake and asks for deposit 38",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_039",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-5",
+        "channel_id": "channel-scam-4",
+        "user_id": "user-scam-039",
+        "message_id": "scam-039",
+        "raw_text": "security check link tries to steal session 39",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_040",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-1",
+        "channel_id": "channel-scam-1",
+        "user_id": "user-scam-040",
+        "message_id": "scam-040",
+        "raw_text": "support ticket demands private auth code 40",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_041",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-2",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-041",
+        "message_id": "scam-041",
+        "raw_text": "fake support asks to confirm wallet recovery phrase sample 41",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_042",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-3",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-042",
+        "message_id": "scam-042",
+        "raw_text": "claim prize on fake verification portal reward 42",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_043",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-4",
+        "channel_id": "channel-scam-4",
+        "user_id": "user-scam-043",
+        "message_id": "scam-043",
+        "raw_text": "limited giveaway requires login token proof 43",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_044",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-5",
+        "channel_id": "channel-scam-1",
+        "user_id": "user-scam-044",
+        "message_id": "scam-044",
+        "raw_text": "account unlock service asks for password sample 44",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_045",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-1",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-045",
+        "message_id": "scam-045",
+        "raw_text": "free nitro style claim page asks for credentials 45",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_046",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-2",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-046",
+        "message_id": "scam-046",
+        "raw_text": "moderator impostor requests backup codes sample 46",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_047",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-3",
+        "channel_id": "channel-scam-4",
+        "user_id": "user-scam-047",
+        "message_id": "scam-047",
+        "raw_text": "crypto airdrop asks to connect wallet seed 47",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_048",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-scam-4",
+        "channel_id": "channel-scam-1",
+        "user_id": "user-scam-048",
+        "message_id": "scam-048",
+        "raw_text": "payment proof is fake and asks for deposit 48",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_049",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-5",
+        "channel_id": "channel-scam-2",
+        "user_id": "user-scam-049",
+        "message_id": "scam-049",
+        "raw_text": "security check link tries to steal session 49",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SCAM_050",
+      "primary_label": "SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-scam-1",
+        "channel_id": "channel-scam-3",
+        "user_id": "user-scam-050",
+        "message_id": "scam-050",
+        "raw_text": "support ticket demands private auth code 50",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SCAM",
+          "expected_primary_label": "SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM"
+        ],
+        "primary_label": "SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    }
+  ]
+}

@@ -13,6 +13,7 @@ logger = get_logger("tests.preprocessing")
 def _make_features() -> MessageFeatures:
     return MessageFeatures(
         text_length=42,
+        token_count=5,
         word_count=5,
         line_count=1,
         url_count=1,
@@ -21,6 +22,7 @@ def _make_features() -> MessageFeatures:
         role_mention_count=1,
         channel_mention_count=1,
         emoji_count=1,
+        emoji_ratio=0.024,
         uppercase_ratio=0.25,
         digit_ratio=0.1,
         punctuation_count=3,
@@ -32,6 +34,12 @@ def _make_features() -> MessageFeatures:
         longest_word_length=10,
         repeated_char_score=0.3,
         has_repeated_chars=True,
+        duplicate_text_score=0.5,
+        recent_user_messages_10s=2,
+        recent_user_messages_60s=4,
+        recent_user_messages_10m=8,
+        repeated_messages_10m=2,
+        message_interval_seconds=1.25,
         has_url=True,
         has_invite=True,
         has_shortener=False,
@@ -55,11 +63,13 @@ def test_message_features_to_dict_contains_all_fields() -> None:
     )
 
     assert data["text_length"] == 42
+    assert data["token_count"] == 5
     assert data["word_count"] == 5
     assert data["url_count"] == 1
     assert data["invite_count"] == 1
     assert data["has_mixed_scripts"] is True
     assert data["has_repeated_chars"] is True
+    assert data["repeated_messages_10m"] == 2
 
 
 def test_message_features_is_frozen() -> None:

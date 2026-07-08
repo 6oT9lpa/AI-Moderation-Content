@@ -1,0 +1,1557 @@
+{
+  "label": "ADVERTISEMENT",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "ADVERTISEMENT_001",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-2",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-001",
+        "message_id": "advertisement-001",
+        "raw_text": "selling custom avatars, price list in DM sample 1",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_002",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-3",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-002",
+        "message_id": "advertisement-002",
+        "raw_text": "paid coaching slots open this week message 2",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_003",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-4",
+        "channel_id": "channel-advertisement-4",
+        "user_id": "user-advertisement-003",
+        "message_id": "advertisement-003",
+        "raw_text": "new shop launch, use promo code TEST3",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_004",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-5",
+        "channel_id": "channel-advertisement-1",
+        "user_id": "user-advertisement-004",
+        "message_id": "advertisement-004",
+        "raw_text": "boosting service available, contact seller 4",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_005",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-1",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-005",
+        "message_id": "advertisement-005",
+        "raw_text": "private marketplace has skins for sale 5",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_006",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-2",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-006",
+        "message_id": "advertisement-006",
+        "raw_text": "subscribe to my paid channel for signals 6",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_007",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-3",
+        "channel_id": "channel-advertisement-4",
+        "user_id": "user-advertisement-007",
+        "message_id": "advertisement-007",
+        "raw_text": "commission orders open for banners 7",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_008",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-4",
+        "channel_id": "channel-advertisement-1",
+        "user_id": "user-advertisement-008",
+        "message_id": "advertisement-008",
+        "raw_text": "cheap server setup service available now 8",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_009",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-5",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-009",
+        "message_id": "advertisement-009",
+        "raw_text": "partner promo: hosting plan discount 9",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_010",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-1",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-010",
+        "message_id": "advertisement-010",
+        "raw_text": "advertising my stream package here sample 10",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_011",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-2",
+        "channel_id": "channel-advertisement-4",
+        "user_id": "user-advertisement-011",
+        "message_id": "advertisement-011",
+        "raw_text": "selling custom avatars, price list in DM sample 11",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_012",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-3",
+        "channel_id": "channel-advertisement-1",
+        "user_id": "user-advertisement-012",
+        "message_id": "advertisement-012",
+        "raw_text": "paid coaching slots open this week message 12",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_013",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-4",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-013",
+        "message_id": "advertisement-013",
+        "raw_text": "new shop launch, use promo code TEST13",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_014",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-5",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-014",
+        "message_id": "advertisement-014",
+        "raw_text": "boosting service available, contact seller 14",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_015",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-1",
+        "channel_id": "channel-advertisement-4",
+        "user_id": "user-advertisement-015",
+        "message_id": "advertisement-015",
+        "raw_text": "private marketplace has skins for sale 15",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_016",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-2",
+        "channel_id": "channel-advertisement-1",
+        "user_id": "user-advertisement-016",
+        "message_id": "advertisement-016",
+        "raw_text": "subscribe to my paid channel for signals 16",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_017",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-3",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-017",
+        "message_id": "advertisement-017",
+        "raw_text": "commission orders open for banners 17",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_018",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-4",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-018",
+        "message_id": "advertisement-018",
+        "raw_text": "cheap server setup service available now 18",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_019",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-5",
+        "channel_id": "channel-advertisement-4",
+        "user_id": "user-advertisement-019",
+        "message_id": "advertisement-019",
+        "raw_text": "partner promo: hosting plan discount 19",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_020",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-1",
+        "channel_id": "channel-advertisement-1",
+        "user_id": "user-advertisement-020",
+        "message_id": "advertisement-020",
+        "raw_text": "advertising my stream package here sample 20",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_021",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-2",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-021",
+        "message_id": "advertisement-021",
+        "raw_text": "selling custom avatars, price list in DM sample 21",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_022",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-3",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-022",
+        "message_id": "advertisement-022",
+        "raw_text": "paid coaching slots open this week message 22",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_023",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-4",
+        "channel_id": "channel-advertisement-4",
+        "user_id": "user-advertisement-023",
+        "message_id": "advertisement-023",
+        "raw_text": "new shop launch, use promo code TEST23",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_024",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-5",
+        "channel_id": "channel-advertisement-1",
+        "user_id": "user-advertisement-024",
+        "message_id": "advertisement-024",
+        "raw_text": "boosting service available, contact seller 24",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_025",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-1",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-025",
+        "message_id": "advertisement-025",
+        "raw_text": "private marketplace has skins for sale 25",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_026",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-2",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-026",
+        "message_id": "advertisement-026",
+        "raw_text": "subscribe to my paid channel for signals 26",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_027",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-3",
+        "channel_id": "channel-advertisement-4",
+        "user_id": "user-advertisement-027",
+        "message_id": "advertisement-027",
+        "raw_text": "commission orders open for banners 27",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_028",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-4",
+        "channel_id": "channel-advertisement-1",
+        "user_id": "user-advertisement-028",
+        "message_id": "advertisement-028",
+        "raw_text": "cheap server setup service available now 28",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_029",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-5",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-029",
+        "message_id": "advertisement-029",
+        "raw_text": "partner promo: hosting plan discount 29",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_030",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-1",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-030",
+        "message_id": "advertisement-030",
+        "raw_text": "advertising my stream package here sample 30",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_031",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-2",
+        "channel_id": "channel-advertisement-4",
+        "user_id": "user-advertisement-031",
+        "message_id": "advertisement-031",
+        "raw_text": "selling custom avatars, price list in DM sample 31",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_032",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-3",
+        "channel_id": "channel-advertisement-1",
+        "user_id": "user-advertisement-032",
+        "message_id": "advertisement-032",
+        "raw_text": "paid coaching slots open this week message 32",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_033",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-4",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-033",
+        "message_id": "advertisement-033",
+        "raw_text": "new shop launch, use promo code TEST33",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_034",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-5",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-034",
+        "message_id": "advertisement-034",
+        "raw_text": "boosting service available, contact seller 34",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_035",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-1",
+        "channel_id": "channel-advertisement-4",
+        "user_id": "user-advertisement-035",
+        "message_id": "advertisement-035",
+        "raw_text": "private marketplace has skins for sale 35",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_036",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-2",
+        "channel_id": "channel-advertisement-1",
+        "user_id": "user-advertisement-036",
+        "message_id": "advertisement-036",
+        "raw_text": "subscribe to my paid channel for signals 36",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_037",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-3",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-037",
+        "message_id": "advertisement-037",
+        "raw_text": "commission orders open for banners 37",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_038",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-4",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-038",
+        "message_id": "advertisement-038",
+        "raw_text": "cheap server setup service available now 38",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_039",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-5",
+        "channel_id": "channel-advertisement-4",
+        "user_id": "user-advertisement-039",
+        "message_id": "advertisement-039",
+        "raw_text": "partner promo: hosting plan discount 39",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_040",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-1",
+        "channel_id": "channel-advertisement-1",
+        "user_id": "user-advertisement-040",
+        "message_id": "advertisement-040",
+        "raw_text": "advertising my stream package here sample 40",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_041",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-2",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-041",
+        "message_id": "advertisement-041",
+        "raw_text": "selling custom avatars, price list in DM sample 41",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_042",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-3",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-042",
+        "message_id": "advertisement-042",
+        "raw_text": "paid coaching slots open this week message 42",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_043",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-4",
+        "channel_id": "channel-advertisement-4",
+        "user_id": "user-advertisement-043",
+        "message_id": "advertisement-043",
+        "raw_text": "new shop launch, use promo code TEST43",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_044",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-5",
+        "channel_id": "channel-advertisement-1",
+        "user_id": "user-advertisement-044",
+        "message_id": "advertisement-044",
+        "raw_text": "boosting service available, contact seller 44",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_045",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-1",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-045",
+        "message_id": "advertisement-045",
+        "raw_text": "private marketplace has skins for sale 45",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_046",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-2",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-046",
+        "message_id": "advertisement-046",
+        "raw_text": "subscribe to my paid channel for signals 46",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_047",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-3",
+        "channel_id": "channel-advertisement-4",
+        "user_id": "user-advertisement-047",
+        "message_id": "advertisement-047",
+        "raw_text": "commission orders open for banners 47",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_048",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-advertisement-4",
+        "channel_id": "channel-advertisement-1",
+        "user_id": "user-advertisement-048",
+        "message_id": "advertisement-048",
+        "raw_text": "cheap server setup service available now 48",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_049",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-5",
+        "channel_id": "channel-advertisement-2",
+        "user_id": "user-advertisement-049",
+        "message_id": "advertisement-049",
+        "raw_text": "partner promo: hosting plan discount 49",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "ADVERTISEMENT_050",
+      "primary_label": "ADVERTISEMENT",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-advertisement-1",
+        "channel_id": "channel-advertisement-3",
+        "user_id": "user-advertisement-050",
+        "message_id": "advertisement-050",
+        "raw_text": "advertising my stream package here sample 50",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "ADVERTISEMENT",
+          "expected_primary_label": "ADVERTISEMENT"
+        }
+      },
+      "expected": {
+        "labels": [
+          "ADVERTISEMENT"
+        ],
+        "primary_label": "ADVERTISEMENT"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    }
+  ]
+}

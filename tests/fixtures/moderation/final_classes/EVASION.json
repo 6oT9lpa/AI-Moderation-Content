@@ -1,0 +1,1557 @@
+{
+  "label": "EVASION",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "EVASION_001",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-2",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-001",
+        "message_id": "evasion-001",
+        "raw_text": "frее nіtrо clаim sample 1",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_002",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-3",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-002",
+        "message_id": "evasion-002",
+        "raw_text": "d​is​c​ord gg hidden code 2",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_003",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-4",
+        "channel_id": "channel-evasion-4",
+        "user_id": "user-evasion-003",
+        "message_id": "evasion-003",
+        "raw_text": "scаm word split with mixed scripts 3",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_004",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-5",
+        "channel_id": "channel-evasion-1",
+        "user_id": "user-evasion-004",
+        "message_id": "evasion-004",
+        "raw_text": "b​uy n​ow obfuscated offer 4",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_005",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-1",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-005",
+        "message_id": "evasion-005",
+        "raw_text": "d o t invite hidden pattern 5",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_006",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-2",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-006",
+        "message_id": "evasion-006",
+        "raw_text": "fаke suppоrt account check 6",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_007",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-3",
+        "channel_id": "channel-evasion-4",
+        "user_id": "user-evasion-007",
+        "message_id": "evasion-007",
+        "raw_text": "prоmо code with Cyrillic letters 7",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_008",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-4",
+        "channel_id": "channel-evasion-1",
+        "user_id": "user-evasion-008",
+        "message_id": "evasion-008",
+        "raw_text": "cl​ick this masked link sample 8",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_009",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-5",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-009",
+        "message_id": "evasion-009",
+        "raw_text": "gіveаwаy with lookalike letters 9",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_010",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-1",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-010",
+        "message_id": "evasion-010",
+        "raw_text": "zero⁠width⁠text bypass sample 10",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_011",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-2",
+        "channel_id": "channel-evasion-4",
+        "user_id": "user-evasion-011",
+        "message_id": "evasion-011",
+        "raw_text": "frее nіtrо clаim sample 11",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_012",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-3",
+        "channel_id": "channel-evasion-1",
+        "user_id": "user-evasion-012",
+        "message_id": "evasion-012",
+        "raw_text": "d​is​c​ord gg hidden code 12",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_013",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-4",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-013",
+        "message_id": "evasion-013",
+        "raw_text": "scаm word split with mixed scripts 13",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_014",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-5",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-014",
+        "message_id": "evasion-014",
+        "raw_text": "b​uy n​ow obfuscated offer 14",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_015",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-1",
+        "channel_id": "channel-evasion-4",
+        "user_id": "user-evasion-015",
+        "message_id": "evasion-015",
+        "raw_text": "d o t invite hidden pattern 15",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_016",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-2",
+        "channel_id": "channel-evasion-1",
+        "user_id": "user-evasion-016",
+        "message_id": "evasion-016",
+        "raw_text": "fаke suppоrt account check 16",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_017",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-3",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-017",
+        "message_id": "evasion-017",
+        "raw_text": "prоmо code with Cyrillic letters 17",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_018",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-4",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-018",
+        "message_id": "evasion-018",
+        "raw_text": "cl​ick this masked link sample 18",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_019",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-5",
+        "channel_id": "channel-evasion-4",
+        "user_id": "user-evasion-019",
+        "message_id": "evasion-019",
+        "raw_text": "gіveаwаy with lookalike letters 19",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_020",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-1",
+        "channel_id": "channel-evasion-1",
+        "user_id": "user-evasion-020",
+        "message_id": "evasion-020",
+        "raw_text": "zero⁠width⁠text bypass sample 20",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_021",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-2",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-021",
+        "message_id": "evasion-021",
+        "raw_text": "frее nіtrо clаim sample 21",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_022",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-3",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-022",
+        "message_id": "evasion-022",
+        "raw_text": "d​is​c​ord gg hidden code 22",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_023",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-4",
+        "channel_id": "channel-evasion-4",
+        "user_id": "user-evasion-023",
+        "message_id": "evasion-023",
+        "raw_text": "scаm word split with mixed scripts 23",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_024",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-5",
+        "channel_id": "channel-evasion-1",
+        "user_id": "user-evasion-024",
+        "message_id": "evasion-024",
+        "raw_text": "b​uy n​ow obfuscated offer 24",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_025",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-1",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-025",
+        "message_id": "evasion-025",
+        "raw_text": "d o t invite hidden pattern 25",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_026",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-2",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-026",
+        "message_id": "evasion-026",
+        "raw_text": "fаke suppоrt account check 26",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_027",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-3",
+        "channel_id": "channel-evasion-4",
+        "user_id": "user-evasion-027",
+        "message_id": "evasion-027",
+        "raw_text": "prоmо code with Cyrillic letters 27",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_028",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-4",
+        "channel_id": "channel-evasion-1",
+        "user_id": "user-evasion-028",
+        "message_id": "evasion-028",
+        "raw_text": "cl​ick this masked link sample 28",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_029",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-5",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-029",
+        "message_id": "evasion-029",
+        "raw_text": "gіveаwаy with lookalike letters 29",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_030",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-1",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-030",
+        "message_id": "evasion-030",
+        "raw_text": "zero⁠width⁠text bypass sample 30",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_031",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-2",
+        "channel_id": "channel-evasion-4",
+        "user_id": "user-evasion-031",
+        "message_id": "evasion-031",
+        "raw_text": "frее nіtrо clаim sample 31",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_032",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-3",
+        "channel_id": "channel-evasion-1",
+        "user_id": "user-evasion-032",
+        "message_id": "evasion-032",
+        "raw_text": "d​is​c​ord gg hidden code 32",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_033",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-4",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-033",
+        "message_id": "evasion-033",
+        "raw_text": "scаm word split with mixed scripts 33",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_034",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-5",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-034",
+        "message_id": "evasion-034",
+        "raw_text": "b​uy n​ow obfuscated offer 34",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_035",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-1",
+        "channel_id": "channel-evasion-4",
+        "user_id": "user-evasion-035",
+        "message_id": "evasion-035",
+        "raw_text": "d o t invite hidden pattern 35",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_036",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-2",
+        "channel_id": "channel-evasion-1",
+        "user_id": "user-evasion-036",
+        "message_id": "evasion-036",
+        "raw_text": "fаke suppоrt account check 36",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_037",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-3",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-037",
+        "message_id": "evasion-037",
+        "raw_text": "prоmо code with Cyrillic letters 37",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_038",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-4",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-038",
+        "message_id": "evasion-038",
+        "raw_text": "cl​ick this masked link sample 38",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_039",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-5",
+        "channel_id": "channel-evasion-4",
+        "user_id": "user-evasion-039",
+        "message_id": "evasion-039",
+        "raw_text": "gіveаwаy with lookalike letters 39",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_040",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-1",
+        "channel_id": "channel-evasion-1",
+        "user_id": "user-evasion-040",
+        "message_id": "evasion-040",
+        "raw_text": "zero⁠width⁠text bypass sample 40",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_041",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-2",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-041",
+        "message_id": "evasion-041",
+        "raw_text": "frее nіtrо clаim sample 41",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_042",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-3",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-042",
+        "message_id": "evasion-042",
+        "raw_text": "d​is​c​ord gg hidden code 42",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_043",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-4",
+        "channel_id": "channel-evasion-4",
+        "user_id": "user-evasion-043",
+        "message_id": "evasion-043",
+        "raw_text": "scаm word split with mixed scripts 43",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_044",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-5",
+        "channel_id": "channel-evasion-1",
+        "user_id": "user-evasion-044",
+        "message_id": "evasion-044",
+        "raw_text": "b​uy n​ow obfuscated offer 44",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_045",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-1",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-045",
+        "message_id": "evasion-045",
+        "raw_text": "d o t invite hidden pattern 45",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_046",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-2",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-046",
+        "message_id": "evasion-046",
+        "raw_text": "fаke suppоrt account check 46",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_047",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-3",
+        "channel_id": "channel-evasion-4",
+        "user_id": "user-evasion-047",
+        "message_id": "evasion-047",
+        "raw_text": "prоmо code with Cyrillic letters 47",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_048",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-evasion-4",
+        "channel_id": "channel-evasion-1",
+        "user_id": "user-evasion-048",
+        "message_id": "evasion-048",
+        "raw_text": "cl​ick this masked link sample 48",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_049",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-5",
+        "channel_id": "channel-evasion-2",
+        "user_id": "user-evasion-049",
+        "message_id": "evasion-049",
+        "raw_text": "gіveаwаy with lookalike letters 49",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "EVASION_050",
+      "primary_label": "EVASION",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-evasion-1",
+        "channel_id": "channel-evasion-3",
+        "user_id": "user-evasion-050",
+        "message_id": "evasion-050",
+        "raw_text": "zero⁠width⁠text bypass sample 50",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "EVASION",
+          "expected_primary_label": "EVASION"
+        }
+      },
+      "expected": {
+        "labels": [
+          "EVASION"
+        ],
+        "primary_label": "EVASION"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    }
+  ]
+}

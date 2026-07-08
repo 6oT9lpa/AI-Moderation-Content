@@ -1,0 +1,1557 @@
+{
+  "label": "HATE",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "HATE_001",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-2",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-001",
+        "message_id": "hate-001",
+        "raw_text": "remove all [protected_group] users from this server sample 1",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_002",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-3",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-002",
+        "message_id": "hate-002",
+        "raw_text": "[protected_group] people should not be allowed here 2",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_003",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-4",
+        "channel_id": "channel-hate-4",
+        "user_id": "user-hate-003",
+        "message_id": "hate-003",
+        "raw_text": "I refuse to play with [protected_group] users 3",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_004",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-5",
+        "channel_id": "channel-hate-1",
+        "user_id": "user-hate-004",
+        "message_id": "hate-004",
+        "raw_text": "ban every [protected_group] member from chat 4",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_005",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-1",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-005",
+        "message_id": "hate-005",
+        "raw_text": "[protected_group] players are not welcome in this lobby 5",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_006",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-2",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-006",
+        "message_id": "hate-006",
+        "raw_text": "make a channel excluding [protected_group] users 6",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_007",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-3",
+        "channel_id": "channel-hate-4",
+        "user_id": "user-hate-007",
+        "message_id": "hate-007",
+        "raw_text": "do not recruit anyone from [protected_group] sample 7",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_008",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-4",
+        "channel_id": "channel-hate-1",
+        "user_id": "user-hate-008",
+        "message_id": "hate-008",
+        "raw_text": "kick that user because they are [protected_group] 8",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_009",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-5",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-009",
+        "message_id": "hate-009",
+        "raw_text": "this clan should reject [protected_group] people 9",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_010",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-1",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-010",
+        "message_id": "hate-010",
+        "raw_text": "mocking [protected_group] users is allowed here 10",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_011",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-2",
+        "channel_id": "channel-hate-4",
+        "user_id": "user-hate-011",
+        "message_id": "hate-011",
+        "raw_text": "remove all [protected_group] users from this server sample 11",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_012",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-3",
+        "channel_id": "channel-hate-1",
+        "user_id": "user-hate-012",
+        "message_id": "hate-012",
+        "raw_text": "[protected_group] people should not be allowed here 12",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_013",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-4",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-013",
+        "message_id": "hate-013",
+        "raw_text": "I refuse to play with [protected_group] users 13",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_014",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-5",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-014",
+        "message_id": "hate-014",
+        "raw_text": "ban every [protected_group] member from chat 14",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_015",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-1",
+        "channel_id": "channel-hate-4",
+        "user_id": "user-hate-015",
+        "message_id": "hate-015",
+        "raw_text": "[protected_group] players are not welcome in this lobby 15",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_016",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-2",
+        "channel_id": "channel-hate-1",
+        "user_id": "user-hate-016",
+        "message_id": "hate-016",
+        "raw_text": "make a channel excluding [protected_group] users 16",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_017",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-3",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-017",
+        "message_id": "hate-017",
+        "raw_text": "do not recruit anyone from [protected_group] sample 17",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_018",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-4",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-018",
+        "message_id": "hate-018",
+        "raw_text": "kick that user because they are [protected_group] 18",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_019",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-5",
+        "channel_id": "channel-hate-4",
+        "user_id": "user-hate-019",
+        "message_id": "hate-019",
+        "raw_text": "this clan should reject [protected_group] people 19",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_020",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-1",
+        "channel_id": "channel-hate-1",
+        "user_id": "user-hate-020",
+        "message_id": "hate-020",
+        "raw_text": "mocking [protected_group] users is allowed here 20",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_021",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-2",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-021",
+        "message_id": "hate-021",
+        "raw_text": "remove all [protected_group] users from this server sample 21",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_022",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-3",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-022",
+        "message_id": "hate-022",
+        "raw_text": "[protected_group] people should not be allowed here 22",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_023",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-4",
+        "channel_id": "channel-hate-4",
+        "user_id": "user-hate-023",
+        "message_id": "hate-023",
+        "raw_text": "I refuse to play with [protected_group] users 23",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_024",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-5",
+        "channel_id": "channel-hate-1",
+        "user_id": "user-hate-024",
+        "message_id": "hate-024",
+        "raw_text": "ban every [protected_group] member from chat 24",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_025",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-1",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-025",
+        "message_id": "hate-025",
+        "raw_text": "[protected_group] players are not welcome in this lobby 25",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_026",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-2",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-026",
+        "message_id": "hate-026",
+        "raw_text": "make a channel excluding [protected_group] users 26",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_027",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-3",
+        "channel_id": "channel-hate-4",
+        "user_id": "user-hate-027",
+        "message_id": "hate-027",
+        "raw_text": "do not recruit anyone from [protected_group] sample 27",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_028",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-4",
+        "channel_id": "channel-hate-1",
+        "user_id": "user-hate-028",
+        "message_id": "hate-028",
+        "raw_text": "kick that user because they are [protected_group] 28",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_029",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-5",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-029",
+        "message_id": "hate-029",
+        "raw_text": "this clan should reject [protected_group] people 29",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_030",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-1",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-030",
+        "message_id": "hate-030",
+        "raw_text": "mocking [protected_group] users is allowed here 30",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_031",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-2",
+        "channel_id": "channel-hate-4",
+        "user_id": "user-hate-031",
+        "message_id": "hate-031",
+        "raw_text": "remove all [protected_group] users from this server sample 31",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_032",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-3",
+        "channel_id": "channel-hate-1",
+        "user_id": "user-hate-032",
+        "message_id": "hate-032",
+        "raw_text": "[protected_group] people should not be allowed here 32",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_033",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-4",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-033",
+        "message_id": "hate-033",
+        "raw_text": "I refuse to play with [protected_group] users 33",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_034",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-5",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-034",
+        "message_id": "hate-034",
+        "raw_text": "ban every [protected_group] member from chat 34",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_035",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-1",
+        "channel_id": "channel-hate-4",
+        "user_id": "user-hate-035",
+        "message_id": "hate-035",
+        "raw_text": "[protected_group] players are not welcome in this lobby 35",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_036",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-2",
+        "channel_id": "channel-hate-1",
+        "user_id": "user-hate-036",
+        "message_id": "hate-036",
+        "raw_text": "make a channel excluding [protected_group] users 36",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_037",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-3",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-037",
+        "message_id": "hate-037",
+        "raw_text": "do not recruit anyone from [protected_group] sample 37",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_038",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-4",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-038",
+        "message_id": "hate-038",
+        "raw_text": "kick that user because they are [protected_group] 38",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_039",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-5",
+        "channel_id": "channel-hate-4",
+        "user_id": "user-hate-039",
+        "message_id": "hate-039",
+        "raw_text": "this clan should reject [protected_group] people 39",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_040",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-1",
+        "channel_id": "channel-hate-1",
+        "user_id": "user-hate-040",
+        "message_id": "hate-040",
+        "raw_text": "mocking [protected_group] users is allowed here 40",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_041",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-2",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-041",
+        "message_id": "hate-041",
+        "raw_text": "remove all [protected_group] users from this server sample 41",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_042",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-3",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-042",
+        "message_id": "hate-042",
+        "raw_text": "[protected_group] people should not be allowed here 42",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_043",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-4",
+        "channel_id": "channel-hate-4",
+        "user_id": "user-hate-043",
+        "message_id": "hate-043",
+        "raw_text": "I refuse to play with [protected_group] users 43",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_044",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-5",
+        "channel_id": "channel-hate-1",
+        "user_id": "user-hate-044",
+        "message_id": "hate-044",
+        "raw_text": "ban every [protected_group] member from chat 44",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_045",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-1",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-045",
+        "message_id": "hate-045",
+        "raw_text": "[protected_group] players are not welcome in this lobby 45",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_046",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-2",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-046",
+        "message_id": "hate-046",
+        "raw_text": "make a channel excluding [protected_group] users 46",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_047",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-3",
+        "channel_id": "channel-hate-4",
+        "user_id": "user-hate-047",
+        "message_id": "hate-047",
+        "raw_text": "do not recruit anyone from [protected_group] sample 47",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_048",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-hate-4",
+        "channel_id": "channel-hate-1",
+        "user_id": "user-hate-048",
+        "message_id": "hate-048",
+        "raw_text": "kick that user because they are [protected_group] 48",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_049",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-5",
+        "channel_id": "channel-hate-2",
+        "user_id": "user-hate-049",
+        "message_id": "hate-049",
+        "raw_text": "this clan should reject [protected_group] people 49",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "HATE_050",
+      "primary_label": "HATE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-hate-1",
+        "channel_id": "channel-hate-3",
+        "user_id": "user-hate-050",
+        "message_id": "hate-050",
+        "raw_text": "mocking [protected_group] users is allowed here 50",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "HATE",
+          "expected_primary_label": "HATE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "HATE"
+        ],
+        "primary_label": "HATE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    }
+  ]
+}

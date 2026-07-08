@@ -1,0 +1,1557 @@
+{
+  "label": "SAFE",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "SAFE_001",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-2",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-001",
+        "message_id": "safe-001",
+        "raw_text": "gg team, that round was clean sample 1",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_002",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-3",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-002",
+        "message_id": "safe-002",
+        "raw_text": "can someone share the build notes for match 2",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_003",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-4",
+        "channel_id": "channel-safe-4",
+        "user_id": "user-safe-003",
+        "message_id": "safe-003",
+        "raw_text": "I will be online after dinner for raid 3",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_004",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-5",
+        "channel_id": "channel-safe-1",
+        "user_id": "user-safe-004",
+        "message_id": "safe-004",
+        "raw_text": "thanks for helping with the quest number 4",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_005",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-1",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-005",
+        "message_id": "safe-005",
+        "raw_text": "normal chat message about game update 5",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_006",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-2",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-006",
+        "message_id": "safe-006",
+        "raw_text": "please check the pinned rules when you have time 6",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_007",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-3",
+        "channel_id": "channel-safe-4",
+        "user_id": "user-safe-007",
+        "message_id": "safe-007",
+        "raw_text": "I found a harmless bug in the launcher 7",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_008",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-4",
+        "channel_id": "channel-safe-1",
+        "user_id": "user-safe-008",
+        "message_id": "safe-008",
+        "raw_text": "who wants to play duo later today 8",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_009",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-5",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-009",
+        "message_id": "safe-009",
+        "raw_text": "the server event starts in ten minutes 9",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_010",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-1",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-010",
+        "message_id": "safe-010",
+        "raw_text": "nice screenshot, the lighting looks good 10",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_011",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-2",
+        "channel_id": "channel-safe-4",
+        "user_id": "user-safe-011",
+        "message_id": "safe-011",
+        "raw_text": "gg team, that round was clean sample 11",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_012",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-3",
+        "channel_id": "channel-safe-1",
+        "user_id": "user-safe-012",
+        "message_id": "safe-012",
+        "raw_text": "can someone share the build notes for match 12",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_013",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-4",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-013",
+        "message_id": "safe-013",
+        "raw_text": "I will be online after dinner for raid 13",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_014",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-5",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-014",
+        "message_id": "safe-014",
+        "raw_text": "thanks for helping with the quest number 14",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_015",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-1",
+        "channel_id": "channel-safe-4",
+        "user_id": "user-safe-015",
+        "message_id": "safe-015",
+        "raw_text": "normal chat message about game update 15",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_016",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-2",
+        "channel_id": "channel-safe-1",
+        "user_id": "user-safe-016",
+        "message_id": "safe-016",
+        "raw_text": "please check the pinned rules when you have time 16",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_017",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-3",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-017",
+        "message_id": "safe-017",
+        "raw_text": "I found a harmless bug in the launcher 17",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_018",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-4",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-018",
+        "message_id": "safe-018",
+        "raw_text": "who wants to play duo later today 18",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_019",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-5",
+        "channel_id": "channel-safe-4",
+        "user_id": "user-safe-019",
+        "message_id": "safe-019",
+        "raw_text": "the server event starts in ten minutes 19",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_020",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-1",
+        "channel_id": "channel-safe-1",
+        "user_id": "user-safe-020",
+        "message_id": "safe-020",
+        "raw_text": "nice screenshot, the lighting looks good 20",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_021",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-2",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-021",
+        "message_id": "safe-021",
+        "raw_text": "gg team, that round was clean sample 21",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_022",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-3",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-022",
+        "message_id": "safe-022",
+        "raw_text": "can someone share the build notes for match 22",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_023",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-4",
+        "channel_id": "channel-safe-4",
+        "user_id": "user-safe-023",
+        "message_id": "safe-023",
+        "raw_text": "I will be online after dinner for raid 23",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_024",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-5",
+        "channel_id": "channel-safe-1",
+        "user_id": "user-safe-024",
+        "message_id": "safe-024",
+        "raw_text": "thanks for helping with the quest number 24",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_025",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-1",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-025",
+        "message_id": "safe-025",
+        "raw_text": "normal chat message about game update 25",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_026",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-2",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-026",
+        "message_id": "safe-026",
+        "raw_text": "please check the pinned rules when you have time 26",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_027",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-3",
+        "channel_id": "channel-safe-4",
+        "user_id": "user-safe-027",
+        "message_id": "safe-027",
+        "raw_text": "I found a harmless bug in the launcher 27",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_028",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-4",
+        "channel_id": "channel-safe-1",
+        "user_id": "user-safe-028",
+        "message_id": "safe-028",
+        "raw_text": "who wants to play duo later today 28",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_029",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-5",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-029",
+        "message_id": "safe-029",
+        "raw_text": "the server event starts in ten minutes 29",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_030",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-1",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-030",
+        "message_id": "safe-030",
+        "raw_text": "nice screenshot, the lighting looks good 30",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_031",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-2",
+        "channel_id": "channel-safe-4",
+        "user_id": "user-safe-031",
+        "message_id": "safe-031",
+        "raw_text": "gg team, that round was clean sample 31",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_032",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-3",
+        "channel_id": "channel-safe-1",
+        "user_id": "user-safe-032",
+        "message_id": "safe-032",
+        "raw_text": "can someone share the build notes for match 32",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_033",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-4",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-033",
+        "message_id": "safe-033",
+        "raw_text": "I will be online after dinner for raid 33",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_034",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-5",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-034",
+        "message_id": "safe-034",
+        "raw_text": "thanks for helping with the quest number 34",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_035",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-1",
+        "channel_id": "channel-safe-4",
+        "user_id": "user-safe-035",
+        "message_id": "safe-035",
+        "raw_text": "normal chat message about game update 35",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_036",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-2",
+        "channel_id": "channel-safe-1",
+        "user_id": "user-safe-036",
+        "message_id": "safe-036",
+        "raw_text": "please check the pinned rules when you have time 36",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_037",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-3",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-037",
+        "message_id": "safe-037",
+        "raw_text": "I found a harmless bug in the launcher 37",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_038",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-4",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-038",
+        "message_id": "safe-038",
+        "raw_text": "who wants to play duo later today 38",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_039",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-5",
+        "channel_id": "channel-safe-4",
+        "user_id": "user-safe-039",
+        "message_id": "safe-039",
+        "raw_text": "the server event starts in ten minutes 39",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_040",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-1",
+        "channel_id": "channel-safe-1",
+        "user_id": "user-safe-040",
+        "message_id": "safe-040",
+        "raw_text": "nice screenshot, the lighting looks good 40",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_041",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-2",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-041",
+        "message_id": "safe-041",
+        "raw_text": "gg team, that round was clean sample 41",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_042",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-3",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-042",
+        "message_id": "safe-042",
+        "raw_text": "can someone share the build notes for match 42",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_043",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-4",
+        "channel_id": "channel-safe-4",
+        "user_id": "user-safe-043",
+        "message_id": "safe-043",
+        "raw_text": "I will be online after dinner for raid 43",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_044",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-5",
+        "channel_id": "channel-safe-1",
+        "user_id": "user-safe-044",
+        "message_id": "safe-044",
+        "raw_text": "thanks for helping with the quest number 44",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_045",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-1",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-045",
+        "message_id": "safe-045",
+        "raw_text": "normal chat message about game update 45",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_046",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-2",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-046",
+        "message_id": "safe-046",
+        "raw_text": "please check the pinned rules when you have time 46",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_047",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-3",
+        "channel_id": "channel-safe-4",
+        "user_id": "user-safe-047",
+        "message_id": "safe-047",
+        "raw_text": "I found a harmless bug in the launcher 47",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_048",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-safe-4",
+        "channel_id": "channel-safe-1",
+        "user_id": "user-safe-048",
+        "message_id": "safe-048",
+        "raw_text": "who wants to play duo later today 48",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_049",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-5",
+        "channel_id": "channel-safe-2",
+        "user_id": "user-safe-049",
+        "message_id": "safe-049",
+        "raw_text": "the server event starts in ten minutes 49",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "SAFE_050",
+      "primary_label": "SAFE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-safe-1",
+        "channel_id": "channel-safe-3",
+        "user_id": "user-safe-050",
+        "message_id": "safe-050",
+        "raw_text": "nice screenshot, the lighting looks good 50",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "SAFE",
+          "expected_primary_label": "SAFE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SAFE"
+        ],
+        "primary_label": "SAFE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    }
+  ]
+}

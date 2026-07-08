@@ -1,0 +1,2131 @@
+﻿{
+    "label":  "FLOOD",
+    "version":  "1.0",
+    "case_count":  50,
+    "cases":  [
+                  {
+                      "id":  "FLOOD_001",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-2",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-001",
+                                    "message_id":  "flood-001",
+                                    "raw_text":  "ping ping ping ping sample 1",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1",
+                                                            "ping ping ping ping sample 1"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00",
+                                                                      "2026-07-07T09:59:54+00:00",
+                                                                      "2026-07-07T09:59:54+00:00",
+                                                                      "2026-07-07T09:59:53+00:00",
+                                                                      "2026-07-07T09:59:53+00:00",
+                                                                      "2026-07-07T09:59:52+00:00",
+                                                                      "2026-07-07T09:59:52+00:00",
+                                                                      "2026-07-07T09:59:52+00:00",
+                                                                      "2026-07-07T09:59:51+00:00",
+                                                                      "2026-07-07T09:59:51+00:00",
+                                                                      "2026-07-07T09:59:51+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_002",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-3",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-002",
+                                    "message_id":  "flood-002",
+                                    "raw_text":  "same message repeated in burst 2",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "same message repeated in burst 2",
+                                                            "same message repeated in burst 2",
+                                                            "same message repeated in burst 2"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_003",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-4",
+                                    "channel_id":  "channel-flood-4",
+                                    "user_id":  "user-flood-003",
+                                    "message_id":  "flood-003",
+                                    "raw_text":  "hello hello hello hello 3",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "hello hello hello hello 3",
+                                                            "hello hello hello hello 3",
+                                                            "hello hello hello hello 3"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_004",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-5",
+                                    "channel_id":  "channel-flood-1",
+                                    "user_id":  "user-flood-004",
+                                    "message_id":  "flood-004",
+                                    "raw_text":  "fast repeated queue message 4",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "fast repeated queue message 4",
+                                                            "fast repeated queue message 4",
+                                                            "fast repeated queue message 4"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_005",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-1",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-005",
+                                    "message_id":  "flood-005",
+                                    "raw_text":  "again again again again 5",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "again again again again 5",
+                                                            "again again again again 5",
+                                                            "again again again again 5"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_006",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-2",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-006",
+                                    "message_id":  "flood-006",
+                                    "raw_text":  "message burst within ten seconds 6",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "message burst within ten seconds 6",
+                                                            "message burst within ten seconds 6",
+                                                            "message burst within ten seconds 6"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_007",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-3",
+                                    "channel_id":  "channel-flood-4",
+                                    "user_id":  "user-flood-007",
+                                    "message_id":  "flood-007",
+                                    "raw_text":  "rapid fire text sample 7",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "rapid fire text sample 7",
+                                                            "rapid fire text sample 7",
+                                                            "rapid fire text sample 7"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_008",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-4",
+                                    "channel_id":  "channel-flood-1",
+                                    "user_id":  "user-flood-008",
+                                    "message_id":  "flood-008",
+                                    "raw_text":  "one more duplicate line 8",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "one more duplicate line 8",
+                                                            "one more duplicate line 8",
+                                                            "one more duplicate line 8"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_009",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-5",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-009",
+                                    "message_id":  "flood-009",
+                                    "raw_text":  "flood marker message sample 9",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "flood marker message sample 9",
+                                                            "flood marker message sample 9",
+                                                            "flood marker message sample 9"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_010",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-1",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-010",
+                                    "message_id":  "flood-010",
+                                    "raw_text":  "spammy repeated timing message 10",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "spammy repeated timing message 10",
+                                                            "spammy repeated timing message 10",
+                                                            "spammy repeated timing message 10"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_011",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-2",
+                                    "channel_id":  "channel-flood-4",
+                                    "user_id":  "user-flood-011",
+                                    "message_id":  "flood-011",
+                                    "raw_text":  "ping ping ping ping sample 11",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "ping ping ping ping sample 11",
+                                                            "ping ping ping ping sample 11",
+                                                            "ping ping ping ping sample 11"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_012",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-3",
+                                    "channel_id":  "channel-flood-1",
+                                    "user_id":  "user-flood-012",
+                                    "message_id":  "flood-012",
+                                    "raw_text":  "same message repeated in burst 12",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "same message repeated in burst 12",
+                                                            "same message repeated in burst 12",
+                                                            "same message repeated in burst 12"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_013",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-4",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-013",
+                                    "message_id":  "flood-013",
+                                    "raw_text":  "hello hello hello hello 13",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "hello hello hello hello 13",
+                                                            "hello hello hello hello 13",
+                                                            "hello hello hello hello 13"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_014",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-5",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-014",
+                                    "message_id":  "flood-014",
+                                    "raw_text":  "fast repeated queue message 14",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "fast repeated queue message 14",
+                                                            "fast repeated queue message 14",
+                                                            "fast repeated queue message 14"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_015",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-1",
+                                    "channel_id":  "channel-flood-4",
+                                    "user_id":  "user-flood-015",
+                                    "message_id":  "flood-015",
+                                    "raw_text":  "again again again again 15",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "again again again again 15",
+                                                            "again again again again 15",
+                                                            "again again again again 15"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_016",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-2",
+                                    "channel_id":  "channel-flood-1",
+                                    "user_id":  "user-flood-016",
+                                    "message_id":  "flood-016",
+                                    "raw_text":  "message burst within ten seconds 16",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "message burst within ten seconds 16",
+                                                            "message burst within ten seconds 16",
+                                                            "message burst within ten seconds 16"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_017",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-3",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-017",
+                                    "message_id":  "flood-017",
+                                    "raw_text":  "rapid fire text sample 17",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "rapid fire text sample 17",
+                                                            "rapid fire text sample 17",
+                                                            "rapid fire text sample 17"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_018",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-4",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-018",
+                                    "message_id":  "flood-018",
+                                    "raw_text":  "one more duplicate line 18",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "one more duplicate line 18",
+                                                            "one more duplicate line 18",
+                                                            "one more duplicate line 18"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_019",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-5",
+                                    "channel_id":  "channel-flood-4",
+                                    "user_id":  "user-flood-019",
+                                    "message_id":  "flood-019",
+                                    "raw_text":  "flood marker message sample 19",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "flood marker message sample 19",
+                                                            "flood marker message sample 19",
+                                                            "flood marker message sample 19"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_020",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-1",
+                                    "channel_id":  "channel-flood-1",
+                                    "user_id":  "user-flood-020",
+                                    "message_id":  "flood-020",
+                                    "raw_text":  "spammy repeated timing message 20",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "spammy repeated timing message 20",
+                                                            "spammy repeated timing message 20",
+                                                            "spammy repeated timing message 20"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_021",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-2",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-021",
+                                    "message_id":  "flood-021",
+                                    "raw_text":  "ping ping ping ping sample 21",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "ping ping ping ping sample 21",
+                                                            "ping ping ping ping sample 21",
+                                                            "ping ping ping ping sample 21"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_022",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-3",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-022",
+                                    "message_id":  "flood-022",
+                                    "raw_text":  "same message repeated in burst 22",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "same message repeated in burst 22",
+                                                            "same message repeated in burst 22",
+                                                            "same message repeated in burst 22"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_023",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-4",
+                                    "channel_id":  "channel-flood-4",
+                                    "user_id":  "user-flood-023",
+                                    "message_id":  "flood-023",
+                                    "raw_text":  "hello hello hello hello 23",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "hello hello hello hello 23",
+                                                            "hello hello hello hello 23",
+                                                            "hello hello hello hello 23"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_024",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-5",
+                                    "channel_id":  "channel-flood-1",
+                                    "user_id":  "user-flood-024",
+                                    "message_id":  "flood-024",
+                                    "raw_text":  "fast repeated queue message 24",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "fast repeated queue message 24",
+                                                            "fast repeated queue message 24",
+                                                            "fast repeated queue message 24"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_025",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-1",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-025",
+                                    "message_id":  "flood-025",
+                                    "raw_text":  "again again again again 25",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "again again again again 25",
+                                                            "again again again again 25",
+                                                            "again again again again 25"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_026",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-2",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-026",
+                                    "message_id":  "flood-026",
+                                    "raw_text":  "message burst within ten seconds 26",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "message burst within ten seconds 26",
+                                                            "message burst within ten seconds 26",
+                                                            "message burst within ten seconds 26"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_027",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-3",
+                                    "channel_id":  "channel-flood-4",
+                                    "user_id":  "user-flood-027",
+                                    "message_id":  "flood-027",
+                                    "raw_text":  "rapid fire text sample 27",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "rapid fire text sample 27",
+                                                            "rapid fire text sample 27",
+                                                            "rapid fire text sample 27"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_028",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-4",
+                                    "channel_id":  "channel-flood-1",
+                                    "user_id":  "user-flood-028",
+                                    "message_id":  "flood-028",
+                                    "raw_text":  "one more duplicate line 28",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "one more duplicate line 28",
+                                                            "one more duplicate line 28",
+                                                            "one more duplicate line 28"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_029",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-5",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-029",
+                                    "message_id":  "flood-029",
+                                    "raw_text":  "flood marker message sample 29",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "flood marker message sample 29",
+                                                            "flood marker message sample 29",
+                                                            "flood marker message sample 29"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_030",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-1",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-030",
+                                    "message_id":  "flood-030",
+                                    "raw_text":  "spammy repeated timing message 30",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "spammy repeated timing message 30",
+                                                            "spammy repeated timing message 30",
+                                                            "spammy repeated timing message 30"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_031",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-2",
+                                    "channel_id":  "channel-flood-4",
+                                    "user_id":  "user-flood-031",
+                                    "message_id":  "flood-031",
+                                    "raw_text":  "ping ping ping ping sample 31",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "ping ping ping ping sample 31",
+                                                            "ping ping ping ping sample 31",
+                                                            "ping ping ping ping sample 31"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_032",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-3",
+                                    "channel_id":  "channel-flood-1",
+                                    "user_id":  "user-flood-032",
+                                    "message_id":  "flood-032",
+                                    "raw_text":  "same message repeated in burst 32",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "same message repeated in burst 32",
+                                                            "same message repeated in burst 32",
+                                                            "same message repeated in burst 32"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_033",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-4",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-033",
+                                    "message_id":  "flood-033",
+                                    "raw_text":  "hello hello hello hello 33",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "hello hello hello hello 33",
+                                                            "hello hello hello hello 33",
+                                                            "hello hello hello hello 33"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_034",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-5",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-034",
+                                    "message_id":  "flood-034",
+                                    "raw_text":  "fast repeated queue message 34",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "fast repeated queue message 34",
+                                                            "fast repeated queue message 34",
+                                                            "fast repeated queue message 34"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_035",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-1",
+                                    "channel_id":  "channel-flood-4",
+                                    "user_id":  "user-flood-035",
+                                    "message_id":  "flood-035",
+                                    "raw_text":  "again again again again 35",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "again again again again 35",
+                                                            "again again again again 35",
+                                                            "again again again again 35"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_036",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-2",
+                                    "channel_id":  "channel-flood-1",
+                                    "user_id":  "user-flood-036",
+                                    "message_id":  "flood-036",
+                                    "raw_text":  "message burst within ten seconds 36",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "message burst within ten seconds 36",
+                                                            "message burst within ten seconds 36",
+                                                            "message burst within ten seconds 36"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_037",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-3",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-037",
+                                    "message_id":  "flood-037",
+                                    "raw_text":  "rapid fire text sample 37",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "rapid fire text sample 37",
+                                                            "rapid fire text sample 37",
+                                                            "rapid fire text sample 37"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_038",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-4",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-038",
+                                    "message_id":  "flood-038",
+                                    "raw_text":  "one more duplicate line 38",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "one more duplicate line 38",
+                                                            "one more duplicate line 38",
+                                                            "one more duplicate line 38"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_039",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-5",
+                                    "channel_id":  "channel-flood-4",
+                                    "user_id":  "user-flood-039",
+                                    "message_id":  "flood-039",
+                                    "raw_text":  "flood marker message sample 39",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "flood marker message sample 39",
+                                                            "flood marker message sample 39",
+                                                            "flood marker message sample 39"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_040",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-1",
+                                    "channel_id":  "channel-flood-1",
+                                    "user_id":  "user-flood-040",
+                                    "message_id":  "flood-040",
+                                    "raw_text":  "spammy repeated timing message 40",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "spammy repeated timing message 40",
+                                                            "spammy repeated timing message 40",
+                                                            "spammy repeated timing message 40"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_041",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-2",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-041",
+                                    "message_id":  "flood-041",
+                                    "raw_text":  "ping ping ping ping sample 41",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "ping ping ping ping sample 41",
+                                                            "ping ping ping ping sample 41",
+                                                            "ping ping ping ping sample 41"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_042",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-3",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-042",
+                                    "message_id":  "flood-042",
+                                    "raw_text":  "same message repeated in burst 42",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "same message repeated in burst 42",
+                                                            "same message repeated in burst 42",
+                                                            "same message repeated in burst 42"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_043",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-4",
+                                    "channel_id":  "channel-flood-4",
+                                    "user_id":  "user-flood-043",
+                                    "message_id":  "flood-043",
+                                    "raw_text":  "hello hello hello hello 43",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "hello hello hello hello 43",
+                                                            "hello hello hello hello 43",
+                                                            "hello hello hello hello 43"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_044",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-5",
+                                    "channel_id":  "channel-flood-1",
+                                    "user_id":  "user-flood-044",
+                                    "message_id":  "flood-044",
+                                    "raw_text":  "fast repeated queue message 44",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "fast repeated queue message 44",
+                                                            "fast repeated queue message 44",
+                                                            "fast repeated queue message 44"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_045",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-1",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-045",
+                                    "message_id":  "flood-045",
+                                    "raw_text":  "again again again again 45",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "again again again again 45",
+                                                            "again again again again 45",
+                                                            "again again again again 45"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_046",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-2",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-046",
+                                    "message_id":  "flood-046",
+                                    "raw_text":  "message burst within ten seconds 46",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "message burst within ten seconds 46",
+                                                            "message burst within ten seconds 46",
+                                                            "message burst within ten seconds 46"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_047",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-3",
+                                    "channel_id":  "channel-flood-4",
+                                    "user_id":  "user-flood-047",
+                                    "message_id":  "flood-047",
+                                    "raw_text":  "rapid fire text sample 47",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "rapid fire text sample 47",
+                                                            "rapid fire text sample 47",
+                                                            "rapid fire text sample 47"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_048",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "telegram",
+                                    "guild_id":  "guild-flood-4",
+                                    "channel_id":  "channel-flood-1",
+                                    "user_id":  "user-flood-048",
+                                    "message_id":  "flood-048",
+                                    "raw_text":  "one more duplicate line 48",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "one more duplicate line 48",
+                                                            "one more duplicate line 48",
+                                                            "one more duplicate line 48"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_049",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-5",
+                                    "channel_id":  "channel-flood-2",
+                                    "user_id":  "user-flood-049",
+                                    "message_id":  "flood-049",
+                                    "raw_text":  "flood marker message sample 49",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "flood marker message sample 49",
+                                                            "flood marker message sample 49",
+                                                            "flood marker message sample 49"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  },
+                  {
+                      "id":  "FLOOD_050",
+                      "primary_label":  "FLOOD",
+                      "input":  {
+                                    "platform":  "discord",
+                                    "guild_id":  "guild-flood-1",
+                                    "channel_id":  "channel-flood-3",
+                                    "user_id":  "user-flood-050",
+                                    "message_id":  "flood-050",
+                                    "raw_text":  "spammy repeated timing message 50",
+                                    "mention_count":  0,
+                                    "role_mention_count":  0,
+                                    "channel_mention_count":  0,
+                                    "has_attachments":  false,
+                                    "attachment_count":  0,
+                                    "recent_messages":  [
+                                                            "spammy repeated timing message 50",
+                                                            "spammy repeated timing message 50",
+                                                            "spammy repeated timing message 50"
+                                                        ],
+                                    "recent_message_timestamps":  [
+                                                                      "2026-07-07T09:59:58+00:00",
+                                                                      "2026-07-07T09:59:57+00:00",
+                                                                      "2026-07-07T09:59:56+00:00",
+                                                                      "2026-07-07T09:59:55+00:00"
+                                                                  ],
+                                    "metadata":  {
+                                                     "dataset_source":  "manual_synthetic",
+                                                     "fixture_label":  "FLOOD",
+                                                     "expected_primary_label":  "FLOOD"
+                                                 },
+                                    "created_at":  "2026-07-07T10:00:00+00:00"
+                                },
+                      "expected":  {
+                                       "labels":  [
+                                                      "FLOOD",
+                                                      "SPAM"
+                                                  ],
+                                       "primary_label":  "FLOOD"
+                                   },
+                      "notes":  "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+                  }
+              ]
+}

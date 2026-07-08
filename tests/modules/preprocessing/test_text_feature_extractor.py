@@ -12,6 +12,7 @@ def test_extract_returns_zero_features_for_empty_text() -> None:
     logger.info("Feature extraction empty text features=%s", features.to_dict())
 
     assert features.text_length == 0
+    assert features.token_count == 0
     assert features.word_count == 0
     assert features.line_count == 0
     assert features.uppercase_ratio == 0.0
@@ -44,12 +45,32 @@ def test_extract_counts_text_features() -> None:
     assert features.role_mention_count == 1
     assert features.channel_mention_count == 1
     assert features.emoji_count == 1
+    assert features.emoji_ratio > 0
     assert features.punctuation_count == 3
     assert features.has_cyrillic is True
     assert features.has_latin is True
     assert features.has_mixed_scripts is True
     assert features.has_url is True
     assert features.has_invite is True
+
+
+def test_extract_includes_recent_activity_features() -> None:
+    features = TextFeatureExtractor.extract(
+        "repeat me",
+        duplicate_text_score=0.5,
+        recent_user_messages_10s=3,
+        recent_user_messages_60s=5,
+        recent_user_messages_10m=8,
+        repeated_messages_10m=2,
+        message_interval_seconds=1.2,
+    )
+
+    logger.info("Feature recent activity features=%s", features.to_dict())
+
+    assert features.duplicate_text_score == 0.5
+    assert features.recent_user_messages_10s == 3
+    assert features.repeated_messages_10m == 2
+    assert features.message_interval_seconds == 1.2
 
 
 def test_extract_detects_repeated_characters() -> None:

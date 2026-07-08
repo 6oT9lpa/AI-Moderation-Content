@@ -1,0 +1,1657 @@
+{
+  "label": "IMAGE_SCAM",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "IMAGE_SCAM_001",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-2",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-001",
+        "message_id": "image_scam-001",
+        "raw_text": "bro check image sample 1",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_002",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-3",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-002",
+        "message_id": "image_scam-002",
+        "raw_text": "@bot image attached sample 2",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_003",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-4",
+        "channel_id": "channel-image_scam-4",
+        "user_id": "user-image_scam-003",
+        "message_id": "image_scam-003",
+        "raw_text": "is this reward real image 3",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_004",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-5",
+        "channel_id": "channel-image_scam-1",
+        "user_id": "user-image_scam-004",
+        "message_id": "image_scam-004",
+        "raw_text": "screenshot says bonus claim 4",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_005",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-1",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-005",
+        "message_id": "image_scam-005",
+        "raw_text": "empty looking text with scam image 5",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_006",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-2",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-006",
+        "message_id": "image_scam-006",
+        "raw_text": "look at this payment proof picture 6",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_007",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-3",
+        "channel_id": "channel-image_scam-4",
+        "user_id": "user-image_scam-007",
+        "message_id": "image_scam-007",
+        "raw_text": "image has casino bonus text 7",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_008",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-4",
+        "channel_id": "channel-image_scam-1",
+        "user_id": "user-image_scam-008",
+        "message_id": "image_scam-008",
+        "raw_text": "photo contains fake giveaway 8",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_009",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-5",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-009",
+        "message_id": "image_scam-009",
+        "raw_text": "attached screenshot asks for deposit 9",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_010",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-1",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-010",
+        "message_id": "image_scam-010",
+        "raw_text": "ocr should catch image scam 10",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_011",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-2",
+        "channel_id": "channel-image_scam-4",
+        "user_id": "user-image_scam-011",
+        "message_id": "image_scam-011",
+        "raw_text": "bro check image sample 11",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_012",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-3",
+        "channel_id": "channel-image_scam-1",
+        "user_id": "user-image_scam-012",
+        "message_id": "image_scam-012",
+        "raw_text": "@bot image attached sample 12",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_013",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-4",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-013",
+        "message_id": "image_scam-013",
+        "raw_text": "is this reward real image 13",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_014",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-5",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-014",
+        "message_id": "image_scam-014",
+        "raw_text": "screenshot says bonus claim 14",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_015",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-1",
+        "channel_id": "channel-image_scam-4",
+        "user_id": "user-image_scam-015",
+        "message_id": "image_scam-015",
+        "raw_text": "empty looking text with scam image 15",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_016",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-2",
+        "channel_id": "channel-image_scam-1",
+        "user_id": "user-image_scam-016",
+        "message_id": "image_scam-016",
+        "raw_text": "look at this payment proof picture 16",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_017",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-3",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-017",
+        "message_id": "image_scam-017",
+        "raw_text": "image has casino bonus text 17",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_018",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-4",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-018",
+        "message_id": "image_scam-018",
+        "raw_text": "photo contains fake giveaway 18",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_019",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-5",
+        "channel_id": "channel-image_scam-4",
+        "user_id": "user-image_scam-019",
+        "message_id": "image_scam-019",
+        "raw_text": "attached screenshot asks for deposit 19",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_020",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-1",
+        "channel_id": "channel-image_scam-1",
+        "user_id": "user-image_scam-020",
+        "message_id": "image_scam-020",
+        "raw_text": "ocr should catch image scam 20",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_021",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-2",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-021",
+        "message_id": "image_scam-021",
+        "raw_text": "bro check image sample 21",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_022",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-3",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-022",
+        "message_id": "image_scam-022",
+        "raw_text": "@bot image attached sample 22",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_023",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-4",
+        "channel_id": "channel-image_scam-4",
+        "user_id": "user-image_scam-023",
+        "message_id": "image_scam-023",
+        "raw_text": "is this reward real image 23",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_024",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-5",
+        "channel_id": "channel-image_scam-1",
+        "user_id": "user-image_scam-024",
+        "message_id": "image_scam-024",
+        "raw_text": "screenshot says bonus claim 24",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_025",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-1",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-025",
+        "message_id": "image_scam-025",
+        "raw_text": "empty looking text with scam image 25",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_026",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-2",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-026",
+        "message_id": "image_scam-026",
+        "raw_text": "look at this payment proof picture 26",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_027",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-3",
+        "channel_id": "channel-image_scam-4",
+        "user_id": "user-image_scam-027",
+        "message_id": "image_scam-027",
+        "raw_text": "image has casino bonus text 27",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_028",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-4",
+        "channel_id": "channel-image_scam-1",
+        "user_id": "user-image_scam-028",
+        "message_id": "image_scam-028",
+        "raw_text": "photo contains fake giveaway 28",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_029",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-5",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-029",
+        "message_id": "image_scam-029",
+        "raw_text": "attached screenshot asks for deposit 29",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_030",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-1",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-030",
+        "message_id": "image_scam-030",
+        "raw_text": "ocr should catch image scam 30",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_031",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-2",
+        "channel_id": "channel-image_scam-4",
+        "user_id": "user-image_scam-031",
+        "message_id": "image_scam-031",
+        "raw_text": "bro check image sample 31",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_032",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-3",
+        "channel_id": "channel-image_scam-1",
+        "user_id": "user-image_scam-032",
+        "message_id": "image_scam-032",
+        "raw_text": "@bot image attached sample 32",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_033",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-4",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-033",
+        "message_id": "image_scam-033",
+        "raw_text": "is this reward real image 33",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_034",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-5",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-034",
+        "message_id": "image_scam-034",
+        "raw_text": "screenshot says bonus claim 34",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_035",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-1",
+        "channel_id": "channel-image_scam-4",
+        "user_id": "user-image_scam-035",
+        "message_id": "image_scam-035",
+        "raw_text": "empty looking text with scam image 35",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_036",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-2",
+        "channel_id": "channel-image_scam-1",
+        "user_id": "user-image_scam-036",
+        "message_id": "image_scam-036",
+        "raw_text": "look at this payment proof picture 36",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_037",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-3",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-037",
+        "message_id": "image_scam-037",
+        "raw_text": "image has casino bonus text 37",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_038",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-4",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-038",
+        "message_id": "image_scam-038",
+        "raw_text": "photo contains fake giveaway 38",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_039",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-5",
+        "channel_id": "channel-image_scam-4",
+        "user_id": "user-image_scam-039",
+        "message_id": "image_scam-039",
+        "raw_text": "attached screenshot asks for deposit 39",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_040",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-1",
+        "channel_id": "channel-image_scam-1",
+        "user_id": "user-image_scam-040",
+        "message_id": "image_scam-040",
+        "raw_text": "ocr should catch image scam 40",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_041",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-2",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-041",
+        "message_id": "image_scam-041",
+        "raw_text": "bro check image sample 41",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_042",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-3",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-042",
+        "message_id": "image_scam-042",
+        "raw_text": "@bot image attached sample 42",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_043",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-4",
+        "channel_id": "channel-image_scam-4",
+        "user_id": "user-image_scam-043",
+        "message_id": "image_scam-043",
+        "raw_text": "is this reward real image 43",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_044",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-5",
+        "channel_id": "channel-image_scam-1",
+        "user_id": "user-image_scam-044",
+        "message_id": "image_scam-044",
+        "raw_text": "screenshot says bonus claim 44",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_045",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-1",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-045",
+        "message_id": "image_scam-045",
+        "raw_text": "empty looking text with scam image 45",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_046",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-2",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-046",
+        "message_id": "image_scam-046",
+        "raw_text": "look at this payment proof picture 46",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_047",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-3",
+        "channel_id": "channel-image_scam-4",
+        "user_id": "user-image_scam-047",
+        "message_id": "image_scam-047",
+        "raw_text": "image has casino bonus text 47",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_048",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-image_scam-4",
+        "channel_id": "channel-image_scam-1",
+        "user_id": "user-image_scam-048",
+        "message_id": "image_scam-048",
+        "raw_text": "photo contains fake giveaway 48",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_049",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-5",
+        "channel_id": "channel-image_scam-2",
+        "user_id": "user-image_scam-049",
+        "message_id": "image_scam-049",
+        "raw_text": "attached screenshot asks for deposit 49",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "IMAGE_SCAM_050",
+      "primary_label": "IMAGE_SCAM",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-image_scam-1",
+        "channel_id": "channel-image_scam-3",
+        "user_id": "user-image_scam-050",
+        "message_id": "image_scam-050",
+        "raw_text": "ocr should catch image scam 50",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": true,
+        "attachment_count": 1,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "IMAGE_SCAM",
+          "expected_primary_label": "IMAGE_SCAM"
+        }
+      },
+      "expected": {
+        "labels": [
+          "SCAM",
+          "ADVERTISEMENT",
+          "IMAGE_SCAM"
+        ],
+        "primary_label": "IMAGE_SCAM"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    }
+  ]
+}

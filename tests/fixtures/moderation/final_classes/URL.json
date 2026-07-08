@@ -1,0 +1,1557 @@
+{
+  "label": "URL",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "URL_001",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-2",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-001",
+        "message_id": "url-001",
+        "raw_text": "check this link https://example.com/path/1",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_002",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-3",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-002",
+        "message_id": "url-002",
+        "raw_text": "normal domain mention test2.example.org/page",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_003",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-4",
+        "channel_id": "channel-url-4",
+        "user_id": "user-url-003",
+        "message_id": "url-003",
+        "raw_text": "visit www.example.net/info/3",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_004",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-5",
+        "channel_id": "channel-url-1",
+        "user_id": "user-url-004",
+        "message_id": "url-004",
+        "raw_text": "link only https://docs.example.com/item/4",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_005",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-1",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-005",
+        "message_id": "url-005",
+        "raw_text": "resource at example5.com/download",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_006",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-2",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-006",
+        "message_id": "url-006",
+        "raw_text": "see https://status.example.org/report/6",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_007",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-3",
+        "channel_id": "channel-url-4",
+        "user_id": "user-url-007",
+        "message_id": "url-007",
+        "raw_text": "external guide www.guide-example.com/7",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_008",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-4",
+        "channel_id": "channel-url-1",
+        "user_id": "user-url-008",
+        "message_id": "url-008",
+        "raw_text": "reference link example.org/topic/8",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_009",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-5",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-009",
+        "message_id": "url-009",
+        "raw_text": "open https://community.example.net/post/9",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_010",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-1",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-010",
+        "message_id": "url-010",
+        "raw_text": "mirror domain files.example.com/build/10",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_011",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-2",
+        "channel_id": "channel-url-4",
+        "user_id": "user-url-011",
+        "message_id": "url-011",
+        "raw_text": "check this link https://example.com/path/11",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_012",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-3",
+        "channel_id": "channel-url-1",
+        "user_id": "user-url-012",
+        "message_id": "url-012",
+        "raw_text": "normal domain mention test12.example.org/page",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_013",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-4",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-013",
+        "message_id": "url-013",
+        "raw_text": "visit www.example.net/info/13",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_014",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-5",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-014",
+        "message_id": "url-014",
+        "raw_text": "link only https://docs.example.com/item/14",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_015",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-1",
+        "channel_id": "channel-url-4",
+        "user_id": "user-url-015",
+        "message_id": "url-015",
+        "raw_text": "resource at example15.com/download",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_016",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-2",
+        "channel_id": "channel-url-1",
+        "user_id": "user-url-016",
+        "message_id": "url-016",
+        "raw_text": "see https://status.example.org/report/16",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_017",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-3",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-017",
+        "message_id": "url-017",
+        "raw_text": "external guide www.guide-example.com/17",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_018",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-4",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-018",
+        "message_id": "url-018",
+        "raw_text": "reference link example.org/topic/18",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_019",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-5",
+        "channel_id": "channel-url-4",
+        "user_id": "user-url-019",
+        "message_id": "url-019",
+        "raw_text": "open https://community.example.net/post/19",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_020",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-1",
+        "channel_id": "channel-url-1",
+        "user_id": "user-url-020",
+        "message_id": "url-020",
+        "raw_text": "mirror domain files.example.com/build/20",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_021",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-2",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-021",
+        "message_id": "url-021",
+        "raw_text": "check this link https://example.com/path/21",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_022",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-3",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-022",
+        "message_id": "url-022",
+        "raw_text": "normal domain mention test22.example.org/page",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_023",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-4",
+        "channel_id": "channel-url-4",
+        "user_id": "user-url-023",
+        "message_id": "url-023",
+        "raw_text": "visit www.example.net/info/23",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_024",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-5",
+        "channel_id": "channel-url-1",
+        "user_id": "user-url-024",
+        "message_id": "url-024",
+        "raw_text": "link only https://docs.example.com/item/24",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_025",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-1",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-025",
+        "message_id": "url-025",
+        "raw_text": "resource at example25.com/download",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_026",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-2",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-026",
+        "message_id": "url-026",
+        "raw_text": "see https://status.example.org/report/26",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_027",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-3",
+        "channel_id": "channel-url-4",
+        "user_id": "user-url-027",
+        "message_id": "url-027",
+        "raw_text": "external guide www.guide-example.com/27",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_028",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-4",
+        "channel_id": "channel-url-1",
+        "user_id": "user-url-028",
+        "message_id": "url-028",
+        "raw_text": "reference link example.org/topic/28",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_029",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-5",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-029",
+        "message_id": "url-029",
+        "raw_text": "open https://community.example.net/post/29",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_030",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-1",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-030",
+        "message_id": "url-030",
+        "raw_text": "mirror domain files.example.com/build/30",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_031",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-2",
+        "channel_id": "channel-url-4",
+        "user_id": "user-url-031",
+        "message_id": "url-031",
+        "raw_text": "check this link https://example.com/path/31",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_032",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-3",
+        "channel_id": "channel-url-1",
+        "user_id": "user-url-032",
+        "message_id": "url-032",
+        "raw_text": "normal domain mention test32.example.org/page",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_033",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-4",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-033",
+        "message_id": "url-033",
+        "raw_text": "visit www.example.net/info/33",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_034",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-5",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-034",
+        "message_id": "url-034",
+        "raw_text": "link only https://docs.example.com/item/34",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_035",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-1",
+        "channel_id": "channel-url-4",
+        "user_id": "user-url-035",
+        "message_id": "url-035",
+        "raw_text": "resource at example35.com/download",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_036",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-2",
+        "channel_id": "channel-url-1",
+        "user_id": "user-url-036",
+        "message_id": "url-036",
+        "raw_text": "see https://status.example.org/report/36",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_037",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-3",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-037",
+        "message_id": "url-037",
+        "raw_text": "external guide www.guide-example.com/37",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_038",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-4",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-038",
+        "message_id": "url-038",
+        "raw_text": "reference link example.org/topic/38",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_039",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-5",
+        "channel_id": "channel-url-4",
+        "user_id": "user-url-039",
+        "message_id": "url-039",
+        "raw_text": "open https://community.example.net/post/39",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_040",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-1",
+        "channel_id": "channel-url-1",
+        "user_id": "user-url-040",
+        "message_id": "url-040",
+        "raw_text": "mirror domain files.example.com/build/40",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_041",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-2",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-041",
+        "message_id": "url-041",
+        "raw_text": "check this link https://example.com/path/41",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_042",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-3",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-042",
+        "message_id": "url-042",
+        "raw_text": "normal domain mention test42.example.org/page",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_043",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-4",
+        "channel_id": "channel-url-4",
+        "user_id": "user-url-043",
+        "message_id": "url-043",
+        "raw_text": "visit www.example.net/info/43",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_044",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-5",
+        "channel_id": "channel-url-1",
+        "user_id": "user-url-044",
+        "message_id": "url-044",
+        "raw_text": "link only https://docs.example.com/item/44",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_045",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-1",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-045",
+        "message_id": "url-045",
+        "raw_text": "resource at example45.com/download",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_046",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-2",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-046",
+        "message_id": "url-046",
+        "raw_text": "see https://status.example.org/report/46",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_047",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-3",
+        "channel_id": "channel-url-4",
+        "user_id": "user-url-047",
+        "message_id": "url-047",
+        "raw_text": "external guide www.guide-example.com/47",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_048",
+      "primary_label": "URL",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-url-4",
+        "channel_id": "channel-url-1",
+        "user_id": "user-url-048",
+        "message_id": "url-048",
+        "raw_text": "reference link example.org/topic/48",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_049",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-5",
+        "channel_id": "channel-url-2",
+        "user_id": "user-url-049",
+        "message_id": "url-049",
+        "raw_text": "open https://community.example.net/post/49",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "URL_050",
+      "primary_label": "URL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-url-1",
+        "channel_id": "channel-url-3",
+        "user_id": "user-url-050",
+        "message_id": "url-050",
+        "raw_text": "mirror domain files.example.com/build/50",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "URL",
+          "expected_primary_label": "URL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "URL"
+        ],
+        "primary_label": "URL"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    }
+  ]
+}

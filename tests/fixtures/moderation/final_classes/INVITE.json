@@ -1,0 +1,1607 @@
+{
+  "label": "INVITE",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "INVITE_001",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-2",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-001",
+        "message_id": "invite-001",
+        "raw_text": "join discord.gg/Test001 for prizes",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_002",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-3",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-002",
+        "message_id": "invite-002",
+        "raw_text": "new server invite https://discord.gg/Club002",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_003",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-4",
+        "channel_id": "channel-invite-4",
+        "user_id": "user-invite-003",
+        "message_id": "invite-003",
+        "raw_text": "come to discord.com/invite/Room003",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_004",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-5",
+        "channel_id": "channel-invite-1",
+        "user_id": "user-invite-004",
+        "message_id": "invite-004",
+        "raw_text": "backup community at www.discord.gg/Back004",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_005",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-1",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-005",
+        "message_id": "invite-005",
+        "raw_text": "discord[.]gg/Hidden005 has the event",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_006",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-2",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-006",
+        "message_id": "invite-006",
+        "raw_text": "discord dot gg/Obf006 open now",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_007",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-3",
+        "channel_id": "channel-invite-4",
+        "user_id": "user-invite-007",
+        "message_id": "invite-007",
+        "raw_text": "discord . gg/Space007 for drops",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_008",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-4",
+        "channel_id": "channel-invite-1",
+        "user_id": "user-invite-008",
+        "message_id": "invite-008",
+        "raw_text": "https://discordapp.com/invite/Legacy008",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_009",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-5",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-009",
+        "message_id": "invite-009",
+        "raw_text": "canary.discord.com/invite/Canary009",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_010",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-1",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-010",
+        "message_id": "invite-010",
+        "raw_text": "discord.gg\\\\Slash010 join fast",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_011",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-2",
+        "channel_id": "channel-invite-4",
+        "user_id": "user-invite-011",
+        "message_id": "invite-011",
+        "raw_text": "join discord.gg/Test011 for prizes",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_012",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-3",
+        "channel_id": "channel-invite-1",
+        "user_id": "user-invite-012",
+        "message_id": "invite-012",
+        "raw_text": "new server invite https://discord.gg/Club012",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_013",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-4",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-013",
+        "message_id": "invite-013",
+        "raw_text": "come to discord.com/invite/Room013",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_014",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-5",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-014",
+        "message_id": "invite-014",
+        "raw_text": "backup community at www.discord.gg/Back014",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_015",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-1",
+        "channel_id": "channel-invite-4",
+        "user_id": "user-invite-015",
+        "message_id": "invite-015",
+        "raw_text": "discord[.]gg/Hidden015 has the event",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_016",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-2",
+        "channel_id": "channel-invite-1",
+        "user_id": "user-invite-016",
+        "message_id": "invite-016",
+        "raw_text": "discord dot gg/Obf016 open now",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_017",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-3",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-017",
+        "message_id": "invite-017",
+        "raw_text": "discord . gg/Space017 for drops",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_018",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-4",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-018",
+        "message_id": "invite-018",
+        "raw_text": "https://discordapp.com/invite/Legacy018",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_019",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-5",
+        "channel_id": "channel-invite-4",
+        "user_id": "user-invite-019",
+        "message_id": "invite-019",
+        "raw_text": "canary.discord.com/invite/Canary019",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_020",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-1",
+        "channel_id": "channel-invite-1",
+        "user_id": "user-invite-020",
+        "message_id": "invite-020",
+        "raw_text": "discord.gg\\\\Slash020 join fast",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_021",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-2",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-021",
+        "message_id": "invite-021",
+        "raw_text": "join discord.gg/Test021 for prizes",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_022",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-3",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-022",
+        "message_id": "invite-022",
+        "raw_text": "new server invite https://discord.gg/Club022",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_023",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-4",
+        "channel_id": "channel-invite-4",
+        "user_id": "user-invite-023",
+        "message_id": "invite-023",
+        "raw_text": "come to discord.com/invite/Room023",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_024",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-5",
+        "channel_id": "channel-invite-1",
+        "user_id": "user-invite-024",
+        "message_id": "invite-024",
+        "raw_text": "backup community at www.discord.gg/Back024",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_025",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-1",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-025",
+        "message_id": "invite-025",
+        "raw_text": "discord[.]gg/Hidden025 has the event",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_026",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-2",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-026",
+        "message_id": "invite-026",
+        "raw_text": "discord dot gg/Obf026 open now",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_027",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-3",
+        "channel_id": "channel-invite-4",
+        "user_id": "user-invite-027",
+        "message_id": "invite-027",
+        "raw_text": "discord . gg/Space027 for drops",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_028",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-4",
+        "channel_id": "channel-invite-1",
+        "user_id": "user-invite-028",
+        "message_id": "invite-028",
+        "raw_text": "https://discordapp.com/invite/Legacy028",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_029",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-5",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-029",
+        "message_id": "invite-029",
+        "raw_text": "canary.discord.com/invite/Canary029",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_030",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-1",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-030",
+        "message_id": "invite-030",
+        "raw_text": "discord.gg\\\\Slash030 join fast",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_031",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-2",
+        "channel_id": "channel-invite-4",
+        "user_id": "user-invite-031",
+        "message_id": "invite-031",
+        "raw_text": "join discord.gg/Test031 for prizes",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_032",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-3",
+        "channel_id": "channel-invite-1",
+        "user_id": "user-invite-032",
+        "message_id": "invite-032",
+        "raw_text": "new server invite https://discord.gg/Club032",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_033",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-4",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-033",
+        "message_id": "invite-033",
+        "raw_text": "come to discord.com/invite/Room033",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_034",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-5",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-034",
+        "message_id": "invite-034",
+        "raw_text": "backup community at www.discord.gg/Back034",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_035",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-1",
+        "channel_id": "channel-invite-4",
+        "user_id": "user-invite-035",
+        "message_id": "invite-035",
+        "raw_text": "discord[.]gg/Hidden035 has the event",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_036",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-2",
+        "channel_id": "channel-invite-1",
+        "user_id": "user-invite-036",
+        "message_id": "invite-036",
+        "raw_text": "discord dot gg/Obf036 open now",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_037",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-3",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-037",
+        "message_id": "invite-037",
+        "raw_text": "discord . gg/Space037 for drops",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_038",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-4",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-038",
+        "message_id": "invite-038",
+        "raw_text": "https://discordapp.com/invite/Legacy038",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_039",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-5",
+        "channel_id": "channel-invite-4",
+        "user_id": "user-invite-039",
+        "message_id": "invite-039",
+        "raw_text": "canary.discord.com/invite/Canary039",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_040",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-1",
+        "channel_id": "channel-invite-1",
+        "user_id": "user-invite-040",
+        "message_id": "invite-040",
+        "raw_text": "discord.gg\\\\Slash040 join fast",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_041",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-2",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-041",
+        "message_id": "invite-041",
+        "raw_text": "join discord.gg/Test041 for prizes",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_042",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-3",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-042",
+        "message_id": "invite-042",
+        "raw_text": "new server invite https://discord.gg/Club042",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_043",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-4",
+        "channel_id": "channel-invite-4",
+        "user_id": "user-invite-043",
+        "message_id": "invite-043",
+        "raw_text": "come to discord.com/invite/Room043",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_044",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-5",
+        "channel_id": "channel-invite-1",
+        "user_id": "user-invite-044",
+        "message_id": "invite-044",
+        "raw_text": "backup community at www.discord.gg/Back044",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_045",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-1",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-045",
+        "message_id": "invite-045",
+        "raw_text": "discord[.]gg/Hidden045 has the event",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_046",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-2",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-046",
+        "message_id": "invite-046",
+        "raw_text": "discord dot gg/Obf046 open now",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_047",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-3",
+        "channel_id": "channel-invite-4",
+        "user_id": "user-invite-047",
+        "message_id": "invite-047",
+        "raw_text": "discord . gg/Space047 for drops",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_048",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "telegram",
+        "guild_id": "guild-invite-4",
+        "channel_id": "channel-invite-1",
+        "user_id": "user-invite-048",
+        "message_id": "invite-048",
+        "raw_text": "https://discordapp.com/invite/Legacy048",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_049",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-5",
+        "channel_id": "channel-invite-2",
+        "user_id": "user-invite-049",
+        "message_id": "invite-049",
+        "raw_text": "canary.discord.com/invite/Canary049",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    },
+    {
+      "id": "INVITE_050",
+      "primary_label": "INVITE",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-invite-1",
+        "channel_id": "channel-invite-3",
+        "user_id": "user-invite-050",
+        "message_id": "invite-050",
+        "raw_text": "discord.gg\\\\Slash050 join fast",
+        "mention_count": 0,
+        "role_mention_count": 0,
+        "channel_mention_count": 0,
+        "has_attachments": false,
+        "attachment_count": 0,
+        "recent_messages": [],
+        "recent_message_timestamps": [],
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "INVITE",
+          "expected_primary_label": "INVITE"
+        }
+      },
+      "expected": {
+        "labels": [
+          "INVITE",
+          "URL"
+        ],
+        "primary_label": "INVITE"
+      },
+      "notes": "manual synthetic moderation fixture; edit input.raw_text and expected labels as needed"
+    }
+  ]
+}

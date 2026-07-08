@@ -4,6 +4,7 @@ import re
 import string
 
 from src.domain.message_features import MessageFeatures
+from src.infrastructure.logging import get_logger
 from src.modules.preprocessing.text_normalizer import TextNormalizer
 
 _WORD_RE = re.compile(r"[A-Za-zА-Яа-яЁё0-9]+", re.UNICODE)
@@ -12,6 +13,8 @@ _EMOJI_RANGES = (
     (0x2600, 0x26FF),
     (0x2700, 0x27BF),
 )
+
+logger = get_logger(__name__)
 
 
 class TextFeatureExtractor:
@@ -28,6 +31,12 @@ class TextFeatureExtractor:
         mention_count: int = 0,
         role_mention_count: int = 0,
         channel_mention_count: int = 0,
+        duplicate_text_score: float = 0.0,
+        recent_user_messages_10s: int = 0,
+        recent_user_messages_60s: int = 0,
+        recent_user_messages_10m: int = 0,
+        repeated_messages_10m: int = 0,
+        message_interval_seconds: float | None = None,
     ) -> MessageFeatures:
         text = text or ""
         text_length = len(text)
@@ -83,10 +92,12 @@ class TextFeatureExtractor:
         uppercase_ratio = uppercase / letters if letters else 0.0
         digit_ratio = digits / text_length if text_length else 0.0
         punctuation_ratio = punctuation / text_length if text_length else 0.0
+        emoji_ratio = emoji_count / text_length if text_length else 0.0
         repeated_char_score = min(max(longest_repeat - 1, 0) / 10, 1.0)
 
-        return MessageFeatures(
+        features = MessageFeatures(
             text_length=text_length,
+            token_count=word_count,
             word_count=word_count,
             line_count=text.count("\n") + 1 if text else 0,
             url_count=len(urls),
@@ -95,6 +106,7 @@ class TextFeatureExtractor:
             role_mention_count=role_mention_count,
             channel_mention_count=channel_mention_count,
             emoji_count=emoji_count,
+            emoji_ratio=round(emoji_ratio, 3),
             uppercase_ratio=round(uppercase_ratio, 3),
             digit_ratio=round(digit_ratio, 3),
             punctuation_count=punctuation,
@@ -108,6 +120,12 @@ class TextFeatureExtractor:
             longest_word_length=max((len(word) for word in words), default=0),
             repeated_char_score=round(repeated_char_score, 3),
             has_repeated_chars=longest_repeat >= 3,
+            duplicate_text_score=round(duplicate_text_score, 3),
+            recent_user_messages_10s=recent_user_messages_10s,
+            recent_user_messages_60s=recent_user_messages_60s,
+            recent_user_messages_10m=recent_user_messages_10m,
+            repeated_messages_10m=repeated_messages_10m,
+            message_interval_seconds=message_interval_seconds,
             has_url=bool(urls),
             has_invite=bool(invites),
             has_shortener=has_shortener,
@@ -117,6 +135,14 @@ class TextFeatureExtractor:
             has_mixed_scripts=has_cyrillic and has_latin,
             has_suspicious_unicode=TextNormalizer.has_suspicious_unicode(text),
         )
+        logger.info(
+            "Text features extracted text_length=%s word_count=%s url_count=%s invite_count=%s",
+            features.text_length,
+            features.word_count,
+            features.url_count,
+            features.invite_count,
+        )
+        return features
 
     @staticmethod
     def _is_emoji(char: str) -> bool:

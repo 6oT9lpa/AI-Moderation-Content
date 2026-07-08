@@ -1,0 +1,153 @@
+preprocessing:
+  new_account_link_days: 7
+
+  links:
+    allowed_domains: [youtube.com, youtu.be, tiktok.com, vm.tiktok.com]
+    shortener_domains: [bit.ly, t.co, tinyurl.com, goo.gl, cutt.ly, is.gd, s.id, clck.ru, vk.cc, ow.ly, shorturl.at, rebrand.ly]
+    detect_any_url:
+      enabled: true
+      labels: [URL]
+      severity: 1
+      confidence: 0.55
+      risk_weight: 10
+      reason: url_detected
+    shortener:
+      enabled: true
+      labels: [URL, SPAM]
+      severity: 2
+      confidence: 0.68
+      risk_weight: 20
+      reason: url_shortener_detected
+
+  flood:
+    messages_10s:
+      enabled: true
+      threshold: 10
+      labels: [FLOOD]
+      severity: 3
+      confidence: 0.82
+      risk_weight: 35
+      reason: too_many_messages_in_10s
+    messages_60s:
+      enabled: true
+      threshold: 20
+      labels: [FLOOD]
+      severity: 3
+      confidence: 0.86
+      risk_weight: 45
+      reason: too_many_messages_in_60s
+    repeated_messages_10m:
+      enabled: true
+      threshold: 10
+      labels: [FLOOD]
+      severity: 3
+      confidence: 0.78
+      risk_weight: 35
+      reason: same_text_repeated_in_window
+
+  spam:
+    mass_mentions:
+      enabled: true
+      threshold: 5
+      labels: [SPAM]
+      severity: 2
+      confidence: 0.74
+      risk_weight: 25
+      reason: mass_mentions_detected
+    caps:
+      enabled: true
+      threshold: 0.75
+      minimum_text_length: 8
+      labels: [SPAM]
+      severity: 1
+      confidence: 0.58
+      risk_weight: 10
+      reason: caps_ratio_threshold_exceeded
+    emoji:
+      enabled: true
+      threshold: 0.35
+      minimum_text_length: 4
+      labels: [SPAM]
+      severity: 1
+      confidence: 0.52
+      risk_weight: 8
+      reason: emoji_ratio_threshold_exceeded
+    repeated_chars:
+      enabled: true
+      threshold: 0.4
+      minimum_text_length: 6
+      labels: [SPAM]
+      severity: 1
+      confidence: 0.56
+      risk_weight: 10
+      reason: repeated_char_score_threshold_exceeded
+
+  invite:
+    allowed_invite_codes: []
+    detected:
+      enabled: true
+      labels: [INVITE]
+      severity: 3
+      confidence: 0.9
+      risk_weight: 45
+      reason: invite_like_pattern_detected
+
+  evasion:
+    unicode:
+      enabled: true
+      labels: [EVASION]
+      severity: 2
+      confidence: 0.64
+      risk_weight: 20
+      reason: mixed_or_suspicious_unicode_detected
+
+  semantic_placeholders:
+    advertisement:
+      enabled: false
+      labels: [ADVERTISEMENT]
+      severity: 2
+      confidence: 0.0
+      risk_weight: 0
+      reason: reserved_for_semantic_or_ml_rule
+    scam:
+      enabled: false
+      labels: [SCAM]
+      severity: 4
+      confidence: 0.0
+      risk_weight: 0
+      reason: reserved_for_semantic_or_ml_rule
+    toxic:
+      enabled: false
+      labels: [TOXIC]
+      severity: 3
+      confidence: 0.0
+      risk_weight: 0
+      reason: reserved_for_semantic_or_ml_rule
+    hate:
+      enabled: false
+      labels: [HATE]
+      severity: 5
+      confidence: 0.0
+      risk_weight: 0
+      reason: reserved_for_semantic_or_ml_rule
+    threat:
+      enabled: false
+      labels: [THREAT]
+      severity: 5
+      confidence: 0.0
+      risk_weight: 0
+      reason: reserved_for_semantic_or_ml_rule
+    nsfw:
+      enabled: false
+      labels: [NSFW]
+      severity: 4
+      confidence: 0.0
+      risk_weight: 0
+      reason: reserved_for_semantic_or_ml_rule
+    image_scam:
+      enabled: false
+      labels: [IMAGE_SCAM]
+      severity: 4
+      confidence: 0.0
+      risk_weight: 0
+      reason: reserved_for_ocr_or_image_rule

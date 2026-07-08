@@ -121,6 +121,7 @@ Domain-слой хранит словарь модерации и правила
 - `NSFW`
 - `EVASION`
 - `FLOOD`
+- `URL`
 - `IMAGE_SCAM`
 
 Базовые actions:
@@ -299,6 +300,75 @@ Qwen не должен вызываться на каждое сообщение
 - флаг human review
 
 Модель никогда не удаляет, не предупреждает и не банит напрямую.
+
+### Текущий Rule Engine И Decision Engine Foundation
+
+На текущем этапе реализован воспроизводимый внутренний pipeline:
+
+```text
+TextPreprocessor
+  -> preprocessing_rule_matches
+  -> PreprocessingSignalAdapter
+  -> ModerationSignal[]
+  -> ModerationRuleEngine
+  -> RuleEvaluationResult
+  -> DecisionEngine
+  -> ModerationDecision
+```
+
+`PreprocessingRuleEngine` остаётся локальным правиловым слоем внутри text preprocessing. Он отвечает только за первичные дешёвые сигналы: `URL`, `INVITE`, `FLOOD`, `SPAM`, `EVASION`.
+
+`PreprocessingRuleConfigLoader` загружает `configs/rules/preprocessing_rules.yaml` и адаптирует его под `configs/rules/moderation_rule_policy.yaml` через `PreprocessingModerationPolicyAdapter`:
+
+- активные preprocessing rules проверяются против `confidence_thresholds` для `PREPROCESSING`;
+- labels должны существовать в `label_weights` и `primary_label_priority`;
+- severity должен быть описан в `severity_multipliers`;
+- `risk_weight` не должен выходить за пределы `risk_score.max`;
+- выключенные semantic placeholders не валидируются как реальные сигналы.
+
+Если preprocessing rule настроен так, что Rule Engine потом гарантированно отфильтрует его, загрузка политики падает явно. Это защищает от ситуации, когда preprocessing в логах нашёл сигнал, а moderation layer молча превратил результат в `SAFE`.
+
+`ModerationRuleEngine` находится в `src/modules/rules/` и отвечает за агрегацию сигналов:
+
+- принимает единый формат `ModerationSignal`;
+- поддерживает источники `PREPROCESSING`, `RUBERT`, `QWEN`, `OCR`, `IMAGE`, `HISTORY`, `MANUAL`;
+- фильтрует сигналы по confidence thresholds;
+- считает вклад риска по source weight, label weight, severity multiplier, confidence и `risk_weight` сигнала;
+- ограничивает итоговый `risk_score` диапазоном policy;
+- выбирает `primary_label`;
+- разрешает конфликты вроде `SAFE + harmful labels`, `URL + SCAM`;
+- считает `model_agreement` и high-confidence disagreement между будущими моделями;
+- возвращает `RuleEvaluationResult`.
+
+`DecisionEngine` находится в `src/modules/decision/` и отвечает только за выбор рекомендуемого действия:
+
+- принимает `RuleEvaluationResult`;
+- применяет `DecisionPolicy`;
+- выбирает главное `ModerationAction`;
+- строит `action_plan` для связанных действий, например `DELETE_WARN -> DELETE + WARN`, `TIMEOUT -> DELETE + TIMEOUT`, `BAN -> DELETE + BAN`;
+- учитывает mode: `PASSIVE`, `ACTIVE`, `STRICT`;
+- учитывает `dry_run`;
+- учитывает label overrides, risk thresholds, minimum confidence, model disagreement и action bundles;
+- возвращает `ModerationDecision`;
+- не выполняет реальное действие на платформе.
+
+`decision_action` остаётся главным решением для совместимости и аудита. Реальный platform executor должен использовать `ModerationDecision.action_plan.actions`, потому что часть действий обязана выполняться вместе. Связки действий настраиваются в `configs/rules/decision_policy.yaml` через `action_bundles`, без хардкода в `DecisionEngine`.
+
+Политики загружаются из YAML:
+
+- `configs/rules/preprocessing_rules.yaml`
+- `configs/rules/moderation_rule_policy.yaml`
+- `configs/rules/decision_policy.yaml`
+
+Все YAML-boundary policy models построены на Pydantic с `frozen=True` и `extra="forbid"`, чтобы ошибки в настройках падали явно, а не меняли поведение молча.
+
+Что пока не реализовано:
+
+- реальные RuBERT/Qwen/OCR adapters;
+- DB policy repository и scope fallback;
+- action executor для Discord/Telegram;
+- запись `RuleEvaluationResult` и `ModerationDecision` в БД;
+- Dataset Collector как отдельный production-модуль.
 
 ### Dataset Collector
 

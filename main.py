@@ -18,8 +18,8 @@ from src.modules.preprocessing.text_preprocessor import TextPreprocessor
 from src.modules.rules.moderation_rule_engine import ModerationRuleEngine
 from src.modules.rules.preprocessing_signal_adapter import PreprocessingSignalAdapter
 
-CHANNEL_PATTERN = re.compile(r"(?<!\S)@([A-Za-zА-Яа-я0-9_.-]+)")
-USER_PATTERN = re.compile(r"(?<!\S)#([A-Za-zА-Яа-я0-9_.-]+)")
+CHANNEL_PATTERN = re.compile(r"(?<!\S)@([A-Za-z\u0400-\u04FF0-9_.-]+)")
+USER_PATTERN = re.compile(r"(?<!\S)#([A-Za-z\u0400-\u04FF0-9_.-]+)")
 MSK = timezone(timedelta(hours=3), name="MSK")
 
 

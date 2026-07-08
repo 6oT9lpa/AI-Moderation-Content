@@ -7,7 +7,7 @@ from src.domain.message_features import MessageFeatures
 from src.infrastructure.logging import get_logger
 from src.modules.preprocessing.text_normalizer import TextNormalizer
 
-_WORD_RE = re.compile(r"[A-Za-zА-Яа-яЁё0-9]+", re.UNICODE)
+_WORD_RE = re.compile(r"[A-Za-z\u0400-\u04FF0-9]+", re.UNICODE)
 _EMOJI_RANGES = (
     (0x1F300, 0x1FAFF),
     (0x2600, 0x26FF),

@@ -33,12 +33,14 @@ class LoggerManager:
         app_log_file = log_dir / "ai-moder.log"
         tests_log_file = log_dir / "tests.log"
 
+        append_locked_logs = False
+
         # Remove old log files and their rotations
         for log_file in [app_log_file, tests_log_file]:
             if log_file.exists():
-                log_file.unlink()
+                append_locked_logs = not self._try_unlink(log_file) or append_locked_logs
             for rotation in log_dir.glob(f"{log_file.name}.*"):
-                rotation.unlink()
+                append_locked_logs = not self._try_unlink(rotation) or append_locked_logs
 
         dictConfig(
             {
@@ -62,7 +64,7 @@ class LoggerManager:
                         "level": log_level,
                         "formatter": "default",
                         "filename": str(app_log_file),
-                        "mode": "w",
+                        "mode": "a" if append_locked_logs else "w",
                         "encoding": "utf-8",
                     },
                     "test_file": {
@@ -70,7 +72,7 @@ class LoggerManager:
                         "level": log_level,
                         "formatter": "default",
                         "filename": str(tests_log_file),
-                        "mode": "w",
+                        "mode": "a" if append_locked_logs else "w",
                         "encoding": "utf-8",
                     },
                 },
@@ -117,6 +119,14 @@ class LoggerManager:
                 return normalized
 
         return "INFO"
+
+    @staticmethod
+    def _try_unlink(path: Path) -> bool:
+        try:
+            path.unlink()
+            return True
+        except PermissionError:
+            return False
 
 
 def get_logger(name: str) -> logging.Logger:

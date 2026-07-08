@@ -23,7 +23,7 @@ label_overrides:
   NSFW: "REVIEW"
 
 action_bundles:
-  DELETE_WARN:
+  WARN:
     - "DELETE"
     - "WARN"
   TIMEOUT:
@@ -36,7 +36,6 @@ action_bundles:
 action_priority:
   - BAN
   - TIMEOUT
-  - DELETE_WARN
   - DELETE
   - WARN
   - REVIEW

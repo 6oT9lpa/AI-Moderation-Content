@@ -25,12 +25,10 @@ async def test_full_pipeline_spam(moderation_service):
     
     decision = await moderation_service.moderate(message_id, text)
     
-    logger.info(f"Pipeline result: action={decision.decision_action}, risk={decision.risk_score}")
+    logger.info("Pipeline result action=%s risk=%s", decision.decision_action, decision.risk_score)
     
-    # Should detect something and have a risk score
     assert decision.message_id == message_id
     assert decision.risk_score > 0
-    # We don't strictly assert action here as it depends on fine-tuned thresholds
 
 @pytest.mark.asyncio
 async def test_full_pipeline_safe(moderation_service):

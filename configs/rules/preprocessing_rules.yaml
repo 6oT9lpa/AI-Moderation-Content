@@ -22,7 +22,7 @@ preprocessing:
   flood:
     messages_10s:
       enabled: true
-      threshold: 10
+      threshold: 2
       labels: [FLOOD]
       severity: 3
       confidence: 0.82
@@ -30,7 +30,7 @@ preprocessing:
       reason: too_many_messages_in_10s
     messages_60s:
       enabled: true
-      threshold: 20
+      threshold: 3
       labels: [FLOOD]
       severity: 3
       confidence: 0.86
@@ -38,7 +38,7 @@ preprocessing:
       reason: too_many_messages_in_60s
     repeated_messages_10m:
       enabled: true
-      threshold: 10
+      threshold: 2
       labels: [FLOOD]
       severity: 3
       confidence: 0.78

@@ -9,10 +9,6 @@ logger = get_logger(__name__)
 
 
 class ActionPlanBuilder:
-    _COMPOSITE_ACTIONS = {
-        ModerationAction.DELETE_WARN,
-    }
-
     def build(self, primary_action: ModerationAction, policy: DecisionPolicy) -> ModerationActionPlan:
         configured_actions = policy.action_bundles.get(primary_action)
         actions = self._normalize_actions(primary_action, configured_actions)
@@ -43,12 +39,10 @@ class ActionPlanBuilder:
         primary_action: ModerationAction,
         configured_actions: list[ModerationAction] | None,
     ) -> list[ModerationAction]:
-        actions = configured_actions[:] if configured_actions else [primary_action]
+        if configured_actions:
+            return self._deduplicate(configured_actions[:])
 
-        if primary_action not in actions and primary_action not in self._COMPOSITE_ACTIONS:
-            actions.append(primary_action)
-
-        return self._deduplicate(actions)
+        return [primary_action]
 
     def _deduplicate(self, actions: list[ModerationAction]) -> list[ModerationAction]:
         unique_actions: list[ModerationAction] = []

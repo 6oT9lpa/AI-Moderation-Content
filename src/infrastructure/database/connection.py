@@ -267,9 +267,11 @@ class DatabaseConnection:
             CREATE TABLE IF NOT EXISTS ai_message_events (
                 id BIGSERIAL PRIMARY KEY,
 
+                platform TEXT NOT NULL DEFAULT 'discord',
                 message_id TEXT NOT NULL,
                 guild_id TEXT NOT NULL,
                 channel_id TEXT NOT NULL,
+                thread_id TEXT,
                 user_id TEXT NOT NULL,
 
                 event_type TEXT NOT NULL DEFAULT 'message_create',
@@ -301,35 +303,46 @@ class DatabaseConnection:
                     REFERENCES ai_message_events(id)
                     ON DELETE CASCADE,
 
-                text_length INTEGER NOT NULL DEFAULT 0 CHECK (text_length >= 0),
+                char_count INTEGER NOT NULL DEFAULT 0 CHECK (char_count >= 0),
+                token_count INTEGER NOT NULL DEFAULT 0 CHECK (token_count >= 0),
                 word_count INTEGER NOT NULL DEFAULT 0 CHECK (word_count >= 0),
                 line_count INTEGER NOT NULL DEFAULT 0 CHECK (line_count >= 0),
 
                 url_count INTEGER NOT NULL DEFAULT 0 CHECK (url_count >= 0),
+                invite_count INTEGER NOT NULL DEFAULT 0 CHECK (invite_count >= 0),
                 mention_count INTEGER NOT NULL DEFAULT 0 CHECK (mention_count >= 0),
                 role_mention_count INTEGER NOT NULL DEFAULT 0 CHECK (role_mention_count >= 0),
                 channel_mention_count INTEGER NOT NULL DEFAULT 0 CHECK (channel_mention_count >= 0),
                 emoji_count INTEGER NOT NULL DEFAULT 0 CHECK (emoji_count >= 0),
+                emoji_ratio NUMERIC(5, 4) NOT NULL DEFAULT 0 CHECK (emoji_ratio >= 0 AND emoji_ratio <= 1),
 
-                uppercase_ratio NUMERIC(5, 4) NOT NULL DEFAULT 0 CHECK (uppercase_ratio >= 0 AND uppercase_ratio <= 1),
+                caps_ratio NUMERIC(5, 4) NOT NULL DEFAULT 0 CHECK (caps_ratio >= 0 AND caps_ratio <= 1),
                 repeated_char_score NUMERIC(5, 4) NOT NULL DEFAULT 0 CHECK (repeated_char_score >= 0 AND repeated_char_score <= 1),
+                duplicate_text_score NUMERIC(5, 4) NOT NULL DEFAULT 0 CHECK (duplicate_text_score >= 0 AND duplicate_text_score <= 1),
 
                 has_url BOOLEAN NOT NULL DEFAULT FALSE,
                 has_invite BOOLEAN NOT NULL DEFAULT FALSE,
-                has_attachment BOOLEAN NOT NULL DEFAULT FALSE,
+                has_shortener BOOLEAN NOT NULL DEFAULT FALSE,
+                has_mixed_scripts BOOLEAN NOT NULL DEFAULT FALSE,
+                has_zero_width BOOLEAN NOT NULL DEFAULT FALSE,
+                has_suspicious_unicode BOOLEAN NOT NULL DEFAULT FALSE,
+                is_reply BOOLEAN NOT NULL DEFAULT FALSE,
 
-                account_age_seconds BIGINT,
-                member_age_seconds BIGINT,
+                message_age_seconds BIGINT,
+                account_age_days INTEGER,
+                member_age_days INTEGER,
 
-                recent_message_count INTEGER NOT NULL DEFAULT 0 CHECK (recent_message_count >= 0),
-                recent_duplicate_count INTEGER NOT NULL DEFAULT 0 CHECK (recent_duplicate_count >= 0),
+                recent_user_messages_10s INTEGER NOT NULL DEFAULT 0 CHECK (recent_user_messages_10s >= 0),
+                recent_user_messages_60s INTEGER NOT NULL DEFAULT 0 CHECK (recent_user_messages_60s >= 0),
+                recent_user_messages_10m INTEGER NOT NULL DEFAULT 0 CHECK (recent_user_messages_10m >= 0),
+                repeated_messages_10m INTEGER NOT NULL DEFAULT 0 CHECK (repeated_messages_10m >= 0),
 
-                previous_warnings_count INTEGER NOT NULL DEFAULT 0 CHECK (previous_warnings_count >= 0),
-                previous_timeouts_count INTEGER NOT NULL DEFAULT 0 CHECK (previous_timeouts_count >= 0),
+                user_warnings_count INTEGER NOT NULL DEFAULT 0 CHECK (user_warnings_count >= 0),
+                user_timeouts_count INTEGER NOT NULL DEFAULT 0 CHECK (user_timeouts_count >= 0),
 
-                channel_is_whitelisted BOOLEAN NOT NULL DEFAULT FALSE,
+                channel_is_ai_whitelisted BOOLEAN NOT NULL DEFAULT FALSE,
 
-                features JSONB NOT NULL DEFAULT '{}'::jsonb,
+                features_json JSONB NOT NULL DEFAULT '{}'::jsonb,
 
                 created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
             )
@@ -393,25 +406,26 @@ class DatabaseConnection:
                     ON DELETE CASCADE,
 
                 stage TEXT NOT NULL,
-                model TEXT,
+                model_name TEXT,
+                model_version TEXT,
+                input_version TEXT,
 
-                input_json JSONB NOT NULL DEFAULT '{}'::jsonb,
                 output_json JSONB NOT NULL DEFAULT '{}'::jsonb,
 
-                primary_label TEXT,
-                labels TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
+                label TEXT,
+                labels_json JSONB NOT NULL DEFAULT '[]'::jsonb,
 
                 confidence NUMERIC(5, 4) CHECK (
                     confidence IS NULL OR (confidence >= 0 AND confidence <= 1)
                 ),
-                probabilities JSONB NOT NULL DEFAULT '{}'::jsonb,
+                probabilities_json JSONB NOT NULL DEFAULT '{}'::jsonb,
 
-                rule_matches JSONB NOT NULL DEFAULT '[]'::jsonb,
+                rule_matches_json JSONB NOT NULL DEFAULT '[]'::jsonb,
 
                 risk_score INTEGER CHECK (
                     risk_score IS NULL OR (risk_score >= 0 AND risk_score <= 100)
                 ),
-                breakdown JSONB NOT NULL DEFAULT '{}'::jsonb,
+                risk_breakdown_json JSONB NOT NULL DEFAULT '{}'::jsonb,
 
                 latency_ms INTEGER CHECK (latency_ms IS NULL OR latency_ms >= 0),
 
@@ -431,7 +445,7 @@ class DatabaseConnection:
 
                 policy_version TEXT NOT NULL DEFAULT 'default',
 
-                action TEXT NOT NULL,
+                decision_action TEXT NOT NULL,
                 severity SMALLINT NOT NULL CHECK (severity >= 0 AND severity <= 5),
 
                 reason_code TEXT,
@@ -463,7 +477,7 @@ class DatabaseConnection:
                     REFERENCES ai_moderation_decisions(id)
                     ON DELETE SET NULL,
 
-                labels TEXT[] NOT NULL DEFAULT ARRAY[]::TEXT[],
+                labels_json JSONB NOT NULL DEFAULT '[]'::jsonb,
                 primary_label TEXT,
                 scam_subtype TEXT,
 
@@ -476,8 +490,8 @@ class DatabaseConnection:
                 moderator_id TEXT,
 
                 feedback_type TEXT NOT NULL,
-                false_positive BOOLEAN NOT NULL DEFAULT FALSE,
-                false_negative BOOLEAN NOT NULL DEFAULT FALSE,
+                is_false_positive BOOLEAN NOT NULL DEFAULT FALSE,
+                is_false_negative BOOLEAN NOT NULL DEFAULT FALSE,
                 needs_context BOOLEAN NOT NULL DEFAULT FALSE,
 
                 annotator_confidence NUMERIC(5, 4) CHECK (
@@ -495,22 +509,26 @@ class DatabaseConnection:
             CREATE TABLE IF NOT EXISTS ai_rule_definitions (
                 id BIGSERIAL PRIMARY KEY,
 
-                rule_key TEXT NOT NULL UNIQUE,
+                rule_id TEXT NOT NULL,
+                rule_type TEXT NOT NULL,
                 version INTEGER NOT NULL DEFAULT 1 CHECK (version > 0),
 
-                category TEXT,
-                label TEXT,
+                title TEXT NOT NULL,
+                description TEXT,
                 severity SMALLINT CHECK (
                     severity IS NULL OR (severity >= 0 AND severity <= 5)
                 ),
+                default_confidence NUMERIC(5, 4) CHECK (
+                    default_confidence IS NULL OR (default_confidence >= 0 AND default_confidence <= 1)
+                ),
 
-                enabled BOOLEAN NOT NULL DEFAULT TRUE,
-
-                config JSONB NOT NULL DEFAULT '{}'::jsonb,
-                description TEXT,
+                config_json JSONB NOT NULL DEFAULT '{}'::jsonb,
+                is_enabled BOOLEAN NOT NULL DEFAULT TRUE,
 
                 created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+                updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+                UNIQUE (rule_id, version)
             )
             """,
 
@@ -518,17 +536,19 @@ class DatabaseConnection:
             CREATE TABLE IF NOT EXISTS ai_policy_versions (
                 id BIGSERIAL PRIMARY KEY,
 
-                policy_key TEXT NOT NULL,
+                policy_id TEXT NOT NULL,
                 version TEXT NOT NULL,
+                scope_type TEXT NOT NULL DEFAULT 'global',
+                scope_id TEXT,
 
                 is_active BOOLEAN NOT NULL DEFAULT FALSE,
 
-                config JSONB NOT NULL DEFAULT '{}'::jsonb,
+                config_json JSONB NOT NULL DEFAULT '{}'::jsonb,
 
                 created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 activated_at TIMESTAMPTZ,
 
-                UNIQUE (policy_key, version)
+                UNIQUE (policy_id, version, scope_type, scope_id)
             )
             """,
 
@@ -540,23 +560,17 @@ class DatabaseConnection:
                     REFERENCES ai_message_events(id)
                     ON DELETE CASCADE,
 
-                rule_id BIGINT
-                    REFERENCES ai_rule_definitions(id)
-                    ON DELETE SET NULL,
-
-                rule_key TEXT NOT NULL,
+                rule_id TEXT NOT NULL,
                 rule_version INTEGER,
 
-                matched BOOLEAN NOT NULL DEFAULT TRUE,
-
-                label TEXT,
                 severity SMALLINT CHECK (
                     severity IS NULL OR (severity >= 0 AND severity <= 5)
                 ),
+                confidence NUMERIC(5, 4) CHECK (
+                    confidence IS NULL OR (confidence >= 0 AND confidence <= 1)
+                ),
 
-                score_delta INTEGER NOT NULL DEFAULT 0,
-
-                evidence JSONB NOT NULL DEFAULT '{}'::jsonb,
+                evidence_json JSONB NOT NULL DEFAULT '{}'::jsonb,
 
                 created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
             )
@@ -606,6 +620,16 @@ class DatabaseConnection:
             """,
 
             """
+            CREATE INDEX IF NOT EXISTS idx_ai_media_attachments_phash
+            ON ai_media_attachments (phash)
+            """,
+
+            """
+            CREATE INDEX IF NOT EXISTS idx_ai_media_attachments_known_scam_hash_match
+            ON ai_media_attachments (known_scam_hash_match)
+            """,
+
+            """
             CREATE INDEX IF NOT EXISTS idx_ai_media_attachments_ocr_text_hash
             ON ai_media_attachments (ocr_text_hash)
             """,
@@ -616,8 +640,8 @@ class DatabaseConnection:
             """,
 
             """
-            CREATE INDEX IF NOT EXISTS idx_ai_analysis_results_primary_label
-            ON ai_analysis_results (primary_label)
+            CREATE INDEX IF NOT EXISTS idx_ai_analysis_results_label
+            ON ai_analysis_results (label)
             """,
 
             """
@@ -632,7 +656,7 @@ class DatabaseConnection:
 
             """
             CREATE INDEX IF NOT EXISTS idx_ai_moderation_decisions_action
-            ON ai_moderation_decisions (action)
+            ON ai_moderation_decisions (decision_action)
             """,
 
             """
@@ -656,12 +680,27 @@ class DatabaseConnection:
             """,
 
             """
+            CREATE INDEX IF NOT EXISTS idx_ai_feedback_labels_annotation_source
+            ON ai_feedback_labels (annotation_source)
+            """,
+
+            """
+            CREATE INDEX IF NOT EXISTS idx_ai_rule_definitions_rule_id
+            ON ai_rule_definitions (rule_id)
+            """,
+
+            """
+            CREATE INDEX IF NOT EXISTS idx_ai_policy_versions_active
+            ON ai_policy_versions (policy_id, scope_type, scope_id, is_active)
+            """,
+
+            """
             CREATE INDEX IF NOT EXISTS idx_ai_rule_match_events_event_id
             ON ai_rule_match_events (event_id)
             """,
 
             """
-            CREATE INDEX IF NOT EXISTS idx_ai_rule_match_events_rule_key
-            ON ai_rule_match_events (rule_key)
+            CREATE INDEX IF NOT EXISTS idx_ai_rule_match_events_rule_id
+            ON ai_rule_match_events (rule_id)
             """,
         ]

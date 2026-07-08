@@ -1,5 +1,4 @@
 from logging.config import fileConfig
-from pathlib import Path
 import os
 
 from alembic import context
@@ -14,9 +13,9 @@ if config.config_file_name is not None:
 def get_url() -> str:
     env_url = os.getenv("DATABASE_URL")
     if env_url:
-        database_url = env_url
+        return env_url
 
-    return database_url
+    return config.get_main_option("sqlalchemy.url")
 
 
 def run_migrations_offline() -> None:

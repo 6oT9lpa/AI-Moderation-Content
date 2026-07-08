@@ -3,7 +3,7 @@ from __future__ import annotations
 from src.domain.moderation.moderation_label import ModerationLabel
 from src.domain.rules.risk_breakdown_item import RiskBreakdownItem
 from src.infrastructure.logging.logger import get_logger
-from src.modules.rules.moderation_rule_policy import ModerationRulePolicy
+from src.contracts.rules.moderation_rule_policy import ModerationRulePolicy
 
 logger = get_logger(__name__)
 

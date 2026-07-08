@@ -7,7 +7,7 @@ from src.domain.rules.signal_source import SignalSource
 from src.infrastructure.logging import get_logger
 from src.modules.preprocessing.rules.preprocessing_rule_policy import PreprocessingRulePolicy
 from src.modules.preprocessing.rules.preprocessing_rule_settings import PreprocessingRuleSettings
-from src.modules.rules.moderation_rule_policy import ModerationRulePolicy
+from src.contracts.rules.moderation_rule_policy import ModerationRulePolicy
 
 logger = get_logger(__name__)
 

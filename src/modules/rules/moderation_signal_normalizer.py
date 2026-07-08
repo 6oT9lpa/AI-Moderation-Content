@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from src.domain.rules.moderation_signal import ModerationSignal
 from src.infrastructure.logging.logger import get_logger
-from src.modules.rules.moderation_rule_policy import ModerationRulePolicy
+from src.contracts.rules.moderation_rule_policy import ModerationRulePolicy
 
 logger = get_logger(__name__)
 

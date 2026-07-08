@@ -4,7 +4,7 @@ from src.domain.rules.model_agreement import ModelAgreement
 from src.domain.rules.moderation_signal import ModerationSignal
 from src.domain.rules.signal_source import SignalSource
 from src.infrastructure.logging.logger import get_logger
-from src.modules.rules.moderation_rule_policy import ModerationRulePolicy
+from src.contracts.rules.moderation_rule_policy import ModerationRulePolicy
 
 logger = get_logger(__name__)
 
@@ -20,7 +20,6 @@ class ModelAgreementCalculator:
                 agreement_score=1.0,
             )
 
-        # Filter high confidence signals from models
         model_sources = {SignalSource.RUBERT, SignalSource.QWEN}
         model_signals = [
             s for s in signals 
@@ -34,7 +33,6 @@ class ModelAgreementCalculator:
                 agreement_score=1.0,
             )
 
-        # Check if they agree on the same label
         labels_by_source = {}
         for s in model_signals:
             labels_by_source[s.source] = s.label
@@ -47,7 +45,6 @@ class ModelAgreementCalculator:
                 agreement_score=1.0,
             )
 
-        # Compare first two for simplicity (can be extended)
         s1, s2 = sources[0], sources[1]
         if labels_by_source[s1] == labels_by_source[s2]:
             return ModelAgreement(

@@ -9,7 +9,7 @@ from src.domain.rules.rule_evaluation_result import RuleEvaluationResult
 from src.infrastructure.logging.logger import get_logger
 from src.modules.rules.conflict_resolver import ConflictResolver
 from src.modules.rules.model_agreement_calculator import ModelAgreementCalculator
-from src.modules.rules.moderation_rule_policy import ModerationRulePolicy
+from src.contracts.rules.moderation_rule_policy import ModerationRulePolicy
 from src.modules.rules.moderation_rule_policy_config_loader import (
     ModerationRulePolicyConfigLoader,
 )

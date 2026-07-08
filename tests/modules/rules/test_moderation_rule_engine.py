@@ -3,7 +3,7 @@ from src.domain.moderation.moderation_label import ModerationLabel
 from src.domain.rules.moderation_signal import ModerationSignal
 from src.domain.rules.signal_source import SignalSource
 from src.modules.rules.moderation_rule_engine import ModerationRuleEngine
-from src.modules.rules.moderation_rule_policy import ModerationRulePolicy
+from src.contracts.rules.moderation_rule_policy import ModerationRulePolicy
 from src.infrastructure.logging.logger import get_logger
 
 logger = get_logger(__name__)

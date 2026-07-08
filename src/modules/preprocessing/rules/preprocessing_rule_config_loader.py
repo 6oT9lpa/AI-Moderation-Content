@@ -8,7 +8,7 @@ from src.modules.preprocessing.rules.preprocessing_moderation_policy_adapter imp
     PreprocessingModerationPolicyAdapter,
 )
 from src.modules.preprocessing.rules.preprocessing_rule_settings import PreprocessingRuleSettings
-from src.modules.rules.moderation_rule_policy import ModerationRulePolicy
+from src.contracts.rules.moderation_rule_policy import ModerationRulePolicy
 from src.modules.rules.moderation_rule_policy_config_loader import ModerationRulePolicyConfigLoader
 
 logger = get_logger(__name__)
@@ -39,6 +39,14 @@ class PreprocessingRuleConfigLoader:
         settings = PreprocessingRuleSettings.from_mapping(rule_data)
         adapted_settings = self._policy_adapter.adapt(settings, self._resolve_moderation_policy())
         logger.info("Preprocessing rule config loaded path=%s settings=%s", config_path, adapted_settings)
+        return adapted_settings
+
+    def load_from_payload(self, payload: Mapping[str, Any]) -> PreprocessingRuleSettings:
+        logger.info("Preprocessing rule config loading from payload")
+        rule_data = self._extract_rule_data(payload)
+        settings = PreprocessingRuleSettings.from_mapping(rule_data)
+        adapted_settings = self._policy_adapter.adapt(settings, self._resolve_moderation_policy())
+        logger.info("Preprocessing rule config payload loaded settings=%s", adapted_settings)
         return adapted_settings
 
     def _resolve_moderation_policy(self) -> ModerationRulePolicy:

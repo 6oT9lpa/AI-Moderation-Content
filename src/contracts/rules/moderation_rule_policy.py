@@ -1,12 +1,12 @@
 from pydantic import BaseModel, ConfigDict, Field
 
+from src.contracts.rules.confidence_threshold_policy import ConfidenceThresholdPolicy
+from src.contracts.rules.conflict_rule_policy import ConflictRulePolicy
+from src.contracts.rules.label_risk_policy import LabelRiskPolicy
+from src.contracts.rules.model_agreement_policy import ModelAgreementPolicy
+from src.contracts.rules.risk_score_policy import RiskScorePolicy
+from src.contracts.rules.source_weight_policy import SourceWeightPolicy
 from src.domain.moderation.moderation_label import ModerationLabel
-from src.modules.rules.confidence_threshold_policy import ConfidenceThresholdPolicy
-from src.modules.rules.conflict_rule_policy import ConflictRulePolicy
-from src.modules.rules.label_risk_policy import LabelRiskPolicy
-from src.modules.rules.model_agreement_policy import ModelAgreementPolicy
-from src.modules.rules.risk_score_policy import RiskScorePolicy
-from src.modules.rules.source_weight_policy import SourceWeightPolicy
 
 
 class ModerationRulePolicy(BaseModel):

@@ -34,6 +34,7 @@ class MessagePreprocessInputSchema(BaseModel):
     attachment_count: int = 0
 
     recent_messages: tuple[str, ...] = ()
+    recent_message_timestamps: tuple[datetime, ...] = ()
     metadata: dict[str, Any] = Field(default_factory=dict)
 
     @field_validator(

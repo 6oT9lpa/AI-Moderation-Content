@@ -1,0 +1,43 @@
+policy_id: "default_decision_policy"
+version: "1.0.0"
+
+mode: "ACTIVE"
+dry_run: false
+
+action_thresholds:
+  IGNORE: 0
+  LOG: 10
+  REVIEW: 40
+  WARN: 50
+  DELETE: 70
+  DELETE_WARN: 80
+  TIMEOUT: 90
+  BAN: 95
+
+min_confidence_for_action: 0.6
+
+label_overrides:
+  THREAT: "DELETE"
+  HATE: "DELETE"
+  SCAM: "DELETE"
+  NSFW: "REVIEW"
+
+action_priority:
+  - BAN
+  - TIMEOUT
+  - DELETE_WARN
+  - DELETE
+  - WARN
+  - REVIEW
+  - LOG
+  - IGNORE
+
+strict_mode_adjustments:
+  risk_multiplier: 1.2
+  confidence_threshold_reduction: 0.1
+
+passive_mode_adjustments:
+  max_action: "REVIEW"
+
+review_on_model_disagreement: true
+review_on_low_confidence_high_risk: true

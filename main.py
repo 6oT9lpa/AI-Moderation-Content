@@ -9,10 +9,16 @@ from typing import Any
 
 from src.contracts.message_preprocess_input_schema import MessagePreprocessInputSchema
 from src.domain.dto.action.action_execution_request import ActionExecutionRequest
+from src.domain.dto.dataset.dataset_collection_input import DatasetCollectionInput
 from src.domain.moderation.moderation_action import ModerationAction
+from src.infrastructure.repository.in_memory_dataset_collector_repository import (
+    InMemoryDatasetCollectorRepository,
+)
 from src.modules.action.action_executor import ActionExecutor
 from src.modules.action.action_policy_config_loader import ActionPolicyConfigLoader
 from src.modules.action.stub_platform_action_client import StubPlatformActionClient
+from src.modules.dataset.dataset_collector import DatasetCollector
+from src.modules.dataset.dataset_export_builder import DatasetExportBuilder
 from src.modules.decision.decision_engine import DecisionEngine
 from src.modules.preprocessing.text_preprocessor import TextPreprocessor
 from src.modules.rules.moderation_rule_engine import ModerationRuleEngine
@@ -32,6 +38,9 @@ async def main() -> None:
     signal_adapter = PreprocessingSignalAdapter()
     action_policy = ActionPolicyConfigLoader.load()
     action_executor = ActionExecutor(action_policy, StubPlatformActionClient())
+    dataset_repository = InMemoryDatasetCollectorRepository()
+    dataset_collector = DatasetCollector(dataset_repository)
+    dataset_export_builder = DatasetExportBuilder()
 
     current_channel = "general"
     message_counter = 0
@@ -103,9 +112,28 @@ async def main() -> None:
                     reason=decision.reason,
                 )
             )
+            dataset_event_id = None
+
+            try:
+                dataset_result = await dataset_collector.collect(
+                    DatasetCollectionInput(
+                        context=context,
+                        rule_evaluation=rule_result,
+                        decision=decision,
+                        action_result=execution_result,
+                    )
+                )
+                dataset_event_id = dataset_result.event_id
+            except Exception:
+                logging.getLogger(__name__).warning(
+                    "Dataset collection failed message_id=%s",
+                    context.message_id,
+                    exc_info=True,
+                )
 
             message_record = {
                 "message_id": context.message_id,
+                "dataset_event_id": dataset_event_id,
                 "created_at": created_at,
                 "user_id": user_id,
                 "channel_id": channel_id,
@@ -149,7 +177,12 @@ async def main() -> None:
         print("")
         print("Chat input stopped.")
 
-    _print_report(channel_users, channel_messages)
+    _print_report(
+        channel_users,
+        channel_messages,
+        dataset_records_count=len(dataset_repository.records),
+        export_ready_count=len(dataset_export_builder.build_training_examples(dataset_repository.records)),
+    )
 
 
 def _parse_chat_line(raw_line: str, current_channel: str) -> dict[str, Any]:
@@ -180,6 +213,9 @@ def _reduce_demo_log_noise() -> None:
 def _print_report(
     channel_users: dict[str, set[str]],
     channel_messages: dict[str, list[dict[str, Any]]],
+    *,
+    dataset_records_count: int = 0,
+    export_ready_count: int = 0,
 ) -> None:
     print("")
     print("Moderation report")
@@ -188,6 +224,9 @@ def _print_report(
     if not channel_messages:
         print("No messages were processed.")
         return
+
+    print(f"Dataset records: {dataset_records_count}")
+    print(f"ruBERT export-ready records: {export_ready_count}")
 
     for channel_id in sorted(channel_messages):
         print("")
@@ -202,7 +241,8 @@ def _print_report(
             print(
                 f"- {timestamp} #{message['user_id']}: {message['text']} "
                 f"[labels={_format_list(message['labels'])} primary={message['primary_label']} "
-                f"action={message['decision_action']} risk={message['risk_score']:.2f}]"
+                f"action={message['decision_action']} risk={message['risk_score']:.2f} "
+                f"dataset_event_id={message['dataset_event_id']}]"
             )
             _print_message_matches(message)
 

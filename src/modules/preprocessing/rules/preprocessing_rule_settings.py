@@ -4,6 +4,9 @@ from typing import Any, Mapping
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from src.modules.preprocessing.rules.preprocessing_blacklist_words_policy import (
+    PreprocessingBlacklistWordsPolicy,
+)
 from src.modules.preprocessing.rules.preprocessing_evasion_policy import PreprocessingEvasionPolicy
 from src.modules.preprocessing.rules.preprocessing_flood_policy import PreprocessingFloodPolicy
 from src.modules.preprocessing.rules.preprocessing_invite_policy import PreprocessingInvitePolicy
@@ -17,6 +20,7 @@ class PreprocessingRuleSettings(BaseModel):
     links: PreprocessingLinkPolicy = Field(default_factory=PreprocessingLinkPolicy)
     flood: PreprocessingFloodPolicy = Field(default_factory=PreprocessingFloodPolicy)
     spam: PreprocessingSpamPolicy = Field(default_factory=PreprocessingSpamPolicy)
+    blacklist_words: PreprocessingBlacklistWordsPolicy = Field(default_factory=PreprocessingBlacklistWordsPolicy)
     invite: PreprocessingInvitePolicy = Field(default_factory=PreprocessingInvitePolicy)
     evasion: PreprocessingEvasionPolicy = Field(default_factory=PreprocessingEvasionPolicy)
     semantic_placeholders: dict[str, Any] = Field(default_factory=dict)

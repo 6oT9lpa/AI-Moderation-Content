@@ -40,6 +40,8 @@ class TextFeatureExtractor:
     ) -> MessageFeatures:
         text = text or ""
         text_length = len(text)
+        metric_text = cls._remove_urls(text, urls)
+        metric_length = len(metric_text)
         words = _WORD_RE.findall(text)
         word_count = len(words)
 
@@ -55,7 +57,7 @@ class TextFeatureExtractor:
         has_cyrillic = False
         has_latin = False
 
-        for char in text:
+        for char in metric_text:
             if char.isalpha():
                 letters += 1
 
@@ -90,9 +92,9 @@ class TextFeatureExtractor:
                 emoji_count += 1
 
         uppercase_ratio = uppercase / letters if letters else 0.0
-        digit_ratio = digits / text_length if text_length else 0.0
-        punctuation_ratio = punctuation / text_length if text_length else 0.0
-        emoji_ratio = emoji_count / text_length if text_length else 0.0
+        digit_ratio = digits / metric_length if metric_length else 0.0
+        punctuation_ratio = punctuation / metric_length if metric_length else 0.0
+        emoji_ratio = emoji_count / metric_length if metric_length else 0.0
         repeated_char_score = min(max(longest_repeat - 1, 0) / 10, 1.0)
 
         features = MessageFeatures(
@@ -148,3 +150,12 @@ class TextFeatureExtractor:
     def _is_emoji(char: str) -> bool:
         code = ord(char)
         return any(start <= code <= end for start, end in _EMOJI_RANGES)
+
+    @staticmethod
+    def _remove_urls(text: str, urls: tuple[str, ...]) -> str:
+        metric_text = text
+
+        for url in urls:
+            metric_text = metric_text.replace(url, " ")
+
+        return metric_text

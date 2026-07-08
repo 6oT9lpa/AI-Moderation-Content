@@ -387,6 +387,82 @@ async def test_text_preprocessor_allows_policy_whitelisted_url_domain(structured
 
 
 @pytest.mark.asyncio
+async def test_text_preprocessor_allows_policy_whitelisted_invite_code(structured_test_logger) -> None:
+    payload = MessagePreprocessInputSchema(
+        channel_id="channel-1",
+        user_id="user-1",
+        message_id="message-1",
+        raw_text="join https://discord.gg/Qwert",
+    )
+    preprocessor = TextPreprocessor(
+        rule_settings=PreprocessingRuleSettings.from_mapping(
+            {
+                "links": {
+                    "allowed_domains": [],
+                },
+                "invite": {
+                    "allowed_invite_codes": ["qwert"],
+                },
+            },
+        ),
+    )
+
+    context = await preprocessor.process(payload)
+    _log_preprocessing_context(
+        structured_test_logger,
+        context,
+        expected={
+            "allowed_invite_codes": ["qwert"],
+            "invites": ["qwert"],
+            "labels": [],
+        },
+    )
+
+    assert context.invites == ("qwert",)
+    assert "INVITE" not in context.metadata["preprocessing_labels"]
+    assert "URL" not in context.metadata["preprocessing_labels"]
+    assert context.metadata["preprocessing_rule_matches"] == []
+
+
+@pytest.mark.asyncio
+async def test_text_preprocessor_disabled_invite_policy_does_not_fallback_to_url(structured_test_logger) -> None:
+    payload = MessagePreprocessInputSchema(
+        channel_id="channel-1",
+        user_id="user-1",
+        message_id="message-1",
+        raw_text="join https://discord.gg/Qwert",
+    )
+    preprocessor = TextPreprocessor(
+        rule_settings=PreprocessingRuleSettings.from_mapping(
+            {
+                "links": {
+                    "allowed_domains": [],
+                },
+                "invite": {
+                    "detected": {
+                        "enabled": False,
+                    },
+                },
+            },
+        ),
+    )
+
+    context = await preprocessor.process(payload)
+    _log_preprocessing_context(
+        structured_test_logger,
+        context,
+        expected={
+            "invite_policy_enabled": False,
+            "invites": ["qwert"],
+            "labels": [],
+        },
+    )
+
+    assert context.invites == ("qwert",)
+    assert context.metadata["preprocessing_rule_matches"] == []
+
+
+@pytest.mark.asyncio
 async def test_text_preprocessor_uses_policy_confidence_and_risk_weight(structured_test_logger) -> None:
     payload = MessagePreprocessInputSchema(
         channel_id="channel-1",
@@ -429,6 +505,180 @@ async def test_text_preprocessor_uses_policy_confidence_and_risk_weight(structur
     assert match["risk_weight"] == 17
     assert match["severity"] == 2
     assert match["reason"] == "custom_url_policy"
+
+
+@pytest.mark.asyncio
+async def test_text_preprocessor_url_does_not_mask_caps_spam(structured_test_logger) -> None:
+    payload = MessagePreprocessInputSchema(
+        channel_id="channel-1",
+        user_id="user-1",
+        message_id="message-1",
+        raw_text="OQWEOOQWoooQWOO OQOWEO OQOWEOo https://discord.gg/123123",
+    )
+
+    context = await TextPreprocessor().process(payload)
+    _log_preprocessing_context(
+        structured_test_logger,
+        context,
+        expected={
+            "labels": ["INVITE", "SPAM", "URL"],
+            "spam_reason": "caps_ratio_threshold_exceeded",
+        },
+    )
+
+    labels = context.metadata["preprocessing_labels"]
+    reasons = {match["reason"] for match in context.metadata["preprocessing_rule_matches"]}
+
+    assert "SPAM" in labels
+    assert "INVITE" in labels
+    assert "URL" in labels
+    assert "caps_ratio_threshold_exceeded" in reasons
+
+
+@pytest.mark.asyncio
+async def test_text_preprocessor_detects_policy_blacklist_word(structured_test_logger) -> None:
+    payload = MessagePreprocessInputSchema(
+        channel_id="channel-1",
+        user_id="user-1",
+        message_id="message-1",
+        raw_text="This message contains forbiddenword.",
+    )
+    preprocessor = TextPreprocessor(
+        rule_settings=PreprocessingRuleSettings.from_mapping(
+            {
+                "blacklist_words": {
+                    "words": ["forbiddenword"],
+                },
+            },
+        ),
+    )
+
+    context = await preprocessor.process(payload)
+    _log_preprocessing_context(
+        structured_test_logger,
+        context,
+        expected={
+            "rule_id": "preprocessing.blacklist_words.detected",
+            "labels": ["SPAM"],
+            "matched_words": ["forbiddenword"],
+        },
+    )
+    [match] = context.metadata["preprocessing_rule_matches"]
+
+    assert match["rule_id"] == "preprocessing.blacklist_words.detected"
+    assert match["labels"] == ["SPAM"]
+    assert match["evidence"]["matched_words"] == ("forbiddenword",)
+
+
+@pytest.mark.asyncio
+async def test_text_preprocessor_blacklist_word_respects_word_boundaries(structured_test_logger) -> None:
+    payload = MessagePreprocessInputSchema(
+        channel_id="channel-1",
+        user_id="user-1",
+        message_id="message-1",
+        raw_text="This badge should not match.",
+    )
+    preprocessor = TextPreprocessor(
+        rule_settings=PreprocessingRuleSettings.from_mapping(
+            {
+                "blacklist_words": {
+                    "words": ["bad"],
+                },
+            },
+        ),
+    )
+
+    context = await preprocessor.process(payload)
+    _log_preprocessing_context(
+        structured_test_logger,
+        context,
+        expected={
+            "labels": [],
+            "reason": "badge contains bad as substring only",
+        },
+    )
+
+    assert context.metadata["preprocessing_rule_matches"] == []
+
+
+@pytest.mark.asyncio
+async def test_text_preprocessor_blacklist_word_can_be_disabled(structured_test_logger) -> None:
+    payload = MessagePreprocessInputSchema(
+        channel_id="channel-1",
+        user_id="user-1",
+        message_id="message-1",
+        raw_text="forbiddenword",
+    )
+    preprocessor = TextPreprocessor(
+        rule_settings=PreprocessingRuleSettings.from_mapping(
+            {
+                "blacklist_words": {
+                    "words": ["forbiddenword"],
+                    "detected": {
+                        "enabled": False,
+                    },
+                },
+            },
+        ),
+    )
+
+    context = await preprocessor.process(payload)
+    _log_preprocessing_context(
+        structured_test_logger,
+        context,
+        expected={
+            "blacklist_enabled": False,
+            "labels": [],
+        },
+    )
+
+    assert context.metadata["preprocessing_rule_matches"] == []
+
+
+@pytest.mark.asyncio
+async def test_text_preprocessor_blacklist_word_uses_policy_payload(structured_test_logger) -> None:
+    payload = MessagePreprocessInputSchema(
+        channel_id="channel-1",
+        user_id="user-1",
+        message_id="message-1",
+        raw_text="custombad",
+    )
+    preprocessor = TextPreprocessor(
+        rule_settings=PreprocessingRuleSettings.from_mapping(
+            {
+                "blacklist_words": {
+                    "words": "custombad",
+                    "detected": {
+                        "labels": ["HATE"],
+                        "severity": 5,
+                        "confidence": 0.91,
+                        "risk_weight": 70,
+                        "reason": "custom_blacklist_policy",
+                    },
+                },
+            },
+        ),
+    )
+
+    context = await preprocessor.process(payload)
+    _log_preprocessing_context(
+        structured_test_logger,
+        context,
+        expected={
+            "labels": ["HATE"],
+            "severity": 5,
+            "confidence": 0.91,
+            "risk_weight": 70,
+            "reason": "custom_blacklist_policy",
+        },
+    )
+    [match] = context.metadata["preprocessing_rule_matches"]
+
+    assert match["labels"] == ["HATE"]
+    assert match["severity"] == 5
+    assert match["confidence"] == 0.91
+    assert match["risk_weight"] == 70
+    assert match["reason"] == "custom_blacklist_policy"
 
 
 @pytest.mark.asyncio

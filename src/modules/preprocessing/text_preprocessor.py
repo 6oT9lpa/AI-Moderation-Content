@@ -20,23 +20,6 @@ logger = get_logger(__name__)
 
 
 class TextPreprocessor:
-    DEFAULT_SHORTENER_DOMAINS = frozenset(
-        {
-            "bit.ly",
-            "t.co",
-            "tinyurl.com",
-            "goo.gl",
-            "cutt.ly",
-            "is.gd",
-            "s.id",
-            "clck.ru",
-            "vk.cc",
-            "ow.ly",
-            "shorturl.at",
-            "rebrand.ly",
-        }
-    )
-
     def __init__(
         self,
         *,

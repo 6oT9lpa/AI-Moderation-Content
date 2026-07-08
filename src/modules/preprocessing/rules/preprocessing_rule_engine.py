@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from typing import Any
 
 from src.domain.message_context import MessageContext
@@ -12,6 +13,14 @@ logger = get_logger(__name__)
 
 
 class PreprocessingRuleEngine:
+    DISCORD_INVITE_DOMAINS = (
+        "discord.gg",
+        "discord.com",
+        "discordapp.com",
+        "canary.discord.com",
+        "ptb.discord.com",
+    )
+
     def __init__(self, settings: PreprocessingRuleSettings | None = None) -> None:
         self._settings = settings or PreprocessingRuleSettings()
         logger.info("Preprocessing rule engine initialized settings=%s", self._settings)
@@ -24,6 +33,7 @@ class PreprocessingRuleEngine:
             return ()
 
         results: list[PreprocessingRuleResult] = []
+        results.extend(self._evaluate_blacklist_words(context))
         results.extend(self._evaluate_flood(context))
         results.extend(self._evaluate_spam(context))
         results.extend(self._evaluate_invite(context))
@@ -37,6 +47,31 @@ class PreprocessingRuleEngine:
             sorted({label.value for result in results for label in result.labels}),
         )
         return tuple(results)
+
+    def _evaluate_blacklist_words(self, context: MessageContext) -> list[PreprocessingRuleResult]:
+        blacklist_policy = self._settings.blacklist_words
+
+        if not blacklist_policy.detected.enabled or not blacklist_policy.words:
+            return []
+
+        matched_words = tuple(
+            word
+            for word in blacklist_policy.words
+            if self._contains_blacklist_word(context.normalized_text, word)
+        )
+
+        if not matched_words:
+            return []
+
+        return [
+            self._build_result(
+                "preprocessing.blacklist_words.detected",
+                blacklist_policy.detected,
+                {
+                    "matched_words": matched_words,
+                },
+            ),
+        ]
 
     def _evaluate_flood(self, context: MessageContext) -> list[PreprocessingRuleResult]:
         features = context.features
@@ -154,7 +189,8 @@ class PreprocessingRuleEngine:
 
         matches: list[PreprocessingRuleResult] = []
         link_policy = self._settings.links
-        untrusted_domains = self._filter_untrusted_domains(context.domains, link_policy.allowed_domains)
+        domains = self._filter_policy_allowed_invite_domains(context)
+        untrusted_domains = self._filter_untrusted_domains(domains, link_policy.allowed_domains)
 
         if link_policy.detect_any_url.enabled and features.has_url and untrusted_domains:
             matches.append(
@@ -171,7 +207,7 @@ class PreprocessingRuleEngine:
 
         shortener_domains = tuple(
             domain
-            for domain in context.domains
+            for domain in domains
             if self._domain_matches_any(domain, link_policy.shortener_domains)
             and not self._domain_matches_any(domain, link_policy.allowed_domains)
         )
@@ -190,6 +226,25 @@ class PreprocessingRuleEngine:
             )
 
         return matches
+
+    def _filter_policy_allowed_invite_domains(self, context: MessageContext) -> tuple[str, ...]:
+        if not context.invites:
+            return context.domains
+
+        invite_policy = self._settings.invite
+        allowed_codes = set(invite_policy.allowed_invite_codes)
+        invite_allowed_by_policy = not invite_policy.detected.enabled or all(
+            invite.lower() in allowed_codes for invite in context.invites
+        )
+
+        if not invite_allowed_by_policy:
+            return context.domains
+
+        return tuple(
+            domain
+            for domain in context.domains
+            if not self._domain_matches_any(domain, self.DISCORD_INVITE_DOMAINS)
+        )
 
     def _evaluate_evasion(self, context: MessageContext) -> list[PreprocessingRuleResult]:
         features = context.features
@@ -255,3 +310,10 @@ class PreprocessingRuleEngine:
             normalized_domain == pattern or normalized_domain.endswith(f".{pattern}")
             for pattern in patterns
         )
+
+    def _contains_blacklist_word(self, text: str, word: str) -> bool:
+        if not word:
+            return False
+
+        pattern = rf"(?<![\w]){re.escape(word)}(?![\w])"
+        return re.search(pattern, text.casefold(), flags=re.UNICODE) is not None

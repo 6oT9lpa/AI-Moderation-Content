@@ -22,27 +22,27 @@ preprocessing:
   flood:
     messages_10s:
       enabled: true
-      threshold: 2
+      threshold: 4
       labels: [FLOOD]
       severity: 3
       confidence: 0.82
-      risk_weight: 35
+      risk_weight: 18
       reason: too_many_messages_in_10s
     messages_60s:
       enabled: true
-      threshold: 3
+      threshold: 8
       labels: [FLOOD]
       severity: 3
       confidence: 0.86
-      risk_weight: 45
+      risk_weight: 24
       reason: too_many_messages_in_60s
     repeated_messages_10m:
       enabled: true
-      threshold: 2
+      threshold: 4
       labels: [FLOOD]
       severity: 3
       confidence: 0.78
-      risk_weight: 35
+      risk_weight: 22
       reason: same_text_repeated_in_window
 
   spam:
@@ -56,7 +56,7 @@ preprocessing:
       reason: mass_mentions_detected
     caps:
       enabled: true
-      threshold: 0.75
+      threshold: 0.65
       minimum_text_length: 8
       labels: [SPAM]
       severity: 1
@@ -82,7 +82,18 @@ preprocessing:
       risk_weight: 10
       reason: repeated_char_score_threshold_exceeded
 
+  blacklist_words:
+    words: [67, six seven]
+    detected:
+      enabled: true
+      labels: [SPAM]
+      severity: 2
+      confidence: 0.75
+      risk_weight: 25
+      reason: blacklist_word_detected
+
   invite:
+    # Discord invite allow-list is policy-driven. Add invite codes here for servers where invites are allowed.
     allowed_invite_codes: []
     detected:
       enabled: true

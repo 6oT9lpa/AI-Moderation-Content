@@ -1,0 +1,35 @@
+action_policy:
+  policy_id: "default_action_policy"
+  version: "1.0.0"
+  enabled: true
+  dry_run: true
+
+  allowed_actions:
+    - LOG
+    - REVIEW
+    - WARN
+    - DELETE
+    - TIMEOUT
+    - BAN
+
+  destructive_actions:
+    - DELETE
+    - TIMEOUT
+    - BAN
+
+  require_review_for_actions:
+    - BAN
+
+  action_timeouts:
+    DELETE: 5
+    WARN: 5
+    TIMEOUT: 5
+    BAN: 5
+    REVIEW: 5
+    LOG: 2
+
+  retry_policy:
+    max_attempts: 3
+    backoff_seconds: 2
+
+  platform_overrides: {}

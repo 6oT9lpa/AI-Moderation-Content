@@ -4,25 +4,49 @@ from pathlib import Path
 from typing import Any, Mapping
 
 from src.infrastructure.logging import get_logger
+from src.modules.preprocessing.rules.preprocessing_moderation_policy_adapter import (
+    PreprocessingModerationPolicyAdapter,
+)
 from src.modules.preprocessing.rules.preprocessing_rule_settings import PreprocessingRuleSettings
+from src.modules.rules.moderation_rule_policy import ModerationRulePolicy
+from src.modules.rules.moderation_rule_policy_config_loader import ModerationRulePolicyConfigLoader
 
 logger = get_logger(__name__)
 
 
 class PreprocessingRuleConfigLoader:
+    def __init__(
+        self,
+        *,
+        moderation_policy: ModerationRulePolicy | None = None,
+        moderation_policy_path: str | Path = "configs/rules/moderation_rule_policy.yaml",
+        policy_adapter: PreprocessingModerationPolicyAdapter | None = None,
+    ) -> None:
+        self._moderation_policy = moderation_policy
+        self._moderation_policy_path = Path(moderation_policy_path)
+        self._policy_adapter = policy_adapter or PreprocessingModerationPolicyAdapter()
+
     def load(self, path: str | Path) -> PreprocessingRuleSettings:
         config_path = Path(path)
         logger.info("Preprocessing rule config loading path=%s", config_path)
 
         if not config_path.exists():
             logger.warning("Preprocessing rule config missing path=%s using_defaults=true", config_path)
-            return PreprocessingRuleSettings()
+            return self._policy_adapter.adapt(PreprocessingRuleSettings(), self._resolve_moderation_policy())
 
         data = self._load_yaml_data(config_path)
         rule_data = self._extract_rule_data(data)
         settings = PreprocessingRuleSettings.from_mapping(rule_data)
-        logger.info("Preprocessing rule config loaded path=%s settings=%s", config_path, settings)
-        return settings
+        adapted_settings = self._policy_adapter.adapt(settings, self._resolve_moderation_policy())
+        logger.info("Preprocessing rule config loaded path=%s settings=%s", config_path, adapted_settings)
+        return adapted_settings
+
+    def _resolve_moderation_policy(self) -> ModerationRulePolicy:
+        if self._moderation_policy is not None:
+            return self._moderation_policy
+
+        self._moderation_policy = ModerationRulePolicyConfigLoader.load(self._moderation_policy_path)
+        return self._moderation_policy
 
     def _load_yaml_data(self, config_path: Path) -> Mapping[str, Any]:
         try:

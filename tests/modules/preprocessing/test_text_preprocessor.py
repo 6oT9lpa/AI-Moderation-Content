@@ -83,6 +83,59 @@ def test_preprocessing_rule_settings_maps_legacy_flat_thresholds(structured_test
     assert settings.spam.mass_mentions.threshold == 7
 
 
+def test_preprocessing_rule_config_loader_adapts_to_moderation_policy(structured_test_logger) -> None:
+    settings = PreprocessingRuleConfigLoader().load("configs/rules/preprocessing_rules.yaml")
+
+    structured_test_logger(
+        "output",
+        {
+            "policy_source": "configs/rules/moderation_rule_policy.yaml",
+            "url_confidence": settings.links.detect_any_url.confidence,
+            "invite_confidence": settings.invite.detected.confidence,
+            "flood_confidence": settings.flood.messages_10s.confidence,
+        },
+    )
+
+    assert settings.links.detect_any_url.confidence >= 0.3
+    assert settings.invite.detected.confidence >= 0.3
+    assert settings.flood.messages_10s.confidence >= 0.3
+
+
+def test_preprocessing_rule_config_loader_rejects_rules_below_moderation_confidence(
+    tmp_path,
+    structured_test_logger,
+) -> None:
+    config_path = tmp_path / "preprocessing_rules.yaml"
+    config_path.write_text(
+        """
+preprocessing:
+  links:
+    detect_any_url:
+      enabled: true
+      labels: [URL]
+      severity: 1
+      confidence: 0.1
+      risk_weight: 10
+      reason: url_detected
+""",
+        encoding="utf-8",
+    )
+
+    structured_test_logger(
+        "input",
+        {
+            "config_path": str(config_path),
+            "expected_error": "confidence is below moderation threshold",
+            "moderation_policy_source": "configs/rules/moderation_rule_policy.yaml",
+        },
+    )
+
+    with pytest.raises(ValueError, match="below moderation threshold") as exc_info:
+        PreprocessingRuleConfigLoader().load(config_path)
+
+    structured_test_logger("output", {"error": str(exc_info.value)})
+
+
 def _log_preprocessing_context(structured_test_logger, context, *, expected: dict[str, Any] | None = None) -> None:
     rule_matches = context.metadata.get("preprocessing_rule_matches", [])
     detected_labels = context.metadata.get("preprocessing_labels", [])

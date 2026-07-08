@@ -39,6 +39,12 @@ class DatabaseConnection:
 
         logger.info("Database initialized successfully")
 
+    async def connect(self) -> psycopg.AsyncConnection:
+        return await self._connect()
+
+    async def close(self) -> None:
+        await self._close()
+
     async def _connect(self) -> psycopg.AsyncConnection:
         async with self._lock:
             if self._connection is None or self._connection.closed:
@@ -553,6 +559,44 @@ class DatabaseConnection:
             """,
 
             """
+            CREATE TABLE IF NOT EXISTS policy_records (
+                id BIGSERIAL PRIMARY KEY,
+
+                policy_id TEXT NOT NULL UNIQUE,
+                policy_type TEXT NOT NULL,
+                scope_type TEXT NOT NULL,
+                scope_id TEXT,
+                platform TEXT,
+                version TEXT NOT NULL,
+                payload_json JSONB NOT NULL DEFAULT '{}'::jsonb,
+                enabled BOOLEAN NOT NULL DEFAULT TRUE,
+                priority INTEGER NOT NULL DEFAULT 0,
+                created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+            )
+            """,
+
+            """
+            CREATE TABLE IF NOT EXISTS action_execution_logs (
+                id BIGSERIAL PRIMARY KEY,
+
+                message_id TEXT NOT NULL,
+                decision_action TEXT NOT NULL,
+                action TEXT NOT NULL,
+                status TEXT NOT NULL,
+                dry_run BOOLEAN NOT NULL DEFAULT FALSE,
+                reason TEXT,
+                platform TEXT,
+                guild_id TEXT,
+                channel_id TEXT,
+                user_id TEXT,
+                error TEXT,
+                platform_response_json JSONB NOT NULL DEFAULT '{}'::jsonb,
+                created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+            )
+            """,
+
+            """
             CREATE TABLE IF NOT EXISTS ai_rule_match_events (
                 id BIGSERIAL PRIMARY KEY,
 
@@ -692,6 +736,26 @@ class DatabaseConnection:
             """
             CREATE INDEX IF NOT EXISTS idx_ai_policy_versions_active
             ON ai_policy_versions (policy_id, scope_type, scope_id, is_active)
+            """,
+
+            """
+            CREATE INDEX IF NOT EXISTS idx_policy_records_resolution
+            ON policy_records (policy_type, scope_type, scope_id, platform, enabled, priority DESC)
+            """,
+
+            """
+            CREATE INDEX IF NOT EXISTS idx_policy_records_policy_id
+            ON policy_records (policy_id)
+            """,
+
+            """
+            CREATE INDEX IF NOT EXISTS idx_action_execution_logs_message_id
+            ON action_execution_logs (message_id, created_at DESC)
+            """,
+
+            """
+            CREATE INDEX IF NOT EXISTS idx_action_execution_logs_status
+            ON action_execution_logs (status)
             """,
 
             """

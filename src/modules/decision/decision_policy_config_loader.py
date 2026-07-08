@@ -35,3 +35,18 @@ class DecisionPolicyConfigLoader:
         except Exception as e:
             logger.error("Failed to load decision policy error=%s", e, exc_info=True)
             raise
+
+    @classmethod
+    def load_from_payload(cls, payload: dict) -> DecisionPolicy:
+        logger.info("Loading decision policy from payload")
+        try:
+            policy = DecisionPolicy.model_validate(payload)
+            logger.info(
+                "Successfully loaded decision policy from payload policy_id=%s version=%s",
+                policy.policy_id,
+                policy.version,
+            )
+            return policy
+        except Exception as e:
+            logger.error("Failed to load decision policy payload error=%s", e, exc_info=True)
+            raise

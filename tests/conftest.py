@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import inspect
 from collections.abc import Mapping
+from enum import Enum
 from typing import Any
 
 import pytest
@@ -13,6 +14,8 @@ logger = get_logger("tests")
 
 MAX_VALUE_LENGTH = 500
 MAX_TEXT_PREVIEW_LENGTH = 160
+COMPARISON_IGNORED_KEYS = {"settings"}
+ORDER_INSENSITIVE_COMPARISON_KEYS = {"labels", "detected_labels"}
 
 
 def pytest_sessionstart(session: pytest.Session) -> None:
@@ -84,13 +87,17 @@ def log_test_case(request: pytest.FixtureRequest):
 def structured_test_logger(request: pytest.FixtureRequest):
     def log_section(section: str, data: Mapping[str, Any] | list[Any]) -> None:
         caller = inspect.stack()[1]
+        summarized_data = _summarize_parameter(data)
         logger.info(
             "TEST %-9s source=%s:%s data=%s",
             section.upper(),
             caller.filename,
             caller.lineno,
-            _safe_json(_summarize_parameter(data)),
+            _safe_json(summarized_data),
         )
+
+        if isinstance(data, Mapping):
+            _log_expected_actual_comparison(section, data, caller.filename, caller.lineno)
 
     return log_section
 
@@ -145,6 +152,181 @@ def _log_structured_test_inputs(item: pytest.Item) -> None:
             continue
 
         logger.info("TEST INPUT    param=%s data=%s", name, _safe_json(_summarize_parameter(value)))
+
+
+def _log_expected_actual_comparison(
+    section: str,
+    data: Mapping[str, Any],
+    source_file: str,
+    source_line: int,
+) -> None:
+    comparison = _build_expected_actual_comparison(data)
+
+    if comparison is None:
+        return
+
+    log_method = logger.info if comparison["status"] == "MATCH" else logger.warning
+    log_method(
+        "TEST COMPARISON section=%s status=%s source=%s:%s expected=%s actual=%s differences=%s",
+        section.upper(),
+        comparison["status"],
+        source_file,
+        source_line,
+        _safe_json(_summarize_parameter(comparison["expected"])),
+        _safe_json(_summarize_parameter(comparison["actual"])),
+        _safe_json(_summarize_parameter(comparison["differences"])),
+    )
+
+
+def _build_expected_actual_comparison(data: Mapping[str, Any]) -> dict[str, Any] | None:
+    if "expected" in data and "actual" in data:
+        return _compare_values(data["expected"], data["actual"])
+
+    expected_by_name: dict[str, Any] = {}
+    actual_by_name: dict[str, Any] = {}
+
+    for key, value in data.items():
+        key_text = str(key)
+
+        if key_text.startswith("expected_"):
+            expected_by_name[key_text.removeprefix("expected_")] = value
+            continue
+
+        if key_text.startswith("actual_"):
+            actual_by_name[key_text.removeprefix("actual_")] = value
+            continue
+
+        if key_text.endswith("_expected"):
+            expected_by_name[key_text.removesuffix("_expected")] = value
+            continue
+
+        if key_text.endswith("_actual"):
+            actual_by_name[key_text.removesuffix("_actual")] = value
+
+    shared_pair_names = sorted(set(expected_by_name) & set(actual_by_name))
+    if shared_pair_names:
+        expected = {name: expected_by_name[name] for name in shared_pair_names}
+        actual = {name: actual_by_name[name] for name in shared_pair_names}
+        return _compare_values(expected, actual)
+
+    expected_value = data.get("expected")
+    if isinstance(expected_value, Mapping):
+        actual = _extract_actual_values_for_expected(data, expected_value)
+
+        if actual:
+            expected = {key: expected_value[key] for key in actual}
+            return _compare_values(expected, actual)
+
+    return None
+
+
+def _extract_actual_values_for_expected(
+    data: Mapping[str, Any],
+    expected: Mapping[str, Any],
+) -> dict[str, Any]:
+    actual: dict[str, Any] = {}
+    aliases = {
+        "labels": "detected_labels",
+    }
+
+    for expected_key in expected:
+        actual_key = aliases.get(str(expected_key), str(expected_key))
+
+        if actual_key in data:
+            actual[str(expected_key)] = data[actual_key]
+
+    return actual
+
+
+def _compare_values(expected: Any, actual: Any) -> dict[str, Any]:
+    visible_expected = _remove_ignored_comparison_keys(expected)
+    visible_actual = _remove_ignored_comparison_keys(actual)
+    normalized_expected = _normalize_for_compare(visible_expected)
+    normalized_actual = _normalize_for_compare(visible_actual)
+    differences = _build_differences(normalized_expected, normalized_actual)
+
+    return {
+        "status": "MATCH" if not differences else "MISMATCH",
+        "expected": visible_expected,
+        "actual": visible_actual,
+        "differences": differences,
+    }
+
+
+def _build_differences(expected: Any, actual: Any, path: str = "$") -> list[dict[str, Any]]:
+    if isinstance(expected, dict) and isinstance(actual, dict):
+        differences: list[dict[str, Any]] = []
+        keys = sorted(set(expected) | set(actual))
+
+        for key in keys:
+            if key in COMPARISON_IGNORED_KEYS:
+                continue
+
+            child_path = f"{path}.{key}"
+
+            if key not in expected:
+                differences.append({"path": child_path, "expected": "<missing>", "actual": actual[key]})
+                continue
+
+            if key not in actual:
+                differences.append({"path": child_path, "expected": expected[key], "actual": "<missing>"})
+                continue
+
+            differences.extend(_build_differences(expected[key], actual[key], child_path))
+
+        return differences
+
+    if expected != actual:
+        return [{"path": path, "expected": expected, "actual": actual}]
+
+    return []
+
+
+def _normalize_for_compare(value: Any) -> Any:
+    if isinstance(value, Enum):
+        return value.value
+
+    if hasattr(value, "model_dump"):
+        return _normalize_for_compare(value.model_dump(mode="json"))
+
+    if isinstance(value, Mapping):
+        normalized_mapping: dict[str, Any] = {}
+
+        for key, nested_value in value.items():
+            key_text = str(key)
+            normalized_value = _normalize_for_compare(nested_value)
+
+            if key_text in ORDER_INSENSITIVE_COMPARISON_KEYS and isinstance(normalized_value, list):
+                normalized_value = sorted(normalized_value)
+
+            normalized_mapping[key_text] = normalized_value
+
+        return normalized_mapping
+
+    if isinstance(value, (list, tuple)):
+        return [_normalize_for_compare(item) for item in value]
+
+    if isinstance(value, set):
+        return sorted(_normalize_for_compare(item) for item in value)
+
+    return value
+
+
+def _remove_ignored_comparison_keys(value: Any) -> Any:
+    if isinstance(value, Mapping):
+        return {
+            key: _remove_ignored_comparison_keys(nested_value)
+            for key, nested_value in value.items()
+            if key not in COMPARISON_IGNORED_KEYS
+        }
+
+    if isinstance(value, list):
+        return [_remove_ignored_comparison_keys(item) for item in value]
+
+    if isinstance(value, tuple):
+        return tuple(_remove_ignored_comparison_keys(item) for item in value)
+
+    return value
 
 
 def _summarize_parameter(value: object) -> object:

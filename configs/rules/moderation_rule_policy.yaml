@@ -1,0 +1,79 @@
+policy_id: "default_moderation_rule_policy"
+version: "1.0.0"
+
+risk_score:
+  min: 0
+  max: 100
+
+source_weights:
+  PREPROCESSING: 1.0
+  RUBERT: 1.2
+  QWEN: 1.5
+  OCR: 1.0
+  IMAGE: 1.0
+  HISTORY: 0.8
+  MANUAL: 2.0
+
+label_weights:
+  SAFE: 0
+  SPAM: 20
+  ADVERTISEMENT: 15
+  INVITE: 10
+  SCAM: 50
+  TOXIC: 40
+  HATE: 60
+  THREAT: 80
+  NSFW: 70
+  EVASION: 30
+  FLOOD: 10
+  URL: 5
+  IMAGE_SCAM: 50
+
+confidence_thresholds:
+  default_min_confidence: 0.4
+  per_source_min_confidence:
+    PREPROCESSING: 0.3
+    RUBERT: 0.5
+    QWEN: 0.6
+  per_label_min_confidence:
+    THREAT: 0.3
+    HATE: 0.3
+    SAFE: 0.1
+
+severity_multipliers:
+  0: 0.0
+  1: 0.5
+  2: 0.8
+  3: 1.0
+  4: 1.2
+  5: 1.5
+
+primary_label_priority:
+  - THREAT
+  - HATE
+  - SCAM
+  - NSFW
+  - TOXIC
+  - INVITE
+  - FLOOD
+  - SPAM
+  - ADVERTISEMENT
+  - URL
+  - EVASION
+  - SAFE
+
+conflict_rules:
+  - rule_id: "safe_conflict"
+    description: "SAFE + harmful labels -> SAFE not primary"
+    condition: "has_harmful_labels"
+    action: "exclude_safe_from_primary"
+  - rule_id: "url_scam_conflict"
+    description: "URL + SCAM -> SCAM primary if confidence high"
+    condition: "has_url_and_scam"
+    action: "prefer_scam"
+
+model_agreement:
+  enabled: true
+  agreement_bonus: 0.2
+  disagreement_penalty: 0.3
+  high_confidence_threshold: 0.8

@@ -15,16 +15,20 @@ class PrimaryLabelResolver:
         if not breakdown:
             return ModerationLabel.SAFE
 
-        # Sort by priority from policy, then by contribution
         priority_map = {label: i for i, label in enumerate(policy.primary_label_priority)}
+        priority_count = len(policy.primary_label_priority)
 
-        def sort_key(item: RiskBreakdownItem):
-            # Lower index in priority_map means higher priority
-            priority = priority_map.get(item.label, 999)
-            return (priority, -item.contribution, -item.confidence)
+        def score(item: RiskBreakdownItem) -> tuple[float, int, int, float]:
+            priority_bonus = max(priority_count - priority_map.get(item.label, priority_count), 0)
+            return (
+                item.contribution + (priority_bonus * 0.5),
+                item.severity,
+                priority_bonus,
+                item.confidence,
+            )
 
-        sorted_items = sorted(breakdown, key=sort_key)
+        sorted_items = sorted(breakdown, key=score, reverse=True)
         primary = sorted_items[0].label
 
-        logger.debug(f"Resolved primary label: {primary}")
+        logger.debug("Resolved primary label label=%s", primary)
         return primary

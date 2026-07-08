@@ -27,10 +27,14 @@ class ModerationService:
         self._decision_engine = decision_engine
         self._signal_adapter = signal_adapter
 
-    async def moderate(self, message_id: str, text: str, metadata: dict[str, Any] = None) -> ModerationDecision:
-        logger.info(f"Starting moderation for message {message_id}")
-        
-        # 1. Preprocessing
+    async def moderate(
+        self,
+        message_id: str,
+        text: str,
+        metadata: dict[str, Any] | None = None,
+    ) -> ModerationDecision:
+        logger.info("Moderation pipeline started message_id=%s text_length=%s", message_id, len(text))
+
         payload = MessagePreprocessInputSchema(
             message_id=message_id,
             raw_text=text,
@@ -38,21 +42,31 @@ class ModerationService:
             guild_id="unknown",
             channel_id="unknown",
             user_id="unknown",
-            metadata=metadata or {}
+            metadata=metadata or {},
         )
         processed_context = await self._preprocessor.process(payload)
-        
-        # 2. Extract signals from preprocessing
+
         preprocessing_matches = processed_context.metadata.get("preprocessing_rule_matches", [])
         signals: list[ModerationSignal] = []
+
         for match_data in preprocessing_matches:
             signals.extend(self._signal_adapter.adapt(match_data))
-            
-        # 3. Rule Evaluation
+
+        logger.info(
+            "Moderation preprocessing adapted message_id=%s preprocessing_matches=%s signal_count=%s",
+            message_id,
+            len(preprocessing_matches),
+            len(signals),
+        )
+
         rule_result = self._rule_engine.evaluate(message_id, signals)
-        
-        # 4. Decision
         decision = self._decision_engine.decide(message_id, rule_result)
-        
-        logger.info(f"Moderation completed for {message_id}. Result: {decision.decision_action}")
+
+        logger.info(
+            "Moderation pipeline finished message_id=%s action=%s risk_score=%s primary_label=%s",
+            message_id,
+            decision.decision_action,
+            decision.risk_score,
+            decision.primary_label,
+        )
         return decision

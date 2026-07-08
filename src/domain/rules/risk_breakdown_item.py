@@ -13,7 +13,7 @@ class RiskBreakdownItem(BaseModel):
 
     label: ModerationLabel
     source: SignalSource
-    contribution: float = Field(ge=0.0, le=100.0)
+    contribution: float = Field(ge=0.0)
     confidence: float = Field(ge=0.0, le=1.0)
     severity: int = Field(ge=0, le=5)
     risk_weight: int = Field(ge=0)

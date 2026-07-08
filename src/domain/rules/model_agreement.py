@@ -10,6 +10,6 @@ class ModelAgreement(BaseModel):
 
     agreeing_sources: list[SignalSource]
     disagreeing_sources: list[SignalSource]
-    agreement_score: float = Field(ge=0.0, le=1.0)
+    agreement_score: float = Field(ge=0.0)
     disagreement_reason: str = ""
     high_confidence_disagreement: bool = False

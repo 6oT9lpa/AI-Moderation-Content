@@ -17,7 +17,7 @@ class ModelAgreementCalculator:
             return ModelAgreement(
                 agreeing_sources=[],
                 disagreeing_sources=[],
-                agreement_score=1.0
+                agreement_score=1.0,
             )
 
         # Filter high confidence signals from models
@@ -31,7 +31,7 @@ class ModelAgreementCalculator:
             return ModelAgreement(
                 agreeing_sources=[],
                 disagreeing_sources=[],
-                agreement_score=1.0
+                agreement_score=1.0,
             )
 
         # Check if they agree on the same label
@@ -44,7 +44,7 @@ class ModelAgreementCalculator:
             return ModelAgreement(
                 agreeing_sources=sources,
                 disagreeing_sources=[],
-                agreement_score=1.0
+                agreement_score=1.0,
             )
 
         # Compare first two for simplicity (can be extended)
@@ -53,7 +53,7 @@ class ModelAgreementCalculator:
             return ModelAgreement(
                 agreeing_sources=[s1, s2],
                 disagreeing_sources=[],
-                agreement_score=1.0 + policy.model_agreement.agreement_bonus
+                agreement_score=1.0 + policy.model_agreement.agreement_bonus,
             )
         else:
             return ModelAgreement(
@@ -61,5 +61,5 @@ class ModelAgreementCalculator:
                 disagreeing_sources=[s1, s2],
                 agreement_score=1.0 - policy.model_agreement.disagreement_penalty,
                 disagreement_reason=f"Models {s1} and {s2} disagreed on labels: {labels_by_source[s1]} vs {labels_by_source[s2]}",
-                high_confidence_disagreement=True
+                high_confidence_disagreement=True,
             )

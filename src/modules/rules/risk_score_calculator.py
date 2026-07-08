@@ -12,7 +12,10 @@ class RiskScoreCalculator:
         self, signal: ModerationSignal, policy: ModerationRulePolicy
     ) -> float:
         source_weight = getattr(policy.source_weights, signal.source.value, 1.0)
-        label_weight = getattr(policy.label_weights, signal.label.value, 10.0)
+        label_weight = max(
+            getattr(policy.label_weights, signal.label.value, 10.0),
+            float(signal.risk_weight),
+        )
         severity_multiplier = policy.severity_multipliers.get(signal.severity, 1.0)
 
         contribution = (
@@ -20,9 +23,16 @@ class RiskScoreCalculator:
         )
 
         logger.debug(
-            f"Calculated contribution for {signal.source}:{signal.label}: {contribution:.2f} "
-            f"(label_w: {label_weight}, source_w: {source_weight}, "
-            f"conf: {signal.confidence}, sev_mult: {severity_multiplier})"
+            "Calculated contribution source=%s label=%s contribution=%.2f label_weight=%s "
+            "source_weight=%s confidence=%s severity_multiplier=%s signal_risk_weight=%s",
+            signal.source,
+            signal.label,
+            contribution,
+            label_weight,
+            source_weight,
+            signal.confidence,
+            severity_multiplier,
+            signal.risk_weight,
         )
 
         return contribution
@@ -37,5 +47,5 @@ class RiskScoreCalculator:
         total = sum(contributions)
         clamped = max(policy.risk_score.min, min(policy.risk_score.max, total))
 
-        logger.debug(f"Total risk score: {clamped:.2f} (raw: {total:.2f})")
+        logger.debug("Total risk score calculated risk_score=%.2f raw_score=%.2f", clamped, total)
         return clamped

@@ -15,21 +15,23 @@ class ModerationRulePolicyConfigLoader:
     def load(cls, path: Optional[Path] = None) -> ModerationRulePolicy:
         config_path = path or cls.DEFAULT_CONFIG_PATH
 
-        logger.info(f"Loading moderation rule policy from {config_path}")
+        logger.info("Loading moderation rule policy path=%s", config_path)
 
         if not config_path.exists():
-            logger.error(f"Policy file not found: {config_path}")
+            logger.error("Moderation rule policy file not found path=%s", config_path)
             raise FileNotFoundError(f"Policy file not found: {config_path}")
 
         try:
             with open(config_path, "r", encoding="utf-8") as f:
-                data = yaml.safe_load(f)
+                data = yaml.safe_load(f) or {}
 
-            policy = ModerationRulePolicy(**data)
+            policy = ModerationRulePolicy.model_validate(data)
             logger.info(
-                f"Successfully loaded policy '{policy.policy_id}' version {policy.version}"
+                "Successfully loaded moderation rule policy policy_id=%s version=%s",
+                policy.policy_id,
+                policy.version,
             )
             return policy
         except Exception as e:
-            logger.error(f"Failed to load moderation rule policy: {e}")
+            logger.error("Failed to load moderation rule policy error=%s", e, exc_info=True)
             raise

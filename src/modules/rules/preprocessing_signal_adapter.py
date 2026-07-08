@@ -1,19 +1,18 @@
 from __future__ import annotations
 
+from typing import Any
+
 from src.domain.moderation.moderation_label import ModerationLabel
 from src.domain.rules.moderation_signal import ModerationSignal
 from src.domain.rules.signal_source import SignalSource
 from src.infrastructure.logging.logger import get_logger
-from src.modules.preprocessing.rules.preprocessing_rule_result import (
-    PreprocessingRuleResult,
-)
 
 logger = get_logger(__name__)
 
 
 class PreprocessingSignalAdapter:
     def adapt(self, data: dict[str, Any]) -> list[ModerationSignal]:
-        logger.debug(f"Adapting preprocessing result: {data.get('rule_id')}")
+        logger.debug("Adapting preprocessing result rule_id=%s", data.get("rule_id"))
 
         rule_id = data.get("rule_id", "unknown")
         labels = data.get("labels", [])
@@ -39,6 +38,6 @@ class PreprocessingSignalAdapter:
                 )
                 signals.append(signal)
             except ValueError:
-                logger.warning(f"Unknown label in preprocessing result: {label_val}")
+                logger.warning("Unknown label in preprocessing result label=%s rule_id=%s", label_val, rule_id)
 
         return signals

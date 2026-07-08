@@ -11,14 +11,16 @@ class ModerationSignalNormalizer:
     def normalize(
         self, signals: list[ModerationSignal], policy: ModerationRulePolicy
     ) -> list[ModerationSignal]:
-        logger.debug(f"Normalizing {len(signals)} signals")
+        logger.debug("Normalizing moderation signals count=%s", len(signals))
 
         filtered_signals = []
         for signal in signals:
             if self._should_filter(signal, policy):
                 logger.debug(
-                    f"Signal filtered: {signal.source}:{signal.label} "
-                    f"(conf: {signal.confidence})"
+                    "Moderation signal filtered source=%s label=%s confidence=%s",
+                    signal.source,
+                    signal.label,
+                    signal.confidence,
                 )
                 continue
             filtered_signals.append(signal)
@@ -27,19 +29,15 @@ class ModerationSignalNormalizer:
 
     def _should_filter(self, signal: ModerationSignal, policy: ModerationRulePolicy) -> bool:
         thresholds = policy.confidence_thresholds
+        selected_threshold = thresholds.default_min_confidence
 
-        # Check per-label threshold
         label_threshold = thresholds.per_label_min_confidence.get(signal.label.value)
-        if label_threshold is not None and signal.confidence < label_threshold:
-            return True
-
-        # Check per-source threshold
         source_threshold = thresholds.per_source_min_confidence.get(signal.source.value)
-        if source_threshold is not None and signal.confidence < source_threshold:
-            return True
 
-        # Check default threshold
-        if signal.confidence < thresholds.default_min_confidence:
-            return True
+        if source_threshold is not None:
+            selected_threshold = source_threshold
 
-        return False
+        if label_threshold is not None:
+            selected_threshold = label_threshold
+
+        return signal.confidence < selected_threshold

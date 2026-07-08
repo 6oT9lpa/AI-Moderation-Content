@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Optional
 
 from src.domain.moderation.moderation_label import ModerationLabel
@@ -44,37 +44,35 @@ class ModerationRuleEngine:
         self, message_id: str, signals: list[ModerationSignal], policy: Optional[ModerationRulePolicy] = None
     ) -> RuleEvaluationResult:
         current_policy = policy or self._policy
-        
-        logger.info(f"Rule Engine evaluation started for message {message_id} with {len(signals)} signals")
 
-        # 1. Normalize and filter signals
+        logger.info(
+            "Rule Engine evaluation started message_id=%s signal_count=%s policy_id=%s policy_version=%s",
+            message_id,
+            len(signals),
+            current_policy.policy_id,
+            current_policy.version,
+        )
+
         normalized_signals = self._normalizer.normalize(signals, current_policy)
-        
-        # 2. Calculate risk breakdown
         breakdown = self._breakdown_builder.build(normalized_signals, current_policy)
-        
-        # 3. Calculate total risk score
         contributions = [item.contribution for item in breakdown]
         risk_score = self._calculator.calculate_total_score(contributions, current_policy)
-        
-        # 4. Resolve primary label
         initial_primary = self._label_resolver.resolve(breakdown, current_policy)
-        
-        # 5. Resolve conflicts
+
         primary_label, conflicts = self._conflict_resolver.resolve(
             normalized_signals, initial_primary, current_policy
         )
-        
-        # 6. Calculate model agreement
-        agreement = self._agreement_calculator.calculate(normalized_signals, current_policy)
-        
-        # Adjust risk score based on agreement
-        risk_score = max(0.0, min(100.0, risk_score * agreement.agreement_score))
 
-        # 7. Build result
+        agreement = self._agreement_calculator.calculate(normalized_signals, current_policy)
+        risk_score = max(
+            current_policy.risk_score.min,
+            min(current_policy.risk_score.max, risk_score * agreement.agreement_score),
+        )
+        labels = self._resolve_labels(normalized_signals, current_policy)
+
         result = RuleEvaluationResult(
             signals=normalized_signals,
-            labels=list({s.label for s in normalized_signals}) or [ModerationLabel.SAFE],
+            labels=labels,
             primary_label=primary_label,
             confidence=max([s.confidence for s in normalized_signals]) if normalized_signals else 1.0,
             severity=max([s.severity for s in normalized_signals]) if normalized_signals else 0,
@@ -85,12 +83,29 @@ class ModerationRuleEngine:
             model_agreement=agreement,
             policy_id=current_policy.policy_id,
             policy_version=current_policy.version,
-            created_at=datetime.now(),
+            created_at=datetime.now(timezone.utc),
         )
 
         logger.info(
-            f"Rule Engine evaluation finished for {message_id}. "
-            f"Primary: {result.primary_label}, Risk: {result.risk_score:.2f}"
+            "Rule Engine evaluation finished message_id=%s primary_label=%s risk_score=%.2f "
+            "confidence=%s conflicts=%s",
+            message_id,
+            result.primary_label,
+            result.risk_score,
+            result.confidence,
+            result.conflicts,
         )
-        
+
         return result
+
+    def _resolve_labels(
+        self,
+        signals: list[ModerationSignal],
+        policy: ModerationRulePolicy,
+    ) -> list[ModerationLabel]:
+        if not signals:
+            return [ModerationLabel.SAFE]
+
+        labels = {signal.label for signal in signals}
+        priority_map = {label: index for index, label in enumerate(policy.primary_label_priority)}
+        return sorted(labels, key=lambda label: priority_map.get(label, 999))

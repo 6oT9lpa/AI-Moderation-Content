@@ -713,3 +713,33 @@ Telegram adapter
 
 Core должен оставаться стабильным, даже если платформенные адаптеры меняются.
 
+## Production Policy And Action Layer
+
+Policies can now be loaded from PostgreSQL through `policy_records`, with YAML kept as the safe fallback source. The resolver reads enabled records for the requested policy type and applies scope priority from most specific to least specific:
+
+```text
+USER
+  -> ROLE
+  -> CHANNEL
+  -> GUILD / CHAT
+  -> PLATFORM
+  -> GLOBAL
+  -> YAML fallback
+```
+
+Supported policy types are `PREPROCESSING`, `MODERATION_RULE`, `DECISION`, and `ACTION`. DB payloads are validated through the same Pydantic contracts as YAML policies; invalid payloads fail explicitly and are not silently accepted. If PostgreSQL is unavailable, the resolver logs the failure and falls back to the configured YAML loader when that is safe.
+
+Action execution is separated from decision making. `DecisionEngine` only returns `ModerationDecision` with `decision_action` and `action_plan`; it does not know about Discord, Telegram, or any platform API. `ActionExecutor` consumes `ModerationDecision.action_plan.actions`, checks `ActionPolicy`, and executes each planned action through a `PlatformActionClient`.
+
+`ActionPolicy` is configured in `configs/rules/action_policy.yaml` and is DB-ready via the `ACTION` policy type. It controls:
+
+- `enabled` and `dry_run`
+- allowed actions
+- destructive actions
+- actions that require manual review
+- per-action timeouts
+- retry policy
+- platform overrides
+
+In dry-run mode the executor returns `DRY_RUN` steps and does not call the real platform client. In active mode it executes actions in order, logs every step, skips forbidden actions, routes review-gated actions such as `BAN` to `REVIEW`/`SKIPPED`, and returns `SUCCESS`, `FAILED`, `SKIPPED`, or `PARTIAL_SUCCESS` for the whole plan. Execution steps are auditable through `action_execution_logs`.
+

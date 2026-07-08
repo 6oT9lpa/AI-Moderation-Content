@@ -15,21 +15,23 @@ class DecisionPolicyConfigLoader:
     def load(cls, path: Optional[Path] = None) -> DecisionPolicy:
         config_path = path or cls.DEFAULT_CONFIG_PATH
 
-        logger.info(f"Loading decision policy from {config_path}")
+        logger.info("Loading decision policy path=%s", config_path)
 
         if not config_path.exists():
-            logger.error(f"Decision policy file not found: {config_path}")
+            logger.error("Decision policy file not found path=%s", config_path)
             raise FileNotFoundError(f"Decision policy file not found: {config_path}")
 
         try:
             with open(config_path, "r", encoding="utf-8") as f:
-                data = yaml.safe_load(f)
+                data = yaml.safe_load(f) or {}
 
-            policy = DecisionPolicy(**data)
+            policy = DecisionPolicy.model_validate(data)
             logger.info(
-                f"Successfully loaded decision policy '{policy.policy_id}' version {policy.version}"
+                "Successfully loaded decision policy policy_id=%s version=%s",
+                policy.policy_id,
+                policy.version,
             )
             return policy
         except Exception as e:
-            logger.error(f"Failed to load decision policy: {e}")
+            logger.error("Failed to load decision policy error=%s", e, exc_info=True)
             raise

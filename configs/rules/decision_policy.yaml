@@ -22,6 +22,17 @@ label_overrides:
   SCAM: "DELETE"
   NSFW: "REVIEW"
 
+action_bundles:
+  DELETE_WARN:
+    - "DELETE"
+    - "WARN"
+  TIMEOUT:
+    - "DELETE"
+    - "TIMEOUT"
+  BAN:
+    - "DELETE"
+    - "BAN"
+
 action_priority:
   - BAN
   - TIMEOUT

@@ -33,6 +33,13 @@ class LoggerManager:
         app_log_file = log_dir / "ai-moder.log"
         tests_log_file = log_dir / "tests.log"
 
+        # Remove old log files and their rotations
+        for log_file in [app_log_file, tests_log_file]:
+            if log_file.exists():
+                log_file.unlink()
+            for rotation in log_dir.glob(f"{log_file.name}.*"):
+                rotation.unlink()
+
         dictConfig(
             {
                 "version": 1,
@@ -51,21 +58,19 @@ class LoggerManager:
                         "stream": "ext://sys.stdout",
                     },
                     "app_file": {
-                        "class": "logging.handlers.RotatingFileHandler",
+                        "class": "logging.FileHandler",
                         "level": log_level,
                         "formatter": "default",
                         "filename": str(app_log_file),
-                        "maxBytes": 10 * 1024 * 1024,
-                        "backupCount": 5,
+                        "mode": "w",
                         "encoding": "utf-8",
                     },
                     "test_file": {
-                        "class": "logging.handlers.RotatingFileHandler",
+                        "class": "logging.FileHandler",
                         "level": log_level,
                         "formatter": "default",
                         "filename": str(tests_log_file),
-                        "maxBytes": 10 * 1024 * 1024,
-                        "backupCount": 5,
+                        "mode": "w",
                         "encoding": "utf-8",
                     },
                 },

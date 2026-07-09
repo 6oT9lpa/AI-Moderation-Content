@@ -8,7 +8,7 @@ from src.training.datasets.discord_message_exporter import (
 
 
 def test_discord_message_converter_builds_safe_project_row() -> None:
-    converter = DiscordMessageConverter(hash_salt="test-salt")
+    converter = DiscordMessageConverter(hash_salt="test-salt-for-security-checks-32chars")
     channel = DiscordChannelExport(
         guild_id="guild-1",
         channel_id="channel-1",
@@ -36,5 +36,8 @@ def test_discord_message_converter_builds_safe_project_row() -> None:
     assert "<URL_DOMAIN:github.com>" in row["model_text"]
     assert "<EMAIL>" in row["model_text"]
     assert "user@example.com" not in row["model_text"]
-    assert raw["content"].startswith("Документация")
+    assert raw["content"].startswith("документация")
+    assert "<URL_DOMAIN:github.com>" in raw["content"]
+    assert "<EMAIL>" in raw["content"]
+    assert "user@example.com" not in raw["content"]
     assert raw["user_id_hash"] == row["metadata"]["user_id_hash"]

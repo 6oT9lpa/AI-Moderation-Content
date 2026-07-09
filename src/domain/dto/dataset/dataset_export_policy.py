@@ -24,3 +24,4 @@ class DatasetExportPolicy(BaseModel):
     require_feedback: bool = True
     include_expired_retention: bool = False
     include_empty_model_text: bool = False
+    include_injection_marked: bool = False

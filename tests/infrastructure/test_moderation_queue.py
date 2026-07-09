@@ -57,3 +57,30 @@ async def test_moderation_queue_processes_tasks_with_worker_threads() -> None:
     logger.info("Queue test processed messages=%s", processed)
 
     assert sorted(processed) == ["message-1", "message-2"]
+
+
+@pytest.mark.asyncio
+async def test_moderation_queue_rejects_oversized_or_non_json_payloads() -> None:
+    queue = ModerationQueue(max_payload_bytes=32)
+
+    with pytest.raises(ValueError, match="maximum size"):
+        await queue.publish(
+            ModerationTask(
+                source_platform="discord",
+                space_id="guild-1",
+                channel_id="channel-1",
+                message_id="message-large",
+                payload={"text": "x" * 64},
+            )
+        )
+
+    with pytest.raises(ValueError, match="serializable"):
+        await queue.publish(
+            ModerationTask(
+                source_platform="discord",
+                space_id="guild-1",
+                channel_id="channel-1",
+                message_id="message-object",
+                payload={"object": object()},
+            )
+        )

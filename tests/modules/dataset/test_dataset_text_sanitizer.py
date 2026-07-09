@@ -38,7 +38,7 @@ async def test_dataset_text_sanitizer_builds_rubert_safe_model_text() -> None:
 
 
 @pytest.mark.asyncio
-async def test_dataset_text_sanitizer_can_keep_raw_text_for_short_retention_audit() -> None:
+async def test_dataset_text_sanitizer_never_keeps_raw_text_for_audit() -> None:
     context = await TextPreprocessor().process(
         MessagePreprocessInputSchema(
             channel_id="channel-1",
@@ -50,7 +50,8 @@ async def test_dataset_text_sanitizer_can_keep_raw_text_for_short_retention_audi
 
     snapshot = DatasetTextSanitizer().build_snapshot(context, store_raw_text=True)
 
-    assert snapshot.raw_text == "check https://example.com/path"
+    assert snapshot.raw_text is None
+    assert snapshot.normalized_text == "check <URL_DOMAIN:example.com>"
     assert snapshot.model_text == "check <URL_DOMAIN:example.com>"
 
 
@@ -105,3 +106,27 @@ async def test_dataset_text_sanitizer_replaces_attachment_url_before_phone() -> 
 
     assert snapshot.model_text == "<URL_DOMAIN:cdn.discordapp.com>"
     assert "<PHONE>" not in snapshot.model_text
+
+
+@pytest.mark.asyncio
+async def test_dataset_text_sanitizer_redacts_network_payment_and_access_credentials() -> None:
+    context = await TextPreprocessor().process(
+        MessagePreprocessInputSchema(
+            channel_id="channel-1",
+            user_id="user-1",
+            message_id="message-sensitive",
+            raw_text=(
+                "IP 192.168.1.1 card 4111 1111 1111 1111 "
+                "token eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIn0.signaturevalue"
+            ),
+        )
+    )
+
+    snapshot = DatasetTextSanitizer().build_snapshot(context)
+
+    assert "192.168.1.1" not in snapshot.model_text
+    assert "4111 1111 1111 1111" not in snapshot.model_text
+    assert "eyJhbGciOiJIUzI1NiJ9" not in snapshot.model_text
+    assert "<IP>" in snapshot.model_text
+    assert "<PHONE>" in snapshot.model_text
+    assert "<ACCESS_TOKEN>" in snapshot.model_text

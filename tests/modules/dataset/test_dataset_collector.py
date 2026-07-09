@@ -1,6 +1,7 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
+from datetime import timedelta
 
 import pytest
 
@@ -93,6 +94,31 @@ async def test_dataset_collector_uses_feedback_as_training_label_source() -> Non
     assert result.training_example.feedback_type == FeedbackType.CORRECTED
     assert repository.record is not None
     assert repository.record.feedback == feedback
+
+
+@pytest.mark.asyncio
+async def test_dataset_collector_does_not_store_raw_context_metadata_or_unbounded_retention() -> None:
+    repository = InMemoryDatasetCollectorRepository()
+    collector = DatasetCollector(repository)
+    context, rule_result, decision = await _run_text_pipeline("https://example.com/private?token=secret")
+    context = replace(
+        context,
+        metadata={
+            "event_type": "message_create",
+            "url": "https://example.com/private?token=secret",
+            "retention_until": context.created_at + timedelta(days=10_000),
+        },
+    )
+
+    await collector.collect(
+        DatasetCollectionInput(context=context, rule_evaluation=rule_result, decision=decision)
+    )
+
+    assert repository.record is not None
+    assert repository.record.metadata["context_metadata"] == {"event_type": "message_create"}
+    assert repository.record.features["url_count"] == 1
+    assert "urls" not in repository.record.features
+    assert repository.record.retention_until == context.created_at + timedelta(days=365)
 
 
 async def _run_text_pipeline(text: str):

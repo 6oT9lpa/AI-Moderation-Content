@@ -61,6 +61,9 @@ class DatasetExportBuilder:
         if not policy.include_empty_model_text and not example.model_text.strip():
             return False
 
+        if not policy.include_injection_marked and record.text.injection_markers:
+            return False
+
         if policy.allowed_sources is not None and example.source not in policy.allowed_sources:
             return False
 

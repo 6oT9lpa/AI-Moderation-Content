@@ -8,6 +8,12 @@ class TrainingTextSanitizer:
     URL_RE = re.compile(r"(?i)<?\b(?:https?://|www\.)[^\s<>]+>?|(?<!@)\b[a-z0-9.-]+\.[a-z]{2,}(?:/[^\s<>]*)?")
     EMAIL_RE = re.compile(r"(?<![\w.+-])[\w.+-]+@[\w-]+(?:\.[\w-]+)+(?![\w.-])", re.IGNORECASE)
     PHONE_RE = re.compile(r"(?<!\w)(?:\+?\d[\d\s().-]{7,}\d)(?!\w)")
+    IPV4_RE = re.compile(r"(?<![\w.])(?:25[0-5]|2[0-4]\d|1?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}(?![\w.])")
+    CARD_RE = re.compile(r"(?<!\d)(?:\d[ -]?){15,18}\d(?!\d)")
+    ACCESS_TOKEN_RE = re.compile(
+        r"(?<![\w.-])(?:mfa\.[A-Za-z0-9_-]{20,}|eyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,})(?![\w.-])",
+        re.IGNORECASE,
+    )
     SECRET_RE = re.compile(r"(?i)\b(?:token|api[_-]?key|secret|password)\s*[:=]\s*[^\s,;]{6,}")
     WHITESPACE_RE = re.compile(r"\s+")
     DISCORD_USER_MENTION_RE = re.compile(r"<@!?\d{5,25}>")
@@ -15,7 +21,7 @@ class TrainingTextSanitizer:
     DISCORD_CHANNEL_MENTION_RE = re.compile(r"<#\d{5,25}>")
     TOKEN_RE = re.compile(
         r"(?i)<(?:URL_DOMAIN:[a-z0-9.-]+|DISCORD_INVITE|DISCORD_USER_MENTION|"
-        r"DISCORD_ROLE_MENTION|DISCORD_CHANNEL_MENTION|EMAIL|PHONE|SECRET|URL)>"
+        r"DISCORD_ROLE_MENTION|DISCORD_CHANNEL_MENTION|EMAIL|PHONE|IP|CARD|ACCESS_TOKEN|SECRET|URL)>"
     )
 
     DISCORD_INVITE_RE = re.compile(
@@ -25,13 +31,16 @@ class TrainingTextSanitizer:
     def sanitize(self, text: str) -> str:
         protected: dict[str, str] = {}
         result = self._protect_tokens(text, protected).casefold()
+        result = self.ACCESS_TOKEN_RE.sub("<ACCESS_TOKEN>", result)
         result = self.SECRET_RE.sub("<SECRET>", result)
+        result = self.IPV4_RE.sub("<IP>", result)
         result = self.DISCORD_ROLE_MENTION_RE.sub("<DISCORD_ROLE_MENTION>", result)
         result = self.DISCORD_CHANNEL_MENTION_RE.sub("<DISCORD_CHANNEL_MENTION>", result)
         result = self.DISCORD_USER_MENTION_RE.sub("<DISCORD_USER_MENTION>", result)
         result = self.EMAIL_RE.sub("<EMAIL>", result)
         result = self.DISCORD_INVITE_RE.sub("<DISCORD_INVITE>", result)
         result = self.URL_RE.sub(lambda match: self._url_token(match.group(0)), result)
+        result = self.CARD_RE.sub("<CARD>", result)
         result = self.PHONE_RE.sub("<PHONE>", result)
         result = self._restore_tokens(result, protected)
         return self.WHITESPACE_RE.sub(" ", result).strip()

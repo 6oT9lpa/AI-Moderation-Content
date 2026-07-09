@@ -22,6 +22,7 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
         self,
         record: DatasetCollectionRecord,
     ) -> DatasetCollectionResult:
+        await self._purge_expired_collections()
         event_id = await self._upsert_event(record)
         await self._upsert_features(event_id, record)
         await self._insert_rule_analysis(event_id, record)
@@ -41,6 +42,11 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
             event_id=event_id,
             decision_id=decision_id,
             training_example=training_example,
+        )
+
+    async def _purge_expired_collections(self) -> None:
+        await self._database.execute(
+            "DELETE FROM ai_message_events WHERE retention_until IS NOT NULL AND retention_until <= CURRENT_TIMESTAMP"
         )
 
     async def _upsert_event(self, record: DatasetCollectionRecord) -> int:

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 import re
 from dataclasses import dataclass
 from typing import Any
@@ -23,6 +24,12 @@ class _Replacement:
 class DatasetTextSanitizer:
     EMAIL_RE = re.compile(r"(?<![\w.+-])[\w.+-]+@[\w-]+(?:\.[\w-]+)+(?![\w.-])", re.IGNORECASE)
     PHONE_RE = re.compile(r"(?<!\w)(?:\+?\d[\d\s().-]{7,}\d)(?!\w)")
+    IPV4_RE = re.compile(r"(?<![\w.])(?:25[0-5]|2[0-4]\d|1?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3}(?![\w.])")
+    CARD_RE = re.compile(r"(?<!\d)(?:\d[ -]?){15,18}\d(?!\d)")
+    ACCESS_TOKEN_RE = re.compile(
+        r"(?<![\w.-])(?:mfa\.[A-Za-z0-9_-]{20,}|eyJ[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,}\.[A-Za-z0-9_-]{8,})(?![\w.-])",
+        re.IGNORECASE,
+    )
     SECRET_RE = re.compile(
         r"(?i)\b(?:token|api[_-]?key|secret|password)\s*[:=]\s*[^\s,;]{6,}"
     )
@@ -31,7 +38,7 @@ class DatasetTextSanitizer:
     DISCORD_CHANNEL_MENTION_RE = re.compile(r"<#\d{5,25}>")
     TOKEN_RE = re.compile(
         r"(?i)<(?:URL_DOMAIN:[a-z0-9.-]+|DISCORD_INVITE|DISCORD_USER_MENTION|"
-        r"DISCORD_ROLE_MENTION|DISCORD_CHANNEL_MENTION|EMAIL|PHONE|SECRET|URL)>"
+        r"DISCORD_ROLE_MENTION|DISCORD_CHANNEL_MENTION|EMAIL|PHONE|IP|CARD|ACCESS_TOKEN|SECRET|URL)>"
     )
     CONTROL_RE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
     WHITESPACE_RE = re.compile(r"\s+")
@@ -49,7 +56,6 @@ class DatasetTextSanitizer:
         *,
         store_raw_text: bool = False,
     ) -> DatasetTextSnapshot:
-        raw_text = context.raw_text or ""
         normalized_text = context.normalized_text or ""
         redactions: list[dict[str, Any]] = []
 
@@ -58,6 +64,7 @@ class DatasetTextSanitizer:
         redacted_text = self._protect_tokens(redacted_text, protected_tokens)
         redacted_text = self._apply_static_replacements(redacted_text, redactions)
         redacted_text = self._replace_urls(redacted_text, context.urls, redactions)
+        redacted_text = self._apply_card_replacement(redacted_text, redactions)
         redacted_text = self._apply_phone_replacement(redacted_text, redactions)
         redacted_text = self._restore_tokens(redacted_text, protected_tokens)
         redacted_text = self._normalize_whitespace(redacted_text)
@@ -65,11 +72,12 @@ class DatasetTextSanitizer:
         injection_markers = self._detect_injection_markers(normalized_text)
 
         snapshot = DatasetTextSnapshot(
-            raw_text=raw_text if store_raw_text else None,
-            normalized_text=normalized_text,
+            # Dataset storage is never allowed to retain the original message body.
+            raw_text=None,
+            normalized_text=redacted_text,
             redacted_text=redacted_text,
             model_text=redacted_text,
-            text_hash=context.text_hash,
+            text_hash=hashlib.sha256(redacted_text.encode("utf-8")).hexdigest(),
             redactions=redactions,
             injection_markers=injection_markers,
         )
@@ -119,7 +127,9 @@ class DatasetTextSanitizer:
         redactions: list[dict[str, Any]],
     ) -> str:
         replacements = (
+            _Replacement(self.ACCESS_TOKEN_RE, "<ACCESS_TOKEN>", "access_token"),
             _Replacement(self.SECRET_RE, "<SECRET>", "secret"),
+            _Replacement(self.IPV4_RE, "<IP>", "ip"),
             _Replacement(self.DISCORD_ROLE_MENTION_RE, "<DISCORD_ROLE_MENTION>", "discord_role_mention"),
             _Replacement(self.DISCORD_CHANNEL_MENTION_RE, "<DISCORD_CHANNEL_MENTION>", "discord_channel_mention"),
             _Replacement(self.DISCORD_USER_MENTION_RE, "<DISCORD_USER_MENTION>", "discord_user_mention"),
@@ -142,6 +152,24 @@ class DatasetTextSanitizer:
             )
 
         return result
+
+    def _apply_card_replacement(
+        self,
+        text: str,
+        redactions: list[dict[str, Any]],
+    ) -> str:
+        matches = self.CARD_RE.findall(text)
+        if not matches:
+            return text
+
+        redactions.append(
+            {
+                "kind": "card",
+                "token": "<CARD>",
+                "count": len(matches),
+            }
+        )
+        return self.CARD_RE.sub("<CARD>", text)
 
     def _apply_phone_replacement(
         self,

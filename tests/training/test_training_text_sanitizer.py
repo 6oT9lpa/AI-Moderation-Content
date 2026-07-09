@@ -38,3 +38,16 @@ def test_training_text_sanitizer_handles_angle_wrapped_urls() -> None:
     text = sanitizer.sanitize("<https://cdn.discordapp.com/attachments/1129934674425294899/1/image.gif>")
 
     assert text == "<URL_DOMAIN:cdn.discordapp.com>"
+
+
+def test_training_text_sanitizer_redacts_credentials_without_corrupting_discord_mentions() -> None:
+    sanitized = TrainingTextSanitizer().sanitize(
+        "<@123456789012345678> 4111 1111 1111 1111 "
+        "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIn0.signaturevalue"
+    )
+
+    assert sanitized.startswith("<DISCORD_USER_MENTION>")
+    assert "4111 1111 1111 1111" not in sanitized
+    assert "eyJhbGciOiJIUzI1NiJ9" not in sanitized
+    assert "<CARD>" in sanitized
+    assert "<ACCESS_TOKEN>" in sanitized

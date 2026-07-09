@@ -26,6 +26,8 @@ class DiscordChannelExport:
 
 class DiscordMessageConverter:
     def __init__(self, *, hash_salt: str, sanitizer: TrainingTextSanitizer | None = None) -> None:
+        if len(hash_salt) < 32:
+            raise ValueError("hash_salt must contain at least 32 characters")
         self._hash_salt = hash_salt
         self._sanitizer = sanitizer or TrainingTextSanitizer()
 
@@ -43,7 +45,7 @@ class DiscordMessageConverter:
             "message_id": str(message.get("id", "")),
             "created_at": message.get("timestamp"),
             "edited_at": message.get("edited_timestamp"),
-            "content": str(message.get("content") or ""),
+            "content": self._sanitizer.sanitize(str(message.get("content") or "")),
             "attachments_count": len(message.get("attachments") or []),
             "embeds_count": len(message.get("embeds") or []),
             "source_tag": channel.source_tag,

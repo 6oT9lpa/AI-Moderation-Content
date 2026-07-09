@@ -111,3 +111,20 @@ def test_message_preprocess_input_schema_is_frozen() -> None:
 
     with pytest.raises(ValidationError):
         payload.raw_text = "changed"  # type: ignore[misc]
+
+
+def test_message_preprocess_input_schema_rejects_oversized_untrusted_payloads() -> None:
+    base = {
+        "channel_id": "channel-1",
+        "user_id": "user-1",
+        "message_id": "message-1",
+    }
+
+    with pytest.raises(ValidationError):
+        MessagePreprocessInputSchema(raw_text="x" * 8_001, **base)
+
+    with pytest.raises(ValidationError):
+        MessagePreprocessInputSchema(recent_messages=("x",) * 21, **base)
+
+    with pytest.raises(ValidationError):
+        MessagePreprocessInputSchema(metadata={"payload": "x" * 16_385}, **base)

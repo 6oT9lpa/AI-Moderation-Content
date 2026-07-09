@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from typing import Any
 
 from src.domain.dataset.dataset_collector_repository import DatasetCollectorRepository
@@ -18,14 +18,21 @@ logger = get_logger(__name__)
 
 
 class DatasetCollector:
+    DEFAULT_RETENTION_DAYS = 90
+    MAX_RETENTION_DAYS = 365
+
     def __init__(
         self,
         repository: DatasetCollectorRepository,
         *,
         text_sanitizer: DatasetTextSanitizer | None = None,
+        default_retention_days: int = DEFAULT_RETENTION_DAYS,
     ) -> None:
+        if default_retention_days <= 0:
+            raise ValueError("default_retention_days must be greater than zero")
         self._repository = repository
         self._text_sanitizer = text_sanitizer or DatasetTextSanitizer()
+        self._default_retention_days = default_retention_days
 
     async def collect(self, item: DatasetCollectionInput) -> DatasetCollectionResult:
         context = item.context
@@ -55,10 +62,10 @@ class DatasetCollector:
             training_example=training_example,
             created_at=context.created_at,
             processed_at=datetime.now(timezone.utc),
-            retention_until=context.metadata.get("retention_until"),
+            retention_until=self._resolve_retention_until(context),
             metadata={
                 "dataset_text": snapshot.model_dump(mode="json"),
-                "context_metadata": self._json_safe_mapping(context.metadata),
+                "context_metadata": self._safe_context_metadata(context.metadata),
             },
         )
 
@@ -94,9 +101,9 @@ class DatasetCollector:
                 "member_age_days": context.member_age_days,
                 "has_attachments": context.has_attachments,
                 "attachment_count": context.attachment_count,
-                "urls": context.urls,
-                "domains": context.domains,
-                "invites": context.invites,
+                "url_count": len(context.urls),
+                "domain_count": len(context.domains),
+                "invite_count": len(context.invites),
             }
         )
         return self._json_safe_mapping(features)
@@ -163,3 +170,23 @@ class DatasetCollector:
             return value.value
 
         return str(value)
+
+    def _safe_context_metadata(self, metadata: dict[str, Any]) -> dict[str, Any]:
+        allowed = {"event_type", "feature_version"}
+        return {
+            key: self._json_safe_mapping(value)
+            for key, value in metadata.items()
+            if key in allowed
+        }
+
+    def _resolve_retention_until(self, context: Any) -> datetime:
+        requested = context.metadata.get("retention_until")
+        created_at = context.created_at
+        if created_at.tzinfo is None:
+            created_at = created_at.replace(tzinfo=timezone.utc)
+        maximum = created_at + timedelta(days=self.MAX_RETENTION_DAYS)
+        if isinstance(requested, datetime):
+            if requested.tzinfo is None:
+                requested = requested.replace(tzinfo=timezone.utc)
+            return min(requested, maximum)
+        return created_at + timedelta(days=self._default_retention_days)

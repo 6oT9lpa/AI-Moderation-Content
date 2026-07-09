@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import json
 from itertools import count
 
 from src.infrastructure.logging import get_logger
@@ -10,12 +11,15 @@ logger = get_logger(__name__)
 
 
 class ModerationQueue:
-    def __init__(self, *, max_size: int = 10000) -> None:
+    def __init__(self, *, max_size: int = 10000, max_payload_bytes: int = 65_536) -> None:
+        if max_payload_bytes <= 0:
+            raise ValueError("max_payload_bytes must be greater than zero")
         self._queue: asyncio.PriorityQueue[tuple[int, int, ModerationTask]] = asyncio.PriorityQueue(
             maxsize=max_size,
         )
         self._sequence = count()
         self._closed = False
+        self._max_payload_bytes = max_payload_bytes
         logger.info("Moderation queue initialized max_size=%s", max_size)
 
     async def publish(self, task: ModerationTask) -> None:
@@ -26,6 +30,9 @@ class ModerationQueue:
                 task.message_id,
             )
             raise RuntimeError("moderation queue is closed")
+
+        if self._payload_size(task.payload) > self._max_payload_bytes:
+            raise ValueError("moderation task payload exceeds maximum size")
 
         await self._queue.put((task.priority, next(self._sequence), task))
         logger.info(
@@ -68,3 +75,10 @@ class ModerationQueue:
     @property
     def is_closed(self) -> bool:
         return self._closed
+
+    @staticmethod
+    def _payload_size(payload: object) -> int:
+        try:
+            return len(json.dumps(payload, ensure_ascii=False).encode("utf-8"))
+        except (TypeError, ValueError) as exc:
+            raise ValueError("moderation task payload must be serializable") from exc

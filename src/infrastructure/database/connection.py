@@ -1,5 +1,4 @@
 import asyncio
-
 from pathlib import Path
 from typing import Any, Awaitable, Callable, Optional, Sequence
 
@@ -10,6 +9,7 @@ from alembic import command
 from alembic.config import Config as AlembicConfig
 
 from src.infrastructure.database.cursor_result import DatabaseCursorResult
+from src.infrastructure.database.database_url import redact_database_url
 from src.infrastructure.logging import get_logger
 
 logger = get_logger(__name__)
@@ -30,7 +30,7 @@ class DatabaseConnection:
         self._connection: Optional[psycopg.AsyncConnection] = None
         self._lock = asyncio.Lock()
 
-        logger.info("Database backend initialized target=%s", self.database_url)
+        logger.info("Database backend initialized target=%s", redact_database_url(self.database_url))
 
     async def initialize(self) -> None:
         await self._run_migrations()
@@ -266,7 +266,7 @@ class DatabaseConnection:
             )
 
         return self.database_url
-    
+
     def _get_create_table_statements(self) -> list[str]:
         return [
             """

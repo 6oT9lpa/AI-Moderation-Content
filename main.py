@@ -4,7 +4,7 @@ import asyncio
 import logging
 import re
 import sys
-from collections import defaultdict
+from collections import defaultdict, deque
 from datetime import datetime, timedelta, timezone
 from typing import Any
 
@@ -31,10 +31,12 @@ from src.training.rubert.rubert_moderation_classifier import (
     RuBertClassificationResult,
     RuBertModerationClassifier,
 )
+from src.training.datasets.training_text_sanitizer import TrainingTextSanitizer
 
 CHANNEL_PATTERN = re.compile(r"(?<!\S)@([A-Za-z\u0400-\u04FF0-9_.-]+)")
 USER_PATTERN = re.compile(r"(?<!\S)#([A-Za-z\u0400-\u04FF0-9_.-]+)")
 MSK = timezone(timedelta(hours=3), name="MSK")
+MAX_DEMO_MESSAGES_PER_CHANNEL = 10_000
 
 
 async def main() -> None:
@@ -52,12 +54,15 @@ async def main() -> None:
     dataset_collector = DatasetCollector(dataset_repository)
     dataset_export_builder = DatasetExportBuilder()
     rubert_classifier = _load_rubert_classifier()
+    report_sanitizer = TrainingTextSanitizer()
 
     current_channel = "general"
     message_counter = 0
     channel_users: dict[str, set[str]] = defaultdict(set)
-    channel_messages: dict[str, list[dict[str, Any]]] = defaultdict(list)
-    recent_by_user: dict[tuple[str, str], list[dict[str, Any]]] = defaultdict(list)
+    channel_messages: dict[str, deque[dict[str, Any]]] = defaultdict(
+        lambda: deque(maxlen=MAX_DEMO_MESSAGES_PER_CHANNEL)
+    )
+    recent_by_user: dict[tuple[str, str], deque[dict[str, Any]]] = defaultdict(lambda: deque(maxlen=10))
 
     print("AI Moderator chat demo")
     print("Format: @channel #user message. Use @channel anywhere to switch channel. Type exit to finish.")
@@ -93,7 +98,7 @@ async def main() -> None:
             channel_id = current_channel
             user_id = parsed["user_id"]
             recent_key = (channel_id, user_id)
-            recent_items = recent_by_user[recent_key][-10:]
+            recent_items = tuple(recent_by_user[recent_key])
 
             payload = MessagePreprocessInputSchema(
                 platform="chat-demo",
@@ -160,7 +165,7 @@ async def main() -> None:
                 "created_at": created_at,
                 "user_id": user_id,
                 "channel_id": channel_id,
-                "text": parsed["text"],
+                "text": rubert_result.model_text if rubert_result is not None else report_sanitizer.sanitize(parsed["text"]),
                 "labels": [label.value for label in decision.labels],
                 "primary_label": decision.primary_label.value,
                 "decision_action": decision.decision_action.value,
@@ -190,7 +195,7 @@ async def main() -> None:
             }
             channel_users[channel_id].add(user_id)
             channel_messages[channel_id].append(message_record)
-            recent_by_user[recent_key].append({"text": parsed["text"], "created_at": created_at})
+            recent_by_user[recent_key].append({"text": report_sanitizer.sanitize(parsed["text"]), "created_at": created_at})
 
             print(
                 f"@{channel_id} #{user_id}: "
@@ -254,7 +259,7 @@ def _load_rubert_classifier() -> RuBertModerationClassifier | None:
 
 def _print_report(
     channel_users: dict[str, set[str]],
-    channel_messages: dict[str, list[dict[str, Any]]],
+    channel_messages: dict[str, deque[dict[str, Any]]],
     *,
     dataset_records_count: int = 0,
     export_ready_count: int = 0,
@@ -292,7 +297,7 @@ def _print_report(
             _print_rubert_details(message["rubert"])
 
 
-def _print_channel_punishments(messages: list[dict[str, Any]]) -> None:
+def _print_channel_punishments(messages: deque[dict[str, Any]]) -> None:
     punishment_found = False
     punishment_actions = {
         ModerationAction.REVIEW.value,

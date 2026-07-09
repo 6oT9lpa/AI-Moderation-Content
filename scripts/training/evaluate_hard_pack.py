@@ -11,6 +11,7 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from src.domain.moderation.moderation_label import ModerationLabel
 from src.training.datasets.hard_eval_pack import build_hard_eval_pack
+from src.training.datasets.unseen_hard_eval_pack import build_unseen_hard_eval_pack
 from src.training.rubert.rubert_moderation_classifier import RuBertModerationClassifier
 
 
@@ -20,11 +21,13 @@ def main() -> None:
 
     parser = argparse.ArgumentParser(description="Evaluate trained ruBERT on the local hard moderation pack.")
     parser.add_argument("--model-dir", type=Path, default=Path("models/rubert-tiny2-moderation-trained"))
+    parser.add_argument("--pack", choices=["known", "unseen"], default="known")
+    parser.add_argument("--thresholds-file", type=Path, default=None)
     parser.add_argument("--show-errors", action="store_true")
     args = parser.parse_args()
 
-    classifier = RuBertModerationClassifier(model_dir=args.model_dir)
-    rows = build_hard_eval_pack()
+    classifier = RuBertModerationClassifier(model_dir=args.model_dir, thresholds_file=args.thresholds_file)
+    rows = build_unseen_hard_eval_pack() if args.pack == "unseen" else build_hard_eval_pack()
     errors: list[dict] = []
     primary_ok = 0
     label_exact_ok = 0
@@ -52,6 +55,7 @@ def main() -> None:
             )
 
     report = {
+        "pack": args.pack,
         "rows": len(rows),
         "primary_accuracy": round(primary_ok / len(rows), 4),
         "label_exact_accuracy": round(label_exact_ok / len(rows), 4),

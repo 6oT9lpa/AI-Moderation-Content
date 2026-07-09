@@ -63,9 +63,15 @@ _PATTERNS: dict[ModerationLabel, tuple[re.Pattern[str], ...]] = {
         re.compile(r"\b(?:выиграл\w*|забери\s+приз|получи\s+\d+\s*(?:руб|₽)|удво(?:ю|ение)\s+баланс)\b", re.IGNORECASE),
         re.compile(r"\b(?:казино|ставк\w+|быстр(?:ый|ые)\s+деньг\w+|инвестиц\w+)\b", re.IGNORECASE),
         re.compile(r"\b(?:деньг\w+|бабл\w+|выплат\w+|раздач\w+|помощь\s+с\s+деньг\w+|рубл\w+).{0,100}\b(?:регистрац\w+|регу|перейд\w+|заход\w+|ссылк\w+|кажд\w+)\b", re.IGNORECASE),
-        re.compile(r"(?:https?://|<URL>|<URL_DOMAIN:[^>]+>).{0,120}\b(?:5000|10000|рубл\w+|деньг\w+|бабл\w+|раздач\w+|выплат\w+|регистрац\w+|регу)\b", re.IGNORECASE),
+        re.compile(r"(?:https?://|<URL>|<URL_DOMAIN:[^>]+>).{0,120}\b(?:5000|10000|рубл\w+|деньг\w+|бабл\w+|раздач\w+|выплат\w+|подар(?:ок|к\w*)|бонус\w*)\b", re.IGNORECASE),
         re.compile(r"\b(?:steam|discord|nitro|скин\w+|cs|кс).{0,100}\b(?:free|бесплатн\w+|раздач\w+|gift|drop|логин|парол\w+|код)\b", re.IGNORECASE),
-        re.compile(r"\b(?:steamcommunity|steam|discord|sber|qiwi|vk|faceit)[a-z0-9_.-]{0,30}\.(?:example|top|click|gift|shop|ru|com)\b", re.IGNORECASE),
+        re.compile(
+            r"\b(?:steamcomrnunity|steamcommunity[-_.](?:login|gift|bonus|drop)|"
+            r"discord[-_.](?:nitro|gift|login)|sber[-_.](?:bonus|pay|login)|qiwi[-_.](?:prize|pay)|"
+            r"vk[-_.](?:support|security|login)|faceit[-_.](?:drop|gift|login))"
+            r"[a-z0-9_.-]*\.(?:example|top|click|gift|shop|ru|com)\b",
+            re.IGNORECASE,
+        ),
     ),
     ModerationLabel.NSFW: (
         re.compile(r"\b(?:18\+|nsfw|порно|эротик\w*|интим|секс(?:\b|уальн\w*))\b", re.IGNORECASE),

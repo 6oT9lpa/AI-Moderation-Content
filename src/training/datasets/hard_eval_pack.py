@@ -5,7 +5,7 @@ from src.domain.moderation.moderation_label import ModerationLabel
 
 def build_hard_eval_pack() -> list[dict]:
     rows = [
-        *_safe_cases(),
+        *_safe_cases()[:20],
         *_scam_cases(),
         *_nsfw_cases(),
         *_toxic_cases(),
@@ -35,6 +35,9 @@ def _safe_cases() -> list[dict]:
     return [
         _row("чек пек", label, [label]),
         _row("твоя сестренка была у меня дома, мы вместе делали проект", label, [label]),
+        _row("твоя сестренка была у меня дома", label, [label]),
+        _row("твоя сестра была у меня дома", label, [label]),
+        _row("твоя младшая сестра была у меня дома", label, [label]),
         _row("твоя сестра была у меня дома с родителями и забрала учебник", label, [label]),
         _row("ты уважаешь свою маму? я тоже уважаю родителей и говорю спокойно", label, [label]),
         _row("мамке привет это сокращение mq, объясняю сленг без оскорбления", label, [label]),

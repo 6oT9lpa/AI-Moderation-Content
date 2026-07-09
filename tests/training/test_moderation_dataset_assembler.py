@@ -4,6 +4,7 @@ from src.domain.moderation.moderation_label import ModerationLabel
 from src.training.datasets.moderation_dataset_assembler import ModerationDatasetAssembler
 from src.training.datasets.moderation_dataset_candidate import ModerationDatasetCandidate
 from src.training.datasets.moderation_dataset_mix_config import ModerationDatasetMixConfig
+from src.training.datasets.hard_eval_pack import build_hard_eval_pack
 
 
 def test_dataset_assembler_quality_filter_sanitizes_and_deduplicates() -> None:
@@ -32,18 +33,24 @@ def test_dataset_assembler_reports_shortfalls_without_project_and_gated_spam() -
     selected, shortfalls = assembler._select_candidates(candidates, config.source_quotas())
 
     assert selected
-    assert shortfalls["source:project"] == 9000
-    assert shortfalls["source:russian_spam"] == 4000
-    assert shortfalls["source:russian_toxic_comments"] == 6500
-    assert shortfalls["source:russian_toxic_dvach"] == 2500
-    assert shortfalls["source:russian_inappropriate"] == 6000
-    assert shortfalls["source:russian_nsfw_benchmark"] == 2500
-    assert shortfalls["source:russian_spam_fork"] == 2000
-    assert shortfalls["source:russian_scam_spam_public"] == 2500
-    assert shortfalls["source:russian_dialogues_safe"] == 5000
-    assert shortfalls["source:russian_literature_safe"] == 2500
-    assert shortfalls["label:SPAM"] == 5999
-    assert shortfalls["label:SAFE"] == 19999
+    assert "source:hard_eval_seed" not in shortfalls
+    assert shortfalls["source:project"] == 6000
+    assert shortfalls["source:russian_spam"] == 6000
+    assert shortfalls["source:contextual_contrast"] == 11000
+    assert shortfalls["label:SPAM"] == 23999
+    assert shortfalls["label:SAFE"] == 79999
+
+
+def test_dataset_assembler_excludes_evaluation_pack_texts() -> None:
+    config = ModerationDatasetMixConfig.load("configs/training/dataset_mix_v1.yaml")
+    assembler = ModerationDatasetAssembler(config)
+    row = build_hard_eval_pack()[2]
+
+    filtered = assembler._quality_filter([
+        _candidate(row["text"], ModerationLabel.SAFE, "manual_synthetic", "known-hard-case"),
+    ])
+
+    assert filtered == []
 
 
 def _candidate(

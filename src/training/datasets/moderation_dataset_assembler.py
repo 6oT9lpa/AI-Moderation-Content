@@ -13,18 +13,25 @@ from src.domain.moderation.moderation_action import ModerationAction
 from src.domain.moderation.moderation_label import ModerationLabel
 from src.training.datasets.moderation_dataset_candidate import ModerationDatasetCandidate
 from src.training.datasets.moderation_dataset_mix_config import ModerationDatasetMixConfig
+from src.training.datasets.moderation_export_relabeler import ModerationExportRelabeler
+from src.training.datasets.hard_eval_pack import build_hard_eval_pack
 from src.training.datasets.moderation_label_priority import resolve_primary_label
 from src.training.datasets.moderation_public_dataset_loaders import (
+    DiscordRawMessageLoader,
     HuggingFaceSafeTextLoader,
     HuggingFaceSpamLoader,
     HuggingFaceToxicityLoader,
+    HuggingFaceUrlSecurityLoader,
+    LocalCuratedDatasetLoader,
     ProjectTrainingExampleLoader,
 )
 from src.training.datasets.synthetic_discord_examples import (
     build_ai_generated_edge_candidates,
+    build_contextual_contrast_candidates,
     build_manual_synthetic_candidates,
 )
 from src.training.datasets.training_text_sanitizer import TrainingTextSanitizer
+from src.training.datasets.unseen_hard_eval_pack import build_unseen_hard_eval_pack
 from src.training.rubert.rubert_dataset_builder import RuBertDatasetBuilder
 from src.training.rubert.rubert_training_config import RuBertTrainingConfig
 
@@ -40,6 +47,9 @@ class ModerationDatasetAssembler:
         self._rubert_config = rubert_config or RuBertTrainingConfig.load()
         self._random = random.Random(config.dataset.random_seed)
         self._sanitizer = TrainingTextSanitizer()
+        self._relabeler = ModerationExportRelabeler(self._rubert_config.label_schema)
+        evaluation_rows = [*build_hard_eval_pack(), *build_unseen_hard_eval_pack()]
+        self._evaluation_texts = {self._sanitizer.sanitize(str(row["text"])) for row in evaluation_rows}
 
     def build(self, *, strict: bool | None = None) -> dict:
         use_strict = self._config.dataset.strict if strict is None else strict
@@ -69,13 +79,50 @@ class ModerationDatasetAssembler:
             path = Path(str(getattr(sources["project"], "path", "data/exports/project_training_examples.jsonl")))
             candidates.extend(ProjectTrainingExampleLoader().load(path))
 
+        if sources.get("project_raw") and sources["project_raw"].enabled:
+            path = Path(str(getattr(sources["project_raw"], "path", "data/raw/discord_messages.jsonl")))
+            candidates.extend(
+                DiscordRawMessageLoader().load(
+                    path,
+                    limit=max(source_quotas.get("project_raw", 0) * 2, 100),
+                )
+            )
+
+        for source_name in ("russian_discord_chat_logs", "russian_telegram_chat_logs"):
+            if sources.get(source_name) and sources[source_name].enabled:
+                spec = sources[source_name]
+                try:
+                    local_path = Path(str(getattr(spec, "local_path", "")))
+                    candidates.extend(LocalCuratedDatasetLoader().load_chat_log_parquet(
+                        local_path,
+                        source_bucket=source_name,
+                        limit=max(source_quotas.get(source_name, 0) * 3, 100),
+                    ))
+                except Exception as exc:
+                    errors[source_name] = str(exc)
+
+        if sources.get("russian_dialogues_2") and sources["russian_dialogues_2"].enabled:
+            spec = sources["russian_dialogues_2"]
+            try:
+                candidates.extend(LocalCuratedDatasetLoader().load_dialogues_gzip(
+                    Path(str(getattr(spec, "local_path", ""))),
+                    source_bucket="russian_dialogues_2",
+                    limit=max(source_quotas.get("russian_dialogues_2", 0) * 3, 100),
+                ))
+            except Exception as exc:
+                errors["russian_dialogues_2"] = str(exc)
+
         if sources.get("russian_toxicity") and sources["russian_toxicity"].enabled:
             spec = sources["russian_toxicity"]
             try:
+                local_path = Path(str(getattr(spec, "local_path", "")))
                 candidates.extend(
-                    HuggingFaceToxicityLoader().load_textdetox_ru(
-                        str(getattr(spec, "dataset_id")),
-                        str(getattr(spec, "split")),
+                    LocalCuratedDatasetLoader().load_parquet_binary(
+                        local_path, source_bucket="russian_toxicity",
+                        limit=max(source_quotas.get("russian_toxicity", 0) * 3, 100),
+                        text_keys=("text",), label_key="toxic", positive_label=ModerationLabel.TOXIC,
+                    ) if local_path.exists() else HuggingFaceToxicityLoader().load_textdetox_ru(
+                        str(getattr(spec, "dataset_id")), str(getattr(spec, "split")),
                         limit=max(source_quotas.get("russian_toxicity", 0) * 3, 100),
                     )
                 )
@@ -85,10 +132,16 @@ class ModerationDatasetAssembler:
         if sources.get("russian_toxic_comments") and sources["russian_toxic_comments"].enabled:
             spec = sources["russian_toxic_comments"]
             try:
+                local_path = Path(str(getattr(spec, "local_path", "")))
                 candidates.extend(
-                    HuggingFaceToxicityLoader().load_binary_toxicity_dataset(
-                        str(getattr(spec, "dataset_id")),
-                        str(getattr(spec, "split")),
+                    LocalCuratedDatasetLoader().load_binary_jsonl(
+                        local_path,
+                        source_bucket="russian_toxic_comments",
+                        limit=max(source_quotas.get("russian_toxic_comments", 0) * 3, 100),
+                    )
+                    if local_path.exists()
+                    else HuggingFaceToxicityLoader().load_binary_toxicity_dataset(
+                        str(getattr(spec, "dataset_id")), str(getattr(spec, "split")),
                         limit=max(source_quotas.get("russian_toxic_comments", 0) * 3, 100),
                         source_bucket="russian_toxic_comments",
                     )
@@ -99,10 +152,15 @@ class ModerationDatasetAssembler:
         if sources.get("russian_inappropriate") and sources["russian_inappropriate"].enabled:
             spec = sources["russian_inappropriate"]
             try:
+                local_path = Path(str(getattr(spec, "local_path", "")))
                 candidates.extend(
-                    HuggingFaceToxicityLoader().load_inappropriateness_dataset(
-                        str(getattr(spec, "dataset_id")),
-                        str(getattr(spec, "split")),
+                    LocalCuratedDatasetLoader().load_inappropriate_csv(
+                        local_path, source_bucket="russian_inappropriate",
+                        limit=max(source_quotas.get("russian_inappropriate", 0) * 3, 100),
+                        toxic_threshold=float(getattr(spec, "toxic_threshold", 0.75)),
+                        safe_threshold=float(getattr(spec, "safe_threshold", 0.25)),
+                    ) if local_path.exists() else HuggingFaceToxicityLoader().load_inappropriateness_dataset(
+                        str(getattr(spec, "dataset_id")), str(getattr(spec, "split")),
                         limit=max(source_quotas.get("russian_inappropriate", 0) * 3, 100),
                         toxic_threshold=float(getattr(spec, "toxic_threshold", 0.75)),
                         safe_threshold=float(getattr(spec, "safe_threshold", 0.25)),
@@ -124,18 +182,73 @@ class ModerationDatasetAssembler:
             except Exception as exc:
                 errors["russian_nsfw_benchmark"] = str(exc)
 
+        if sources.get("russian_nsfw_fiction") and sources["russian_nsfw_fiction"].enabled:
+            spec = sources["russian_nsfw_fiction"]
+            try:
+                local_path = Path(str(getattr(spec, "local_path", "")))
+                candidates.extend(
+                    LocalCuratedDatasetLoader().load_nsfw_parquet(
+                        local_path, source_bucket="russian_nsfw_fiction",
+                        limit=max(source_quotas.get("russian_nsfw_fiction", 0) * 3, 100),
+                    ) if local_path.exists() else HuggingFaceToxicityLoader().load_nsfw_fiction_dataset(
+                        str(getattr(spec, "dataset_id")), str(getattr(spec, "split")),
+                        limit=max(source_quotas.get("russian_nsfw_fiction", 0) * 3, 100),
+                        source_bucket="russian_nsfw_fiction",
+                    )
+                )
+            except Exception as exc:
+                errors["russian_nsfw_fiction"] = str(exc)
+
         if sources.get("russian_toxic_dvach") and sources["russian_toxic_dvach"].enabled:
             spec = sources["russian_toxic_dvach"]
             try:
+                local_path = Path(str(getattr(spec, "local_path", "")))
                 candidates.extend(
-                    HuggingFaceToxicityLoader().load_toxic_dvach_dataset(
-                        str(getattr(spec, "dataset_id")),
-                        str(getattr(spec, "split")),
+                    LocalCuratedDatasetLoader().load_binary_csv(
+                        local_path,
+                        source_bucket="russian_toxic_dvach",
+                        limit=max(source_quotas.get("russian_toxic_dvach", 0) * 3, 100),
+                    )
+                    if local_path.exists()
+                    else HuggingFaceToxicityLoader().load_toxic_dvach_dataset(
+                        str(getattr(spec, "dataset_id")), str(getattr(spec, "split")),
                         limit=max(source_quotas.get("russian_toxic_dvach", 0) * 3, 100),
                     )
                 )
             except Exception as exc:
                 errors["russian_toxic_dvach"] = str(exc)
+
+        if sources.get("russian_paradetox") and sources["russian_paradetox"].enabled:
+            spec = sources["russian_paradetox"]
+            try:
+                candidates.extend(
+                    HuggingFaceToxicityLoader().load_paradetox_ru_dataset(
+                        str(getattr(spec, "dataset_id")),
+                        str(getattr(spec, "split")),
+                        limit=max(source_quotas.get("russian_paradetox", 0) * 3, 100),
+                        source_bucket="russian_paradetox",
+                    )
+                )
+            except Exception as exc:
+                errors["russian_paradetox"] = str(exc)
+
+        if sources.get("russian_react_hate") and sources["russian_react_hate"].enabled:
+            spec = sources["russian_react_hate"]
+            raw_splits = getattr(spec, "splits", ("rus_lgbtq", "rus_war"))
+            splits = tuple(str(split) for split in raw_splits)
+            try:
+                local_paths = [Path(str(path)) for path in getattr(spec, "local_paths", ())]
+                candidates.extend(
+                    LocalCuratedDatasetLoader().load_react_hate(
+                        local_paths, source_bucket="russian_react_hate",
+                        limit=max(source_quotas.get("russian_react_hate", 0) * 3, 100),
+                    ) if local_paths and all(path.exists() for path in local_paths) else HuggingFaceToxicityLoader().load_react_hate_dataset(
+                        str(getattr(spec, "dataset_id")), splits,
+                        limit=max(source_quotas.get("russian_react_hate", 0) * 3, 100), source_bucket="russian_react_hate",
+                    )
+                )
+            except Exception as exc:
+                errors["russian_react_hate"] = str(exc)
 
         if sources.get("russian_dialogues_safe") and sources["russian_dialogues_safe"].enabled:
             spec = sources["russian_dialogues_safe"]
@@ -153,23 +266,65 @@ class ModerationDatasetAssembler:
         if sources.get("russian_literature_safe") and sources["russian_literature_safe"].enabled:
             spec = sources["russian_literature_safe"]
             try:
+                local_path = Path(str(getattr(spec, "local_path", "")))
                 candidates.extend(
-                    HuggingFaceSafeTextLoader().load_literature_safe(
-                        str(getattr(spec, "dataset_id")),
-                        str(getattr(spec, "split")),
+                    LocalCuratedDatasetLoader().load_literature_safe(
+                        local_path,
+                        source_bucket="russian_literature_safe",
+                        limit=max(source_quotas.get("russian_literature_safe", 0) * 3, 100),
+                    )
+                    if local_path.exists()
+                    else HuggingFaceSafeTextLoader().load_literature_safe(
+                        str(getattr(spec, "dataset_id")), str(getattr(spec, "split")),
                         limit=max(source_quotas.get("russian_literature_safe", 0) * 3, 100),
                     )
                 )
             except Exception as exc:
                 errors["russian_literature_safe"] = str(exc)
 
+        if sources.get("russian_dialogsum_safe") and sources["russian_dialogsum_safe"].enabled:
+            spec = sources["russian_dialogsum_safe"]
+            try:
+                local_path = Path(str(getattr(spec, "local_path", "")))
+                candidates.extend(
+                    LocalCuratedDatasetLoader().load_dialogue_safe(
+                        local_path, source_bucket="russian_dialogsum_safe",
+                        limit=max(source_quotas.get("russian_dialogsum_safe", 0) * 3, 100),
+                    ) if local_path.exists() else HuggingFaceSafeTextLoader().load_dialogsum_safe(
+                        str(getattr(spec, "dataset_id")), str(getattr(spec, "split")),
+                        limit=max(source_quotas.get("russian_dialogsum_safe", 0) * 3, 100),
+                    )
+                )
+            except Exception as exc:
+                errors["russian_dialogsum_safe"] = str(exc)
+
+        if sources.get("russian_kinship_hard_safe") and sources["russian_kinship_hard_safe"].enabled:
+            spec = sources["russian_kinship_hard_safe"]
+            raw_datasets = getattr(spec, "datasets", ())
+            datasets = [dict(item) for item in raw_datasets]
+            try:
+                candidates.extend(
+                    HuggingFaceSafeTextLoader().load_kinship_hard_safe(
+                        datasets,
+                        limit=max(source_quotas.get("russian_kinship_hard_safe", 0) * 3, 100),
+                    )
+                )
+            except Exception as exc:
+                errors["russian_kinship_hard_safe"] = str(exc)
+
         if sources.get("russian_spam") and sources["russian_spam"].enabled:
             spec = sources["russian_spam"]
             try:
+                local_path = Path(str(getattr(spec, "local_path", "")))
                 candidates.extend(
-                    HuggingFaceSpamLoader().load_spam_dataset(
-                        str(getattr(spec, "dataset_id")),
-                        str(getattr(spec, "split")),
+                    LocalCuratedDatasetLoader().load_spam_parquet(
+                        local_path,
+                        source_bucket="russian_spam",
+                        limit=max(source_quotas.get("russian_spam", 0) * 3, 100),
+                    )
+                    if local_path.exists()
+                    else HuggingFaceSpamLoader().load_spam_dataset(
+                        str(getattr(spec, "dataset_id")), str(getattr(spec, "split")),
                         limit=max(source_quotas.get("russian_spam", 0) * 3, 100),
                     )
                 )
@@ -179,10 +334,13 @@ class ModerationDatasetAssembler:
         if sources.get("russian_spam_fork") and sources["russian_spam_fork"].enabled:
             spec = sources["russian_spam_fork"]
             try:
+                local_path = Path(str(getattr(spec, "local_path", "")))
                 candidates.extend(
-                    HuggingFaceSpamLoader().load_spam_dataset(
-                        str(getattr(spec, "dataset_id")),
-                        str(getattr(spec, "split")),
+                    LocalCuratedDatasetLoader().load_spam_parquet(
+                        local_path, source_bucket="russian_spam_fork",
+                        limit=max(source_quotas.get("russian_spam_fork", 0) * 3, 100),
+                    ) if local_path.exists() else HuggingFaceSpamLoader().load_spam_dataset(
+                        str(getattr(spec, "dataset_id")), str(getattr(spec, "split")),
                         limit=max(source_quotas.get("russian_spam_fork", 0) * 3, 100),
                     )
                 )
@@ -202,79 +360,47 @@ class ModerationDatasetAssembler:
             except Exception as exc:
                 errors["russian_scam_spam_public"] = str(exc)
 
+        if sources.get("phishing_url") and sources["phishing_url"].enabled:
+            spec = sources["phishing_url"]
+            try:
+                candidates.extend(
+                    HuggingFaceUrlSecurityLoader().load_malicious_url_dataset(
+                        str(getattr(spec, "dataset_id")),
+                        str(getattr(spec, "split")),
+                        limit=max(source_quotas.get("phishing_url", 0) * 3, 100),
+                        source_bucket="phishing_url",
+                    )
+                )
+            except Exception as exc:
+                errors["phishing_url"] = str(exc)
+
+        if sources.get("discord_phishing_scam") and sources["discord_phishing_scam"].enabled:
+            spec = sources["discord_phishing_scam"]
+            try:
+                candidates.extend(
+                    HuggingFaceUrlSecurityLoader().load_discord_phishing_scam_dataset(
+                        str(getattr(spec, "dataset_id")),
+                        str(getattr(spec, "split")),
+                        limit=max(source_quotas.get("discord_phishing_scam", 0) * 3, 100),
+                        source_bucket="discord_phishing_scam",
+                    )
+                )
+            except Exception as exc:
+                errors["discord_phishing_scam"] = str(exc)
+
         if sources.get("manual_synthetic") and sources["manual_synthetic"].enabled:
             manual_templates = build_manual_synthetic_candidates()
-            candidates.extend(
-                self._expand_templates(
-                    manual_templates,
-                    max(source_quotas["manual_synthetic"], self._config.dataset.negative_examples),
-                )
-            )
-            candidates.extend(self._expand_label_templates(manual_templates, self._config.negative_class_quotas()))
+            candidates.extend(manual_templates)
+
+        if sources.get("contextual_contrast") and sources["contextual_contrast"].enabled:
+            candidates.extend(build_contextual_contrast_candidates())
 
         if sources.get("ai_generated_edge") and sources["ai_generated_edge"].enabled:
             edge_templates = build_ai_generated_edge_candidates()
-            candidates.extend(
-                self._expand_templates(
-                    edge_templates,
-                    max(source_quotas["ai_generated_edge"], self._config.dataset.negative_examples // 2),
-                )
-            )
-            candidates.extend(self._expand_label_templates(edge_templates, self._config.negative_class_quotas()))
+            candidates.extend(edge_templates)
 
         self._random.shuffle(candidates)
         return candidates, errors
-
-    def _expand_templates(
-        self,
-        templates: list[ModerationDatasetCandidate],
-        target: int,
-    ) -> list[ModerationDatasetCandidate]:
-        if not templates:
-            return []
-
-        expanded: list[ModerationDatasetCandidate] = []
-        index = 0
-        while len(expanded) < target:
-            template = templates[index % len(templates)]
-            expanded.append(
-                template.model_copy(
-                    update={
-                        "source_id": f"{template.source_id}_variant_{index}",
-                        "text": f"{template.text} #{index % 97}",
-                    }
-                )
-            )
-            index += 1
-
-        return expanded
-
-    def _expand_label_templates(
-        self,
-        templates: list[ModerationDatasetCandidate],
-        targets: dict[ModerationLabel, int],
-    ) -> list[ModerationDatasetCandidate]:
-        expanded: list[ModerationDatasetCandidate] = []
-        by_label: dict[ModerationLabel, list[ModerationDatasetCandidate]] = defaultdict(list)
-        for template in templates:
-            by_label[template.primary_label].append(template)
-
-        for label, target in targets.items():
-            pool = by_label.get(label, [])
-            if not pool:
-                continue
-            for index in range(target):
-                template = pool[index % len(pool)]
-                expanded.append(
-                    template.model_copy(
-                        update={
-                            "source_id": f"{template.source_id}_label_backfill_{index}",
-                            "text": f"{template.text} #{index % 997}",
-                        }
-                    )
-                )
-
-        return expanded
 
     def _quality_filter(
         self,
@@ -288,10 +414,27 @@ class ModerationDatasetAssembler:
                 continue
             if len(model_text) > self._config.quality.max_text_length:
                 model_text = model_text[: self._config.quality.max_text_length].strip()
+            if model_text in self._evaluation_texts:
+                continue
             if self._config.quality.deduplicate_by_text and model_text in seen:
                 continue
             seen.add(model_text)
-            filtered.append(candidate.model_copy(update={"text": model_text}))
+            relabeled = self._relabeler.relabel_row(
+                {
+                    "model_text": model_text,
+                    "labels": [label.value for label in candidate.labels],
+                    "primary_label": candidate.primary_label.value,
+                    "severity": candidate.severity,
+                }
+            )
+            labels = [ModerationLabel(label) for label in relabeled.get("labels", [])]
+            primary_label = ModerationLabel(str(relabeled.get("primary_label") or candidate.primary_label.value))
+            filtered.append(candidate.model_copy(update={
+                "text": model_text,
+                "labels": labels or [primary_label],
+                "primary_label": primary_label,
+                "severity": int(relabeled.get("severity") or candidate.severity),
+            }))
         return filtered
 
     def _select_candidates(
@@ -366,16 +509,28 @@ class ModerationDatasetAssembler:
     def _selection_source_order(self, source_quotas: dict[str, int]) -> list[str]:
         preferred = [
             "project",
+            "project_raw",
+            "russian_discord_chat_logs",
+            "russian_telegram_chat_logs",
+            "russian_dialogues_2",
             "russian_dialogues_safe",
+            "russian_dialogsum_safe",
             "russian_literature_safe",
+            "russian_kinship_hard_safe",
             "russian_toxic_comments",
             "russian_toxic_dvach",
+            "russian_paradetox",
+            "russian_react_hate",
             "russian_inappropriate",
             "russian_nsfw_benchmark",
+            "russian_nsfw_fiction",
             "russian_toxicity",
             "russian_spam",
             "russian_spam_fork",
             "russian_scam_spam_public",
+            "phishing_url",
+            "discord_phishing_scam",
+            "contextual_contrast",
             "manual_synthetic",
             "ai_generated_edge",
         ]

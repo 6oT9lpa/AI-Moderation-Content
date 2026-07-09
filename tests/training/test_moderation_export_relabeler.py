@@ -99,3 +99,17 @@ def test_relabel_row_marks_suspicious_money_url_as_scam() -> None:
 
     assert updated["primary_label"] == "SCAM"
     assert set(updated["labels"]) == {"SCAM", "URL"}
+
+
+def test_relabel_row_keeps_official_steamcommunity_profile_as_url() -> None:
+    row = {
+        "model_text": "страница профиля steamcommunity.com/profiles/123 без подарков и входа",
+        "labels": ["URL"],
+        "primary_label": "URL",
+        "severity": 1,
+    }
+
+    updated = ModerationExportRelabeler().relabel_row(row)
+
+    assert updated["primary_label"] == "URL"
+    assert updated["labels"] == ["URL"]

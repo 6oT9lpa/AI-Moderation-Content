@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from collections.abc import Callable
+
 from src.domain.moderation.moderation_label import ModerationLabel
 from src.training.datasets.moderation_dataset_candidate import ModerationDatasetCandidate
 
@@ -134,6 +136,9 @@ def build_manual_synthetic_candidates() -> list[ModerationDatasetCandidate]:
         (ModerationLabel.SAFE, "слово гомосексуал используется в учебном обсуждении модерации без оскорбления", [ModerationLabel.SAFE]),
         (ModerationLabel.SAFE, "моей сестре 12 лет и она ищет безопасный сервер для игры с друзьями", [ModerationLabel.SAFE]),
         (ModerationLabel.SAFE, "твоя сестренка была у меня дома, мы вместе делали проект для школы", [ModerationLabel.SAFE]),
+        (ModerationLabel.SAFE, "твоя сестренка была у меня дома", [ModerationLabel.SAFE]),
+        (ModerationLabel.SAFE, "твоя сестра была у меня дома", [ModerationLabel.SAFE]),
+        (ModerationLabel.SAFE, "твоя младшая сестра была у меня дома", [ModerationLabel.SAFE]),
         (ModerationLabel.SAFE, "твоя сестра была у меня дома с родителями и забрала учебник", [ModerationLabel.SAFE]),
         (ModerationLabel.SAFE, "моя сестренка была у меня дома весь вечер, играли в настолки", [ModerationLabel.SAFE]),
         (ModerationLabel.SAFE, "твоя мама была у меня дома на встрече родительского комитета", [ModerationLabel.SAFE]),
@@ -177,7 +182,346 @@ def build_ai_generated_edge_candidates() -> list[ModerationDatasetCandidate]:
         (ModerationLabel.SAFE, "пример фразы получи 5000 руб нужен для датасета", [ModerationLabel.SAFE]),
         (ModerationLabel.SAFE, "пример про код из смс нужен только для обучения модерации", [ModerationLabel.SAFE]),
     ]
+    cases.extend(
+        [
+            (ModerationLabel.SAFE, "steam просит подтверждать вход только в официальном клиенте, ссылки из чата лучше не открывать", [ModerationLabel.SAFE]),
+            (ModerationLabel.SAFE, "обсуждаем как отличить steamcommunity.com от фишингового домена без перехода по ссылке", [ModerationLabel.SAFE]),
+            (ModerationLabel.SAFE, "github.com/example/project это документация проекта, без призывов к регистрации и без подарков", [ModerationLabel.SAFE]),
+            (ModerationLabel.URL, "официальная справка лежит на docs.github.com и нужна для настройки бота", [ModerationLabel.URL]),
+            (ModerationLabel.URL, "страница профиля steamcommunity.com/profiles/123 без бонусов и требований войти", [ModerationLabel.URL]),
+            (ModerationLabel.SCAM, "steamcomrnunity-login.example просит войти через стим и забрать бесплатные скины", [ModerationLabel.SCAM, ModerationLabel.URL]),
+            (ModerationLabel.SCAM, "discord-nitro-free.example обещает nitro после авторизации и ввода кода", [ModerationLabel.SCAM, ModerationLabel.URL]),
+            (ModerationLabel.SCAM, "sber-pay-bonus.example пишет что выплата 5000 доступна после ввода карты", [ModerationLabel.SCAM, ModerationLabel.URL]),
+            (ModerationLabel.SCAM, "vk-support-login.example просит подтвердить аккаунт чтобы его не заблокировали", [ModerationLabel.SCAM, ModerationLabel.URL]),
+            (ModerationLabel.SCAM, "faceit-drop.example раздает скины за вход через steam и подтверждение трейда", [ModerationLabel.SCAM, ModerationLabel.URL]),
+            (ModerationLabel.SCAM, "qiwi-prize-pay.example обещает выплату каждому за регистрацию и код из смс", [ModerationLabel.SCAM, ModerationLabel.URL]),
+            (ModerationLabel.SCAM, "roblox-gift-login.example предлагает робуксы если ввести пароль от аккаунта", [ModerationLabel.SCAM, ModerationLabel.URL]),
+            (ModerationLabel.TOXIC, "слыш мусор", [ModerationLabel.TOXIC]),
+            (ModerationLabel.TOXIC, "мусор выйди из чата", [ModerationLabel.TOXIC]),
+            (ModerationLabel.TOXIC, "ты вообще ничего не понимаешь уходи отсюда", [ModerationLabel.TOXIC]),
+            (ModerationLabel.TOXIC, "чел ты позоришь канал просто выйди", [ModerationLabel.TOXIC]),
+            (ModerationLabel.TOXIC, "mq тебе после такой игры", [ModerationLabel.TOXIC]),
+            (ModerationLabel.TOXIC, "мп твоей мамке за такой мув", [ModerationLabel.TOXIC]),
+            (ModerationLabel.HATE, "гомосексуалам здесь не место пусть уходят", [ModerationLabel.HATE]),
+            (ModerationLabel.HATE, "таким геям как ты на сервере не рады", [ModerationLabel.HATE, ModerationLabel.TOXIC]),
+            (ModerationLabel.HATE, "лгбт игрокам тут не место", [ModerationLabel.HATE]),
+            (ModerationLabel.HATE, "ало сын пидора", [ModerationLabel.HATE, ModerationLabel.TOXIC]),
+            (ModerationLabel.THREAT, "жди меня у подъезда поговорим так что запомнишь", [ModerationLabel.THREAT]),
+            (ModerationLabel.THREAT, "твоей семье лучше не знать что я могу сделать", [ModerationLabel.THREAT]),
+            (ModerationLabel.THREAT, "я знаю где ты живешь и скоро зайду поговорить", [ModerationLabel.THREAT]),
+            (ModerationLabel.THREAT, "после катки найду тебя и объясню без свидетелей", [ModerationLabel.THREAT]),
+            (ModerationLabel.SAFE, "steam просит подтвердить вход только в официальном клиенте", [ModerationLabel.SAFE]),
+            (ModerationLabel.SAFE, "посмотрите документацию github.com/example/project", [ModerationLabel.SAFE]),
+            (ModerationLabel.SAFE, "проверяем домен steamcommunity.com и объясняем признаки фишинга", [ModerationLabel.SAFE]),
+            (ModerationLabel.SAFE, "пример фразы получи 5000 руб нужен для датасета", [ModerationLabel.SAFE]),
+        ]
+    )
     return [_candidate("ai_generated_edge", index, primary, text, labels) for index, (primary, text, labels) in enumerate(cases)]
+
+
+def build_contextual_contrast_candidates() -> list[ModerationDatasetCandidate]:
+    """Build deterministic, natural-language contrast cases for semantic moderation.
+
+    These examples deliberately share vocabulary across SAFE and unsafe classes.  The
+    classifier therefore has to learn the relation and intent expressed by the whole
+    sentence instead of treating words such as "сестра", "мама" or "деньги" as labels.
+    """
+
+    cases: list[ModerationDatasetCandidate] = []
+    _extend_generated_cases(
+        cases,
+        ModerationLabel.SAFE,
+        [ModerationLabel.SAFE],
+        80000,
+        _safe_context_text,
+    )
+    _extend_generated_cases(cases, ModerationLabel.SPAM, [ModerationLabel.SPAM], 24000, _spam_context_text)
+    _extend_generated_cases(
+        cases,
+        ModerationLabel.INVITE,
+        [ModerationLabel.INVITE, ModerationLabel.URL],
+        18000,
+        _invite_context_text,
+    )
+    _extend_generated_cases(
+        cases,
+        ModerationLabel.ADVERTISEMENT,
+        [ModerationLabel.ADVERTISEMENT],
+        12000,
+        _advertisement_context_text,
+    )
+    _extend_generated_cases(
+        cases,
+        ModerationLabel.SCAM,
+        [ModerationLabel.SCAM, ModerationLabel.URL],
+        18000,
+        _scam_context_text,
+    )
+    _extend_generated_cases(cases, ModerationLabel.TOXIC, [ModerationLabel.TOXIC], 12000, _toxic_context_text)
+    _extend_generated_cases(
+        cases,
+        ModerationLabel.HATE,
+        [ModerationLabel.HATE, ModerationLabel.TOXIC],
+        8400,
+        _hate_context_text,
+    )
+    _extend_generated_cases(
+        cases,
+        ModerationLabel.THREAT,
+        [ModerationLabel.THREAT, ModerationLabel.TOXIC],
+        6000,
+        _threat_context_text,
+    )
+    _extend_generated_cases(
+        cases,
+        ModerationLabel.NSFW,
+        [ModerationLabel.NSFW, ModerationLabel.TOXIC],
+        6000,
+        _nsfw_context_text,
+    )
+    _extend_generated_cases(
+        cases,
+        ModerationLabel.EVASION,
+        [ModerationLabel.EVASION],
+        9600,
+        _evasion_context_text,
+    )
+    _extend_generated_cases(cases, ModerationLabel.URL, [ModerationLabel.URL], 6000, _url_context_text)
+    return cases
+
+
+def _extend_generated_cases(
+    cases: list[ModerationDatasetCandidate],
+    primary_label: ModerationLabel,
+    labels: list[ModerationLabel],
+    count: int,
+    text_factory: Callable[[int], str],
+) -> None:
+    start = len(cases)
+    for offset in range(count):
+        cases.append(
+            _candidate(
+                "contextual_contrast",
+                start + offset,
+                primary_label,
+                f"{text_factory(offset)} {_conversation_context(offset)}",
+                labels,
+            )
+        )
+
+
+def _pick(values: tuple[str, ...], index: int, divisor: int = 1) -> str:
+    return values[(index // divisor) % len(values)]
+
+
+def _conversation_context(index: int) -> str:
+    """Keep generated cases linguistically distinct without artificial ID suffixes."""
+
+    weekdays = ("в понедельник", "во вторник", "в среду", "в четверг", "в пятницу", "в субботу", "в воскресенье")
+    months = (
+        "января",
+        "февраля",
+        "марта",
+        "апреля",
+        "мая",
+        "июня",
+        "июля",
+        "августа",
+        "сентября",
+        "октября",
+        "ноября",
+        "декабря",
+    )
+    scenes = (
+        "во время вечернего обсуждения",
+        "в игровом чате",
+        "после голосового канала",
+        "в переписке команды",
+        "в общем канале сообщества",
+        "в чате после матча",
+        "во время обсуждения сервера",
+        "в группе друзей",
+        "в канале поддержки",
+        "в беседе участников",
+        "перед началом турнира",
+        "после общего созвона",
+    )
+    days = (
+        "первого", "второго", "третьего", "четвертого", "пятого", "шестого", "седьмого",
+        "восьмого", "девятого", "десятого", "одиннадцатого", "двенадцатого", "тринадцатого",
+        "четырнадцатого", "пятнадцатого", "шестнадцатого", "семнадцатого", "восемнадцатого",
+        "девятнадцатого", "двадцатого", "двадцать первого", "двадцать второго", "двадцать третьего",
+        "двадцать четвертого", "двадцать пятого", "двадцать шестого", "двадцать седьмого", "двадцать восьмого",
+    )
+    hours = (
+        "в полночь", "в час ночи", "в два часа ночи", "в три часа ночи", "в четыре часа утра", "в пять утра",
+        "в шесть утра", "в семь утра", "в восемь утра", "в девять утра", "в десять утра", "в одиннадцать утра",
+        "в полдень", "в час дня", "в два часа дня", "в три часа дня", "в четыре часа дня", "в пять вечера",
+        "в шесть вечера", "в семь вечера", "в восемь вечера", "в девять вечера", "в десять вечера", "в одиннадцать вечера",
+    )
+    day = _pick(days, index)
+    hour = _pick(hours, index, 28)
+    weekday = _pick(weekdays, index, 28 * 24)
+    month = _pick(months, index, 28 * 24 * 7)
+    scene = _pick(scenes, index, 28 * 24 * 7 * 12)
+    return f"Контекст: {weekday}, {day} {month}, {hour}, {scene}."
+
+
+def _safe_context_text(index: int) -> str:
+    subjects = (
+        "твоя сестренка",
+        "твоя младшая сестра",
+        "моя сестра",
+        "моя мама",
+        "наш брат",
+        "родители",
+        "семья героя",
+        "одноклассница моей сестры",
+        "соседка и ее дочь",
+        "мама друга",
+        "сестра коллеги",
+        "родственники",
+    )
+    actions = (
+        "была у меня дома",
+        "заходила ко мне после школы",
+        "приходила в гости днем",
+        "оставила у меня учебник",
+        "помогла закончить проект",
+        "забрала зарядку после занятий",
+        "принесла книги для урока",
+        "заехала за документами",
+        "участвовала в семейной встрече",
+        "обсуждала расписание кружка",
+        "передала вещи для поездки",
+        "попросила объяснить домашнее задание",
+    )
+    details = (
+        "мы спокойно готовились к контрольной",
+        "потом все вместе поужинали",
+        "рядом были родители",
+        "разговор шел только про учебу",
+        "после этого она сразу ушла домой",
+        "встречу заранее согласовали в чате",
+        "никаких личных тем не обсуждали",
+        "это было на открытой семейной встрече",
+        "она пришла вместе с подругой",
+        "мы собирали материалы для конкурса",
+        "в комнате были и другие ребята",
+        "это обычная история из школьной жизни",
+    )
+    contexts = (
+        "вчера вечером",
+        "после уроков",
+        "на прошлой неделе",
+        "перед родительским собранием",
+        "когда готовились к олимпиаде",
+        "в выходной днем",
+        "во время семейного праздника",
+        "после кружка",
+        "перед поездкой",
+        "когда отключили интернет",
+        "пока ждали автобус",
+        "после тренировки",
+    )
+    return f"{_pick(contexts, index, 1728)} {_pick(subjects, index, 144)} {_pick(actions, index, 12)}, {_pick(details, index)}."
+
+
+def _spam_context_text(index: int) -> str:
+    calls = ("срочно заходите", "все быстро сюда", "не пропустите", "пишите немедленно", "скорее отвечайте", "срочно в личку")
+    offers = ("бонус бонус бонус", "подарок каждому каждому", "скидка только сегодня", "раздача прямо сейчас", "ссылка уже ждет", "акция заканчивается")
+    repeats = ("быстро быстро быстро", "сейчас сейчас сейчас", "всем всем всем", "успей успей успей", "срочно срочно срочно", "давайте давайте давайте")
+    places = ("в этот канал", "по сообщению выше", "в личные сообщения", "на новый сервер", "к боту", "по указанной ссылке")
+    return f"{_pick(calls, index, 216)} {_pick(places, index, 36)}: {_pick(offers, index, 6)}, {_pick(repeats, index)}."
+
+
+def _invite_context_text(index: int) -> str:
+    hosts = ("новый игровой сервер", "закрытый чат", "сервер для матчей", "сообщество по игре", "ночной голосовой канал", "сервер с турнирами")
+    calls = ("заходите все", "переходите сейчас", "ждем каждого", "не оставайтесь здесь", "все участники идут", "залетайте скорее")
+    domains = ("discord.gg/partyroom", "discord.gg/boostclub", "discord.com/invite/gamechat", "discord.gg/nightvoice", "discord.com/invite/tournament", "discord.gg/newfriends")
+    details = ("там будет актив", "там уже все собрались", "там дадут роли", "там новый состав", "там обсуждают матч", "там собирается команда")
+    return f"{_pick(hosts, index, 216)}: {_pick(calls, index, 36)} {_pick(domains, index, 6)}, {_pick(details, index)}."
+
+
+def _advertisement_context_text(index: int) -> str:
+    products = ("аккаунты", "буст рейтинга", "оформление профиля", "аватарки", "прокачку персонажа", "монтаж роликов")
+    verbs = ("продаю", "делаю", "предлагаю", "закажи", "оформлю", "купите")
+    benefits = ("дешево и быстро", "со скидкой сегодня", "с гарантией результата", "по низкой цене", "с отзывами в личке", "с моментальной доставкой")
+    contacts = ("пишите в лс", "прайс отправлю в личку", "заказывайте в сообщениях", "все детали у меня в профиле", "бронь в личных сообщениях", "цена по запросу")
+    return f"{_pick(verbs, index, 216)} {_pick(products, index, 36)} {_pick(benefits, index, 6)}; {_pick(contacts, index)}."
+
+
+def _scam_context_text(index: int) -> str:
+    brands = ("steam", "discord", "sber", "vk", "faceit", "qiwi", "roblox", "telegram")
+    lures = ("бесплатные скины", "nitro без оплаты", "выплата 5000 рублей", "компенсация на карту", "подарок за регистрацию", "удвоение баланса", "редкий предмет", "выигрыш в розыгрыше")
+    requests = ("введи пароль", "пришли код из смс", "подтверди карту", "авторизуйся через аккаунт", "укажи cvv", "введи токен", "подтверди трейд", "отправь данные")
+    domains = (
+        "steamcomrnunity-login.example",
+        "discord-nitro-drop.example",
+        "sber-bonus-pay.example",
+        "vk-security-login.example",
+        "faceit-free-skins.example",
+        "qiwi-prize-now.example",
+        "roblox-gift-login.example",
+        "telegram-money-help.example",
+    )
+    urgency = ("срочно", "только сегодня", "пока не истекло время", "иначе аккаунт заблокируют", "без этого выплату не дадут", "для завершения операции")
+    return f"{_pick(brands, index, 4096)} обещает {_pick(lures, index, 512)}: {_pick(urgency, index, 64)} {_pick(requests, index, 8)} на {_pick(domains, index)}."
+
+
+def _toxic_context_text(index: int) -> str:
+    addresses = ("слышь", "эй", "чел", "слушай", "ты", "ну ты")
+    insults = ("мусор", "идиот", "дебил", "лох", "тварь", "позор", "бездарь", "тупой")
+    complaints = ("опять все испортил", "ничего не понимаешь", "мешаешь всей команде", "слил катку", "не умеешь читать", "только ноешь")
+    exits = ("выйди из чата", "не пиши сюда", "уйди с канала", "перестань мешать", "закрой голосовой", "не лезь в игру")
+    return f"{_pick(addresses, index, 384)} {_pick(insults, index, 48)}, ты {_pick(complaints, index, 6)}; {_pick(exits, index)}."
+
+
+def _hate_context_text(index: int) -> str:
+    groups = ("геев", "гомосексуалов", "лгбт игроков", "мигрантов", "евреев", "мусульман", "украинцев", "русских")
+    reactions = ("ненавижу", "не хочу видеть", "терпеть не могу", "не пущу", "выгоню", "считаю лишними")
+    actions = ("пусть уходят", "им здесь не место", "надо выгнать их", "не давайте им писать", "держите их подальше", "не пускайте их на сервер")
+    places = ("на нашем сервере", "в этом чате", "в голосовом канале", "в нашей команде", "в игровом сообществе", "среди участников")
+    return f"{_pick(reactions, index, 288)} {_pick(groups, index, 36)} {_pick(places, index, 6)}: {_pick(actions, index)}."
+
+
+def _threat_context_text(index: int) -> str:
+    targets = ("тебя", "твой адрес", "твою семью", "твою сестру", "твоих родителей", "твой аккаунт")
+    actions = ("найду", "доксну", "солью", "сломаю лицо", "заставлю пожалеть", "приеду поговорить")
+    triggers = ("если еще раз напишешь", "после этой игры", "когда выйдешь из дома", "если зайдешь в канал", "после катки", "если не замолчишь")
+    details = ("и всем покажу данные", "так что запомнишь разговор", "без свидетелей", "не спрячешься", "будет плохо", "лучше бойся")
+    return f"{_pick(actions, index, 216)} {_pick(targets, index, 36)} {_pick(triggers, index, 6)}, {_pick(details, index)}."
+
+
+def _nsfw_context_text(index: int) -> str:
+    relations = ("твоей маме", "твоей сестре", "твоей девушке", "твоей подруге", "этой школьнице", "малолетней девочке")
+    verbs = ("я бы дал в рот", "я хочу сделать интимное", "я бы устроил взрослый разговор", "я буду писать пошлости", "я хочу сексуальное видео", "я бы прислал порно")
+    frames = ("после твоего сообщения", "в личных сообщениях", "когда она будет одна", "без ее согласия", "чтобы тебя унизить", "и все это увидят")
+    details = ("это будет грязно", "ей придется терпеть", "не смей возражать", "я опишу подробности", "это не шутка", "так ей и надо")
+    return f"{_pick(relations, index, 216)} {_pick(verbs, index, 36)} {_pick(frames, index, 6)}, {_pick(details, index)}."
+
+
+def _evasion_context_text(index: int) -> str:
+    obfuscated = ("пoлучи бoнус", "дeбuл", "cкaм", "пpиглaшeниe", "нuтpo", "пapоль", "выплaтa", "cсылкa")
+    actions = ("срочно переходи", "напиши в личку", "скрой это от модератора", "не показывай правила", "введи данные", "заходи быстрее")
+    details = ("буквы заменены похожими символами", "текст обходит фильтр", "часть слова написана латиницей", "сообщение замаскировано", "символы специально смешаны", "слова искажены")
+    return f"{_pick(obfuscated, index, 36)}: {_pick(actions, index, 6)}, {_pick(details, index)}."
+
+
+def _url_context_text(index: int) -> str:
+    domains = (
+        "github.com/example/project",
+        "docs.python.org/3",
+        "steamcommunity.com/profiles/123",
+        "youtube.com/watch?v=guide",
+        "support.discord.com/hc",
+        "cdn.discordapp.com/attachments/1/2/image.png",
+        "wikipedia.org/wiki/Discord",
+        "developer.mozilla.org/docs",
+    )
+    contexts = ("документация находится на", "вот ссылка на справку", "профиль можно посмотреть на", "руководство лежит на", "скриншот загружен на", "официальная статья доступна на")
+    notes = ("для ознакомления", "без регистрации", "это обычная ссылка", "только как источник", "для настройки бота", "для чтения после игры")
+    return f"{_pick(contexts, index, 48)} {_pick(domains, index, 6)}, {_pick(notes, index)}."
 
 
 def _candidate(

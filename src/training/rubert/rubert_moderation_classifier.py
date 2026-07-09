@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import math
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -16,7 +17,6 @@ from src.training.rubert.rubert_training_config import RuBertTrainingConfig
 
 @dataclass(frozen=True)
 class RuBertClassificationResult:
-    raw_text: str
     model_text: str
     labels: list[ModerationLabel]
     primary_label: ModerationLabel
@@ -49,8 +49,12 @@ class RuBertModerationClassifier:
             raise FileNotFoundError(f"ruBERT model directory not found: {self._model_dir}")
 
         self._torch = torch
-        self._tokenizer = AutoTokenizer.from_pretrained(self._model_dir)
-        self._model = AutoModelForSequenceClassification.from_pretrained(self._model_dir)
+        self._tokenizer = AutoTokenizer.from_pretrained(self._model_dir, local_files_only=True)
+        self._model = AutoModelForSequenceClassification.from_pretrained(
+            self._model_dir,
+            local_files_only=True,
+            use_safetensors=True,
+        )
         self._device = "cuda" if torch.cuda.is_available() else "cpu"
         self._model.to(self._device)
         self._model.eval()
@@ -102,7 +106,6 @@ class RuBertModerationClassifier:
         ]
 
         return RuBertClassificationResult(
-            raw_text=text,
             model_text=model_text,
             labels=selected,
             primary_label=primary_label,
@@ -127,9 +130,9 @@ class RuBertModerationClassifier:
                     severity=self._severity(label),
                     risk_weight=int(getattr(policy.label_weights, label.value, 0)),
                     evidence={
-                        "model_text": result.model_text,
                         "threshold": result.thresholds.get(label),
                         "top_labels": result.top_labels,
+                        "input_redacted": True,
                     },
                     reason="rubert_tiny2_moderation_classifier",
                     rule_id=f"rubert.{label.value.lower()}",
@@ -142,10 +145,13 @@ class RuBertModerationClassifier:
     def _load_thresholds(self) -> dict[ModerationLabel, float]:
         if self._thresholds_file.exists():
             data = json.loads(self._thresholds_file.read_text(encoding="utf-8"))
-            return {
-                ModerationLabel(label): float(data.get(label, self._config.training.threshold))
-                for label in self._label_order
-            }
+            thresholds: dict[ModerationLabel, float] = {}
+            for label in self._label_order:
+                value = float(data.get(label, self._config.training.threshold))
+                if not math.isfinite(value) or not 0.0 <= value <= 1.0:
+                    raise ValueError(f"Invalid ruBERT threshold label={label!r}")
+                thresholds[ModerationLabel(label)] = value
+            return thresholds
 
         return {
             ModerationLabel(label): self._config.training.threshold

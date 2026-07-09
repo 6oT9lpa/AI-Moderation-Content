@@ -15,7 +15,6 @@ class RuBertModelPreparer:
         "tokenizer_config.json",
         "special_tokens_map.json",
         "vocab.txt",
-        "pytorch_model.bin",
         "model.safetensors",
         "README.md",
     )
@@ -35,6 +34,7 @@ class RuBertModelPreparer:
         target_dir.mkdir(parents=True, exist_ok=True)
         snapshot_path = snapshot_download(
             repo_id=self._config.model.base_model_name,
+            revision=self._config.model.base_model_revision,
             local_dir=target_dir,
             allow_patterns=list(self.SNAPSHOT_ALLOW_PATTERNS),
         )
@@ -59,13 +59,16 @@ class RuBertModelPreparer:
 
         model_config = AutoConfig.from_pretrained(
             base_dir,
+            local_files_only=True,
             **self._config.to_transformers_metadata(),
         )
-        tokenizer = AutoTokenizer.from_pretrained(base_dir, use_fast=True)
+        tokenizer = AutoTokenizer.from_pretrained(base_dir, use_fast=True, local_files_only=True)
         model = AutoModelForSequenceClassification.from_pretrained(
             base_dir,
             config=model_config,
             ignore_mismatched_sizes=True,
+            local_files_only=True,
+            use_safetensors=True,
         )
         tokenizer.save_pretrained(output_dir)
         model.save_pretrained(output_dir)

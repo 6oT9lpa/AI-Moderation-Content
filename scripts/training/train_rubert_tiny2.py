@@ -107,6 +107,7 @@ def train(
     dry_run: bool = False,
     epochs: float | None = None,
     max_steps: int = -1,
+    resume_from_checkpoint: Path | None = None,
 ) -> None:
     from transformers import AutoModelForSequenceClassification, AutoTokenizer, TrainingArguments
 
@@ -121,13 +122,15 @@ def train(
         train_rows = train_rows[:64]
         validation_rows = validation_rows[:64]
 
-    tokenizer = AutoTokenizer.from_pretrained(model_source)
+    tokenizer = AutoTokenizer.from_pretrained(model_source, local_files_only=True)
     model = AutoModelForSequenceClassification.from_pretrained(
         model_source,
         num_labels=config.label_schema.num_labels,
         id2label=config.label_schema.id2label,
         label2id=config.label_schema.label2id,
         problem_type=config.model.problem_type,
+        local_files_only=True,
+        use_safetensors=True,
     )
 
     train_dataset = _build_dataset(train_rows, tokenizer, max_length=config.model.max_length)
@@ -164,7 +167,7 @@ def train(
         processing_class=tokenizer,
         compute_metrics=_compute_metrics(config.training.threshold),
     )
-    trainer.train()
+    trainer.train(resume_from_checkpoint=str(resume_from_checkpoint) if resume_from_checkpoint else None)
     trainer.save_model(output_dir)
     tokenizer.save_pretrained(output_dir)
     (output_dir / "class_weights.json").write_text(
@@ -190,6 +193,7 @@ def main() -> None:
     parser.add_argument("--dry-run", action="store_true", help="Train on a tiny subset for a smoke check.")
     parser.add_argument("--epochs", type=float, default=None, help="Override config training.num_train_epochs.")
     parser.add_argument("--max-steps", type=int, default=-1, help="Stop after N optimizer steps; -1 disables.")
+    parser.add_argument("--resume-from-checkpoint", type=Path, default=None, help="Resume Trainer state from a checkpoint.")
     args = parser.parse_args()
 
     train(
@@ -198,6 +202,7 @@ def main() -> None:
         dry_run=args.dry_run,
         epochs=args.epochs,
         max_steps=args.max_steps,
+        resume_from_checkpoint=args.resume_from_checkpoint,
     )
 
 

@@ -14,6 +14,7 @@ class RuBertModelConfig(BaseModel):
     model_config = ConfigDict(frozen=True, extra="forbid")
 
     base_model_name: str = "cointegrated/rubert-tiny2"
+    base_model_revision: str = "e8ed3b0c8bbf4fb6984c3de043bf7d2f4e5969ae"
     local_base_dir: Path = Path("models/rubert-tiny2")
     classifier_output_dir: Path = Path("models/rubert-tiny2-moderation-init")
     max_length: int = Field(default=256, gt=0)

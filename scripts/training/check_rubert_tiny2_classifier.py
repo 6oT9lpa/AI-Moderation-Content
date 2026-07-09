@@ -19,8 +19,12 @@ def main() -> None:
 
     config = RuBertTrainingConfig.load()
     model_path = config.model.classifier_output_dir
-    tokenizer = AutoTokenizer.from_pretrained(model_path)
-    model = AutoModelForSequenceClassification.from_pretrained(model_path)
+    tokenizer = AutoTokenizer.from_pretrained(model_path, local_files_only=True)
+    model = AutoModelForSequenceClassification.from_pretrained(
+        model_path,
+        local_files_only=True,
+        use_safetensors=True,
+    )
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model.to(device)
     model.eval()

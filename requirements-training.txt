@@ -1,0 +1,12 @@
+# Install PyTorch separately for your CUDA build first:
+# https://pytorch.org/get-started/locally/
+#
+# For GTX 1650, use a CUDA-enabled torch wheel if your driver supports it.
+
+huggingface-hub>=0.30,<1
+transformers>=4.50,<5
+datasets>=3.0,<5
+accelerate>=1.0,<2
+scikit-learn>=1.5,<2
+numpy>=1.26,<3
+safetensors>=0.4,<1

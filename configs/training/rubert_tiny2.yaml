@@ -1,0 +1,32 @@
+model:
+  base_model_name: cointegrated/rubert-tiny2
+  local_base_dir: models/rubert-tiny2
+  classifier_output_dir: models/rubert-tiny2-moderation-init
+  max_length: 512
+  problem_type: multi_label_classification
+
+training:
+  train_batch_size: 8
+  eval_batch_size: 16
+  gradient_accumulation_steps: 2
+  learning_rate: 0.00003
+  num_train_epochs: 8
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  fp16: true
+  threshold: 0.5
+
+labels:
+  - SAFE
+  - SPAM
+  - ADVERTISEMENT
+  - INVITE
+  - SCAM
+  - TOXIC
+  - HATE
+  - THREAT
+  - NSFW
+  - EVASION
+  - FLOOD
+  - URL
+  - IMAGE_SCAM

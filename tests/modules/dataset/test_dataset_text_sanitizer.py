@@ -52,3 +52,56 @@ async def test_dataset_text_sanitizer_can_keep_raw_text_for_short_retention_audi
 
     assert snapshot.raw_text == "check https://example.com/path"
     assert snapshot.model_text == "check <URL_DOMAIN:example.com>"
+
+
+@pytest.mark.asyncio
+async def test_dataset_text_sanitizer_keeps_discord_mentions_as_tags() -> None:
+    context = await TextPreprocessor().process(
+        MessagePreprocessInputSchema(
+            channel_id="channel-1",
+            user_id="user-1",
+            message_id="message-mention",
+            raw_text="<@123456789012345678> <@&123456789012345678> <#123456789012345678>",
+        )
+    )
+
+    snapshot = DatasetTextSanitizer().build_snapshot(context)
+
+    assert snapshot.model_text == (
+        "<DISCORD_USER_MENTION> <DISCORD_ROLE_MENTION> <DISCORD_CHANNEL_MENTION>"
+    )
+    assert "<PHONE>" not in snapshot.model_text
+
+
+@pytest.mark.asyncio
+async def test_dataset_text_sanitizer_preserves_existing_tokens() -> None:
+    context = await TextPreprocessor().process(
+        MessagePreprocessInputSchema(
+            channel_id="channel-1",
+            user_id="user-1",
+            message_id="message-token",
+            raw_text="<URL_DOMAIN:cdn.discordapp.com> <DISCORD_INVITE>",
+        )
+    )
+
+    snapshot = DatasetTextSanitizer().build_snapshot(context)
+
+    assert snapshot.model_text == "<URL_DOMAIN:cdn.discordapp.com> <DISCORD_INVITE>"
+    assert "<url_domain:<URL_DOMAIN:" not in snapshot.model_text
+
+
+@pytest.mark.asyncio
+async def test_dataset_text_sanitizer_replaces_attachment_url_before_phone() -> None:
+    context = await TextPreprocessor().process(
+        MessagePreprocessInputSchema(
+            channel_id="channel-1",
+            user_id="user-1",
+            message_id="message-attachment-url",
+            raw_text="https://cdn.discordapp.com/attachments/1129934674425294899/1155614824257040434/image.gif",
+        )
+    )
+
+    snapshot = DatasetTextSanitizer().build_snapshot(context)
+
+    assert snapshot.model_text == "<URL_DOMAIN:cdn.discordapp.com>"
+    assert "<PHONE>" not in snapshot.model_text

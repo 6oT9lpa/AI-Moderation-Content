@@ -26,6 +26,13 @@ class DatasetTextSanitizer:
     SECRET_RE = re.compile(
         r"(?i)\b(?:token|api[_-]?key|secret|password)\s*[:=]\s*[^\s,;]{6,}"
     )
+    DISCORD_USER_MENTION_RE = re.compile(r"<@!?\d{5,25}>")
+    DISCORD_ROLE_MENTION_RE = re.compile(r"<@&\d{5,25}>")
+    DISCORD_CHANNEL_MENTION_RE = re.compile(r"<#\d{5,25}>")
+    TOKEN_RE = re.compile(
+        r"(?i)<(?:URL_DOMAIN:[a-z0-9.-]+|DISCORD_INVITE|DISCORD_USER_MENTION|"
+        r"DISCORD_ROLE_MENTION|DISCORD_CHANNEL_MENTION|EMAIL|PHONE|SECRET|URL)>"
+    )
     CONTROL_RE = re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f]")
     WHITESPACE_RE = re.compile(r"\s+")
 
@@ -47,8 +54,12 @@ class DatasetTextSanitizer:
         redactions: list[dict[str, Any]] = []
 
         redacted_text = self._strip_control_chars(normalized_text)
+        protected_tokens: dict[str, str] = {}
+        redacted_text = self._protect_tokens(redacted_text, protected_tokens)
         redacted_text = self._apply_static_replacements(redacted_text, redactions)
         redacted_text = self._replace_urls(redacted_text, context.urls, redactions)
+        redacted_text = self._apply_phone_replacement(redacted_text, redactions)
+        redacted_text = self._restore_tokens(redacted_text, protected_tokens)
         redacted_text = self._normalize_whitespace(redacted_text)
 
         injection_markers = self._detect_injection_markers(normalized_text)
@@ -109,8 +120,10 @@ class DatasetTextSanitizer:
     ) -> str:
         replacements = (
             _Replacement(self.SECRET_RE, "<SECRET>", "secret"),
+            _Replacement(self.DISCORD_ROLE_MENTION_RE, "<DISCORD_ROLE_MENTION>", "discord_role_mention"),
+            _Replacement(self.DISCORD_CHANNEL_MENTION_RE, "<DISCORD_CHANNEL_MENTION>", "discord_channel_mention"),
+            _Replacement(self.DISCORD_USER_MENTION_RE, "<DISCORD_USER_MENTION>", "discord_user_mention"),
             _Replacement(self.EMAIL_RE, "<EMAIL>", "email"),
-            _Replacement(self.PHONE_RE, "<PHONE>", "phone"),
         )
 
         result = text
@@ -130,6 +143,46 @@ class DatasetTextSanitizer:
 
         return result
 
+    def _apply_phone_replacement(
+        self,
+        text: str,
+        redactions: list[dict[str, Any]],
+    ) -> str:
+        matches = self.PHONE_RE.findall(text)
+        if not matches:
+            return text
+
+        redactions.append(
+            {
+                "kind": "phone",
+                "token": "<PHONE>",
+                "count": len(matches),
+            }
+        )
+        return self.PHONE_RE.sub("<PHONE>", text)
+
+    def _protect_tokens(self, text: str, protected_tokens: dict[str, str]) -> str:
+        def replace(match: re.Match[str]) -> str:
+            key = f"__sanitized_token_{len(protected_tokens)}__"
+            protected_tokens[key] = self._canonical_token(match.group(0))
+            return key
+
+        return self.TOKEN_RE.sub(replace, text)
+
+    def _restore_tokens(self, text: str, protected_tokens: dict[str, str]) -> str:
+        result = text
+        for key, token in protected_tokens.items():
+            result = result.replace(key, token)
+        return result
+
+    def _canonical_token(self, token: str) -> str:
+        value = token.strip()
+        if value.casefold().startswith("<url_domain:"):
+            domain = value[len("<URL_DOMAIN:") : -1].casefold()
+            return f"<URL_DOMAIN:{domain}>"
+
+        return value.upper()
+
     def _url_token(self, url: str) -> str:
         domain = self._safe_domain(self._extract_domain(url))
         if self._is_discord_invite(url):
@@ -142,6 +195,7 @@ class DatasetTextSanitizer:
 
     def _extract_domain(self, url: str) -> str:
         try:
+            url = url.strip("<>")
             parsed = urlparse(url if "://" in url else f"https://{url}")
         except ValueError:
             return ""

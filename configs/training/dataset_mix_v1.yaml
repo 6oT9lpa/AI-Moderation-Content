@@ -1,0 +1,104 @@
+dataset:
+  name: rubert_moderation_v1
+  output_dir: data/exports/rubert_moderation_v1
+  total_examples: 50000
+  negative_examples: 30000
+  safe_examples: 20000
+  random_seed: 42
+  strict: true
+
+splits:
+  train: 0.70
+  validation: 0.15
+  test: 0.15
+
+negative_class_distribution:
+  SPAM: 0.20
+  INVITE: 0.15
+  ADVERTISEMENT: 0.10
+  SCAM: 0.15
+  TOXIC: 0.10
+  HATE: 0.07
+  THREAT: 0.05
+  NSFW: 0.05
+  EVASION: 0.08
+  URL: 0.05
+
+source_distribution:
+  project: 0.18
+  russian_toxicity: 0.05
+  russian_toxic_comments: 0.13
+  russian_toxic_dvach: 0.05
+  russian_inappropriate: 0.12
+  russian_nsfw_benchmark: 0.05
+  russian_spam: 0.08
+  russian_spam_fork: 0.04
+  russian_scam_spam_public: 0.05
+  russian_dialogues_safe: 0.10
+  russian_literature_safe: 0.05
+  manual_synthetic: 0.05
+  ai_generated_edge: 0.05
+
+sources:
+  project:
+    enabled: true
+    path: data/exports/project_training_examples.jsonl
+  russian_toxicity:
+    enabled: true
+    dataset_id: textdetox/multilingual_toxicity_dataset
+    split: ru
+  russian_spam:
+    enabled: true
+    dataset_id: ruSpamModels/russian-spam-detection
+    split: train
+    gated: true
+  russian_toxic_comments:
+    enabled: true
+    dataset_id: AlexSham/Toxic_Russian_Comments
+    split: train
+  russian_toxic_dvach:
+    enabled: true
+    dataset_id: marriamaslova/toxic_dvach
+    split: train
+  russian_inappropriate:
+    enabled: true
+    dataset_id: NiGuLa/Russian_Inappropriate_Messages
+    split: train
+    toxic_threshold: 0.75
+    safe_threshold: 0.25
+  russian_nsfw_benchmark:
+    enabled: true
+    dataset_id: redmadrobot-rnd/nsfw_benchmark
+    split: test
+  russian_dialogues_safe:
+    enabled: true
+    dataset_id: Den4ikAI/russian_dialogues
+    split: train
+  russian_literature_safe:
+    enabled: true
+    dataset_id: RafaelUI/russian_literature
+    split: train
+  russian_spam_fork:
+    enabled: true
+    dataset_id: benzlokzik/russian-spam-fork
+    split: train
+  russian_scam_spam_public:
+    enabled: true
+    dataset_id: FredZhang7/all-scam-spam
+    split: train
+  manual_synthetic:
+    enabled: true
+  ai_generated_edge:
+    enabled: true
+
+quality:
+  deduplicate_by_text: true
+  min_text_length: 3
+  max_text_length: 512
+  test_allowed_sources:
+    - project
+    - russian_toxicity
+    - russian_dialogues_safe
+    - russian_literature_safe
+    - russian_spam
+    - manual_synthetic

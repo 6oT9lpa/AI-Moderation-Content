@@ -203,6 +203,13 @@ cython_debug/
 # Temporary file for partial code execution
 tempCodeRunnerFile.py
 
+# Local ML artifacts
+models/
+data/exports/
+data/processed/
+data/raw/
+scripts/dataset/export_discord_messages.py
+
 # Ruff stuff:
 .ruff_cache/
 

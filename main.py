@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import re
+import sys
 from collections import defaultdict
 from datetime import datetime, timedelta, timezone
 from typing import Any
@@ -22,7 +23,14 @@ from src.modules.dataset.dataset_export_builder import DatasetExportBuilder
 from src.modules.decision.decision_engine import DecisionEngine
 from src.modules.preprocessing.text_preprocessor import TextPreprocessor
 from src.modules.rules.moderation_rule_engine import ModerationRuleEngine
+from src.modules.rules.moderation_rule_policy_config_loader import (
+    ModerationRulePolicyConfigLoader,
+)
 from src.modules.rules.preprocessing_signal_adapter import PreprocessingSignalAdapter
+from src.training.rubert.rubert_moderation_classifier import (
+    RuBertClassificationResult,
+    RuBertModerationClassifier,
+)
 
 CHANNEL_PATTERN = re.compile(r"(?<!\S)@([A-Za-z\u0400-\u04FF0-9_.-]+)")
 USER_PATTERN = re.compile(r"(?<!\S)#([A-Za-z\u0400-\u04FF0-9_.-]+)")
@@ -30,10 +38,12 @@ MSK = timezone(timedelta(hours=3), name="MSK")
 
 
 async def main() -> None:
+    _configure_console_encoding()
     _reduce_demo_log_noise()
 
     preprocessor = TextPreprocessor()
-    rule_engine = ModerationRuleEngine()
+    rule_policy = ModerationRulePolicyConfigLoader.load()
+    rule_engine = ModerationRuleEngine(rule_policy)
     decision_engine = DecisionEngine()
     signal_adapter = PreprocessingSignalAdapter()
     action_policy = ActionPolicyConfigLoader.load()
@@ -41,6 +51,7 @@ async def main() -> None:
     dataset_repository = InMemoryDatasetCollectorRepository()
     dataset_collector = DatasetCollector(dataset_repository)
     dataset_export_builder = DatasetExportBuilder()
+    rubert_classifier = _load_rubert_classifier()
 
     current_channel = "general"
     message_counter = 0
@@ -51,6 +62,10 @@ async def main() -> None:
     print("AI Moderator chat demo")
     print("Format: @channel #user message. Use @channel anywhere to switch channel. Type exit to finish.")
     print("Current channel: @general")
+    if rubert_classifier is not None:
+        print(f"ruBERT: enabled ({rubert_classifier.device}, {rubert_classifier.model_dir})")
+    else:
+        print("ruBERT: disabled (model/dependencies not available)")
 
     try:
         while True:
@@ -94,10 +109,18 @@ async def main() -> None:
 
             context = await preprocessor.process(payload)
             preprocessing_matches = context.metadata.get("preprocessing_rule_matches", [])
-            signals = []
+            preprocessing_signals = []
 
             for match_data in preprocessing_matches:
-                signals.extend(signal_adapter.adapt(match_data))
+                preprocessing_signals.extend(signal_adapter.adapt(match_data))
+
+            baseline_rule_result = rule_engine.evaluate(context.message_id, preprocessing_signals)
+            signals = list(preprocessing_signals)
+
+            rubert_result = None
+            if rubert_classifier is not None:
+                rubert_result = rubert_classifier.classify(parsed["text"])
+                signals.extend(rubert_classifier.to_signals(rubert_result, rule_policy))
 
             rule_result = rule_engine.evaluate(context.message_id, signals)
             decision = decision_engine.decide(context.message_id, rule_result)
@@ -144,6 +167,8 @@ async def main() -> None:
                 "reason": decision.reason,
                 "risk_score": decision.risk_score,
                 "action_status": execution_result.status.value,
+                "rubert": _format_rubert_result(rubert_result),
+                "baseline": _format_rule_result(baseline_rule_result),
                 "matches": [
                     {
                         "label": item.label.value,
@@ -171,7 +196,9 @@ async def main() -> None:
                 f"@{channel_id} #{user_id}: "
                 f"labels={_format_list(label.value for label in decision.labels)} "
                 f"primary={decision.primary_label.value} action={decision.decision_action.value} "
-                f"risk={decision.risk_score:.2f} action_status={execution_result.status.value}"
+                f"risk={decision.risk_score:.2f} action_status={execution_result.status.value} "
+                f"baseline={baseline_rule_result.primary_label.value}:{baseline_rule_result.risk_score:.2f} "
+                f"rubert={_format_rubert_inline(rubert_result)}"
             )
     except (KeyboardInterrupt, EOFError):
         print("")
@@ -210,6 +237,21 @@ def _reduce_demo_log_noise() -> None:
             handler.setLevel(logging.WARNING)
 
 
+def _configure_console_encoding() -> None:
+    for stream_name in ("stdin", "stdout", "stderr"):
+        stream = getattr(sys, stream_name)
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
+
+
+def _load_rubert_classifier() -> RuBertModerationClassifier | None:
+    try:
+        return RuBertModerationClassifier()
+    except Exception as exc:
+        logging.getLogger(__name__).warning("ruBERT classifier disabled: %s", exc)
+        return None
+
+
 def _print_report(
     channel_users: dict[str, set[str]],
     channel_messages: dict[str, list[dict[str, Any]]],
@@ -242,9 +284,12 @@ def _print_report(
                 f"- {timestamp} #{message['user_id']}: {message['text']} "
                 f"[labels={_format_list(message['labels'])} primary={message['primary_label']} "
                 f"action={message['decision_action']} risk={message['risk_score']:.2f} "
+                f"baseline={message['baseline']['primary_label']}:{message['baseline']['risk_score']:.2f} "
+                f"rubert={message['rubert']['primary_label']} "
                 f"dataset_event_id={message['dataset_event_id']}]"
             )
             _print_message_matches(message)
+            _print_rubert_details(message["rubert"])
 
 
 def _print_channel_punishments(messages: list[dict[str, Any]]) -> None:
@@ -290,6 +335,57 @@ def _print_message_matches(message: dict[str, Any]) -> None:
         for match in message["matches"]
     )
     print(f"  matches: {details}")
+
+
+def _print_rubert_details(rubert: dict[str, Any]) -> None:
+    if not rubert["enabled"]:
+        return
+
+    top_labels = ", ".join(
+        f"{item['label']}:{item['score']:.3f}"
+        for item in rubert["top_labels"]
+    )
+    print(
+        f"  rubert: labels={_format_list(rubert['labels'])} "
+        f"primary={rubert['primary_label']} model_text={rubert['model_text']!r} "
+        f"top={top_labels}"
+    )
+
+
+def _format_rubert_inline(result: RuBertClassificationResult | None) -> str:
+    if result is None:
+        return "disabled"
+
+    return f"{result.primary_label.value}:{_format_list(label.value for label in result.labels)}"
+
+
+def _format_rubert_result(result: RuBertClassificationResult | None) -> dict[str, Any]:
+    if result is None:
+        return {
+            "enabled": False,
+            "labels": [],
+            "primary_label": "DISABLED",
+            "model_text": "",
+            "top_labels": [],
+        }
+
+    return {
+        "enabled": True,
+        "labels": [label.value for label in result.labels],
+        "primary_label": result.primary_label.value,
+        "model_text": result.model_text,
+        "top_labels": result.top_labels,
+    }
+
+
+def _format_rule_result(result: Any) -> dict[str, Any]:
+    return {
+        "labels": [label.value for label in result.labels],
+        "primary_label": result.primary_label.value,
+        "risk_score": result.risk_score,
+        "confidence": result.confidence,
+        "severity": result.severity,
+    }
 
 
 def _format_list(values: Any) -> str:

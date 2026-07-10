@@ -9,11 +9,12 @@ from src.domain.decision.moderation_action_plan import ModerationActionPlan
 from src.domain.decision.moderation_mode import ModerationMode
 from src.domain.moderation.moderation_action import ModerationAction
 from src.domain.moderation.moderation_label import ModerationLabel
+from src.domain.media.media_analysis_result import MediaAnalysisResult
 from src.domain.rules.rule_evaluation_result import RuleEvaluationResult
 
 
 class ModerationDecision(BaseModel):
-    model_config = ConfigDict(frozen=True, extra="forbid")
+    model_config = ConfigDict(frozen=True, extra="forbid", arbitrary_types_allowed=True)
 
     message_id: str
     labels: list[ModerationLabel]
@@ -31,3 +32,4 @@ class ModerationDecision(BaseModel):
     policy_version: str
     created_at: datetime = Field(default_factory=datetime.now)
     metadata: dict[str, Any] = Field(default_factory=dict)
+    media_analysis: MediaAnalysisResult | None = None

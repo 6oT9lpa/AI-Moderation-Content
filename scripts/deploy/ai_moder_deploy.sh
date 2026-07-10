@@ -22,7 +22,16 @@ cp "$ARCHIVE" "$ROOT_ARCHIVE"
 
 if [ -d "$APP_DIR" ]; then
     log "Create backup..."
-    tar -C "$(dirname "$APP_DIR")" -czf "$BACKUP" "$(basename "$APP_DIR")"
+    APP_NAME="$(basename "$APP_DIR")"
+    tar \
+        --exclude="$APP_NAME/.venv" \
+        --exclude="$APP_NAME/models" \
+        --exclude="$APP_NAME/logs" \
+        --exclude="$APP_NAME/__pycache__" \
+        --exclude="$APP_NAME/.pytest_cache" \
+        -C "$(dirname "$APP_DIR")" \
+        -czf "$BACKUP" \
+        "$APP_NAME"
 else
     log "App directory does not exist yet, backup skipped."
 fi

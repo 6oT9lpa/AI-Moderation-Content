@@ -22,3 +22,5 @@ class ApiSettings(BaseSettings):
     api_queue_workers: int = Field(default=2, ge=1, le=8)
     api_queue_size: int = Field(default=500, ge=1, le=10_000)
     api_rubert_enabled: bool = True
+    api_rubert_required: bool = True
+    api_rubert_model_dir: str = "models/rubert-tiny2-moderation-trained"

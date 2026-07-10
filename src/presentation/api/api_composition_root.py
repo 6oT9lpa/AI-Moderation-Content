@@ -1,4 +1,5 @@
 import asyncio
+from pathlib import Path
 
 from src.application.api_moderation_service import ApiModerationService
 from src.application.moderation_request_queue import ModerationRequestQueue
@@ -53,6 +54,8 @@ class ApiCompositionRoot:
             inference_semaphore=inference_semaphore,
             moderation_queue=moderation_queue,
         )
+        container.rubert_enabled = self._settings.api_rubert_enabled
+        container.rubert_required = self._settings.api_rubert_required
         container.rubert_ready = classifier is not None
         container.model_id = str(classifier.model_dir) if classifier else None
         return container
@@ -61,7 +64,14 @@ class ApiCompositionRoot:
         if not self._settings.api_rubert_enabled:
             return None
         try:
-            return RuBertModerationClassifier()
-        except Exception:
-            logger.warning("Local ruBERT is unavailable; moderation will use rule-based fallback")
+            model_dir = Path(self._settings.api_rubert_model_dir)
+            classifier = RuBertModerationClassifier(model_dir=model_dir)
+            logger.info("Local ruBERT loaded model_dir=%s device=%s", classifier.model_dir, classifier.device)
+            return classifier
+        except Exception as exc:
+            logger.warning(
+                "Local ruBERT is unavailable; moderation will use rule-based fallback model_dir=%s error=%s",
+                self._settings.api_rubert_model_dir,
+                exc,
+            )
             return None

@@ -22,3 +22,7 @@ SQLAlchemy==2.0.51
 typing-inspection==0.4.2
 typing_extensions==4.16.0
 tzdata==2026.2
+numpy>=1.26,<3
+safetensors>=0.4,<1
+torch>=2.5,<3
+transformers>=4.50,<5

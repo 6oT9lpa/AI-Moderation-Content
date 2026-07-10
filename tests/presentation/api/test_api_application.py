@@ -60,8 +60,19 @@ class _ServiceStub:
         return EffectivePolicyResponseSchema(correlation_id=correlation_id, policies=())
 
 
-def _client(rate_limit: int = 10) -> TestClient:
-    settings = ApiSettings(internal_api_key="test-key-value-1234", api_rate_limit=rate_limit)
+def _client(
+    rate_limit: int = 10,
+    *,
+    rubert_enabled: bool = True,
+    rubert_required: bool = True,
+    rubert_ready: bool = False,
+) -> TestClient:
+    settings = ApiSettings(
+        internal_api_key="test-key-value-1234",
+        api_rate_limit=rate_limit,
+        api_rubert_enabled=rubert_enabled,
+        api_rubert_required=rubert_required,
+    )
     service = _ServiceStub()
     container = ApiContainer(
         service=service,
@@ -71,6 +82,9 @@ def _client(rate_limit: int = 10) -> TestClient:
         inference_semaphore=asyncio.Semaphore(1),
         moderation_queue=ModerationRequestQueue(service, 1, 10),
     )
+    container.rubert_enabled = rubert_enabled
+    container.rubert_required = rubert_required
+    container.rubert_ready = rubert_ready
     return TestClient(create_api_application("postgresql://unused", settings, container))
 
 
@@ -91,7 +105,27 @@ def test_health_is_available_without_key() -> None:
     with _client() as client:
         response = client.get("/health")
     assert response.status_code == 200
+    assert response.json()["status"] == "degraded"
     assert response.json()["database_status"] == "ready"
+    assert response.json()["rubert_status"] == "unavailable"
+
+
+def test_health_is_ok_when_required_rubert_is_ready() -> None:
+    logger.info("API test expected=200 actual=health with ready ruBERT")
+    with _client(rubert_ready=True) as client:
+        response = client.get("/health")
+    assert response.status_code == 200
+    assert response.json()["status"] == "ok"
+    assert response.json()["rubert_status"] == "ready"
+
+
+def test_health_allows_disabled_rubert() -> None:
+    logger.info("API test expected=200 actual=health with disabled ruBERT")
+    with _client(rubert_enabled=False, rubert_required=False) as client:
+        response = client.get("/health")
+    assert response.status_code == 200
+    assert response.json()["status"] == "ok"
+    assert response.json()["rubert_status"] == "disabled"
 
 
 def test_moderation_requires_valid_key_and_omits_raw_text() -> None:

@@ -22,11 +22,16 @@ async def health(request: Request) -> HealthResponseSchema:
             container.database_ready = True
         except Exception:
             container.database_ready = False
-    ready = container.database_ready and container.policy_ready
+    rubert_ok = (
+        not container.rubert_enabled
+        or not container.rubert_required
+        or container.rubert_ready
+    )
+    ready = container.database_ready and container.policy_ready and rubert_ok
     return HealthResponseSchema(
         status="ok" if ready else "degraded",
         database_status="ready" if container.database_ready else "unavailable",
-        rubert_status="ready" if container.rubert_ready else "unavailable",
+        rubert_status="disabled" if not container.rubert_enabled else "ready" if container.rubert_ready else "unavailable",
         policy_status="ready" if container.policy_ready else "unavailable",
         policy_version=container.policy_version,
         model_id=container.model_id,

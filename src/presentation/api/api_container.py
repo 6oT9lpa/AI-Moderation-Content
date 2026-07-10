@@ -25,6 +25,8 @@ class ApiContainer:
         self.moderation_queue = moderation_queue
         self.database_ready = False
         self.rubert_ready = False
+        self.rubert_enabled = True
+        self.rubert_required = True
         self.policy_ready = False
         self.policy_version: str | None = None
         self.model_id: str | None = None

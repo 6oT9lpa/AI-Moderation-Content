@@ -11,6 +11,7 @@ from src.domain.dto.action.action_execution_plan_result import ActionExecutionPl
 from src.domain.dto.dataset.dataset_feedback_label import DatasetFeedbackLabel
 from src.domain.dto.dataset.dataset_text_snapshot import DatasetTextSnapshot
 from src.domain.dto.dataset.training_example import TrainingExample
+from src.domain.media.media_analysis_result import MediaAnalysisResult
 from src.domain.rules.rule_evaluation_result import RuleEvaluationResult
 
 
@@ -34,6 +35,7 @@ class DatasetCollectionRecord(BaseModel):
     decision: ModerationDecision
     action_result: ActionExecutionPlanResult | None = None
     feedback: DatasetFeedbackLabel | None = None
+    media_analysis: MediaAnalysisResult | None = None
     training_example: TrainingExample
     created_at: datetime
     processed_at: datetime

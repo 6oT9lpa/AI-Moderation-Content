@@ -36,6 +36,8 @@ class DatabaseConnection:
         await self._run_migrations()
         await self._connect()
         await self._create_tables()
+        await self._upgrade_schema()
+        await self._create_indexes()
 
         logger.info("Database initialized successfully")
 
@@ -90,10 +92,19 @@ class DatabaseConnection:
         for statement in self._get_create_table_statements():
             await self.execute(statement)
 
+        logger.info("Database tables created successfully")
+
+    async def _create_indexes(self) -> None:
         for statement in self._get_create_index_statements():
             await self.execute(statement)
 
-        logger.info("Database tables created successfully")
+        logger.info("Database indexes created successfully")
+
+    async def _upgrade_schema(self) -> None:
+        for statement in self._get_schema_upgrade_statements():
+            await self.execute(statement)
+
+        logger.info("Database schema upgrades applied")
 
     async def execute(
         self,
@@ -385,6 +396,8 @@ class DatabaseConnection:
                 ocr_confidence NUMERIC(5, 4) CHECK (
                     ocr_confidence IS NULL OR (ocr_confidence >= 0 AND ocr_confidence <= 1)
                 ),
+                ocr_status TEXT NOT NULL DEFAULT 'SKIPPED',
+                ocr_error TEXT,
                 ocr_text_hash TEXT,
 
                 ocr_has_money BOOLEAN NOT NULL DEFAULT FALSE,
@@ -392,8 +405,16 @@ class DatabaseConnection:
                 ocr_has_crypto BOOLEAN NOT NULL DEFAULT FALSE,
                 ocr_has_bonus BOOLEAN NOT NULL DEFAULT FALSE,
                 ocr_has_payment_words BOOLEAN NOT NULL DEFAULT FALSE,
+                ocr_has_fake_news BOOLEAN NOT NULL DEFAULT FALSE,
+                ocr_text_density NUMERIC(8, 4) NOT NULL DEFAULT 0 CHECK (
+                    ocr_text_density >= 0
+                ),
+                ocr_money_amounts_json JSONB NOT NULL DEFAULT '[]'::jsonb,
+                ocr_domains_json JSONB NOT NULL DEFAULT '[]'::jsonb,
+                ocr_keywords_json JSONB NOT NULL DEFAULT '{}'::jsonb,
 
                 known_scam_hash_match BOOLEAN NOT NULL DEFAULT FALSE,
+                scam_subtype TEXT,
 
                 storage_uri TEXT,
 
@@ -679,6 +700,11 @@ class DatabaseConnection:
             """,
 
             """
+            CREATE INDEX IF NOT EXISTS idx_ai_media_attachments_scam_subtype
+            ON ai_media_attachments (scam_subtype)
+            """,
+
+            """
             CREATE INDEX IF NOT EXISTS idx_ai_analysis_results_event_stage
             ON ai_analysis_results (event_id, stage)
             """,
@@ -767,4 +793,16 @@ class DatabaseConnection:
             CREATE INDEX IF NOT EXISTS idx_ai_rule_match_events_rule_id
             ON ai_rule_match_events (rule_id)
             """,
+        ]
+
+    def _get_schema_upgrade_statements(self) -> list[str]:
+        return [
+            "ALTER TABLE ai_media_attachments ADD COLUMN IF NOT EXISTS ocr_has_fake_news BOOLEAN NOT NULL DEFAULT FALSE",
+            "ALTER TABLE ai_media_attachments ADD COLUMN IF NOT EXISTS ocr_status TEXT NOT NULL DEFAULT 'SKIPPED'",
+            "ALTER TABLE ai_media_attachments ADD COLUMN IF NOT EXISTS ocr_error TEXT",
+            "ALTER TABLE ai_media_attachments ADD COLUMN IF NOT EXISTS ocr_text_density NUMERIC(8, 4) NOT NULL DEFAULT 0",
+            "ALTER TABLE ai_media_attachments ADD COLUMN IF NOT EXISTS ocr_money_amounts_json JSONB NOT NULL DEFAULT '[]'::jsonb",
+            "ALTER TABLE ai_media_attachments ADD COLUMN IF NOT EXISTS ocr_domains_json JSONB NOT NULL DEFAULT '[]'::jsonb",
+            "ALTER TABLE ai_media_attachments ADD COLUMN IF NOT EXISTS ocr_keywords_json JSONB NOT NULL DEFAULT '{}'::jsonb",
+            "ALTER TABLE ai_media_attachments ADD COLUMN IF NOT EXISTS scam_subtype TEXT",
         ]

@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import hashlib
 from typing import Any
 
 from psycopg.types.json import Jsonb
@@ -10,20 +11,31 @@ from src.domain.dto.dataset.dataset_collection_record import DatasetCollectionRe
 from src.domain.dto.dataset.dataset_collection_result import DatasetCollectionResult
 from src.infrastructure.database.connection import DatabaseConnection
 from src.infrastructure.logging.logger import get_logger
+from src.modules.dataset.media_analysis_sanitizer import MediaAnalysisSanitizer
 
 logger = get_logger(__name__)
 
 
 class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
-    def __init__(self, database: DatabaseConnection) -> None:
+    def __init__(
+        self,
+        database: DatabaseConnection,
+        *,
+        media_analysis_sanitizer: MediaAnalysisSanitizer | None = None,
+    ) -> None:
         self._database = database
+        self._media_analysis_sanitizer = media_analysis_sanitizer or MediaAnalysisSanitizer()
 
     async def save_collection(
         self,
         record: DatasetCollectionRecord,
     ) -> DatasetCollectionResult:
         event_id = await self._upsert_event(record)
-        await self._upsert_features(event_id, record)
+        media_audit = self._media_analysis_sanitizer.sanitize(record.media_analysis) if record.media_analysis else None
+        await self._upsert_features(event_id, record, media_audit)
+        if record.media_analysis is not None:
+            await self._upsert_media_attachments(event_id, record, media_audit)
+            await self._insert_media_analysis(event_id, record, media_audit)
         await self._insert_rule_analysis(event_id, record)
         decision_id = await self._insert_decision(event_id, record)
 
@@ -108,8 +120,17 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
 
         return result.lastrowid
 
-    async def _upsert_features(self, event_id: int, record: DatasetCollectionRecord) -> None:
+    async def _upsert_features(
+        self,
+        event_id: int,
+        record: DatasetCollectionRecord,
+        media_audit: dict[str, Any] | None,
+    ) -> None:
         features = record.features
+        metadata = {
+            **record.metadata,
+            "media_analysis": media_audit,
+        }
         await self._database.execute(
             """
             INSERT INTO ai_message_features (
@@ -206,7 +227,7 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
                 Jsonb(
                     {
                         **features,
-                        **record.metadata,
+                        **metadata,
                         "training_example": record.training_example.model_dump(mode="json"),
                     }
                 ),
@@ -250,6 +271,157 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
                 round(rule_result.risk_score),
                 Jsonb([item.model_dump(mode="json") for item in rule_result.risk_breakdown]),
                 rule_result.created_at,
+            ],
+        )
+
+    async def _upsert_media_attachments(
+        self,
+        event_id: int,
+        record: DatasetCollectionRecord,
+        media_audit: dict[str, Any] | None,
+    ) -> None:
+        media_analysis = record.media_analysis
+        if media_analysis is None or media_audit is None:
+            return
+
+        audit_by_attachment_id = {
+            str(attachment_audit.get("attachment_id")): attachment_audit
+            for attachment_audit in media_audit.get("attachments", [])
+            if isinstance(attachment_audit, dict)
+        }
+
+        for attachment in media_analysis.attachments:
+            attachment_audit = audit_by_attachment_id.get(attachment.attachment_id, {})
+            ocr_text = str(attachment_audit.get("ocr_text") or "")
+            ocr_error = attachment_audit.get("ocr_error")
+            ocr_features = attachment.ocr_features
+            ocr_text_hash = (
+                hashlib.sha256(ocr_text.encode("utf-8")).hexdigest()
+                if ocr_text
+                else None
+            )
+            await self._database.execute(
+                """
+                INSERT INTO ai_media_attachments (
+                    event_id, attachment_id, file_name, file_type, content_type, file_size,
+                    width, height, aspect_ratio, sha256, phash, dhash, ahash,
+                    is_screenshot_like, ocr_text, ocr_language, ocr_confidence, ocr_status, ocr_error,
+                    ocr_text_hash,
+                    ocr_has_money, ocr_has_casino, ocr_has_crypto, ocr_has_bonus,
+                    ocr_has_payment_words, ocr_has_fake_news, ocr_text_density,
+                    ocr_money_amounts_json, ocr_domains_json, ocr_keywords_json,
+                    known_scam_hash_match, scam_subtype, storage_uri
+                )
+                VALUES (
+                    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                    %s, %s, %s, %s, %s
+                )
+                ON CONFLICT (event_id, attachment_id) DO UPDATE SET
+                    file_name = EXCLUDED.file_name,
+                    file_type = EXCLUDED.file_type,
+                    content_type = EXCLUDED.content_type,
+                    file_size = EXCLUDED.file_size,
+                    width = EXCLUDED.width,
+                    height = EXCLUDED.height,
+                    aspect_ratio = EXCLUDED.aspect_ratio,
+                    sha256 = EXCLUDED.sha256,
+                    phash = EXCLUDED.phash,
+                    dhash = EXCLUDED.dhash,
+                    ahash = EXCLUDED.ahash,
+                    is_screenshot_like = EXCLUDED.is_screenshot_like,
+                    ocr_text = EXCLUDED.ocr_text,
+                    ocr_language = EXCLUDED.ocr_language,
+                    ocr_confidence = EXCLUDED.ocr_confidence,
+                    ocr_status = EXCLUDED.ocr_status,
+                    ocr_error = EXCLUDED.ocr_error,
+                    ocr_text_hash = EXCLUDED.ocr_text_hash,
+                    ocr_has_money = EXCLUDED.ocr_has_money,
+                    ocr_has_casino = EXCLUDED.ocr_has_casino,
+                    ocr_has_crypto = EXCLUDED.ocr_has_crypto,
+                    ocr_has_bonus = EXCLUDED.ocr_has_bonus,
+                    ocr_has_payment_words = EXCLUDED.ocr_has_payment_words,
+                    ocr_has_fake_news = EXCLUDED.ocr_has_fake_news,
+                    ocr_text_density = EXCLUDED.ocr_text_density,
+                    ocr_money_amounts_json = EXCLUDED.ocr_money_amounts_json,
+                    ocr_domains_json = EXCLUDED.ocr_domains_json,
+                    ocr_keywords_json = EXCLUDED.ocr_keywords_json,
+                    known_scam_hash_match = EXCLUDED.known_scam_hash_match,
+                    scam_subtype = EXCLUDED.scam_subtype,
+                    storage_uri = EXCLUDED.storage_uri
+                """,
+                [
+                    event_id,
+                    attachment.attachment_id,
+                    attachment.metadata.file_name,
+                    attachment.metadata.content_type.removeprefix("image/"),
+                    attachment.metadata.content_type,
+                    attachment.metadata.file_size,
+                    attachment.metadata.width,
+                    attachment.metadata.height,
+                    attachment.metadata.aspect_ratio,
+                    attachment.hashes.sha256,
+                    attachment.hashes.phash,
+                    attachment.hashes.dhash,
+                    attachment.hashes.ahash,
+                    attachment.metadata.is_screenshot_like,
+                    ocr_text or None,
+                    attachment.ocr_result.language,
+                    attachment.ocr_result.confidence,
+                    attachment.ocr_result.status.value,
+                    str(ocr_error) if ocr_error else None,
+                    ocr_text_hash,
+                    ocr_features.has_money_amount,
+                    ocr_features.has_casino,
+                    ocr_features.has_crypto,
+                    ocr_features.has_bonus_or_promo,
+                    ocr_features.has_payment_words,
+                    ocr_features.has_fake_news,
+                    ocr_features.text_density,
+                    Jsonb(list(ocr_features.money_amounts)),
+                    Jsonb(list(ocr_features.domains)),
+                    Jsonb(ocr_features.to_dict()),
+                    attachment.known_scam_hash_match,
+                    media_analysis.scam_subtype.value if media_analysis.scam_subtype else None,
+                    None,
+                ],
+            )
+
+    async def _insert_media_analysis(
+        self,
+        event_id: int,
+        record: DatasetCollectionRecord,
+        media_audit: dict[str, Any] | None,
+    ) -> None:
+        media_analysis = record.media_analysis
+        if media_analysis is None or media_audit is None:
+            return
+        confidence = max((match.confidence for match in media_analysis.rule_matches), default=None)
+        primary_label = next(
+            (label for label in media_analysis.labels if label.value == "SCAM"),
+            media_analysis.labels[0] if media_analysis.labels else None,
+        )
+        await self._database.execute(
+            """
+            INSERT INTO ai_analysis_results (
+                event_id, stage, model_name, input_version, output_json, label, labels_json,
+                confidence, probabilities_json, rule_matches_json, risk_score, risk_breakdown_json, created_at
+            )
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP)
+            """,
+            [
+                event_id,
+                "ocr_rule_engine",
+                "cpu_media_analyzer",
+                "media_analyzer_v1",
+                Jsonb(media_audit),
+                primary_label.value if primary_label else None,
+                Jsonb([label.value for label in media_analysis.labels]),
+                confidence,
+                Jsonb({}),
+                Jsonb([match.to_dict() for match in media_analysis.rule_matches]),
+                media_analysis.risk.score,
+                Jsonb(media_analysis.risk.to_dict()["breakdown"]),
             ],
         )
 

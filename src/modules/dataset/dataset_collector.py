@@ -12,6 +12,7 @@ from src.domain.dto.dataset.training_example import TrainingExample
 from src.domain.moderation.moderation_action import ModerationAction
 from src.domain.moderation.moderation_label import ModerationLabel
 from src.infrastructure.logging.logger import get_logger
+from src.modules.dataset.media_analysis_sanitizer import MediaAnalysisSanitizer
 from src.modules.dataset.dataset_text_sanitizer import DatasetTextSanitizer
 
 logger = get_logger(__name__)
@@ -23,15 +24,19 @@ class DatasetCollector:
         repository: DatasetCollectorRepository,
         *,
         text_sanitizer: DatasetTextSanitizer | None = None,
+        media_analysis_sanitizer: MediaAnalysisSanitizer | None = None,
     ) -> None:
         self._repository = repository
         self._text_sanitizer = text_sanitizer or DatasetTextSanitizer()
+        self._media_analysis_sanitizer = media_analysis_sanitizer or MediaAnalysisSanitizer(self._text_sanitizer)
 
     async def collect(self, item: DatasetCollectionInput) -> DatasetCollectionResult:
         context = item.context
         source = item.source or self._resolve_source(item)
         snapshot = self._text_sanitizer.build_snapshot(context, store_raw_text=item.store_raw_text)
-        features = self._build_features(item)
+        media_analysis = item.media_analysis or item.decision.media_analysis
+        media_audit = self._media_analysis_sanitizer.sanitize(media_analysis) if media_analysis else None
+        features = self._build_features(item, media_audit)
         training_example = self._build_training_example(item, source, snapshot.model_text, features)
 
         record = DatasetCollectionRecord(
@@ -52,6 +57,7 @@ class DatasetCollector:
             decision=item.decision,
             action_result=item.action_result,
             feedback=item.feedback,
+            media_analysis=media_analysis,
             training_example=training_example,
             created_at=context.created_at,
             processed_at=datetime.now(timezone.utc),
@@ -59,6 +65,7 @@ class DatasetCollector:
             metadata={
                 "dataset_text": snapshot.model_dump(mode="json"),
                 "context_metadata": self._json_safe_mapping(context.metadata),
+                "media_analysis": media_audit,
             },
         )
 
@@ -85,7 +92,7 @@ class DatasetCollector:
 
         return DatasetSource.REAL_MODERATED
 
-    def _build_features(self, item: DatasetCollectionInput) -> dict[str, Any]:
+    def _build_features(self, item: DatasetCollectionInput, media_audit: dict[str, Any] | None) -> dict[str, Any]:
         context = item.context
         features = context.features.to_dict() if context.features is not None else {}
         features.update(
@@ -99,6 +106,8 @@ class DatasetCollector:
                 "invites": context.invites,
             }
         )
+        if media_audit is not None:
+            features.update(media_audit)
         return self._json_safe_mapping(features)
 
     def _build_training_example(

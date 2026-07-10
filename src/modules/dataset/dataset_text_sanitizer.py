@@ -81,6 +81,23 @@ class DatasetTextSanitizer:
         )
         return snapshot
 
+    def sanitize_unstructured_text(self, text: str) -> str:
+        redactions: list[dict[str, Any]] = []
+        sanitized_text = self._strip_control_chars(text or "")
+        protected_tokens: dict[str, str] = {}
+        sanitized_text = self._protect_tokens(sanitized_text, protected_tokens)
+        sanitized_text = self._apply_static_replacements(sanitized_text, redactions)
+        sanitized_text = self._replace_urls(
+            sanitized_text,
+            UrlExtractor.extract_urls(sanitized_text),
+            redactions,
+        )
+        sanitized_text = self._apply_phone_replacement(sanitized_text, redactions)
+        sanitized_text = self._restore_tokens(sanitized_text, protected_tokens)
+        sanitized_text = self._normalize_whitespace(sanitized_text)
+        logger.info("Unstructured dataset text sanitized redactions=%s", len(redactions))
+        return sanitized_text
+
     def _replace_urls(
         self,
         text: str,

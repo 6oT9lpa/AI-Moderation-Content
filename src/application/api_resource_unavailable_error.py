@@ -1,0 +1,2 @@
+class ApiResourceUnavailableError(RuntimeError):
+    pass

@@ -1,0 +1,2 @@
+class ApiNotFoundError(RuntimeError):
+    pass

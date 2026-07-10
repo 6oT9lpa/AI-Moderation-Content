@@ -1,0 +1,2 @@
+class ApiConflictError(RuntimeError):
+    pass

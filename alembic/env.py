@@ -41,11 +41,12 @@ def run_migrations_online() -> None:
         poolclass=pool.NullPool,
     )
 
-    @event.listens_for(connectable, "connect")
-    def enable_sqlite_foreign_keys(dbapi_connection, _connection_record):
-        cursor = dbapi_connection.cursor()
-        cursor.execute("PRAGMA foreign_keys=ON")
-        cursor.close()
+    if connectable.dialect.name == "sqlite":
+        @event.listens_for(connectable, "connect")
+        def enable_sqlite_foreign_keys(dbapi_connection, _connection_record):
+            cursor = dbapi_connection.cursor()
+            cursor.execute("PRAGMA foreign_keys=ON")
+            cursor.close()
 
     with connectable.connect() as connection:
         context.configure(

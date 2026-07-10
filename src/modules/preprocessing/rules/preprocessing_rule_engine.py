@@ -34,6 +34,7 @@ class PreprocessingRuleEngine:
 
         results: list[PreprocessingRuleResult] = []
         results.extend(self._evaluate_blacklist_words(context))
+        results.extend(self._evaluate_semantic(context))
         results.extend(self._evaluate_flood(context))
         results.extend(self._evaluate_spam(context))
         results.extend(self._evaluate_invite(context))
@@ -72,6 +73,32 @@ class PreprocessingRuleEngine:
                 },
             ),
         ]
+
+    def _evaluate_semantic(self, context: MessageContext) -> list[PreprocessingRuleResult]:
+        semantic = self._settings.semantic
+        matches: list[PreprocessingRuleResult] = []
+
+        hate_keywords = self._matching_keywords(context.normalized_text, semantic.hate_keywords)
+        if semantic.hate.enabled and hate_keywords:
+            matches.append(
+                self._build_result(
+                    "preprocessing.semantic.hate",
+                    semantic.hate,
+                    {"matched_keyword_count": len(hate_keywords), "input_redacted": True},
+                ),
+            )
+
+        nsfw_keywords = self._matching_keywords(context.normalized_text, semantic.nsfw_keywords)
+        if semantic.nsfw.enabled and nsfw_keywords:
+            matches.append(
+                self._build_result(
+                    "preprocessing.semantic.nsfw",
+                    semantic.nsfw,
+                    {"matched_keyword_count": len(nsfw_keywords), "input_redacted": True},
+                ),
+            )
+
+        return matches
 
     def _evaluate_flood(self, context: MessageContext) -> list[PreprocessingRuleResult]:
         features = context.features
@@ -317,3 +344,24 @@ class PreprocessingRuleEngine:
 
         pattern = rf"(?<![\w]){re.escape(word)}(?![\w])"
         return re.search(pattern, text.casefold(), flags=re.UNICODE) is not None
+
+    def _matching_keywords(self, text: str, keywords: tuple[str, ...]) -> tuple[str, ...]:
+        normalized_text = text.casefold()
+        return tuple(
+            keyword
+            for keyword in keywords
+            if self._contains_semantic_keyword(normalized_text, keyword)
+        )
+
+    def _contains_semantic_keyword(self, text: str, keyword: str) -> bool:
+        if not keyword:
+            return False
+
+        if "*" in keyword:
+            pattern = re.escape(keyword).replace(r"\*", r"[\w-]*")
+        else:
+            pattern = re.escape(keyword)
+
+        if " " not in keyword:
+            pattern = rf"(?<![\w]){pattern}(?![\w])"
+        return re.search(pattern, text, flags=re.UNICODE) is not None

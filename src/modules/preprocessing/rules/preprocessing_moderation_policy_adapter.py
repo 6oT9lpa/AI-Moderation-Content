@@ -134,3 +134,5 @@ class PreprocessingModerationPolicyAdapter:
         yield "spam.repeated_chars", settings.spam.repeated_chars
         yield "invite.detected", settings.invite.detected
         yield "evasion.unicode", settings.evasion.unicode
+        yield "semantic.hate", settings.semantic.hate
+        yield "semantic.nsfw", settings.semantic.nsfw

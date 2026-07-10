@@ -112,6 +112,32 @@ preprocessing:
       risk_weight: 20
       reason: mixed_or_suspicious_unicode_detected
 
+  semantic:
+    hate_keywords:
+      - "ненавижу эту группу"
+      - "ненавижу * людей"
+      - "уничтожить * людей"
+      - "выгнать * людей"
+    nsfw_keywords:
+      - "порн*"
+      - "интимн*"
+      - "сексуальн*"
+      - "обнажен*"
+    hate:
+      enabled: true
+      labels: [HATE]
+      severity: 5
+      confidence: 0.82
+      risk_weight: 60
+      reason: hate_keyword_detected
+    nsfw:
+      enabled: true
+      labels: [NSFW]
+      severity: 4
+      confidence: 0.82
+      risk_weight: 70
+      reason: nsfw_keyword_detected
+
   semantic_placeholders:
     advertisement:
       enabled: false

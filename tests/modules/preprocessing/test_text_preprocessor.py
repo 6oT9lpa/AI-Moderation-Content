@@ -682,6 +682,58 @@ async def test_text_preprocessor_blacklist_word_uses_policy_payload(structured_t
 
 
 @pytest.mark.asyncio
+async def test_text_preprocessor_detects_semantic_hate_signal(structured_test_logger) -> None:
+    payload = MessagePreprocessInputSchema(
+        channel_id="channel-1",
+        user_id="user-1",
+        message_id="message-1",
+        raw_text="Я ненавижу эту группу людей и хочу чтобы их выгнали.",
+    )
+
+    context = await TextPreprocessor().process(payload)
+    _log_preprocessing_context(
+        structured_test_logger,
+        context,
+        expected={
+            "rule_id": "preprocessing.semantic.hate",
+            "labels": ["HATE"],
+            "input_redacted": True,
+        },
+    )
+
+    labels = context.metadata["preprocessing_labels"]
+    rules = {match["rule_id"] for match in context.metadata["preprocessing_rule_matches"]}
+    assert "HATE" in labels
+    assert "preprocessing.semantic.hate" in rules
+
+
+@pytest.mark.asyncio
+async def test_text_preprocessor_detects_semantic_nsfw_signal(structured_test_logger) -> None:
+    payload = MessagePreprocessInputSchema(
+        channel_id="channel-1",
+        user_id="user-1",
+        message_id="message-1",
+        raw_text="Пошлый сексуальный контент с описанием интимной сцены.",
+    )
+
+    context = await TextPreprocessor().process(payload)
+    _log_preprocessing_context(
+        structured_test_logger,
+        context,
+        expected={
+            "rule_id": "preprocessing.semantic.nsfw",
+            "labels": ["NSFW"],
+            "input_redacted": True,
+        },
+    )
+
+    labels = context.metadata["preprocessing_labels"]
+    rules = {match["rule_id"] for match in context.metadata["preprocessing_rule_matches"]}
+    assert "NSFW" in labels
+    assert "preprocessing.semantic.nsfw" in rules
+
+
+@pytest.mark.asyncio
 async def test_text_preprocessor_keeps_repeated_messages_as_flood_not_spam(structured_test_logger) -> None:
     created_at = datetime(2026, 7, 7, 12, 0, tzinfo=timezone.utc)
     payload = MessagePreprocessInputSchema(

@@ -11,6 +11,7 @@ from src.modules.preprocessing.rules.preprocessing_evasion_policy import Preproc
 from src.modules.preprocessing.rules.preprocessing_flood_policy import PreprocessingFloodPolicy
 from src.modules.preprocessing.rules.preprocessing_invite_policy import PreprocessingInvitePolicy
 from src.modules.preprocessing.rules.preprocessing_link_policy import PreprocessingLinkPolicy
+from src.modules.preprocessing.rules.preprocessing_semantic_policy import PreprocessingSemanticPolicy
 from src.modules.preprocessing.rules.preprocessing_spam_policy import PreprocessingSpamPolicy
 
 
@@ -23,6 +24,7 @@ class PreprocessingRuleSettings(BaseModel):
     blacklist_words: PreprocessingBlacklistWordsPolicy = Field(default_factory=PreprocessingBlacklistWordsPolicy)
     invite: PreprocessingInvitePolicy = Field(default_factory=PreprocessingInvitePolicy)
     evasion: PreprocessingEvasionPolicy = Field(default_factory=PreprocessingEvasionPolicy)
+    semantic: PreprocessingSemanticPolicy = Field(default_factory=PreprocessingSemanticPolicy)
     semantic_placeholders: dict[str, Any] = Field(default_factory=dict)
     new_account_link_days: int = Field(default=7, ge=0)
 

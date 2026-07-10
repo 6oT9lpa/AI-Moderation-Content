@@ -1,17 +1,18 @@
-# Commercial License Terms
+# AI Moderator Commercial License Terms
 
 Copyright (c) 2026 Alexandr Spivak. All rights reserved.
 
-These terms are a baseline commercial license template for paid customers. They
-apply only when the copyright holder grants a written commercial license,
-invoice, order form, contract, or other written permission that references this
-file or clearly grants commercial rights.
+These terms are a baseline commercial license template for paid AI Moderator
+customers. They apply only when the copyright holder grants a written commercial
+license, invoice, order form, contract, or other written permission that
+references this file or clearly grants commercial rights.
 
 ## 1. License Grant
 
 After purchase and subject to the paid agreement, the customer receives a
 non-exclusive, non-transferable license to use, run, modify, and integrate the
-Software for the licensed project, product, organization, or deployment scope.
+Software for the licensed project, product, organization, model, or deployment
+scope.
 
 ## 2. Permitted Use
 
@@ -21,6 +22,7 @@ Unless the paid agreement says otherwise, the customer may:
 - modify the Software for their own licensed use;
 - integrate the Software into Discord bots, Telegram bots, moderation services,
   dashboards, APIs, and related products;
+- run the trained model artifacts for the licensed deployment;
 - create private forks and private derivative works for the licensed scope.
 
 ## 3. Attribution And Authorship
@@ -40,6 +42,7 @@ Unless the paid agreement expressly allows it, the customer may not:
   product;
 - make the repository public;
 - provide the source code to third parties outside the licensed organization;
+- redistribute trained model artifacts outside the licensed scope;
 - remove copyright or attribution notices;
 - use the Software outside the purchased license scope.
 

@@ -46,6 +46,16 @@ is selected separately from the final checkpoint.
 
 ![Training and validation loss](./docs/images/training/loss_by_step.png)
 
+Validation metrics make it possible to compare micro-F1, macro-F1, and exact
+match across epochs and identify the checkpoint selected for deployment.
+
+![Validation metrics by epoch](./docs/images/training/validation_metrics_by_epoch.png)
+
+The learning-rate chart documents warmup and decay, which is useful when
+comparing runs with different training schedules.
+
+![Learning rate by step](./docs/images/training/learning_rate_by_step.png)
+
 Per-label precision, recall, and F1 expose uneven model quality that aggregate
 metrics can hide. `TOXIC` has the lowest supported test recall and is a priority
 for additional hard examples. `FLOOD` and `IMAGE_SCAM` have no held-out test

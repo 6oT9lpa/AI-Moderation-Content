@@ -1,6 +1,6 @@
 # AI Moderator Commercial License Terms
 
-Copyright (c) 2026 Alexandr Spivak. All rights reserved.
+Copyright (c) 2026 OmniDev Corp. All rights reserved.
 
 These terms are a baseline commercial license template for paid AI Moderator
 customers. They apply only when the copyright holder grants a written commercial
@@ -30,8 +30,9 @@ Unless the paid agreement says otherwise, the customer may:
 The customer must not remove, hide, or alter copyright notices, license text,
 authorship notices, or attribution information from source code copies.
 
-The customer must not claim authorship of the original Software. The original
-Software remains authored by Alexandr Spivak.
+The customer must not claim ownership or authorship of the original Software.
+All intellectual property rights in the original Software are reserved by
+OmniDev Corp.
 
 ## 4. Restrictions
 
@@ -48,7 +49,9 @@ Unless the paid agreement expressly allows it, the customer may not:
 
 ## 5. Ownership
 
-The original Software remains owned by Alexandr Spivak.
+All right, title, and interest in and to the original Software, including all
+associated intellectual property rights, remain vested exclusively in OmniDev
+Corp.
 
 Customer modifications created under a paid license may be owned by the customer
 unless the paid agreement states otherwise, but those modifications do not remove

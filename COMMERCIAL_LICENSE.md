@@ -1,6 +1,6 @@
 # AI Moderator Commercial License Terms
 
-Copyright (c) 2026 Alexandr Spivak. All rights reserved.
+Copyright (c) 2026 6o9lpa and OmniDev Corp. All rights reserved.
 
 These terms are a baseline commercial license template for paid AI Moderator
 customers. They apply only when the copyright holder grants a written commercial

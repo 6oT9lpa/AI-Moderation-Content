@@ -31,6 +31,49 @@ The API can run without a GPU, but GPU inference is preferred when available.
 The production server currently loads the trained ruBERT model on CUDA when the
 NVIDIA driver is installed and PyTorch reports `cuda_available=True`.
 
+## Training Results
+
+The current ruBERT moderation model was trained on 200,000 examples with a
+`140,000 / 30,000 / 30,000` train, validation, and test split. The best
+validation checkpoint is epoch 5 (`checkpoint-43750`) with macro-F1 `0.8232`.
+The final held-out test result is micro-F1 `0.9712` and macro-F1 `0.8231`.
+
+![Training overview](./docs/images/training/training_overview.png)
+
+The loss curve shows the training trajectory and the best validation-loss point.
+The final training epoch is retained for comparison, while the best checkpoint
+is selected separately from the final checkpoint.
+
+![Training and validation loss](./docs/images/training/loss_by_step.png)
+
+Per-label precision, recall, and F1 expose uneven model quality that aggregate
+metrics can hide. `TOXIC` has the lowest supported test recall and is a priority
+for additional hard examples. `FLOOD` and `IMAGE_SCAM` have no held-out test
+examples; flood must remain primarily rule-engine driven until that coverage is
+added.
+
+![Test quality by moderation label](./docs/images/training/test_per_label_metrics.png)
+
+Target-versus-predicted positive counts make threshold and calibration bias
+visible for each label.
+
+![Test target versus predicted label balance](./docs/images/training/test_prediction_balance.png)
+
+The training corpus is intentionally multi-label, so label totals can exceed the
+number of rows. The chart below is useful for identifying underrepresented
+classes before the next training run.
+
+![Training dataset label distribution](./docs/images/training/label_distribution.png)
+
+Regenerate the local report after a training run:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\training\build_rubert_training_report.py
+```
+
+Use `--include-test-evaluation` to rerun inference over the test split and
+refresh per-label metrics.
+
 ## Architecture
 
 ```text

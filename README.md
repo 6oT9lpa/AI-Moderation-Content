@@ -74,18 +74,35 @@ Regenerate the local report after a training run:
 Use `--include-test-evaluation` to rerun inference over the test split and
 refresh per-label metrics.
 
+## Training Workflow
+
+```mermaid
+flowchart LR
+    A[Public and project data] --> B[Sanitization and relabeling]
+    B --> C[Dataset split]
+    C --> D[ruBERT training]
+    D --> E[Validation threshold calibration]
+    E --> F[Test and hard-pack evaluation]
+    F --> G[Training report and charts]
+    G --> H[Local moderation model]
+```
+
 ## Architecture
 
-```text
-Platform event
-  -> normalized API request
-  -> text preprocessing
-  -> preprocessing rule signals
-  -> ruBERT classifier
-  -> moderation rule engine
-  -> decision engine
-  -> action policy / executor
-  -> API response and audit-ready payload
+```mermaid
+flowchart LR
+    A[Discord or platform adapter] --> B[Local FastAPI API]
+    B --> C[Text preprocessing]
+    C --> D[Preprocessing rules]
+    C --> E[ruBERT classifier]
+    D --> F[Moderation rule engine]
+    E --> F
+    F --> G[Risk score]
+    G --> H[Decision engine]
+    H --> I[Action policy and executor]
+    H --> J[Dataset collector]
+    I --> K[API response]
+    J --> L[PostgreSQL training feedback]
 ```
 
 Core principles:

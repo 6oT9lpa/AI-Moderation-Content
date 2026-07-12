@@ -30,6 +30,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--timeout-seconds", type=float, default=15.0)
     parser.add_argument("--min-success-rate", type=float, default=0.99)
     parser.add_argument("--max-p95-latency-ms", type=float, default=5_000.0)
+    parser.add_argument("--max-p80-latency-ms", type=float, default=3_000.0)
     return parser.parse_args()
 
 
@@ -46,6 +47,7 @@ async def run() -> int:
             request_timeout_seconds=args.timeout_seconds,
             min_success_rate=args.min_success_rate,
             max_p95_latency_ms=args.max_p95_latency_ms,
+            max_p80_latency_ms=args.max_p80_latency_ms,
         )
     except ValidationError as exc:
         logger.error("Load test configuration is invalid errors=%s", exc.error_count())

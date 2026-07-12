@@ -5,10 +5,10 @@ param(
     [string]$SshPassword = $env:AI_MODER_SSH_PASSWORD,
     [string]$RootPassword = $env:AI_MODER_ROOT_PASSWORD,
     [string]$Archive = (Join-Path $env:TEMP 'ai-moder-release.tar.gz'),
+    [string]$ModelArchive = (Join-Path $env:TEMP 'ai-moder-model.tar.gz'),
     [string]$RemoteArchive = '/tmp/ai-moder-release.tar.gz',
+    [string]$RemoteModelArchive = '/tmp/ai-moder-model.tar.gz',
     [string]$RemoteDeployScript = '/tmp/ai_moder_deploy.sh',
-    [string]$RemoteEnvFile = '/tmp/ai-moder.env',
-    [string]$EnvFile = (Join-Path (Split-Path $PSScriptRoot -Parent | Split-Path -Parent) '.env'),
     [string]$Services = 'ai-moder.service'
 )
 
@@ -27,14 +27,13 @@ if (-not (Test-Path -LiteralPath $deployScript)) {
     throw "Deploy script was not found: $deployScript"
 }
 
-& (Join-Path $PSScriptRoot 'build_ai_moder_release.ps1') -Archive $Archive
+& (Join-Path $PSScriptRoot 'build_ai_moder_release.ps1') -Archive $Archive -ModelArchive $ModelArchive
 
 pscp.exe -batch -P $Port -pw $SshPassword $Archive "${User}@${HostName}:$RemoteArchive"
+pscp.exe -batch -P $Port -pw $SshPassword $ModelArchive "${User}@${HostName}:$RemoteModelArchive"
 pscp.exe -batch -P $Port -pw $SshPassword $deployScript "${User}@${HostName}:$RemoteDeployScript"
-if (-not (Test-Path -LiteralPath $EnvFile)) { throw "Local .env was not found: $EnvFile" }
-pscp.exe -batch -P $Port -pw $SshPassword $EnvFile "${User}@${HostName}:$RemoteEnvFile"
 
-$remoteCommand = "chmod +x $RemoteDeployScript; printf '%s\n' '$RootPassword' | su root -c 'SERVICES=""$Services"" ARCHIVE=$RemoteArchive ENV_FILE=$RemoteEnvFile APP_DIR=/opt/ai-moder $RemoteDeployScript'"
+$remoteCommand = "chmod +x $RemoteDeployScript; printf '%s\n' '$RootPassword' | su root -c 'SERVICES=""$Services"" ARCHIVE=$RemoteArchive MODEL_ARCHIVE=$RemoteModelArchive APP_DIR=/opt/ai-moder $RemoteDeployScript'"
 plink.exe -batch -ssh "${User}@${HostName}" -P $Port -pw $SshPassword $remoteCommand
 
 $statusCommand = "systemctl is-active $Services"

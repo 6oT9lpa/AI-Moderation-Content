@@ -2,6 +2,7 @@
 set -euo pipefail
 
 ARCHIVE="${ARCHIVE:-/tmp/ai-moder-release.tar.gz}"
+MODEL_ARCHIVE="${MODEL_ARCHIVE:-}"
 ROOT_TMP="${ROOT_TMP:-/root/tmp}"
 APP_DIR="${APP_DIR:-/opt/ai-moder}"
 BACKUP_DIR="${BACKUP_DIR:-/opt}"
@@ -45,8 +46,10 @@ log "Extract new files over existing project..."
 mkdir -p "$APP_DIR"
 tar -xzf "$ROOT_ARCHIVE" -C "$APP_DIR"
 
-if [ -n "$ENV_FILE" ]; then
-    install -o ai-moder -g ai-moder -m 600 "$ENV_FILE" "$APP_DIR/.env"
+if [ -n "$MODEL_ARCHIVE" ]; then
+    log "Extract trained model..."
+    mkdir -p "$APP_DIR/models"
+    tar -xzf "$MODEL_ARCHIVE" -C "$APP_DIR/models"
 fi
 
 python3 -m venv "$APP_DIR/.venv"

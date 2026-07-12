@@ -18,7 +18,9 @@ def test_rubert_training_config_loads_label_metadata() -> None:
     assert config.model.base_model_name == "cointegrated/rubert-tiny2"
     assert config.model.max_length > 0
     assert config.label_schema.label2id["SAFE"] == 0
-    assert config.label_schema.label2id["IMAGE_SCAM"] == 12
+    assert config.label_schema.label2id["PROFANITY"] == 6
+    assert config.label_schema.label2id["POLITICS_IRL"] == 7
+    assert config.label_schema.label2id["IMAGE_SCAM"] == 14
     assert config.to_transformers_metadata()["problem_type"] == "multi_label_classification"
 
 

@@ -17,6 +17,7 @@ class ModerationLoadTestConfig(BaseModel):
     request_timeout_seconds: float = Field(default=15.0, gt=0, le=120)
     min_success_rate: float = Field(default=0.99, ge=0.0, le=1.0)
     max_p95_latency_ms: float = Field(default=5_000.0, gt=0)
+    max_p80_latency_ms: float = Field(default=3_000.0, gt=0)
 
     @field_validator("base_url")
     @classmethod

@@ -54,6 +54,16 @@ preprocessing:
       confidence: 0.74
       risk_weight: 25
       reason: mass_mentions_detected
+    # Three tags alone are normal group coordination. Escalate only if this
+    # message already contains a deterministic harmful semantic signal.
+    targeted_mass_mentions:
+      enabled: true
+      threshold: 3
+      labels: [TOXIC]
+      severity: 3
+      confidence: 0.82
+      risk_weight: 32
+      reason: toxic_message_targets_multiple_users
     caps:
       enabled: true
       threshold: 0.65
@@ -123,6 +133,38 @@ preprocessing:
       - "интимн*"
       - "сексуальн*"
       - "обнажен*"
+    # Stems plus compound forms are matched deterministically. The model then
+    # distinguishes a bare swear word from a directed insult by context.
+    profanity_terms:
+      - "пидор"
+      - "пидр"
+      - "хуй"
+      - "хуе"
+      - "хуесос"
+      - "хуеглот"
+      - "пизд"
+      - "пиздабол"
+      - "ебан"
+      - "ебат"
+      - "бляд"
+      - "гондон"
+      - "долбоеб"
+      - "мудак"
+      - "бездарь"
+    politics_keywords:
+      - "зеленск*"
+      - "путин*"
+      - "верховн* рад*"
+      - "госдум*"
+      - "кремл*"
+      - "белый дом"
+      - "президент*"
+      - "правительств*"
+      - "росси*"
+      - "украин*"
+      - "беларус*"
+      - "сша"
+      - "нато"
     hate:
       enabled: true
       labels: [HATE]
@@ -137,6 +179,20 @@ preprocessing:
       confidence: 0.82
       risk_weight: 70
       reason: nsfw_keyword_detected
+    profanity:
+      enabled: true
+      labels: [PROFANITY]
+      severity: 1
+      confidence: 0.94
+      risk_weight: 8
+      reason: russian_profanity_detected
+    politics:
+      enabled: true
+      labels: [POLITICS_IRL]
+      severity: 2
+      confidence: 0.9
+      risk_weight: 18
+      reason: real_world_politics_detected
 
   semantic_placeholders:
     advertisement:

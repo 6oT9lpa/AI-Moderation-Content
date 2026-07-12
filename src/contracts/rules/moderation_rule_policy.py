@@ -6,6 +6,7 @@ from src.contracts.rules.label_risk_policy import LabelRiskPolicy
 from src.contracts.rules.model_agreement_policy import ModelAgreementPolicy
 from src.contracts.rules.risk_score_policy import RiskScorePolicy
 from src.contracts.rules.source_weight_policy import SourceWeightPolicy
+from src.contracts.rules.user_risk_policy import UserRiskPolicy
 from src.domain.moderation.moderation_label import ModerationLabel
 
 
@@ -24,3 +25,4 @@ class ModerationRulePolicy(BaseModel):
     primary_label_priority: list[ModerationLabel] = Field(default_factory=list)
     conflict_rules: list[ConflictRulePolicy] = Field(default_factory=list)
     model_agreement: ModelAgreementPolicy = Field(default_factory=ModelAgreementPolicy)
+    user_risk: UserRiskPolicy = Field(default_factory=UserRiskPolicy)

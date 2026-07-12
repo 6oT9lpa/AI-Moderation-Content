@@ -1,0 +1,1207 @@
+{
+  "label": "PROFANITY",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "PROFANITY_001",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-1",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-001",
+        "message_id": "profanity-001",
+        "raw_text": "ты хуеглотик, пример 1",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_002",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-2",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-002",
+        "message_id": "profanity-002",
+        "raw_text": "какой же ты бездарт, пример 2",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_003",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-3",
+        "channel_id": "channel-profanity-3",
+        "user_id": "user-profanity-003",
+        "message_id": "profanity-003",
+        "raw_text": "этот хуесосик снова флудит, пример 3",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_004",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-4",
+        "channel_id": "channel-profanity-4",
+        "user_id": "user-profanity-004",
+        "message_id": "profanity-004",
+        "raw_text": "не веди себя как пиздабол, пример 4",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_005",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-5",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-005",
+        "message_id": "profanity-005",
+        "raw_text": "гондон, прекрати спор, пример 5",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_006",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-1",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-006",
+        "message_id": "profanity-006",
+        "raw_text": "ну ты и долбоеб, пример 6",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_007",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-2",
+        "channel_id": "channel-profanity-3",
+        "user_id": "user-profanity-007",
+        "message_id": "profanity-007",
+        "raw_text": "хуй с этой каткой, пример 7",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_008",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-3",
+        "channel_id": "channel-profanity-4",
+        "user_id": "user-profanity-008",
+        "message_id": "profanity-008",
+        "raw_text": "ебанат, остановись, пример 8",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_009",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-4",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-009",
+        "message_id": "profanity-009",
+        "raw_text": "блядь, опять лаги, пример 9",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_010",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-5",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-010",
+        "message_id": "profanity-010",
+        "raw_text": "это полный пиздец, пример 10",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_011",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-1",
+        "channel_id": "channel-profanity-3",
+        "user_id": "user-profanity-011",
+        "message_id": "profanity-011",
+        "raw_text": "ты хуеглотик, пример 11",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_012",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-2",
+        "channel_id": "channel-profanity-4",
+        "user_id": "user-profanity-012",
+        "message_id": "profanity-012",
+        "raw_text": "какой же ты бездарт, пример 12",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_013",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-3",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-013",
+        "message_id": "profanity-013",
+        "raw_text": "этот хуесосик снова флудит, пример 13",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_014",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-4",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-014",
+        "message_id": "profanity-014",
+        "raw_text": "не веди себя как пиздабол, пример 14",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_015",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-5",
+        "channel_id": "channel-profanity-3",
+        "user_id": "user-profanity-015",
+        "message_id": "profanity-015",
+        "raw_text": "гондон, прекрати спор, пример 15",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_016",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-1",
+        "channel_id": "channel-profanity-4",
+        "user_id": "user-profanity-016",
+        "message_id": "profanity-016",
+        "raw_text": "ну ты и долбоеб, пример 16",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_017",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-2",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-017",
+        "message_id": "profanity-017",
+        "raw_text": "хуй с этой каткой, пример 17",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_018",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-3",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-018",
+        "message_id": "profanity-018",
+        "raw_text": "ебанат, остановись, пример 18",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_019",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-4",
+        "channel_id": "channel-profanity-3",
+        "user_id": "user-profanity-019",
+        "message_id": "profanity-019",
+        "raw_text": "блядь, опять лаги, пример 19",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_020",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-5",
+        "channel_id": "channel-profanity-4",
+        "user_id": "user-profanity-020",
+        "message_id": "profanity-020",
+        "raw_text": "это полный пиздец, пример 20",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_021",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-1",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-021",
+        "message_id": "profanity-021",
+        "raw_text": "ты хуеглотик, пример 21",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_022",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-2",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-022",
+        "message_id": "profanity-022",
+        "raw_text": "какой же ты бездарт, пример 22",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_023",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-3",
+        "channel_id": "channel-profanity-3",
+        "user_id": "user-profanity-023",
+        "message_id": "profanity-023",
+        "raw_text": "этот хуесосик снова флудит, пример 23",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_024",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-4",
+        "channel_id": "channel-profanity-4",
+        "user_id": "user-profanity-024",
+        "message_id": "profanity-024",
+        "raw_text": "не веди себя как пиздабол, пример 24",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_025",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-5",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-025",
+        "message_id": "profanity-025",
+        "raw_text": "гондон, прекрати спор, пример 25",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_026",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-1",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-026",
+        "message_id": "profanity-026",
+        "raw_text": "ну ты и долбоеб, пример 26",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_027",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-2",
+        "channel_id": "channel-profanity-3",
+        "user_id": "user-profanity-027",
+        "message_id": "profanity-027",
+        "raw_text": "хуй с этой каткой, пример 27",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_028",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-3",
+        "channel_id": "channel-profanity-4",
+        "user_id": "user-profanity-028",
+        "message_id": "profanity-028",
+        "raw_text": "ебанат, остановись, пример 28",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_029",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-4",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-029",
+        "message_id": "profanity-029",
+        "raw_text": "блядь, опять лаги, пример 29",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_030",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-5",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-030",
+        "message_id": "profanity-030",
+        "raw_text": "это полный пиздец, пример 30",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_031",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-1",
+        "channel_id": "channel-profanity-3",
+        "user_id": "user-profanity-031",
+        "message_id": "profanity-031",
+        "raw_text": "ты хуеглотик, пример 31",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_032",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-2",
+        "channel_id": "channel-profanity-4",
+        "user_id": "user-profanity-032",
+        "message_id": "profanity-032",
+        "raw_text": "какой же ты бездарт, пример 32",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_033",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-3",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-033",
+        "message_id": "profanity-033",
+        "raw_text": "этот хуесосик снова флудит, пример 33",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_034",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-4",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-034",
+        "message_id": "profanity-034",
+        "raw_text": "не веди себя как пиздабол, пример 34",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_035",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-5",
+        "channel_id": "channel-profanity-3",
+        "user_id": "user-profanity-035",
+        "message_id": "profanity-035",
+        "raw_text": "гондон, прекрати спор, пример 35",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_036",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-1",
+        "channel_id": "channel-profanity-4",
+        "user_id": "user-profanity-036",
+        "message_id": "profanity-036",
+        "raw_text": "ну ты и долбоеб, пример 36",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_037",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-2",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-037",
+        "message_id": "profanity-037",
+        "raw_text": "хуй с этой каткой, пример 37",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_038",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-3",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-038",
+        "message_id": "profanity-038",
+        "raw_text": "ебанат, остановись, пример 38",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_039",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-4",
+        "channel_id": "channel-profanity-3",
+        "user_id": "user-profanity-039",
+        "message_id": "profanity-039",
+        "raw_text": "блядь, опять лаги, пример 39",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_040",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-5",
+        "channel_id": "channel-profanity-4",
+        "user_id": "user-profanity-040",
+        "message_id": "profanity-040",
+        "raw_text": "это полный пиздец, пример 40",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_041",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-1",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-041",
+        "message_id": "profanity-041",
+        "raw_text": "ты хуеглотик, пример 41",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_042",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-2",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-042",
+        "message_id": "profanity-042",
+        "raw_text": "какой же ты бездарт, пример 42",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_043",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-3",
+        "channel_id": "channel-profanity-3",
+        "user_id": "user-profanity-043",
+        "message_id": "profanity-043",
+        "raw_text": "этот хуесосик снова флудит, пример 43",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_044",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-4",
+        "channel_id": "channel-profanity-4",
+        "user_id": "user-profanity-044",
+        "message_id": "profanity-044",
+        "raw_text": "не веди себя как пиздабол, пример 44",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_045",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-5",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-045",
+        "message_id": "profanity-045",
+        "raw_text": "гондон, прекрати спор, пример 45",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_046",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-1",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-046",
+        "message_id": "profanity-046",
+        "raw_text": "ну ты и долбоеб, пример 46",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_047",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-2",
+        "channel_id": "channel-profanity-3",
+        "user_id": "user-profanity-047",
+        "message_id": "profanity-047",
+        "raw_text": "хуй с этой каткой, пример 47",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_048",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-3",
+        "channel_id": "channel-profanity-4",
+        "user_id": "user-profanity-048",
+        "message_id": "profanity-048",
+        "raw_text": "ебанат, остановись, пример 48",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_049",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-4",
+        "channel_id": "channel-profanity-1",
+        "user_id": "user-profanity-049",
+        "message_id": "profanity-049",
+        "raw_text": "блядь, опять лаги, пример 49",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "PROFANITY_050",
+      "primary_label": "PROFANITY",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-profanity-5",
+        "channel_id": "channel-profanity-2",
+        "user_id": "user-profanity-050",
+        "message_id": "profanity-050",
+        "raw_text": "это полный пиздец, пример 50",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "PROFANITY",
+          "expected_primary_label": "PROFANITY"
+        }
+      },
+      "expected": {
+        "labels": [
+          "PROFANITY"
+        ],
+        "primary_label": "PROFANITY"
+      },
+      "notes": "manual synthetic moderation fixture"
+    }
+  ]
+}

@@ -24,6 +24,8 @@ labels:
   - INVITE
   - SCAM
   - TOXIC
+  - PROFANITY
+  - POLITICS_IRL
   - HATE
   - THREAT
   - NSFW

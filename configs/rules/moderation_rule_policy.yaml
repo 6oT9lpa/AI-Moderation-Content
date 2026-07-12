@@ -21,6 +21,9 @@ label_weights:
   INVITE: 10
   SCAM: 50
   TOXIC: 40
+  # Severity=1 has a 0.5 multiplier, so this yields about 3.8 risk at 0.94 confidence.
+  PROFANITY: 8
+  POLITICS_IRL: 18
   HATE: 60
   THREAT: 80
   NSFW: 70
@@ -54,6 +57,8 @@ primary_label_priority:
   - SCAM
   - NSFW
   - TOXIC
+  - POLITICS_IRL
+  - PROFANITY
   - INVITE
   - FLOOD
   - SPAM
@@ -77,3 +82,16 @@ model_agreement:
   agreement_bonus: 0.2
   disagreement_penalty: 0.3
   high_confidence_threshold: 0.8
+
+# The same payload can be stored at a guild scope, so these values are
+# independently configurable for every Discord server.
+user_risk:
+  enabled: true
+  new_account_days: 7
+  new_member_days: 7
+  recent_violation_count_key: recent_violation_count
+  violation_threshold: 3
+  new_account_multiplier: 1.15
+  new_member_multiplier: 1.1
+  repeat_violation_multiplier: 1.35
+  max_multiplier: 1.75

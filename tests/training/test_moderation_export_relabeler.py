@@ -101,6 +101,20 @@ def test_relabel_row_marks_suspicious_money_url_as_scam() -> None:
     assert set(updated["labels"]) == {"SCAM", "URL"}
 
 
+def test_relabel_row_adds_profanity_and_politics_labels() -> None:
+    row = {
+        "model_text": "".join(map(chr, (1047, 1077, 1083, 1077, 1085, 1089, 1082, 1080, 1081, 32, 1093, 1091, 1077, 1075, 1083, 1086, 1090, 1080, 1082))),
+        "labels": ["SAFE"],
+        "primary_label": "SAFE",
+        "severity": 0,
+    }
+
+    updated = ModerationExportRelabeler().relabel_row(row)
+
+    assert updated["primary_label"] == "POLITICS_IRL"
+    assert set(updated["labels"]) == {"PROFANITY", "POLITICS_IRL"}
+
+
 def test_relabel_row_keeps_official_steamcommunity_profile_as_url() -> None:
     row = {
         "model_text": "страница профиля steamcommunity.com/profiles/123 без подарков и входа",

@@ -4,6 +4,7 @@ import re
 from typing import Any
 
 from src.domain.message_context import MessageContext
+from src.domain.moderation.moderation_label import ModerationLabel
 from src.infrastructure.logging import get_logger
 from src.modules.preprocessing.rules.preprocessing_rule_policy import PreprocessingRulePolicy
 from src.modules.preprocessing.rules.preprocessing_rule_result import PreprocessingRuleResult
@@ -34,9 +35,10 @@ class PreprocessingRuleEngine:
 
         results: list[PreprocessingRuleResult] = []
         results.extend(self._evaluate_blacklist_words(context))
-        results.extend(self._evaluate_semantic(context))
+        semantic_results = self._evaluate_semantic(context)
+        results.extend(semantic_results)
         results.extend(self._evaluate_flood(context))
-        results.extend(self._evaluate_spam(context))
+        results.extend(self._evaluate_spam(context, semantic_results))
         results.extend(self._evaluate_invite(context))
         results.extend(self._evaluate_links(context))
         results.extend(self._evaluate_evasion(context))
@@ -98,6 +100,26 @@ class PreprocessingRuleEngine:
                 ),
             )
 
+        profanity_terms = self._matching_profanity_terms(context.normalized_text, semantic.profanity_terms)
+        if semantic.profanity.enabled and profanity_terms:
+            matches.append(
+                self._build_result(
+                    "preprocessing.semantic.profanity",
+                    semantic.profanity,
+                    {"matched_term_count": len(profanity_terms), "input_redacted": True},
+                ),
+            )
+
+        politics_keywords = self._matching_keywords(context.normalized_text, semantic.politics_keywords)
+        if semantic.politics.enabled and politics_keywords:
+            matches.append(
+                self._build_result(
+                    "preprocessing.semantic.politics",
+                    semantic.politics,
+                    {"matched_keyword_count": len(politics_keywords), "input_redacted": True},
+                ),
+            )
+
         return matches
 
     def _evaluate_flood(self, context: MessageContext) -> list[PreprocessingRuleResult]:
@@ -136,7 +158,11 @@ class PreprocessingRuleEngine:
 
         return matches
 
-    def _evaluate_spam(self, context: MessageContext) -> list[PreprocessingRuleResult]:
+    def _evaluate_spam(
+        self,
+        context: MessageContext,
+        semantic_results: list[PreprocessingRuleResult],
+    ) -> list[PreprocessingRuleResult]:
         features = context.features
         assert features is not None
 
@@ -149,6 +175,23 @@ class PreprocessingRuleEngine:
                     "preprocessing.spam.mass_mentions",
                     spam.mass_mentions,
                     {"mention_count": features.mention_count},
+                ),
+            )
+
+        semantic_labels = {label for result in semantic_results for label in result.labels}
+        targeted_labels = {ModerationLabel.PROFANITY, ModerationLabel.HATE, ModerationLabel.THREAT}
+        if (
+            self._is_threshold_reached(spam.targeted_mass_mentions, features.mention_count)
+            and semantic_labels.intersection(targeted_labels)
+        ):
+            matches.append(
+                self._build_result(
+                    "preprocessing.targeted.mass_mentions",
+                    spam.targeted_mass_mentions,
+                    {
+                        "mention_count": features.mention_count,
+                        "semantic_labels": sorted(label.value for label in semantic_labels),
+                    },
                 ),
             )
 
@@ -365,3 +408,33 @@ class PreprocessingRuleEngine:
         if " " not in keyword:
             pattern = rf"(?<![\w]){pattern}(?![\w])"
         return re.search(pattern, text, flags=re.UNICODE) is not None
+
+    def _matching_profanity_terms(self, text: str, terms: tuple[str, ...]) -> tuple[str, ...]:
+        """Find Russian profanity by stems and typo-tolerant character chunks.
+
+        The matcher intentionally emits only a low-risk PROFANITY signal. A targeted
+        insult remains the responsibility of the contextual classifier's TOXIC label.
+        """
+        tokens = tuple(re.findall(r"[\w-]+", text.casefold(), flags=re.UNICODE))
+        return tuple(
+            term
+            for term in terms
+            if any(self._token_matches_profanity(token, term) for token in tokens)
+        )
+
+    @staticmethod
+    def _token_matches_profanity(token: str, term: str) -> bool:
+        normalized_term = term.casefold()
+        if len(normalized_term) < 3:
+            return False
+        if normalized_term in token:
+            return True
+
+        # Character trigrams preserve a useful part of a word when one letter is
+        # substituted ("бездарь" -> "бездард") or a suffix is added.
+        if len(token) < 5 or len(normalized_term) < 5:
+            return False
+        token_chunks = {token[index:index + 3] for index in range(len(token) - 2)}
+        term_chunks = {normalized_term[index:index + 3] for index in range(len(normalized_term) - 2)}
+        overlap = len(token_chunks & term_chunks) / len(term_chunks)
+        return overlap >= 0.8

@@ -22,6 +22,7 @@ class RuleEvaluationResult(BaseModel):
     matched_rules: list[str]
     conflicts: list[str]
     model_agreement: ModelAgreement
+    user_risk_multiplier: float = Field(default=1.0, ge=1.0)
     policy_id: str
     policy_version: str
     created_at: datetime = Field(default_factory=datetime.now)

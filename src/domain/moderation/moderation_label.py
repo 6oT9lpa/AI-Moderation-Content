@@ -10,6 +10,8 @@ class ModerationLabel(StrEnum):
     INVITE = "INVITE"
     SCAM = "SCAM"
     TOXIC = "TOXIC"
+    PROFANITY = "PROFANITY"
+    POLITICS_IRL = "POLITICS_IRL"
     HATE = "HATE"
     THREAT = "THREAT"
     NSFW = "NSFW"

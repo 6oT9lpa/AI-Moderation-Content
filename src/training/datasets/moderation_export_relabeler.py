@@ -29,6 +29,8 @@ LABEL_SEVERITY: dict[ModerationLabel, int] = {
     ModerationLabel.ADVERTISEMENT: 2,
     ModerationLabel.FLOOD: 3,
     ModerationLabel.INVITE: 3,
+    ModerationLabel.PROFANITY: 1,
+    ModerationLabel.POLITICS_IRL: 2,
     ModerationLabel.TOXIC: 3,
     ModerationLabel.SCAM: 4,
     ModerationLabel.NSFW: 4,
@@ -90,6 +92,18 @@ _PATTERNS: dict[ModerationLabel, tuple[re.Pattern[str], ...]] = {
         re.compile(r"\b(?:фу|слышь|слыш|выйди|уйди|пошел|пошла).{0,60}\b(?:чел|мусор|лох|гомик|пидор|педик|шалава|тварь)\b", re.IGNORECASE),
         re.compile(r"\b(?:mq|мп|мамке\s+привет).{0,80}\b(?:тебе|твоей|лузер|мусор|не\s+умеешь|после\s+такого)\b", re.IGNORECASE),
         re.compile(r"\b(?:мать|мам\w+).{0,40}\b(?:шлюх\w+|шалав\w+)\b", re.IGNORECASE),
+    ),
+    ModerationLabel.PROFANITY: (
+        re.compile(
+            r"\b(?:хуй\w*|хуе\w*|пизд\w*|ебан\w*|ебат\w*|бляд\w*|гондон\w*|долбоеб\w*|бездар[ья]\w*|бездард\w*)\b",
+            re.IGNORECASE,
+        ),
+    ),
+    ModerationLabel.POLITICS_IRL: (
+        re.compile(
+            r"\b(?:зеленск\w*|путин\w*|верховн\w*\s+рад\w*|госдум\w*|кремл\w*|белый\s+дом|президент\w*|правительств\w*|росси\w*|украин\w*|беларус\w*|сша|нато)\b",
+            re.IGNORECASE,
+        ),
     ),
     ModerationLabel.ADVERTISEMENT: (
         re.compile(r"\b(?:купи|купить|продам|скидк\w*|промокод\w*|прайс\w*|магазин\w*)\b", re.IGNORECASE),

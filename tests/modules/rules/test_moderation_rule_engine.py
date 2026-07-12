@@ -1,7 +1,9 @@
 import pytest
+from datetime import datetime, timezone
 from src.domain.moderation.moderation_label import ModerationLabel
 from src.domain.rules.moderation_signal import ModerationSignal
 from src.domain.rules.signal_source import SignalSource
+from src.domain.message_context import MessageContext
 from src.modules.rules.moderation_rule_engine import ModerationRuleEngine
 from src.contracts.rules.moderation_rule_policy import ModerationRulePolicy
 from src.infrastructure.logging.logger import get_logger
@@ -180,3 +182,43 @@ def test_rule_engine_specific_confidence_threshold_overrides_default():
 
     assert result.signals == [signal]
     assert result.primary_label == ModerationLabel.SPAM
+
+
+def test_rule_engine_increases_existing_risk_for_new_repeat_offender():
+    signal = ModerationSignal(
+        source=SignalSource.PREPROCESSING,
+        label=ModerationLabel.URL,
+        confidence=0.9,
+        severity=1,
+        risk_weight=5,
+        reason="url",
+    )
+    context = MessageContext(
+        platform="discord", guild_id="guild", channel_id="channel", user_id="user", message_id="message",
+        created_at=datetime.now(timezone.utc),
+        raw_text="https://example.test", normalized_text="https://example.test", text_hash="hash", language="en",
+        account_age_days=1, member_age_days=1, metadata={"recent_violation_count": 3},
+    )
+
+    baseline = ModerationRuleEngine().evaluate("baseline", [signal])
+    elevated = ModerationRuleEngine().evaluate("elevated", [signal], context=context)
+
+    assert elevated.risk_score > baseline.risk_score
+    assert elevated.user_risk_multiplier > 1.0
+
+
+def test_rule_engine_keeps_bare_profanity_at_low_default_risk():
+    result = ModerationRuleEngine().evaluate(
+        "profanity",
+        [ModerationSignal(
+            source=SignalSource.PREPROCESSING,
+            label=ModerationLabel.PROFANITY,
+            confidence=0.94,
+            severity=1,
+            risk_weight=8,
+            reason="russian_profanity_detected",
+        )],
+    )
+
+    assert result.primary_label == ModerationLabel.PROFANITY
+    assert 3.0 <= result.risk_score <= 4.0

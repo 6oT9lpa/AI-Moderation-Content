@@ -3,6 +3,7 @@ from __future__ import annotations
 from datetime import datetime, timezone
 from typing import Optional
 
+from src.domain.message_context import MessageContext
 from src.domain.moderation.moderation_label import ModerationLabel
 from src.domain.rules.moderation_signal import ModerationSignal
 from src.domain.rules.rule_evaluation_result import RuleEvaluationResult
@@ -41,7 +42,11 @@ class ModerationRuleEngine:
         self._agreement_calculator = agreement_calculator or ModelAgreementCalculator()
 
     def evaluate(
-        self, message_id: str, signals: list[ModerationSignal], policy: Optional[ModerationRulePolicy] = None
+        self,
+        message_id: str,
+        signals: list[ModerationSignal],
+        policy: Optional[ModerationRulePolicy] = None,
+        context: MessageContext | None = None,
     ) -> RuleEvaluationResult:
         current_policy = policy or self._policy
 
@@ -64,9 +69,10 @@ class ModerationRuleEngine:
         )
 
         agreement = self._agreement_calculator.calculate(normalized_signals, current_policy)
+        user_risk_multiplier = self._user_risk_multiplier(context, current_policy)
         risk_score = max(
             current_policy.risk_score.min,
-            min(current_policy.risk_score.max, risk_score * agreement.agreement_score),
+            min(current_policy.risk_score.max, risk_score * agreement.agreement_score * user_risk_multiplier),
         )
         labels = self._resolve_labels(normalized_signals, current_policy)
 
@@ -81,6 +87,7 @@ class ModerationRuleEngine:
             matched_rules=[s.rule_id for s in normalized_signals if s.rule_id],
             conflicts=conflicts,
             model_agreement=agreement,
+            user_risk_multiplier=user_risk_multiplier,
             policy_id=current_policy.policy_id,
             policy_version=current_policy.version,
             created_at=datetime.now(timezone.utc),
@@ -97,6 +104,30 @@ class ModerationRuleEngine:
         )
 
         return result
+
+    @staticmethod
+    def _user_risk_multiplier(
+        context: MessageContext | None,
+        policy: ModerationRulePolicy,
+    ) -> float:
+        if context is None or not policy.user_risk.enabled:
+            return 1.0
+
+        settings = policy.user_risk
+        multiplier = 1.0
+        if context.account_age_days is not None and context.account_age_days < settings.new_account_days:
+            multiplier *= settings.new_account_multiplier
+        if context.member_age_days is not None and context.member_age_days < settings.new_member_days:
+            multiplier *= settings.new_member_multiplier
+
+        raw_count = context.metadata.get(settings.recent_violation_count_key, 0)
+        try:
+            recent_violations = int(raw_count)
+        except (TypeError, ValueError):
+            recent_violations = 0
+        if recent_violations >= settings.violation_threshold:
+            multiplier *= settings.repeat_violation_multiplier
+        return min(multiplier, settings.max_multiplier)
 
     def _resolve_labels(
         self,

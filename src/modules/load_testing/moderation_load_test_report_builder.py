@@ -20,6 +20,7 @@ def build_result(
     total = len(request_results)
     success_rate = succeeded / total if total else 0.0
     p95 = _percentile(latencies, 0.95)
+    p80 = _percentile(latencies, 0.80)
     return ModerationLoadTestResult(
         total_messages=total,
         succeeded_messages=succeeded,
@@ -29,11 +30,16 @@ def build_result(
         achieved_messages_per_second=round(total / elapsed_seconds, 3) if elapsed_seconds else 0.0,
         latency_mean_ms=round(sum(latencies) / total, 3) if total else 0.0,
         latency_p50_ms=round(_percentile(latencies, 0.50), 3),
+        latency_p80_ms=round(p80, 3),
         latency_p95_ms=round(p95, 3),
         latency_p99_ms=round(_percentile(latencies, 0.99), 3),
         status_counts=dict(sorted(status_counts.items())),
         error_counts=dict(sorted(error_counts.items())),
-        targets_met=success_rate >= config.min_success_rate and p95 <= config.max_p95_latency_ms,
+        targets_met=(
+            success_rate >= config.min_success_rate
+            and p80 <= config.max_p80_latency_ms
+            and p95 <= config.max_p95_latency_ms
+        ),
     )
 
 

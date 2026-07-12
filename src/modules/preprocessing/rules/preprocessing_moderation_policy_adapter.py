@@ -136,3 +136,5 @@ class PreprocessingModerationPolicyAdapter:
         yield "evasion.unicode", settings.evasion.unicode
         yield "semantic.hate", settings.semantic.hate
         yield "semantic.nsfw", settings.semantic.nsfw
+        yield "semantic.profanity", settings.semantic.profanity
+        yield "semantic.politics", settings.semantic.politics

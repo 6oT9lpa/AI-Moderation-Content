@@ -10,6 +10,8 @@ class LabelRiskPolicy(BaseModel):
     INVITE: float = Field(default=10.0, ge=0.0)
     SCAM: float = Field(default=10.0, ge=0.0)
     TOXIC: float = Field(default=10.0, ge=0.0)
+    PROFANITY: float = Field(default=8.0, ge=0.0)
+    POLITICS_IRL: float = Field(default=10.0, ge=0.0)
     HATE: float = Field(default=10.0, ge=0.0)
     THREAT: float = Field(default=10.0, ge=0.0)
     NSFW: float = Field(default=10.0, ge=0.0)

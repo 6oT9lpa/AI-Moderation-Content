@@ -34,11 +34,11 @@ def test_dataset_assembler_reports_shortfalls_without_project_and_gated_spam() -
 
     assert selected
     assert "source:hard_eval_seed" not in shortfalls
-    assert shortfalls["source:project"] == 6000
-    assert shortfalls["source:russian_spam"] == 6000
-    assert shortfalls["source:contextual_contrast"] == 11000
-    assert shortfalls["label:SPAM"] == 23999
-    assert shortfalls["label:SAFE"] == 79999
+    assert shortfalls["source:project"] == config.source_quotas()["project"]
+    assert shortfalls["source:russian_spam"] == config.source_quotas()["russian_spam"]
+    assert shortfalls["source:contextual_contrast"] == config.source_quotas()["contextual_contrast"]
+    assert shortfalls["label:SPAM"] == config.negative_class_quotas()[ModerationLabel.SPAM] - 1
+    assert shortfalls["label:SAFE"] == config.dataset.safe_examples - 1
 
 
 def test_dataset_assembler_excludes_evaluation_pack_texts() -> None:

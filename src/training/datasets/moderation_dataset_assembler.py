@@ -1,8 +1,12 @@
 from __future__ import annotations
 
 import json
+import math
 import random
+import time
 from collections import Counter, defaultdict
+from concurrent.futures import ThreadPoolExecutor
+from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -30,6 +34,9 @@ from src.training.datasets.synthetic_discord_examples import (
     build_contextual_contrast_candidates,
     build_manual_synthetic_candidates,
 )
+from src.training.datasets.russian_robustness_examples import build_russian_robustness_candidates
+from src.training.datasets.quota_backfill_examples import build_quota_backfill_candidates
+from src.training.datasets.russian_slang_examples import build_russian_slang_candidates
 from src.training.datasets.training_text_sanitizer import TrainingTextSanitizer
 from src.training.datasets.unseen_hard_eval_pack import build_unseen_hard_eval_pack
 from src.training.rubert.rubert_dataset_builder import RuBertDatasetBuilder
@@ -54,8 +61,26 @@ class ModerationDatasetAssembler:
     def build(self, *, strict: bool | None = None) -> dict:
         use_strict = self._config.dataset.strict if strict is None else strict
         source_quotas = self._config.source_quotas()
-        candidates, load_errors = self._load_candidates(source_quotas)
-        candidates = self._quality_filter(candidates)
+        started_at = time.monotonic()
+        filtered_checkpoint = self._checkpoint_path("filtered")
+        raw_checkpoint = self._checkpoint_path("raw")
+        load_errors: dict[str, str] = {}
+
+        if self._config.dataset.reuse_checkpoints and filtered_checkpoint.exists():
+            candidates = self._load_checkpoint(filtered_checkpoint)
+            self._report_progress("resumed_filtered", candidates_after_filter=len(candidates))
+        else:
+            if self._config.dataset.reuse_checkpoints and raw_checkpoint.exists():
+                candidates = self._load_checkpoint(raw_checkpoint)
+                self._report_progress("resumed_raw", candidates_loaded=len(candidates))
+            else:
+                self._report_progress("loading_sources", enabled_sources=sum(spec.enabled for spec in self._config.sources.values()))
+                candidates, load_errors = self._load_candidates(source_quotas)
+                self._save_checkpoint(raw_checkpoint, candidates)
+            self._report_progress("filtering", candidates_loaded=len(candidates), elapsed_seconds=round(time.monotonic() - started_at, 1))
+            candidates = self._quality_filter(candidates)
+            self._save_checkpoint(filtered_checkpoint, candidates)
+        self._report_progress("selecting", candidates_after_filter=len(candidates), elapsed_seconds=round(time.monotonic() - started_at, 1))
         selected, shortfalls = self._select_candidates(candidates, source_quotas)
 
         label_shortfalls = {key: value for key, value in shortfalls.items() if key.startswith("label:")}
@@ -63,23 +88,65 @@ class ModerationDatasetAssembler:
             raise RuntimeError(f"Dataset quotas were not satisfied: {shortfalls}")
 
         examples = [self._to_training_example(candidate, index) for index, candidate in enumerate(selected)]
+        self._report_progress("writing_splits", selected_examples=len(examples), elapsed_seconds=round(time.monotonic() - started_at, 1))
         split_examples = self._split_examples(examples)
         self._write_exports(split_examples)
         manifest = self._build_manifest(examples, split_examples, source_quotas, shortfalls, load_errors)
         manifest_path = self._config.dataset.output_dir / "manifest.json"
         manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+        self._report_progress("complete", actual_total=len(examples), elapsed_seconds=round(time.monotonic() - started_at, 1))
         return manifest
+
+    def _report_progress(self, stage: str, **details: object) -> None:
+        """Expose build state both in the terminal and in a small pollable file."""
+        output_dir = self._config.dataset.output_dir
+        output_dir.mkdir(parents=True, exist_ok=True)
+        progress = {"stage": stage, "updated_at": datetime.now(timezone.utc).isoformat(), **details}
+        (output_dir / "build_progress.json").write_text(
+            json.dumps(progress, ensure_ascii=False, indent=2), encoding="utf-8"
+        )
+        detail_text = " ".join(f"{key}={value}" for key, value in details.items())
+        print(f"[dataset] stage={stage} {detail_text}".rstrip(), flush=True)
+
+    def _checkpoint_path(self, stage: str) -> Path:
+        return self._config.dataset.output_dir / f"candidates_{stage}_{self._config.dataset.checkpoint_version}.jsonl"
+
+    @staticmethod
+    def _save_checkpoint(path: Path, candidates: list[ModerationDatasetCandidate]) -> None:
+        path.parent.mkdir(parents=True, exist_ok=True)
+        temporary_path = path.with_suffix(".tmp")
+        with temporary_path.open("w", encoding="utf-8") as file:
+            for candidate in candidates:
+                file.write(candidate.model_dump_json() + "\n")
+        temporary_path.replace(path)
+        print(f"[dataset] checkpoint_saved path={path} candidates={len(candidates)}", flush=True)
+
+    @staticmethod
+    def _load_checkpoint(path: Path) -> list[ModerationDatasetCandidate]:
+        with path.open("r", encoding="utf-8") as file:
+            candidates = [ModerationDatasetCandidate.model_validate_json(line) for line in file if line.strip()]
+        print(f"[dataset] checkpoint_loaded path={path} candidates={len(candidates)}", flush=True)
+        return candidates
 
     def _load_candidates(self, source_quotas: dict[str, int]) -> tuple[list[ModerationDatasetCandidate], dict[str, str]]:
         candidates: list[ModerationDatasetCandidate] = []
         errors: dict[str, str] = {}
         sources = self._config.sources
+        # Existing loaders historically multiply their requested quota by three.
+        # Rescale their input once here so a large build does not scan millions of
+        # rows before it can apply the configured deduplication and class quotas.
+        source_quotas = {
+            source: max(1, math.ceil(quota * self._config.dataset.candidate_load_multiplier / 3))
+            for source, quota in source_quotas.items()
+        }
 
         if sources.get("project") and sources["project"].enabled:
+            print("[dataset] source=project", flush=True)
             path = Path(str(getattr(sources["project"], "path", "data/exports/project_training_examples.jsonl")))
             candidates.extend(ProjectTrainingExampleLoader().load(path))
 
         if sources.get("project_raw") and sources["project_raw"].enabled:
+            print("[dataset] source=project_raw", flush=True)
             path = Path(str(getattr(sources["project_raw"], "path", "data/raw/discord_messages.jsonl")))
             candidates.extend(
                 DiscordRawMessageLoader().load(
@@ -88,31 +155,40 @@ class ModerationDatasetAssembler:
                 )
             )
 
+        local_tasks: list[tuple[str, Callable[[], list[ModerationDatasetCandidate]]]] = []
         for source_name in ("russian_discord_chat_logs", "russian_telegram_chat_logs"):
             if sources.get(source_name) and sources[source_name].enabled:
                 spec = sources[source_name]
-                try:
-                    local_path = Path(str(getattr(spec, "local_path", "")))
-                    candidates.extend(LocalCuratedDatasetLoader().load_chat_log_parquet(
-                        local_path,
-                        source_bucket=source_name,
-                        limit=max(source_quotas.get(source_name, 0) * 3, 100),
-                    ))
-                except Exception as exc:
-                    errors[source_name] = str(exc)
-
+                local_path = Path(str(getattr(spec, "local_path", "")))
+                local_tasks.append((source_name, lambda name=source_name, path=local_path: LocalCuratedDatasetLoader().load_chat_log_parquet(
+                    path, source_bucket=name, limit=max(source_quotas.get(name, 0) * 3, 100),
+                )))
         if sources.get("russian_dialogues_2") and sources["russian_dialogues_2"].enabled:
             spec = sources["russian_dialogues_2"]
-            try:
-                candidates.extend(LocalCuratedDatasetLoader().load_dialogues_gzip(
-                    Path(str(getattr(spec, "local_path", ""))),
-                    source_bucket="russian_dialogues_2",
-                    limit=max(source_quotas.get("russian_dialogues_2", 0) * 3, 100),
-                ))
-            except Exception as exc:
-                errors["russian_dialogues_2"] = str(exc)
+            local_tasks.append(("russian_dialogues_2", lambda path=Path(str(getattr(spec, "local_path", ""))): LocalCuratedDatasetLoader().load_dialogues_gzip(
+                path, source_bucket="russian_dialogues_2", limit=max(source_quotas.get("russian_dialogues_2", 0) * 3, 100),
+            )))
+        if sources.get("russian_tiny_conversations") and sources["russian_tiny_conversations"].enabled:
+            spec = sources["russian_tiny_conversations"]
+            local_tasks.append(("russian_tiny_conversations", lambda path=Path(str(getattr(spec, "local_path", ""))): LocalCuratedDatasetLoader().load_tiny_conversations(
+                path, limit=max(source_quotas.get("russian_tiny_conversations", 0) * 3, 100),
+            )))
+        if sources.get("hard_toxic_real") and sources["hard_toxic_real"].enabled:
+            spec = sources["hard_toxic_real"]
+            local_tasks.append(("hard_toxic_real", lambda path=Path(str(getattr(spec, "local_path", ""))): LocalCuratedDatasetLoader().load_hard_sensitive_topics(
+                path, limit=max(source_quotas.get("hard_toxic_real", 0) * 3, 100),
+            )))
+        if sources.get("hard_nsfw_real") and sources["hard_nsfw_real"].enabled:
+            spec = sources["hard_nsfw_real"]
+            local_tasks.append(("hard_nsfw_real", lambda path=Path(str(getattr(spec, "local_path", ""))): LocalCuratedDatasetLoader().load_hard_sensitive_nsfw(
+                path, limit=max(source_quotas.get("hard_nsfw_real", 0) * 3, 100),
+            )))
+        loaded_local, local_errors = self._load_sources_parallel(local_tasks)
+        candidates.extend(loaded_local)
+        errors.update(local_errors)
 
         if sources.get("russian_toxicity") and sources["russian_toxicity"].enabled:
+            print("[dataset] source=russian_toxicity", flush=True)
             spec = sources["russian_toxicity"]
             try:
                 local_path = Path(str(getattr(spec, "local_path", "")))
@@ -130,6 +206,7 @@ class ModerationDatasetAssembler:
                 errors["russian_toxicity"] = str(exc)
 
         if sources.get("russian_toxic_comments") and sources["russian_toxic_comments"].enabled:
+            print("[dataset] source=russian_toxic_comments", flush=True)
             spec = sources["russian_toxic_comments"]
             try:
                 local_path = Path(str(getattr(spec, "local_path", "")))
@@ -149,7 +226,23 @@ class ModerationDatasetAssembler:
             except Exception as exc:
                 errors["russian_toxic_comments"] = str(exc)
 
+        if sources.get("russian_toxic_merged") and sources["russian_toxic_merged"].enabled:
+            print("[dataset] source=russian_toxic_merged", flush=True)
+            spec = sources["russian_toxic_merged"]
+            try:
+                candidates.extend(
+                    HuggingFaceToxicityLoader().load_binary_toxicity_dataset(
+                        str(getattr(spec, "dataset_id")),
+                        str(getattr(spec, "split")),
+                        limit=max(source_quotas.get("russian_toxic_merged", 0) * 3, 100),
+                        source_bucket="russian_toxic_merged",
+                    )
+                )
+            except Exception as exc:
+                errors["russian_toxic_merged"] = str(exc)
+
         if sources.get("russian_inappropriate") and sources["russian_inappropriate"].enabled:
+            print("[dataset] source=russian_inappropriate", flush=True)
             spec = sources["russian_inappropriate"]
             try:
                 local_path = Path(str(getattr(spec, "local_path", "")))
@@ -200,6 +293,7 @@ class ModerationDatasetAssembler:
                 errors["russian_nsfw_fiction"] = str(exc)
 
         if sources.get("russian_toxic_dvach") and sources["russian_toxic_dvach"].enabled:
+            print("[dataset] source=russian_toxic_dvach", flush=True)
             spec = sources["russian_toxic_dvach"]
             try:
                 local_path = Path(str(getattr(spec, "local_path", "")))
@@ -233,6 +327,7 @@ class ModerationDatasetAssembler:
                 errors["russian_paradetox"] = str(exc)
 
         if sources.get("russian_react_hate") and sources["russian_react_hate"].enabled:
+            print("[dataset] source=russian_react_hate", flush=True)
             spec = sources["russian_react_hate"]
             raw_splits = getattr(spec, "splits", ("rus_lgbtq", "rus_war"))
             splits = tuple(str(split) for split in raw_splits)
@@ -251,6 +346,7 @@ class ModerationDatasetAssembler:
                 errors["russian_react_hate"] = str(exc)
 
         if sources.get("russian_dialogues_safe") and sources["russian_dialogues_safe"].enabled:
+            print("[dataset] source=russian_dialogues_safe", flush=True)
             spec = sources["russian_dialogues_safe"]
             try:
                 candidates.extend(
@@ -264,6 +360,7 @@ class ModerationDatasetAssembler:
                 errors["russian_dialogues_safe"] = str(exc)
 
         if sources.get("russian_literature_safe") and sources["russian_literature_safe"].enabled:
+            print("[dataset] source=russian_literature_safe", flush=True)
             spec = sources["russian_literature_safe"]
             try:
                 local_path = Path(str(getattr(spec, "local_path", "")))
@@ -313,6 +410,7 @@ class ModerationDatasetAssembler:
                 errors["russian_kinship_hard_safe"] = str(exc)
 
         if sources.get("russian_spam") and sources["russian_spam"].enabled:
+            print("[dataset] source=russian_spam", flush=True)
             spec = sources["russian_spam"]
             try:
                 local_path = Path(str(getattr(spec, "local_path", "")))
@@ -348,6 +446,7 @@ class ModerationDatasetAssembler:
                 errors["russian_spam_fork"] = str(exc)
 
         if sources.get("russian_scam_spam_public") and sources["russian_scam_spam_public"].enabled:
+            print("[dataset] source=russian_scam_spam_public", flush=True)
             spec = sources["russian_scam_spam_public"]
             try:
                 candidates.extend(
@@ -360,7 +459,19 @@ class ModerationDatasetAssembler:
             except Exception as exc:
                 errors["russian_scam_spam_public"] = str(exc)
 
+        if sources.get("hard_scam_real") and sources["hard_scam_real"].enabled:
+            print("[dataset] source=hard_scam_real", flush=True)
+            spec = sources["hard_scam_real"]
+            try:
+                candidates.extend(LocalCuratedDatasetLoader().load_fraudlens(
+                    Path(str(getattr(spec, "local_path", ""))),
+                    limit=max(source_quotas.get("hard_scam_real", 0) * 3, 100),
+                ))
+            except Exception as exc:
+                errors["hard_scam_real"] = str(exc)
+
         if sources.get("phishing_url") and sources["phishing_url"].enabled:
+            print("[dataset] source=phishing_url", flush=True)
             spec = sources["phishing_url"]
             try:
                 candidates.extend(
@@ -375,6 +486,7 @@ class ModerationDatasetAssembler:
                 errors["phishing_url"] = str(exc)
 
         if sources.get("discord_phishing_scam") and sources["discord_phishing_scam"].enabled:
+            print("[dataset] source=discord_phishing_scam", flush=True)
             spec = sources["discord_phishing_scam"]
             try:
                 candidates.extend(
@@ -399,8 +511,43 @@ class ModerationDatasetAssembler:
             edge_templates = build_ai_generated_edge_candidates()
             candidates.extend(edge_templates)
 
+        if sources.get("russian_robustness") and sources["russian_robustness"].enabled:
+            print("[dataset] source=russian_robustness", flush=True)
+            candidates.extend(build_russian_robustness_candidates())
+
+        # Last-resort class-balanced examples are intentionally added after
+        # public and project data.  They fill documented long-tail shortages
+        # without changing the source priority of real conversations.
+        print("[dataset] source=quota_backfill", flush=True)
+        candidates.extend(build_quota_backfill_candidates())
+        print("[dataset] source=russian_slang", flush=True)
+        candidates.extend(build_russian_slang_candidates())
+
         self._random.shuffle(candidates)
         return candidates, errors
+
+    def _load_sources_parallel(
+        self,
+        tasks: list[tuple[str, Callable[[], list[ModerationDatasetCandidate]]]],
+    ) -> tuple[list[ModerationDatasetCandidate], dict[str, str]]:
+        """Load independent local sources concurrently, then merge in stable order."""
+        if not tasks:
+            return [], {}
+        print(f"[dataset] parallel_sources workers={min(self._config.dataset.source_workers, len(tasks))} tasks={len(tasks)}", flush=True)
+        results: dict[str, list[ModerationDatasetCandidate]] = {}
+        errors: dict[str, str] = {}
+        with ThreadPoolExecutor(max_workers=min(self._config.dataset.source_workers, len(tasks)), thread_name_prefix="dataset-source") as executor:
+            futures = {source: executor.submit(loader) for source, loader in tasks}
+            for source, _ in tasks:
+                try:
+                    results[source] = futures[source].result()
+                    print(f"[dataset] source={source} candidates={len(results[source])}", flush=True)
+                except Exception as exc:
+                    errors[source] = str(exc)
+        merged: list[ModerationDatasetCandidate] = []
+        for source, _ in tasks:
+            merged.extend(results.get(source, []))
+        return merged, errors
 
     def _quality_filter(
         self,
@@ -513,6 +660,9 @@ class ModerationDatasetAssembler:
             "russian_discord_chat_logs",
             "russian_telegram_chat_logs",
             "russian_dialogues_2",
+            "russian_tiny_conversations",
+            "hard_toxic_real",
+            "hard_nsfw_real",
             "russian_dialogues_safe",
             "russian_dialogsum_safe",
             "russian_literature_safe",
@@ -528,6 +678,7 @@ class ModerationDatasetAssembler:
             "russian_spam",
             "russian_spam_fork",
             "russian_scam_spam_public",
+            "hard_scam_real",
             "phishing_url",
             "discord_phishing_scam",
             "contextual_contrast",
@@ -613,12 +764,21 @@ class ModerationDatasetAssembler:
         output_dir.mkdir(parents=True, exist_ok=True)
         row_builder = RuBertDatasetBuilder(self._rubert_config.label_schema)
 
-        for split_name, examples in splits.items():
+        def write_split(split_name: str, examples: list[TrainingExample]) -> None:
             path = output_dir / f"{split_name}.jsonl"
             rows = row_builder.build_rows(examples)
             with path.open("w", encoding="utf-8") as file:
                 for row in rows:
                     file.write(json.dumps(row, ensure_ascii=False) + "\n")
+
+        # The train/validation/test files are independent.  Parallel writing
+        # noticeably reduces the final I/O-bound phase without multiplying the
+        # in-memory candidate pool.
+        worker_count = min(self._config.dataset.workers, len(splits))
+        with ThreadPoolExecutor(max_workers=worker_count, thread_name_prefix="dataset-write") as executor:
+            futures = [executor.submit(write_split, split_name, examples) for split_name, examples in splits.items()]
+            for future in futures:
+                future.result()
 
     def _build_manifest(
         self,

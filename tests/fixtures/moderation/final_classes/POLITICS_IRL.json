@@ -1,0 +1,1207 @@
+{
+  "label": "POLITICS_IRL",
+  "version": "1.0",
+  "case_count": 50,
+  "cases": [
+    {
+      "id": "POLITICS_IRL_001",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-1",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-001",
+        "message_id": "politics_irl-001",
+        "raw_text": "Зеленский выступил в новостях, пример 1",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_002",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-2",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-002",
+        "message_id": "politics_irl-002",
+        "raw_text": "Верховная рада обсуждает закон, пример 2",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_003",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-3",
+        "channel_id": "channel-politics_irl-3",
+        "user_id": "user-politics_irl-003",
+        "message_id": "politics_irl-003",
+        "raw_text": "Кремль прокомментировал встречу, пример 3",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_004",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-4",
+        "channel_id": "channel-politics_irl-4",
+        "user_id": "user-politics_irl-004",
+        "message_id": "politics_irl-004",
+        "raw_text": "правительство России опубликовало отчёт, пример 4",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_005",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-5",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-005",
+        "message_id": "politics_irl-005",
+        "raw_text": "президент США дал интервью, пример 5",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_006",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-1",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-006",
+        "message_id": "politics_irl-006",
+        "raw_text": "НАТО проводит саммит, пример 6",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_007",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-2",
+        "channel_id": "channel-politics_irl-3",
+        "user_id": "user-politics_irl-007",
+        "message_id": "politics_irl-007",
+        "raw_text": "Белый дом выпустил заявление, пример 7",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_008",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-3",
+        "channel_id": "channel-politics_irl-4",
+        "user_id": "user-politics_irl-008",
+        "message_id": "politics_irl-008",
+        "raw_text": "в Украине идут выборы, пример 8",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_009",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-4",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-009",
+        "message_id": "politics_irl-009",
+        "raw_text": "в Беларуси обсуждают реформу, пример 9",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_010",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-5",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-010",
+        "message_id": "politics_irl-010",
+        "raw_text": "Госдума рассмотрит проект, пример 10",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_011",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-1",
+        "channel_id": "channel-politics_irl-3",
+        "user_id": "user-politics_irl-011",
+        "message_id": "politics_irl-011",
+        "raw_text": "Зеленский выступил в новостях, пример 11",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_012",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-2",
+        "channel_id": "channel-politics_irl-4",
+        "user_id": "user-politics_irl-012",
+        "message_id": "politics_irl-012",
+        "raw_text": "Верховная рада обсуждает закон, пример 12",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_013",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-3",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-013",
+        "message_id": "politics_irl-013",
+        "raw_text": "Кремль прокомментировал встречу, пример 13",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_014",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-4",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-014",
+        "message_id": "politics_irl-014",
+        "raw_text": "правительство России опубликовало отчёт, пример 14",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_015",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-5",
+        "channel_id": "channel-politics_irl-3",
+        "user_id": "user-politics_irl-015",
+        "message_id": "politics_irl-015",
+        "raw_text": "президент США дал интервью, пример 15",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_016",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-1",
+        "channel_id": "channel-politics_irl-4",
+        "user_id": "user-politics_irl-016",
+        "message_id": "politics_irl-016",
+        "raw_text": "НАТО проводит саммит, пример 16",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_017",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-2",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-017",
+        "message_id": "politics_irl-017",
+        "raw_text": "Белый дом выпустил заявление, пример 17",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_018",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-3",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-018",
+        "message_id": "politics_irl-018",
+        "raw_text": "в Украине идут выборы, пример 18",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_019",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-4",
+        "channel_id": "channel-politics_irl-3",
+        "user_id": "user-politics_irl-019",
+        "message_id": "politics_irl-019",
+        "raw_text": "в Беларуси обсуждают реформу, пример 19",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_020",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-5",
+        "channel_id": "channel-politics_irl-4",
+        "user_id": "user-politics_irl-020",
+        "message_id": "politics_irl-020",
+        "raw_text": "Госдума рассмотрит проект, пример 20",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_021",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-1",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-021",
+        "message_id": "politics_irl-021",
+        "raw_text": "Зеленский выступил в новостях, пример 21",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_022",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-2",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-022",
+        "message_id": "politics_irl-022",
+        "raw_text": "Верховная рада обсуждает закон, пример 22",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_023",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-3",
+        "channel_id": "channel-politics_irl-3",
+        "user_id": "user-politics_irl-023",
+        "message_id": "politics_irl-023",
+        "raw_text": "Кремль прокомментировал встречу, пример 23",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_024",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-4",
+        "channel_id": "channel-politics_irl-4",
+        "user_id": "user-politics_irl-024",
+        "message_id": "politics_irl-024",
+        "raw_text": "правительство России опубликовало отчёт, пример 24",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_025",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-5",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-025",
+        "message_id": "politics_irl-025",
+        "raw_text": "президент США дал интервью, пример 25",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_026",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-1",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-026",
+        "message_id": "politics_irl-026",
+        "raw_text": "НАТО проводит саммит, пример 26",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_027",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-2",
+        "channel_id": "channel-politics_irl-3",
+        "user_id": "user-politics_irl-027",
+        "message_id": "politics_irl-027",
+        "raw_text": "Белый дом выпустил заявление, пример 27",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_028",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-3",
+        "channel_id": "channel-politics_irl-4",
+        "user_id": "user-politics_irl-028",
+        "message_id": "politics_irl-028",
+        "raw_text": "в Украине идут выборы, пример 28",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_029",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-4",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-029",
+        "message_id": "politics_irl-029",
+        "raw_text": "в Беларуси обсуждают реформу, пример 29",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_030",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-5",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-030",
+        "message_id": "politics_irl-030",
+        "raw_text": "Госдума рассмотрит проект, пример 30",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_031",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-1",
+        "channel_id": "channel-politics_irl-3",
+        "user_id": "user-politics_irl-031",
+        "message_id": "politics_irl-031",
+        "raw_text": "Зеленский выступил в новостях, пример 31",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_032",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-2",
+        "channel_id": "channel-politics_irl-4",
+        "user_id": "user-politics_irl-032",
+        "message_id": "politics_irl-032",
+        "raw_text": "Верховная рада обсуждает закон, пример 32",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_033",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-3",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-033",
+        "message_id": "politics_irl-033",
+        "raw_text": "Кремль прокомментировал встречу, пример 33",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_034",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-4",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-034",
+        "message_id": "politics_irl-034",
+        "raw_text": "правительство России опубликовало отчёт, пример 34",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_035",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-5",
+        "channel_id": "channel-politics_irl-3",
+        "user_id": "user-politics_irl-035",
+        "message_id": "politics_irl-035",
+        "raw_text": "президент США дал интервью, пример 35",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_036",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-1",
+        "channel_id": "channel-politics_irl-4",
+        "user_id": "user-politics_irl-036",
+        "message_id": "politics_irl-036",
+        "raw_text": "НАТО проводит саммит, пример 36",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_037",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-2",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-037",
+        "message_id": "politics_irl-037",
+        "raw_text": "Белый дом выпустил заявление, пример 37",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_038",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-3",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-038",
+        "message_id": "politics_irl-038",
+        "raw_text": "в Украине идут выборы, пример 38",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_039",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-4",
+        "channel_id": "channel-politics_irl-3",
+        "user_id": "user-politics_irl-039",
+        "message_id": "politics_irl-039",
+        "raw_text": "в Беларуси обсуждают реформу, пример 39",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_040",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-5",
+        "channel_id": "channel-politics_irl-4",
+        "user_id": "user-politics_irl-040",
+        "message_id": "politics_irl-040",
+        "raw_text": "Госдума рассмотрит проект, пример 40",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_041",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-1",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-041",
+        "message_id": "politics_irl-041",
+        "raw_text": "Зеленский выступил в новостях, пример 41",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_042",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-2",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-042",
+        "message_id": "politics_irl-042",
+        "raw_text": "Верховная рада обсуждает закон, пример 42",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_043",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-3",
+        "channel_id": "channel-politics_irl-3",
+        "user_id": "user-politics_irl-043",
+        "message_id": "politics_irl-043",
+        "raw_text": "Кремль прокомментировал встречу, пример 43",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_044",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-4",
+        "channel_id": "channel-politics_irl-4",
+        "user_id": "user-politics_irl-044",
+        "message_id": "politics_irl-044",
+        "raw_text": "правительство России опубликовало отчёт, пример 44",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_045",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-5",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-045",
+        "message_id": "politics_irl-045",
+        "raw_text": "президент США дал интервью, пример 45",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_046",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-1",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-046",
+        "message_id": "politics_irl-046",
+        "raw_text": "НАТО проводит саммит, пример 46",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_047",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-2",
+        "channel_id": "channel-politics_irl-3",
+        "user_id": "user-politics_irl-047",
+        "message_id": "politics_irl-047",
+        "raw_text": "Белый дом выпустил заявление, пример 47",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_048",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-3",
+        "channel_id": "channel-politics_irl-4",
+        "user_id": "user-politics_irl-048",
+        "message_id": "politics_irl-048",
+        "raw_text": "в Украине идут выборы, пример 48",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_049",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-4",
+        "channel_id": "channel-politics_irl-1",
+        "user_id": "user-politics_irl-049",
+        "message_id": "politics_irl-049",
+        "raw_text": "в Беларуси обсуждают реформу, пример 49",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    },
+    {
+      "id": "POLITICS_IRL_050",
+      "primary_label": "POLITICS_IRL",
+      "input": {
+        "platform": "discord",
+        "guild_id": "guild-politics_irl-5",
+        "channel_id": "channel-politics_irl-2",
+        "user_id": "user-politics_irl-050",
+        "message_id": "politics_irl-050",
+        "raw_text": "Госдума рассмотрит проект, пример 50",
+        "metadata": {
+          "dataset_source": "manual_synthetic",
+          "fixture_label": "POLITICS_IRL",
+          "expected_primary_label": "POLITICS_IRL"
+        }
+      },
+      "expected": {
+        "labels": [
+          "POLITICS_IRL"
+        ],
+        "primary_label": "POLITICS_IRL"
+      },
+      "notes": "manual synthetic moderation fixture"
+    }
+  ]
+}

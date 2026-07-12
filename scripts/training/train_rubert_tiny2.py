@@ -131,6 +131,10 @@ def train(
         problem_type=config.model.problem_type,
         local_files_only=True,
         use_safetensors=True,
+        # The moderation label schema evolves.  Keep the pretrained encoder and
+        # reinitialize only the final classifier when an older local head has a
+        # different number of labels (e.g. 13 -> 15).
+        ignore_mismatched_sizes=True,
     )
 
     train_dataset = _build_dataset(train_rows, tokenizer, max_length=config.model.max_length)

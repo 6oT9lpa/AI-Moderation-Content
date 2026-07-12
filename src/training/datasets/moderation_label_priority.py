@@ -11,6 +11,8 @@ DEFAULT_PRIMARY_LABEL_PRIORITY: tuple[ModerationLabel, ...] = (
     ModerationLabel.SCAM,
     ModerationLabel.NSFW,
     ModerationLabel.TOXIC,
+    ModerationLabel.POLITICS_IRL,
+    ModerationLabel.PROFANITY,
     ModerationLabel.INVITE,
     ModerationLabel.FLOOD,
     ModerationLabel.SPAM,

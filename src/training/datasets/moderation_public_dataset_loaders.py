@@ -222,6 +222,84 @@ class LocalCuratedDatasetLoader:
     def load_dialogue_safe(self, path: Path, *, source_bucket: str, limit: int) -> list[ModerationDatasetCandidate]:
         return self.load_parquet_safe(path, source_bucket=source_bucket, limit=limit, text_key="dialogue")
 
+    def load_tiny_conversations(self, path: Path, *, limit: int) -> list[ModerationDatasetCandidate]:
+        if not path.exists():
+            return []
+        try:
+            from pyarrow.parquet import ParquetFile
+        except ImportError as exc:
+            raise RuntimeError("Install pyarrow to read downloaded dialogue corpora.") from exc
+
+        candidates: list[ModerationDatasetCandidate] = []
+        for batch in ParquetFile(path).iter_batches(batch_size=2048, columns=["text"]):
+            for index, row in enumerate(batch.to_pylist()):
+                if len(candidates) >= limit:
+                    return candidates
+                turns = row.get("text")
+                if not isinstance(turns, list):
+                    continue
+                text = "\n".join(str(turn).strip() for turn in turns if str(turn).strip())
+                candidates.extend(self._to_candidate(
+                    text, "false", "russian_tiny_conversations", f"{path.name}:{len(candidates)}:{index}", ModerationLabel.TOXIC,
+                ))
+        return candidates
+
+    def load_hard_sensitive_topics(self, path: Path, *, limit: int) -> list[ModerationDatasetCandidate]:
+        if not path.exists():
+            return []
+        candidates: list[ModerationDatasetCandidate] = []
+        toxic_columns = ("racism", "sexual_minorities", "sexism", "body_shaming", "health_shaming", "social_injustice")
+        with path.open("r", encoding="utf-8", newline="") as file:
+            for index, row in enumerate(DictReader(file)):
+                if len(candidates) >= limit:
+                    break
+                try:
+                    hard = any(float(row.get(column) or 0) >= 0.5 for column in toxic_columns)
+                except ValueError:
+                    continue
+                if not hard:
+                    continue
+                candidates.extend(self._to_candidate(
+                    str(row.get("text") or ""), "true", "hard_toxic_real", f"{path.name}:{index}", ModerationLabel.TOXIC,
+                ))
+        return candidates
+
+    def load_hard_sensitive_nsfw(self, path: Path, *, limit: int) -> list[ModerationDatasetCandidate]:
+        if not path.exists():
+            return []
+        candidates: list[ModerationDatasetCandidate] = []
+        with path.open("r", encoding="utf-8", newline="") as file:
+            for index, row in enumerate(DictReader(file)):
+                if len(candidates) >= limit:
+                    break
+                try:
+                    hard = any(float(row.get(column) or 0) >= 0.5 for column in ("pornography", "prostitution"))
+                except ValueError:
+                    continue
+                if hard:
+                    candidates.extend(self._to_candidate(
+                        str(row.get("text") or ""), "true", "hard_nsfw_real", f"{path.name}:{index}", ModerationLabel.NSFW,
+                    ))
+        return candidates
+
+    def load_fraudlens(self, path: Path, *, limit: int) -> list[ModerationDatasetCandidate]:
+        if not path.exists():
+            return []
+        candidates: list[ModerationDatasetCandidate] = []
+        with path.open("r", encoding="utf-8") as file:
+            for index, line in enumerate(file):
+                if len(candidates) >= limit:
+                    break
+                if not line.strip():
+                    continue
+                row = json.loads(line)
+                if str(row.get("language") or "").casefold() != "ru":
+                    continue
+                candidates.extend(self._to_candidate(
+                    str(row.get("text_clean") or ""), "true", "hard_scam_real", f"{path.name}:{index}", ModerationLabel.SCAM,
+                ))
+        return candidates
+
     def load_chat_log_parquet(self, path: Path, *, source_bucket: str, limit: int) -> list[ModerationDatasetCandidate]:
         if not path.exists():
             return []

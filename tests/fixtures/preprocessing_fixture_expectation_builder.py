@@ -47,7 +47,7 @@ class PreprocessingFixtureExpectationBuilder:
             message_interval_seconds=self._calculate_message_interval(payload.created_at, timestamps),
         )
 
-        rule_matches = self._build_rule_matches(features, invites, domains)
+        rule_matches = self._build_rule_matches(features, invites, domains, normalized_text)
         detected_labels = sorted(
             {
                 label
@@ -76,6 +76,7 @@ class PreprocessingFixtureExpectationBuilder:
         features,
         invites: tuple[str, ...],
         domains: tuple[str, ...],
+        normalized_text: str,
     ) -> list[dict[str, Any]]:
         matches: list[dict[str, Any]] = []
 
@@ -84,6 +85,23 @@ class PreprocessingFixtureExpectationBuilder:
         invite = self._settings.invite
         links = self._settings.links
         evasion = self._settings.evasion
+        semantic = self._settings.semantic
+
+        hate_keywords = self._matching_keywords(normalized_text, semantic.hate_keywords)
+        if semantic.hate.enabled and hate_keywords:
+            matches.append(self._match("preprocessing.semantic.hate", semantic.hate, {"matched_keyword_count": len(hate_keywords), "input_redacted": True}))
+
+        nsfw_keywords = self._matching_keywords(normalized_text, semantic.nsfw_keywords)
+        if semantic.nsfw.enabled and nsfw_keywords:
+            matches.append(self._match("preprocessing.semantic.nsfw", semantic.nsfw, {"matched_keyword_count": len(nsfw_keywords), "input_redacted": True}))
+
+        profanity_terms = self._matching_profanity_terms(normalized_text, semantic.profanity_terms)
+        if semantic.profanity.enabled and profanity_terms:
+            matches.append(self._match("preprocessing.semantic.profanity", semantic.profanity, {"matched_term_count": len(profanity_terms), "input_redacted": True}))
+
+        politics_keywords = self._matching_keywords(normalized_text, semantic.politics_keywords)
+        if semantic.politics.enabled and politics_keywords:
+            matches.append(self._match("preprocessing.semantic.politics", semantic.politics, {"matched_keyword_count": len(politics_keywords), "input_redacted": True}))
 
         if self._is_threshold_reached(flood.messages_10s, features.recent_user_messages_10s):
             matches.append(
@@ -256,6 +274,36 @@ class PreprocessingFixtureExpectationBuilder:
             normalized_domain == pattern or normalized_domain.endswith(f".{pattern}")
             for pattern in patterns
         )
+
+    def _matching_keywords(self, text: str, keywords: tuple[str, ...]) -> tuple[str, ...]:
+        return tuple(keyword for keyword in keywords if self._contains_semantic_keyword(text, keyword))
+
+    def _contains_semantic_keyword(self, text: str, keyword: str) -> bool:
+        import re
+
+        pattern = re.escape(keyword).replace(r"\*", r"[\w-]*")
+        if " " not in keyword:
+            pattern = rf"(?<![\w]){pattern}(?![\w])"
+        return re.search(pattern, text, flags=re.UNICODE) is not None
+
+    def _matching_profanity_terms(self, text: str, terms: tuple[str, ...]) -> tuple[str, ...]:
+        import re
+
+        tokens = tuple(re.findall(r"[\w-]+", text.casefold(), flags=re.UNICODE))
+        return tuple(term for term in terms if any(self._token_matches_profanity(token, term) for token in tokens))
+
+    @staticmethod
+    def _token_matches_profanity(token: str, term: str) -> bool:
+        normalized_term = term.casefold()
+        if len(normalized_term) < 3:
+            return False
+        if normalized_term in token:
+            return True
+        if len(token) < 5 or len(normalized_term) < 5:
+            return False
+        token_chunks = {token[index:index + 3] for index in range(len(token) - 2)}
+        term_chunks = {normalized_term[index:index + 3] for index in range(len(normalized_term) - 2)}
+        return len(token_chunks & term_chunks) / len(term_chunks) >= 0.8
 
     def _count_repeated_messages(
         self,

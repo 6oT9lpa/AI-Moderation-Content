@@ -22,6 +22,17 @@ class PreprocessingSpamPolicy(BaseModel):
             threshold=5,
         ),
     )
+    targeted_mass_mentions: PreprocessingRulePolicy = Field(
+        default_factory=lambda: PreprocessingRulePolicy(
+            enabled=True,
+            labels=(ModerationLabel.TOXIC,),
+            severity=3,
+            confidence=0.82,
+            reason="toxic_message_targets_multiple_users",
+            risk_weight=32,
+            threshold=3,
+        ),
+    )
     caps: PreprocessingRulePolicy = Field(
         default_factory=lambda: PreprocessingRulePolicy(
             enabled=True,
@@ -67,7 +78,7 @@ class PreprocessingSpamPolicy(BaseModel):
 
         merged = dict(data)
 
-        for field_name in ("mass_mentions", "caps", "emoji", "repeated_chars"):
+        for field_name in ("mass_mentions", "targeted_mass_mentions", "caps", "emoji", "repeated_chars"):
             field_value = merged.get(field_name)
 
             if isinstance(field_value, Mapping):

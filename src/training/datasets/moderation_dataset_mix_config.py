@@ -16,6 +16,12 @@ class ModerationDatasetSpec(BaseModel):
     total_examples: int = Field(default=10000, gt=0)
     negative_examples: int = Field(default=6000, gt=0)
     safe_examples: int = Field(default=4000, gt=0)
+    candidate_load_multiplier: float = Field(default=3.0, ge=1.0, le=3.0)
+    workers: int = Field(default=1, ge=1, le=64)
+    source_workers: int = Field(default=4, ge=1, le=16)
+    cpu_limit_percent: int = Field(default=80, ge=10, le=100)
+    checkpoint_version: str = "v1"
+    reuse_checkpoints: bool = True
     random_seed: int = 42
     strict: bool = True
 

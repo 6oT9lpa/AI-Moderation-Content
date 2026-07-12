@@ -14,6 +14,7 @@ class ModerationLoadTestResult(BaseModel):
     achieved_messages_per_second: float = Field(ge=0.0)
     latency_mean_ms: float = Field(ge=0.0)
     latency_p50_ms: float = Field(ge=0.0)
+    latency_p80_ms: float = Field(ge=0.0)
     latency_p95_ms: float = Field(ge=0.0)
     latency_p99_ms: float = Field(ge=0.0)
     status_counts: dict[str, int]

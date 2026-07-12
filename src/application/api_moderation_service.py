@@ -88,6 +88,7 @@ class ApiModerationService:
             request.message_id,
             signals,
             rule_policy_resolution.policy,
+            context,
         )
         decision = self._decision_engine.decide(
             request.message_id,

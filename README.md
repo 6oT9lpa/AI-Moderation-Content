@@ -33,10 +33,12 @@ NVIDIA driver is installed and PyTorch reports `cuda_available=True`.
 
 ## Training Results
 
-The current ruBERT moderation model was trained on 200,000 examples with a
-`140,000 / 30,000 / 30,000` train, validation, and test split. The best
-validation checkpoint is epoch 5 (`checkpoint-43750`) with macro-F1 `0.8232`.
-The final held-out test result is micro-F1 `0.9712` and macro-F1 `0.8231`.
+The current moderation dataset contains 1,049,399 examples with a
+`735,000 / 157,202 / 157,197` train, validation, and test split. The ruBERT
+model was trained on the 735,000-example training split. The selected checkpoint
+is epoch 4 (`checkpoint-183752`) with validation micro-F1 `0.9298`, macro-F1
+`0.8381`, and exact match `0.8610`. The final held-out test result is micro-F1
+`0.9358` and macro-F1 `0.8396`.
 
 ![Training overview](./docs/images/training/training_overview.png)
 
@@ -57,9 +59,10 @@ comparing runs with different training schedules.
 ![Learning rate by step](./docs/images/training/learning_rate_by_step.png)
 
 Per-label precision, recall, and F1 expose uneven model quality that aggregate
-metrics can hide. `TOXIC` has the lowest supported test recall and is a priority
-for additional hard examples. `FLOOD` and `IMAGE_SCAM` have no held-out test
-examples; flood must remain primarily rule-engine driven until that coverage is
+metrics can hide. `TOXIC` has the lowest recall among labels with meaningful
+held-out support (`0.7816`) and remains a priority for additional hard examples.
+`FLOOD` has only one held-out example and `IMAGE_SCAM` has none, so these labels
+must remain primarily rule-engine driven until representative test coverage is
 added.
 
 ![Test quality by moderation label](./docs/images/training/test_per_label_metrics.png)
@@ -74,6 +77,11 @@ number of rows. The chart below is useful for identifying underrepresented
 classes before the next training run.
 
 ![Training dataset label distribution](./docs/images/training/label_distribution.png)
+
+The source distribution chart documents how public, synthetic, and moderated
+project examples contribute to the assembled dataset.
+
+![Training dataset source distribution](./docs/images/training/source_distribution.png)
 
 Regenerate the local report after a training run:
 

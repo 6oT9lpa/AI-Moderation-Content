@@ -8,6 +8,7 @@ from src.modules.preprocessing.rules.preprocessing_moderation_policy_adapter imp
     PreprocessingModerationPolicyAdapter,
 )
 from src.modules.preprocessing.rules.preprocessing_rule_settings import PreprocessingRuleSettings
+from src.modules.preprocessing.rules.russian_profanity_dictionary_loader import RussianProfanityDictionaryLoader
 from src.contracts.rules.moderation_rule_policy import ModerationRulePolicy
 from src.modules.rules.moderation_rule_policy_config_loader import ModerationRulePolicyConfigLoader
 
@@ -25,6 +26,7 @@ class PreprocessingRuleConfigLoader:
         self._moderation_policy = moderation_policy
         self._moderation_policy_path = Path(moderation_policy_path)
         self._policy_adapter = policy_adapter or PreprocessingModerationPolicyAdapter()
+        self._russian_profanity_dictionary_loader = RussianProfanityDictionaryLoader()
 
     def load(self, path: str | Path) -> PreprocessingRuleSettings:
         config_path = Path(path)
@@ -37,6 +39,7 @@ class PreprocessingRuleConfigLoader:
         data = self._load_yaml_data(config_path)
         rule_data = self._extract_rule_data(data)
         settings = PreprocessingRuleSettings.from_mapping(rule_data)
+        settings = self._with_russian_profanity_dictionaries(settings)
         adapted_settings = self._policy_adapter.adapt(settings, self._resolve_moderation_policy())
         logger.info("Preprocessing rule config loaded path=%s settings=%s", config_path, adapted_settings)
         return adapted_settings
@@ -45,6 +48,7 @@ class PreprocessingRuleConfigLoader:
         logger.info("Preprocessing rule config loading from payload")
         rule_data = self._extract_rule_data(payload)
         settings = PreprocessingRuleSettings.from_mapping(rule_data)
+        settings = self._with_russian_profanity_dictionaries(settings)
         adapted_settings = self._policy_adapter.adapt(settings, self._resolve_moderation_policy())
         logger.info("Preprocessing rule config payload loaded settings=%s", adapted_settings)
         return adapted_settings
@@ -55,6 +59,11 @@ class PreprocessingRuleConfigLoader:
 
         self._moderation_policy = ModerationRulePolicyConfigLoader.load(self._moderation_policy_path)
         return self._moderation_policy
+
+    def _with_russian_profanity_dictionaries(self, settings: PreprocessingRuleSettings) -> PreprocessingRuleSettings:
+        return settings.model_copy(
+            update={"russian_profanity": self._russian_profanity_dictionary_loader.load(settings.russian_profanity)},
+        )
 
     def _load_yaml_data(self, config_path: Path) -> Mapping[str, Any]:
         try:

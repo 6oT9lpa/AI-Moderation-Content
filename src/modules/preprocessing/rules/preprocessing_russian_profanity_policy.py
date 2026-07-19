@@ -15,6 +15,8 @@ class PreprocessingRussianProfanityPolicy(BaseModel):
 
     obscene_words: tuple[str, ...] = ()
     literary_words: tuple[str, ...] = ()
+    obscene_dictionary_path: str = "configs/rules/russian_obscene_words.yaml"
+    literary_dictionary_path: str = "configs/rules/russian_literary_profanity_words.yaml"
     obscene: PreprocessingRulePolicy = Field(
         default_factory=lambda: PreprocessingRulePolicy(
             enabled=True,

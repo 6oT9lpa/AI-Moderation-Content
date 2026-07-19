@@ -100,11 +100,8 @@ class PreprocessingRuleSettings(BaseModel):
     @staticmethod
     def _move_legacy_russian_profanity(source: dict[str, Any], target: dict[str, Any]) -> None:
         """Move the former shared semantic profanity configuration to its own policy."""
-        legacy_words = source.pop("profanity_terms", None)
+        source.pop("profanity_terms", None)
         legacy_rule = source.pop("profanity", None)
-
-        if legacy_words is not None and "obscene_words" not in target:
-            target["obscene_words"] = legacy_words
 
         if legacy_rule is not None and "obscene" not in target:
             target["obscene"] = legacy_rule

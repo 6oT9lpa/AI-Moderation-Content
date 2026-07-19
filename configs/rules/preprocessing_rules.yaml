@@ -197,7 +197,6 @@ preprocessing:
   # Russian vocabulary is handled by a dedicated detector. It is compiled to a
   # hash map once during startup, so checking a message is O(number of tokens).
   russian_profanity:
-    literary_words: ["дурак", "дура", "идиот", "кретин", "недотепа"]
     literary:
       enabled: true
       labels: [PROFANITY]

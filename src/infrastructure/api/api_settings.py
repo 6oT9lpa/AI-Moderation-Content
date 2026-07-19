@@ -24,3 +24,7 @@ class ApiSettings(BaseSettings):
     api_rubert_enabled: bool = True
     api_rubert_required: bool = True
     api_rubert_model_dir: str = "models/rubert-tiny2-moderation-trained"
+    phishing_enabled: bool = False
+    phishing_google_safe_browsing_api_key: str | None = Field(default=None, min_length=16)
+    phishing_rdap_enabled: bool = False
+    phishing_request_timeout_seconds: float = Field(default=2.0, gt=0, le=10)

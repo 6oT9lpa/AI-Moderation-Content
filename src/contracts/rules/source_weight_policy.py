@@ -11,3 +11,4 @@ class SourceWeightPolicy(BaseModel):
     IMAGE: float = Field(default=1.0, ge=0.0)
     HISTORY: float = Field(default=1.0, ge=0.0)
     MANUAL: float = Field(default=1.0, ge=0.0)
+    PHISHING: float = Field(default=1.0, ge=0.0)

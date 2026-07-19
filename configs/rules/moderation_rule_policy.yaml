@@ -13,6 +13,7 @@ source_weights:
   IMAGE: 1.0
   HISTORY: 0.8
   MANUAL: 2.0
+  PHISHING: 1.4
 
 label_weights:
   SAFE: 0
@@ -38,6 +39,7 @@ confidence_thresholds:
     PREPROCESSING: 0.3
     RUBERT: 0.5
     QWEN: 0.6
+    PHISHING: 0.5
   per_label_min_confidence:
     THREAT: 0.3
     HATE: 0.3
@@ -95,3 +97,18 @@ user_risk:
   new_member_multiplier: 1.1
   repeat_violation_multiplier: 1.35
   max_multiplier: 1.75
+
+phishing:
+  # With an existing SCAM signal, a threat-registry match is emitted directly.
+  # A URL absent from the registry requires a fresh domain and suspicious URL
+  # indicators as additional evidence.
+  enabled: false
+  domain_max_age_days: 7
+  max_urls_per_message: 5
+  minimum_bad_indicators: 1
+  max_domain_labels: 4
+  severity: 5
+  confidence: 0.95
+  risk_weight: 85
+  reason: phishing_new_unlisted_scam_url
+  suspicious_keywords: [airdrop, bonus, claim, crypto, gift, login, promo, verify, wallet]

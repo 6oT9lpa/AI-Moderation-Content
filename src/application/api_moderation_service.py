@@ -22,6 +22,7 @@ from src.infrastructure.logging import get_logger
 from src.modules.dataset.dataset_collector import DatasetCollector
 from src.modules.decision.decision_engine import DecisionEngine
 from src.modules.policy.policy_resolver import PolicyResolver
+from src.modules.phishing.phishing_link_service import PhishingLinkService
 from src.modules.preprocessing.text_preprocessor import TextPreprocessor
 from src.modules.rules.moderation_rule_engine import ModerationRuleEngine
 from src.modules.rules.preprocessing_signal_adapter import PreprocessingSignalAdapter
@@ -42,6 +43,7 @@ class ApiModerationService:
         event_repository: ModerationEventRepository,
         inference_semaphore: asyncio.Semaphore,
         rubert_classifier: RuBertModerationClassifier | None,
+        phishing_link_service: PhishingLinkService,
     ) -> None:
         self._preprocessor = preprocessor
         self._rule_engine = rule_engine
@@ -52,6 +54,7 @@ class ApiModerationService:
         self._event_repository = event_repository
         self._inference_semaphore = inference_semaphore
         self._rubert_classifier = rubert_classifier
+        self._phishing_link_service = phishing_link_service
 
     async def moderate(
         self,
@@ -83,6 +86,13 @@ class ApiModerationService:
             except Exception:
                 logger.warning("ruBERT inference fallback correlation_id=%s message_id=%s", correlation_id, request.message_id)
                 warnings.append("rubert_unavailable")
+
+        phishing_signals = await self._phishing_link_service.build_signals(
+            context,
+            signals,
+            rule_policy_resolution.policy.phishing,
+        )
+        signals.extend(phishing_signals)
 
         rule_evaluation = self._rule_engine.evaluate(
             request.message_id,

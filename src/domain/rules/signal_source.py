@@ -9,3 +9,4 @@ class SignalSource(str, Enum):
     IMAGE = "IMAGE"
     HISTORY = "HISTORY"
     MANUAL = "MANUAL"
+    PHISHING = "PHISHING"

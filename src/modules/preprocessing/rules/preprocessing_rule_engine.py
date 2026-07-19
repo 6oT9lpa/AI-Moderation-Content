@@ -9,6 +9,7 @@ from src.infrastructure.logging import get_logger
 from src.modules.preprocessing.rules.preprocessing_rule_policy import PreprocessingRulePolicy
 from src.modules.preprocessing.rules.preprocessing_rule_result import PreprocessingRuleResult
 from src.modules.preprocessing.rules.preprocessing_rule_settings import PreprocessingRuleSettings
+from src.modules.preprocessing.detectors.russian_profanity_detector import RussianProfanityDetector
 
 logger = get_logger(__name__)
 
@@ -24,6 +25,7 @@ class PreprocessingRuleEngine:
 
     def __init__(self, settings: PreprocessingRuleSettings | None = None) -> None:
         self._settings = settings or PreprocessingRuleSettings()
+        self._russian_profanity_detector = RussianProfanityDetector(self._settings.russian_profanity)
         logger.info("Preprocessing rule engine initialized settings=%s", self._settings)
 
     def evaluate(self, context: MessageContext) -> tuple[PreprocessingRuleResult, ...]:
@@ -35,7 +37,9 @@ class PreprocessingRuleEngine:
 
         results: list[PreprocessingRuleResult] = []
         results.extend(self._evaluate_blacklist_words(context))
-        semantic_results = self._evaluate_semantic(context)
+        russian_profanity_results = self._evaluate_russian_profanity(context)
+        results.extend(russian_profanity_results)
+        semantic_results = [*russian_profanity_results, *self._evaluate_semantic(context)]
         results.extend(semantic_results)
         results.extend(self._evaluate_flood(context))
         results.extend(self._evaluate_spam(context, semantic_results))
@@ -100,16 +104,6 @@ class PreprocessingRuleEngine:
                 ),
             )
 
-        profanity_terms = self._matching_profanity_terms(context.normalized_text, semantic.profanity_terms)
-        if semantic.profanity.enabled and profanity_terms:
-            matches.append(
-                self._build_result(
-                    "preprocessing.semantic.profanity",
-                    semantic.profanity,
-                    {"matched_term_count": len(profanity_terms), "input_redacted": True},
-                ),
-            )
-
         politics_keywords = self._matching_keywords(context.normalized_text, semantic.politics_keywords)
         if semantic.politics.enabled and politics_keywords:
             matches.append(
@@ -121,6 +115,24 @@ class PreprocessingRuleEngine:
             )
 
         return matches
+
+    def _evaluate_russian_profanity(self, context: MessageContext) -> list[PreprocessingRuleResult]:
+        policy = self._settings.russian_profanity
+        matched_by_category = self._russian_profanity_detector.find_matches(context.normalized_text)
+        results: list[PreprocessingRuleResult] = []
+
+        for category, rule_policy in (("obscene", policy.obscene), ("literary", policy.literary)):
+            matched_words = matched_by_category.get(category, ())
+            if rule_policy.enabled and matched_words:
+                results.append(
+                    self._build_result(
+                        f"preprocessing.russian_profanity.{category}",
+                        rule_policy,
+                        {"matched_word_count": len(matched_words), "input_redacted": True},
+                    ),
+                )
+
+        return results
 
     def _evaluate_flood(self, context: MessageContext) -> list[PreprocessingRuleResult]:
         features = context.features
@@ -408,33 +420,3 @@ class PreprocessingRuleEngine:
         if " " not in keyword:
             pattern = rf"(?<![\w]){pattern}(?![\w])"
         return re.search(pattern, text, flags=re.UNICODE) is not None
-
-    def _matching_profanity_terms(self, text: str, terms: tuple[str, ...]) -> tuple[str, ...]:
-        """Find Russian profanity by stems and typo-tolerant character chunks.
-
-        The matcher intentionally emits only a low-risk PROFANITY signal. A targeted
-        insult remains the responsibility of the contextual classifier's TOXIC label.
-        """
-        tokens = tuple(re.findall(r"[\w-]+", text.casefold(), flags=re.UNICODE))
-        return tuple(
-            term
-            for term in terms
-            if any(self._token_matches_profanity(token, term) for token in tokens)
-        )
-
-    @staticmethod
-    def _token_matches_profanity(token: str, term: str) -> bool:
-        normalized_term = term.casefold()
-        if len(normalized_term) < 3:
-            return False
-        if normalized_term in token:
-            return True
-
-        # Character trigrams preserve a useful part of a word when one letter is
-        # substituted ("бездарь" -> "бездард") or a suffix is added.
-        if len(token) < 5 or len(normalized_term) < 5:
-            return False
-        token_chunks = {token[index:index + 3] for index in range(len(token) - 2)}
-        term_chunks = {normalized_term[index:index + 3] for index in range(len(normalized_term) - 2)}
-        overlap = len(token_chunks & term_chunks) / len(term_chunks)
-        return overlap >= 0.8

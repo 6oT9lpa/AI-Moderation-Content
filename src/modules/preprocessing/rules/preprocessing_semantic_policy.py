@@ -13,7 +13,6 @@ class PreprocessingSemanticPolicy(BaseModel):
 
     hate_keywords: tuple[str, ...] = ()
     nsfw_keywords: tuple[str, ...] = ()
-    profanity_terms: tuple[str, ...] = ()
     politics_keywords: tuple[str, ...] = ()
     hate: PreprocessingRulePolicy = Field(
         default_factory=lambda: PreprocessingRulePolicy(
@@ -35,16 +34,6 @@ class PreprocessingSemanticPolicy(BaseModel):
             risk_weight=70,
         ),
     )
-    profanity: PreprocessingRulePolicy = Field(
-        default_factory=lambda: PreprocessingRulePolicy(
-            enabled=True,
-            labels=(ModerationLabel.PROFANITY,),
-            severity=1,
-            confidence=0.94,
-            reason="russian_profanity_detected",
-            risk_weight=8,
-        ),
-    )
     politics: PreprocessingRulePolicy = Field(
         default_factory=lambda: PreprocessingRulePolicy(
             enabled=True,
@@ -63,7 +52,7 @@ class PreprocessingSemanticPolicy(BaseModel):
             return data
 
         merged = dict(data)
-        for rule_name in ("hate", "nsfw", "profanity", "politics"):
+        for rule_name in ("hate", "nsfw", "politics"):
             rule_data = merged.get(rule_name)
             if isinstance(rule_data, Mapping):
                 default_policy = cls.model_fields[rule_name].get_default(call_default_factory=True)
@@ -73,7 +62,7 @@ class PreprocessingSemanticPolicy(BaseModel):
                 }
         return merged
 
-    @field_validator("hate_keywords", "nsfw_keywords", "profanity_terms", "politics_keywords", mode="before")
+    @field_validator("hate_keywords", "nsfw_keywords", "politics_keywords", mode="before")
     @classmethod
     def _parse_keywords(cls, value: object) -> tuple[str, ...] | object:
         if isinstance(value, str):

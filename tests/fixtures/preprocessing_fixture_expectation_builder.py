@@ -5,6 +5,7 @@ from typing import Any
 
 from src.contracts.message_preprocess_input_schema import MessagePreprocessInputSchema
 from src.modules.preprocessing.detectors.mention_extractor import MentionExtractor
+from src.modules.preprocessing.detectors.russian_profanity_detector import RussianProfanityDetector
 from src.modules.preprocessing.rules.preprocessing_rule_config_loader import PreprocessingRuleConfigLoader
 from src.modules.preprocessing.rules.preprocessing_rule_policy import PreprocessingRulePolicy
 from src.modules.preprocessing.rules.preprocessing_rule_settings import PreprocessingRuleSettings
@@ -17,6 +18,7 @@ class PreprocessingFixtureExpectationBuilder:
     def __init__(self, config_path: str = "configs/rules/preprocessing_rules.yaml") -> None:
         self._settings = PreprocessingRuleConfigLoader().load(config_path)
         self._shortener_domains = frozenset(self._settings.links.shortener_domains)
+        self._russian_profanity_detector = RussianProfanityDetector(self._settings.russian_profanity)
         self._config_path = config_path
 
     def build(self, case: dict[str, Any]) -> dict[str, Any]:
@@ -86,6 +88,22 @@ class PreprocessingFixtureExpectationBuilder:
         links = self._settings.links
         evasion = self._settings.evasion
         semantic = self._settings.semantic
+        russian_profanity = self._settings.russian_profanity
+
+        russian_matches = self._russian_profanity_detector.find_matches(normalized_text)
+        for category, policy in (
+            ("obscene", russian_profanity.obscene),
+            ("literary", russian_profanity.literary),
+        ):
+            matched_words = russian_matches.get(category, ())
+            if policy.enabled and matched_words:
+                matches.append(
+                    self._match(
+                        f"preprocessing.russian_profanity.{category}",
+                        policy,
+                        {"matched_word_count": len(matched_words), "input_redacted": True},
+                    ),
+                )
 
         hate_keywords = self._matching_keywords(normalized_text, semantic.hate_keywords)
         if semantic.hate.enabled and hate_keywords:
@@ -94,10 +112,6 @@ class PreprocessingFixtureExpectationBuilder:
         nsfw_keywords = self._matching_keywords(normalized_text, semantic.nsfw_keywords)
         if semantic.nsfw.enabled and nsfw_keywords:
             matches.append(self._match("preprocessing.semantic.nsfw", semantic.nsfw, {"matched_keyword_count": len(nsfw_keywords), "input_redacted": True}))
-
-        profanity_terms = self._matching_profanity_terms(normalized_text, semantic.profanity_terms)
-        if semantic.profanity.enabled and profanity_terms:
-            matches.append(self._match("preprocessing.semantic.profanity", semantic.profanity, {"matched_term_count": len(profanity_terms), "input_redacted": True}))
 
         politics_keywords = self._matching_keywords(normalized_text, semantic.politics_keywords)
         if semantic.politics.enabled and politics_keywords:
@@ -285,25 +299,6 @@ class PreprocessingFixtureExpectationBuilder:
         if " " not in keyword:
             pattern = rf"(?<![\w]){pattern}(?![\w])"
         return re.search(pattern, text, flags=re.UNICODE) is not None
-
-    def _matching_profanity_terms(self, text: str, terms: tuple[str, ...]) -> tuple[str, ...]:
-        import re
-
-        tokens = tuple(re.findall(r"[\w-]+", text.casefold(), flags=re.UNICODE))
-        return tuple(term for term in terms if any(self._token_matches_profanity(token, term) for token in tokens))
-
-    @staticmethod
-    def _token_matches_profanity(token: str, term: str) -> bool:
-        normalized_term = term.casefold()
-        if len(normalized_term) < 3:
-            return False
-        if normalized_term in token:
-            return True
-        if len(token) < 5 or len(normalized_term) < 5:
-            return False
-        token_chunks = {token[index:index + 3] for index in range(len(token) - 2)}
-        term_chunks = {normalized_term[index:index + 3] for index in range(len(normalized_term) - 2)}
-        return len(token_chunks & term_chunks) / len(term_chunks) >= 0.8
 
     def _count_repeated_messages(
         self,

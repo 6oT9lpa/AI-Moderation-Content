@@ -32,6 +32,7 @@ class TextPreprocessor:
             domain.lower()
             for domain in (shortener_domains or self._default_rule_settings.links.shortener_domains)
         )
+        self._rule_engine = PreprocessingRuleEngine(self._default_rule_settings)
         logger.info(
             "Text preprocessor initialized shortener_domains=%s rule_settings=%s",
             len(self.shortener_domains),
@@ -101,8 +102,8 @@ class TextPreprocessor:
                 "feature_version": "text_preprocessor_v1",
             },
         )
-        rule_settings = self._resolve_rule_settings(payload.metadata)
-        rule_matches = PreprocessingRuleEngine(rule_settings).evaluate(context)
+        self._validate_payload_settings(payload.metadata)
+        rule_matches = self._rule_engine.evaluate(context)
 
         # Preprocessing emits explainable signals only; final actions stay in Decision Engine.
         context = replace(
@@ -211,13 +212,12 @@ class TextPreprocessor:
 
         return round(min(intervals), 3)
 
-    def _resolve_rule_settings(self, metadata: Mapping[str, object]) -> PreprocessingRuleSettings:
+    def _validate_payload_settings(self, metadata: Mapping[str, object]) -> None:
         if "preprocessing_rule_settings" in metadata:
             logger.warning(
                 "Ignoring preprocessing_rule_settings from payload metadata; use YAML or injected module settings",
             )
 
-        return self._default_rule_settings
 
     @staticmethod
     def _domain_matches_any(domain: str, patterns: frozenset[str]) -> bool:

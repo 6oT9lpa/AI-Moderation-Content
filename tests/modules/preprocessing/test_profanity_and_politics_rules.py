@@ -30,3 +30,17 @@ async def test_politics_rule_marks_real_world_political_entities() -> None:
     )
 
     assert ModerationLabel.POLITICS_IRL.value in context.metadata["preprocessing_labels"]
+
+
+@pytest.mark.asyncio
+async def test_preprocessor_emits_separate_literary_profanity_rule() -> None:
+    context = await TextPreprocessor().process(
+        MessagePreprocessInputSchema(
+            channel_id="channel", user_id="user", message_id="message", raw_text="Этот дурак ошибся",
+            created_at=datetime.now(timezone.utc),
+        ),
+    )
+
+    assert "preprocessing.russian_profanity.literary" in {
+        match["rule_id"] for match in context.metadata["preprocessing_rule_matches"]
+    }

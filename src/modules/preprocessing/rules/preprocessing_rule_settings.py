@@ -11,6 +11,7 @@ from src.modules.preprocessing.rules.preprocessing_evasion_policy import Preproc
 from src.modules.preprocessing.rules.preprocessing_flood_policy import PreprocessingFloodPolicy
 from src.modules.preprocessing.rules.preprocessing_invite_policy import PreprocessingInvitePolicy
 from src.modules.preprocessing.rules.preprocessing_link_policy import PreprocessingLinkPolicy
+from src.modules.preprocessing.rules.preprocessing_russian_profanity_policy import PreprocessingRussianProfanityPolicy
 from src.modules.preprocessing.rules.preprocessing_semantic_policy import PreprocessingSemanticPolicy
 from src.modules.preprocessing.rules.preprocessing_spam_policy import PreprocessingSpamPolicy
 
@@ -25,6 +26,7 @@ class PreprocessingRuleSettings(BaseModel):
     invite: PreprocessingInvitePolicy = Field(default_factory=PreprocessingInvitePolicy)
     evasion: PreprocessingEvasionPolicy = Field(default_factory=PreprocessingEvasionPolicy)
     semantic: PreprocessingSemanticPolicy = Field(default_factory=PreprocessingSemanticPolicy)
+    russian_profanity: PreprocessingRussianProfanityPolicy = Field(default_factory=PreprocessingRussianProfanityPolicy)
     semantic_placeholders: dict[str, Any] = Field(default_factory=dict)
     new_account_link_days: int = Field(default=7, ge=0)
 
@@ -71,6 +73,8 @@ class PreprocessingRuleSettings(BaseModel):
         links = dict(cls._as_mapping(normalized.get("links")))
         flood = dict(cls._as_mapping(normalized.get("flood")))
         spam = dict(cls._as_mapping(normalized.get("spam")))
+        semantic = dict(cls._as_mapping(normalized.get("semantic")))
+        russian_profanity = dict(cls._as_mapping(normalized.get("russian_profanity")))
 
         if "detect_any_url" in normalized:
             detect_any_url = dict(cls._as_mapping(links.get("detect_any_url")))
@@ -84,11 +88,26 @@ class PreprocessingRuleSettings(BaseModel):
         cls._move_legacy_threshold(normalized, spam, "caps_ratio_threshold", "caps")
         cls._move_legacy_threshold(normalized, spam, "emoji_ratio_threshold", "emoji")
         cls._move_legacy_threshold(normalized, spam, "repeated_char_score_threshold", "repeated_chars")
+        cls._move_legacy_russian_profanity(semantic, russian_profanity)
 
         normalized["links"] = links
         normalized["flood"] = flood
         normalized["spam"] = spam
+        normalized["semantic"] = semantic
+        normalized["russian_profanity"] = russian_profanity
         return normalized
+
+    @staticmethod
+    def _move_legacy_russian_profanity(source: dict[str, Any], target: dict[str, Any]) -> None:
+        """Move the former shared semantic profanity configuration to its own policy."""
+        legacy_words = source.pop("profanity_terms", None)
+        legacy_rule = source.pop("profanity", None)
+
+        if legacy_words is not None and "obscene_words" not in target:
+            target["obscene_words"] = legacy_words
+
+        if legacy_rule is not None and "obscene" not in target:
+            target["obscene"] = legacy_rule
 
     @staticmethod
     def _move_legacy_threshold(

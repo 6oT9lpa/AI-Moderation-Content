@@ -93,7 +93,7 @@ preprocessing:
       reason: repeated_char_score_threshold_exceeded
 
   blacklist_words:
-    words: [67, six seven]
+    words: [six seven]
     detected:
       enabled: true
       labels: [SPAM]
@@ -180,7 +180,7 @@ preprocessing:
       risk_weight: 70
       reason: nsfw_keyword_detected
     profanity:
-      enabled: true
+      enabled: false
       labels: [PROFANITY]
       severity: 1
       confidence: 0.94
@@ -197,8 +197,15 @@ preprocessing:
   # Russian vocabulary is handled by a dedicated detector. It is compiled to a
   # hash map once during startup, so checking a message is O(number of tokens).
   russian_profanity:
+    obscene:
+      enabled: false
+      labels: [PROFANITY]
+      severity: 1
+      confidence: 0.94
+      risk_weight: 8
+      reason: russian_profanity_detected
     literary:
-      enabled: true
+      enabled: false
       labels: [PROFANITY]
       severity: 1
       confidence: 0.82

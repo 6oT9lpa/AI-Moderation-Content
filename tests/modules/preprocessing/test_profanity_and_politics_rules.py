@@ -9,7 +9,7 @@ from src.modules.preprocessing.text_preprocessor import TextPreprocessor
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize("text", ("ты хуеглотик", "какой же ты бездарт"))
-async def test_profanity_rule_covers_compounds_and_single_character_typos(text: str) -> None:
+async def test_preprocessor_does_not_emit_profanity_for_obscene_words(text: str) -> None:
     context = await TextPreprocessor().process(
         MessagePreprocessInputSchema(
             channel_id="channel", user_id="user", message_id="message", raw_text=text,
@@ -17,7 +17,7 @@ async def test_profanity_rule_covers_compounds_and_single_character_typos(text: 
         ),
     )
 
-    assert ModerationLabel.PROFANITY.value in context.metadata["preprocessing_labels"]
+    assert ModerationLabel.PROFANITY.value not in context.metadata["preprocessing_labels"]
 
 
 @pytest.mark.asyncio
@@ -33,7 +33,7 @@ async def test_politics_rule_marks_real_world_political_entities() -> None:
 
 
 @pytest.mark.asyncio
-async def test_preprocessor_emits_separate_literary_profanity_rule() -> None:
+async def test_preprocessor_does_not_emit_literary_profanity_rule() -> None:
     context = await TextPreprocessor().process(
         MessagePreprocessInputSchema(
             channel_id="channel", user_id="user", message_id="message", raw_text="Этот дурак ошибся",
@@ -41,6 +41,29 @@ async def test_preprocessor_emits_separate_literary_profanity_rule() -> None:
         ),
     )
 
-    assert "preprocessing.russian_profanity.literary" in {
+    assert "preprocessing.russian_profanity.literary" not in {
         match["rule_id"] for match in context.metadata["preprocessing_rule_matches"]
     }
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "text",
+    (
+        "б-л-я-д-с-т-в-о",
+        "д о е б а т ь с я",
+        "с·у·ч·е·ч·к·а",
+        "л о  х",
+    ),
+)
+async def test_preprocessor_marks_separator_obfuscated_profanity_as_evasion_only(text: str) -> None:
+    context = await TextPreprocessor().process(
+        MessagePreprocessInputSchema(
+            channel_id="channel", user_id="user", message_id="message", raw_text=text,
+            created_at=datetime.now(timezone.utc),
+        ),
+    )
+
+    labels = set(context.metadata["preprocessing_labels"])
+    assert ModerationLabel.PROFANITY.value not in labels
+    assert ModerationLabel.EVASION.value in labels

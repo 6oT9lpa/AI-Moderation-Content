@@ -69,7 +69,7 @@ async def test_dataset_text_sanitizer_keeps_discord_mentions_as_tags() -> None:
     snapshot = DatasetTextSanitizer().build_snapshot(context)
 
     assert snapshot.model_text == (
-        "<DISCORD_USER_MENTION> <DISCORD_ROLE_MENTION> <DISCORD_CHANNEL_MENTION>"
+        "ты <DISCORD_ROLE_MENTION> <DISCORD_CHANNEL_MENTION>"
     )
     assert "<PHONE>" not in snapshot.model_text
 

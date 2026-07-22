@@ -12,8 +12,15 @@ def test_plain_at_word_is_not_a_discord_user_mention() -> None:
     assert MentionExtractor.count_user_mentions("напиши @support, это не тег Discord") == 0
 
 
+def test_discord_user_mention_is_replaced_with_direct_address_for_analysis() -> None:
+    text = MentionExtractor.replace_user_mentions_with_direct_address("<@123456789012345678> лох")
+
+    assert "ты" in text
+    assert "<@123456789012345678>" not in text
+
+
 @pytest.mark.asyncio
-async def test_one_discord_tag_is_not_spam_but_insult_after_it_is_detected() -> None:
+async def test_one_discord_tag_is_not_spam_and_profanity_is_left_to_classifier() -> None:
     context = await TextPreprocessor().process(
         MessagePreprocessInputSchema(
             channel_id="channel", user_id="author", message_id="message",
@@ -24,12 +31,13 @@ async def test_one_discord_tag_is_not_spam_but_insult_after_it_is_detected() -> 
 
     assert context.features is not None
     assert context.features.mention_count == 1
+    assert context.normalized_text == "ты ты пидр"
     assert ModerationLabel.SPAM.value not in context.metadata["preprocessing_labels"]
-    assert ModerationLabel.PROFANITY.value in context.metadata["preprocessing_labels"]
+    assert ModerationLabel.PROFANITY.value not in context.metadata["preprocessing_labels"]
 
 
 @pytest.mark.asyncio
-async def test_three_mentions_raise_priority_only_with_toxicity() -> None:
+async def test_three_mentions_with_profanity_are_left_to_classifier_not_spam() -> None:
     mentions = "<@123456789012345678> <@223456789012345678> <@323456789012345678>"
     context = await TextPreprocessor().process(
         MessagePreprocessInputSchema(
@@ -40,7 +48,7 @@ async def test_three_mentions_raise_priority_only_with_toxicity() -> None:
     )
 
     matches = context.metadata["preprocessing_rule_matches"]
-    assert any(match["rule_id"] == "preprocessing.targeted.mass_mentions" for match in matches)
+    assert not any(match["rule_id"] == "preprocessing.targeted.mass_mentions" for match in matches)
     assert ModerationLabel.SPAM.value not in context.metadata["preprocessing_labels"]
 
 

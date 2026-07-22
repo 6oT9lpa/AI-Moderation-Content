@@ -39,8 +39,9 @@ class PreprocessingRuleEngine:
         results.extend(self._evaluate_blacklist_words(context))
         russian_profanity_results = self._evaluate_russian_profanity(context)
         results.extend(russian_profanity_results)
-        semantic_results = [*russian_profanity_results, *self._evaluate_semantic(context)]
-        results.extend(semantic_results)
+        semantic_keyword_results = self._evaluate_semantic(context)
+        semantic_results = [*russian_profanity_results, *semantic_keyword_results]
+        results.extend(semantic_keyword_results)
         results.extend(self._evaluate_flood(context))
         results.extend(self._evaluate_spam(context, semantic_results))
         results.extend(self._evaluate_invite(context))
@@ -334,16 +335,22 @@ class PreprocessingRuleEngine:
 
         evasion = self._settings.evasion.unicode
 
-        if not evasion.enabled or not (features.has_mixed_scripts or features.has_suspicious_unicode):
+        has_separator_obfuscation = self._russian_profanity_detector.has_separator_obfuscation(context.normalized_text)
+        if not evasion.enabled or not (
+            features.has_mixed_scripts
+            or features.has_suspicious_unicode
+            or has_separator_obfuscation
+        ):
             return []
 
         return [
             self._build_result(
-                "preprocessing.evasion.unicode",
+                "preprocessing.evasion.separator_obfuscation" if has_separator_obfuscation else "preprocessing.evasion.unicode",
                 evasion,
                 {
                     "has_mixed_scripts": features.has_mixed_scripts,
                     "has_suspicious_unicode": features.has_suspicious_unicode,
+                    "has_separator_obfuscation": has_separator_obfuscation,
                 },
             ),
         ]

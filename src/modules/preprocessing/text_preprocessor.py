@@ -48,7 +48,8 @@ class TextPreprocessor:
             payload.message_id,
         )
         raw_text = payload.raw_text or ""
-        normalized_text = TextNormalizer.normalize(raw_text)
+        analysis_text = MentionExtractor.replace_user_mentions_with_direct_address(raw_text)
+        normalized_text = TextNormalizer.normalize(analysis_text)
 
         urls = UrlExtractor.extract_urls(raw_text)
         domains = UrlExtractor.extract_domains(urls)

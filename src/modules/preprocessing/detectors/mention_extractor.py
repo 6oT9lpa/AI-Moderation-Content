@@ -21,3 +21,7 @@ class MentionExtractor:
     @staticmethod
     def count_channel_mentions(text: str) -> int:
         return len(_CHANNEL_MENTION_RE.findall(text or ""))
+
+    @staticmethod
+    def replace_user_mentions_with_direct_address(text: str) -> str:
+        return _USER_MENTION_RE.sub(" ты ", text or "")

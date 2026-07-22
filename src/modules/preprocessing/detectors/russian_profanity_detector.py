@@ -11,6 +11,26 @@ from src.modules.preprocessing.rules.preprocessing_russian_profanity_policy impo
 logger = get_logger(__name__)
 
 _TOKEN_PATTERN = re.compile(r"[\w-]+", flags=re.UNICODE)
+_CYRILLIC_LETTER = r"а-яё"
+_SEPARATED_CYRILLIC_RUN_PATTERN = re.compile(
+    rf"(?<![{_CYRILLIC_LETTER}])(?:[{_CYRILLIC_LETTER}][\s.\-·•*_|]+){{2,}}[{_CYRILLIC_LETTER}](?![{_CYRILLIC_LETTER}])",
+    flags=re.IGNORECASE | re.UNICODE,
+)
+_NON_CYRILLIC_PATTERN = re.compile(rf"[^{_CYRILLIC_LETTER}]+", flags=re.IGNORECASE | re.UNICODE)
+_OBSCENE_STEMS = (
+    "бляд",
+    "еба",
+    "еби",
+    "ебу",
+    "ёба",
+    "пизд",
+    "пидор",
+    "пидр",
+    "хуе",
+    "хуй",
+    "суч",
+    "долбоеб",
+)
 
 
 class RussianProfanityDetector:
@@ -34,7 +54,11 @@ class RussianProfanityDetector:
         matches: dict[str, list[str]] = {"obscene": [], "literary": []}
         seen_words: set[str] = set()
 
-        tokens = _TOKEN_PATTERN.findall(text.casefold())
+        normalized_text = text.casefold()
+        tokens = [
+            *(_TOKEN_PATTERN.findall(normalized_text)),
+            *self._separator_obfuscated_candidates(normalized_text),
+        ]
         for token in tokens:
             category = self._lookup_category(token)
             if category is not None and token not in seen_words:
@@ -50,13 +74,30 @@ class RussianProfanityDetector:
         )
         return result
 
+    def has_separator_obfuscation(self, text: str) -> bool:
+        return any(
+            self._lookup_category(candidate) is not None
+            for candidate in self._separator_obfuscated_candidates(text.casefold())
+        )
+
     def _lookup_category(self, token: str) -> str | None:
         """Check a token and its prefixes without iterating over the vocabulary."""
         for length in range(len(token), 2, -1):
             category = self._vocabulary.get(token[:length])
             if category is not None:
                 return category
+        if any(stem in token for stem in _OBSCENE_STEMS):
+            return "obscene"
         return None
+
+    @staticmethod
+    def _separator_obfuscated_candidates(text: str) -> tuple[str, ...]:
+        candidates = []
+        for match in _SEPARATED_CYRILLIC_RUN_PATTERN.finditer(text):
+            candidate = _NON_CYRILLIC_PATTERN.sub("", match.group(0))
+            if 3 <= len(candidate) <= 32:
+                candidates.append(candidate)
+        return tuple(dict.fromkeys(candidates))
 
     @staticmethod
     def _add_soft_sign_typo_aliases(vocabulary: dict[str, str]) -> None:

@@ -14,7 +14,7 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from src.training.rubert.rubert_training_config import RuBertTrainingConfig
 
-DATASET_DIR = Path("data/exports/rubert_moderation_v1")
+DATASET_DIR = PROJECT_ROOT / "data" / "exports" / "moderation_dataset"
 TRAINED_OUTPUT_DIR = Path("models/rubert-tiny2-moderation-trained")
 
 
@@ -39,7 +39,7 @@ def _build_dataset(rows: list[dict[str, Any]], tokenizer: Any, *, max_length: in
         tokenized = tokenizer(
             batch["text"],
             truncation=True,
-            padding="max_length",
+            padding=False,
             max_length=max_length,
         )
         tokenized["labels"] = batch["labels"]
@@ -109,7 +109,13 @@ def train(
     max_steps: int = -1,
     resume_from_checkpoint: Path | None = None,
 ) -> None:
-    from transformers import AutoModelForSequenceClassification, AutoTokenizer, TrainingArguments
+    from transformers import (
+        AutoModelForSequenceClassification,
+        AutoTokenizer,
+        DataCollatorWithPadding,
+        EarlyStoppingCallback,
+        TrainingArguments,
+    )
 
     config = RuBertTrainingConfig.load()
     model_source = config.model.classifier_output_dir
@@ -131,9 +137,6 @@ def train(
         problem_type=config.model.problem_type,
         local_files_only=True,
         use_safetensors=True,
-        # The moderation label schema evolves.  Keep the pretrained encoder and
-        # reinitialize only the final classifier when an older local head has a
-        # different number of labels (e.g. 13 -> 15).
         ignore_mismatched_sizes=True,
     )
 
@@ -141,6 +144,7 @@ def train(
     eval_dataset = _build_dataset(validation_rows, tokenizer, max_length=config.model.max_length)
     pos_weight = _calculate_pos_weight(train_rows)
     trainer_class = WeightedMultiLabelTrainer.build(pos_weight)
+    data_collator = DataCollatorWithPadding(tokenizer=tokenizer, pad_to_multiple_of=8)
 
     args = TrainingArguments(
         output_dir=str(output_dir),
@@ -153,10 +157,20 @@ def train(
         warmup_ratio=config.training.warmup_ratio,
         weight_decay=config.training.weight_decay,
         fp16=config.training.fp16,
+        group_by_length=True,
+        # On Windows, spawned worker processes can stall at the first Trainer batch.
+        # The tokenized Hugging Face dataset is memory-mapped, so a single loader is
+        # reliable here and keeps GPU training responsive.
+        dataloader_num_workers=0,
+        dataloader_pin_memory=True,
         eval_strategy="epoch",
         save_strategy="epoch",
+        save_total_limit=2,
         logging_strategy="steps",
-        logging_steps=25,
+        logging_steps=10,
+        logging_first_step=True,
+        disable_tqdm=False,
+        log_level="info",
         load_best_model_at_end=True,
         metric_for_best_model="macro_f1",
         greater_is_better=True,
@@ -169,7 +183,9 @@ def train(
         train_dataset=train_dataset,
         eval_dataset=eval_dataset,
         processing_class=tokenizer,
+        data_collator=data_collator,
         compute_metrics=_compute_metrics(config.training.threshold),
+        callbacks=[EarlyStoppingCallback(early_stopping_patience=1)],
     )
     trainer.train(resume_from_checkpoint=str(resume_from_checkpoint) if resume_from_checkpoint else None)
     trainer.save_model(output_dir)

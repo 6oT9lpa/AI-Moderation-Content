@@ -7,12 +7,12 @@ model:
   problem_type: multi_label_classification
 
 training:
-  train_batch_size: 8
-  eval_batch_size: 16
-  gradient_accumulation_steps: 2
-  learning_rate: 0.00003
-  num_train_epochs: 8
-  warmup_ratio: 0.1
+  train_batch_size: 32       
+  eval_batch_size: 128
+  gradient_accumulation_steps: 2 
+  learning_rate: 0.00002
+  num_train_epochs: 4
+  warmup_ratio: 0.03
   weight_decay: 0.01
   fp16: true
   threshold: 0.5
@@ -30,6 +30,4 @@ labels:
   - THREAT
   - NSFW
   - EVASION
-  - FLOOD
   - URL
-  - IMAGE_SCAM

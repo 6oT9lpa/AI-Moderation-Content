@@ -14,7 +14,8 @@ if str(PROJECT_ROOT) not in sys.path:
 
 from src.training.rubert.rubert_training_config import RuBertTrainingConfig
 
-DATASET_DIR = Path("data/exports/rubert_moderation_v1")
+# Use the same final audited export as the training entrypoint by default.
+DATASET_DIR = PROJECT_ROOT / "export" / "moderation_dataset_v3_80_10_10"
 DEFAULT_MODEL_DIR = Path("models/rubert-tiny2-moderation-trained")
 
 

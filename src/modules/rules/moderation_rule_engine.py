@@ -60,7 +60,7 @@ class ModerationRuleEngine:
 
         normalized_signals = self._normalizer.normalize(signals, current_policy)
         breakdown = self._breakdown_builder.build(normalized_signals, current_policy)
-        contributions = [item.contribution for item in breakdown]
+        contributions = self._aggregate_contributions_by_label(breakdown)
         risk_score = self._calculator.calculate_total_score(contributions, current_policy)
         initial_primary = self._label_resolver.resolve(breakdown, current_policy)
 
@@ -138,5 +138,17 @@ class ModerationRuleEngine:
             return [ModerationLabel.SAFE]
 
         labels = {signal.label for signal in signals}
+        non_safe_labels = {label for label in labels if label != ModerationLabel.SAFE}
+        if non_safe_labels:
+            labels = non_safe_labels
+
         priority_map = {label: index for index, label in enumerate(policy.primary_label_priority)}
         return sorted(labels, key=lambda label: priority_map.get(label, 999))
+
+    @staticmethod
+    def _aggregate_contributions_by_label(breakdown: list) -> list[float]:
+        contributions_by_label: dict[ModerationLabel, float] = {}
+        for item in breakdown:
+            current = contributions_by_label.get(item.label, 0.0)
+            contributions_by_label[item.label] = max(current, item.contribution)
+        return list(contributions_by_label.values())

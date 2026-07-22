@@ -21,8 +21,6 @@ label_overrides:
   HATE: "DELETE"
   SCAM: "DELETE"
   NSFW: "REVIEW"
-  # Political discussion is server-policy-sensitive; the default is to queue it
-  # for review rather than auto-delete ordinary discussion.
   POLITICS_IRL: "REVIEW"
 
 action_bundles:

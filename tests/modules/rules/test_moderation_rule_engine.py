@@ -64,6 +64,7 @@ def test_rule_engine_conflict_resolution(rule_engine):
     
     # SAFE should be excluded from primary if harmful signals exist
     assert result.primary_label == ModerationLabel.SCAM
+    assert result.labels == [ModerationLabel.SCAM]
     assert any("safe" in c for c in result.conflicts)
 
 
@@ -152,6 +153,83 @@ def test_rule_engine_uses_signal_risk_weight(rule_engine):
     high_result = rule_engine.evaluate("msg_high_url", [high_signal])
 
     assert high_result.risk_score > low_result.risk_score
+
+
+def test_rule_engine_does_not_sum_duplicate_label_contributions(rule_engine):
+    signals = [
+        ModerationSignal(
+            source=SignalSource.PREPROCESSING,
+            label=ModerationLabel.PROFANITY,
+            confidence=0.94,
+            severity=1,
+            risk_weight=8,
+            reason="preprocessing profanity",
+        ),
+        ModerationSignal(
+            source=SignalSource.RUBERT,
+            label=ModerationLabel.PROFANITY,
+            confidence=0.97,
+            severity=1,
+            risk_weight=8,
+            reason="rubert profanity",
+        ),
+    ]
+
+    result = rule_engine.evaluate("msg_duplicate_profanity", signals)
+
+    assert result.primary_label == ModerationLabel.PROFANITY
+    assert result.risk_score < 5.0
+
+
+def test_rule_engine_prefers_high_confidence_model_label_for_primary_label(rule_engine):
+    signals = [
+        ModerationSignal(
+            source=SignalSource.PREPROCESSING,
+            label=ModerationLabel.SPAM,
+            confidence=0.9,
+            severity=2,
+            risk_weight=20,
+            reason="preprocessing spam",
+        ),
+        ModerationSignal(
+            source=SignalSource.RUBERT,
+            label=ModerationLabel.ADVERTISEMENT,
+            confidence=0.92,
+            severity=2,
+            risk_weight=15,
+            reason="rubert advertisement",
+        ),
+    ]
+
+    result = rule_engine.evaluate("msg_model_primary", signals)
+
+    assert result.primary_label == ModerationLabel.ADVERTISEMENT
+
+
+def test_rule_engine_does_not_let_safe_model_signal_override_harmful_label(rule_engine):
+    signals = [
+        ModerationSignal(
+            source=SignalSource.PREPROCESSING,
+            label=ModerationLabel.PROFANITY,
+            confidence=0.94,
+            severity=1,
+            risk_weight=8,
+            reason="preprocessing profanity",
+        ),
+        ModerationSignal(
+            source=SignalSource.RUBERT,
+            label=ModerationLabel.SAFE,
+            confidence=0.99,
+            severity=0,
+            risk_weight=0,
+            reason="rubert safe",
+        ),
+    ]
+
+    result = rule_engine.evaluate("msg_safe_model_not_primary", signals)
+
+    assert result.primary_label == ModerationLabel.PROFANITY
+    assert result.labels == [ModerationLabel.PROFANITY]
 
 
 def test_rule_engine_specific_confidence_threshold_overrides_default():

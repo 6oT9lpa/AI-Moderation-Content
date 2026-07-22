@@ -21,7 +21,10 @@ label_weights:
   ADVERTISEMENT: 15
   INVITE: 10
   SCAM: 50
-  TOXIC: 40
+  # Directed insults should usually go to REVIEW, not WARN, unless combined
+  # with stronger labels/context. 40 made a single high-confidence TOXIC
+  # ruBERT signal contribute ~48 risk before PROFANITY.
+  TOXIC: 30
   # Severity=1 has a 0.5 multiplier, so this yields about 3.8 risk at 0.94 confidence.
   PROFANITY: 8
   POLITICS_IRL: 18

@@ -165,6 +165,8 @@ class RuBertModerationClassifier:
             ModerationLabel.SPAM: 2,
             ModerationLabel.ADVERTISEMENT: 2,
             ModerationLabel.EVASION: 2,
+            ModerationLabel.PROFANITY: 1,
+            ModerationLabel.POLITICS_IRL: 2,
             ModerationLabel.INVITE: 3,
             ModerationLabel.TOXIC: 3,
             ModerationLabel.SCAM: 4,

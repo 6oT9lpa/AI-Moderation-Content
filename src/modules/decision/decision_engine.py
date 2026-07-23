@@ -1,3 +1,5 @@
+"""Convert evaluated moderation evidence into a policy-governed recommendation."""
+
 from __future__ import annotations
 
 from datetime import datetime, timezone
@@ -18,6 +20,7 @@ logger = get_logger(__name__)
 
 
 class DecisionEngine:
+    """Select one recommendation and expand it into an action bundle."""
     def __init__(
         self,
         policy: Optional[DecisionPolicy] = None,
@@ -34,6 +37,7 @@ class DecisionEngine:
         rule_evaluation: RuleEvaluationResult,
         policy: Optional[DecisionPolicy] = None,
     ) -> ModerationDecision:
+        """Build an auditable recommendation; platform enforcement happens elsewhere."""
         current_policy = policy or self._policy
 
         logger.info(

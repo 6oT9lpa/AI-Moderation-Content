@@ -14,6 +14,7 @@ class ModerationMessageResponseSchema(ApiModel):
     rubert_thresholds: dict[str, float] = Field(default_factory=dict)
     rubert_top_labels: tuple[str, ...] = Field(default=(), max_length=5)
     risk_score: float = Field(ge=0, le=100)
+    confidence: float = Field(default=0.0, ge=0, le=1)
     risk_breakdown: tuple[str, ...] = Field(max_length=32)
     decision_action: str = Field(max_length=32)
     severity: int = Field(ge=0, le=5)

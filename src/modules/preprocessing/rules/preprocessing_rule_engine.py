@@ -350,7 +350,7 @@ class PreprocessingRuleEngine:
                 {
                     "has_mixed_scripts": features.has_mixed_scripts,
                     "has_suspicious_unicode": features.has_suspicious_unicode,
-                    "has_separator_obfuscation": has_separator_obfuscation,
+                    **({"has_separator_obfuscation": True} if has_separator_obfuscation else {}),
                 },
             ),
         ]

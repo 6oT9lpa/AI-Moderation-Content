@@ -1,3 +1,5 @@
+"""Build a normalized, explainable message context for downstream rules and ML."""
+
 from __future__ import annotations
 
 import hashlib
@@ -20,6 +22,7 @@ logger = get_logger(__name__)
 
 
 class TextPreprocessor:
+    """Extract bounded text, link, mention and recent-activity features."""
     def __init__(
         self,
         *,
@@ -40,6 +43,11 @@ class TextPreprocessor:
         )
 
     async def process(self, payload: MessagePreprocessInputSchema) -> MessageContext:
+        """Normalize input and attach preprocessing-only rule signals.
+
+        This stage does not select a punishment; it only produces evidence for
+        the rule engine and Decision Engine.
+        """
         logger.info(
             "Text preprocessing started platform=%s guild_id=%s channel_id=%s message_id=%s",
             payload.platform,

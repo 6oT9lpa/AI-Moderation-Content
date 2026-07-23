@@ -1,3 +1,10 @@
+"""Application service that orchestrates one moderation API request.
+
+The service coordinates preprocessing, policy lookup, deterministic rules,
+optional ML inference, decisioning and dataset collection.  It deliberately
+does not execute Discord actions: the bot owns enforcement.
+"""
+
 from __future__ import annotations
 
 import asyncio
@@ -32,6 +39,7 @@ logger = get_logger(__name__)
 
 
 class ApiModerationService:
+    """Run the explainable moderation pipeline and expose API-safe responses."""
     def __init__(
         self,
         preprocessor: TextPreprocessor,
@@ -61,6 +69,7 @@ class ApiModerationService:
         request: ModerationMessageRequestSchema,
         correlation_id: str,
     ) -> ModerationMessageResponseSchema:
+        """Classify one message and persist every decision in Dataset Collector."""
         started_at = perf_counter()
         context = await self._preprocessor.process(self._to_preprocess_input(request))
         try:
@@ -124,6 +133,7 @@ class ApiModerationService:
             rubert_thresholds={label.value: threshold for label, threshold in rubert_result.thresholds.items()} if rubert_result else {},
             rubert_top_labels=tuple(str(item["label"]) for item in rubert_result.top_labels) if rubert_result else (),
             risk_score=round(decision.risk_score, 4),
+            confidence=round(decision.confidence, 6),
             risk_breakdown=tuple(item.label.value for item in rule_evaluation.risk_breakdown),
             decision_action=decision.decision_action.value,
             severity=decision.severity,
@@ -224,7 +234,13 @@ class ApiModerationService:
         return event
 
     def _to_preprocess_input(self, request: ModerationMessageRequestSchema) -> MessagePreprocessInputSchema:
-        return MessagePreprocessInputSchema(**request.model_dump())
+        payload = request.model_dump(exclude={"event_type", "user_context"})
+        metadata = dict(payload.get("metadata", {}))
+        metadata["event_type"] = request.event_type
+        if request.user_context is not None:
+            metadata["user_moderation_context"] = request.user_context.model_dump(mode="json")
+        payload["metadata"] = metadata
+        return MessagePreprocessInputSchema(**payload)
 
     def _safe_platform_error(self, code: str | None, message: str | None) -> str | None:
         if code is None:

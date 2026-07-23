@@ -1,9 +1,31 @@
 from datetime import datetime
+from typing import Literal
 
-from pydantic import Field, field_validator
+from pydantic import ConfigDict, Field, field_validator
 
 from src.contracts.api.api_model import ApiModel
 from src.contracts.api.metadata_schema import SafeMetadata
+
+
+class PunishmentStatisticsSchema(ApiModel):
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    window_days: int = Field(ge=1, le=3650)
+    total_in_window: int = Field(default=0, ge=0)
+    timeouts_in_window: int = Field(default=0, ge=0)
+    ai_deleted_messages_in_window: int = Field(default=0, ge=0)
+    bans_in_window: int = Field(default=0, ge=0)
+    last_punishment_at: datetime | None = None
+
+
+class UserModerationContextSchema(ApiModel):
+    model_config = ConfigDict(frozen=True, extra="forbid")
+
+    account_created_at: datetime | None = None
+    joined_guild_at: datetime | None = None
+    account_age_days: int | None = Field(default=None, ge=0)
+    guild_membership_days: int | None = Field(default=None, ge=0)
+    punishments: PunishmentStatisticsSchema
 
 
 class ModerationMessageRequestSchema(ApiModel):
@@ -25,11 +47,16 @@ class ModerationMessageRequestSchema(ApiModel):
     recent_messages: tuple[str, ...] = Field(default=(), max_length=20)
     recent_message_timestamps: tuple[datetime, ...] = Field(default=(), max_length=20)
     metadata: SafeMetadata = Field(default_factory=dict, max_length=64)
+    event_type: Literal["CREATE", "UPDATE"] = "CREATE"
+    user_context: UserModerationContextSchema | None = None
 
-    @field_validator("created_at", "author_created_at", "member_joined_at", "recent_message_timestamps")
+    @field_validator("created_at", "author_created_at", "member_joined_at", "recent_message_timestamps", "user_context")
     @classmethod
     def _require_timezone(cls, value: datetime | tuple[datetime, ...] | None) -> datetime | tuple[datetime, ...] | None:
-        timestamps = value if isinstance(value, tuple) else (value,)
+        if isinstance(value, UserModerationContextSchema):
+            timestamps = (value.account_created_at, value.joined_guild_at, value.punishments.last_punishment_at)
+        else:
+            timestamps = value if isinstance(value, tuple) else (value,)
         if any(item is not None and item.tzinfo is None for item in timestamps):
             raise ValueError("timestamps must include a timezone")
         return value

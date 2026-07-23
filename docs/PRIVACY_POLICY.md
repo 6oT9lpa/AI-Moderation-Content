@@ -1,7 +1,7 @@
 # Privacy Policy for AI Moderator
 
 **Effective Date:** July 10, 2026  
-**Last Updated:** July 10, 2026
+**Last Updated:** July 23, 2026
 
 This policy explains what data AI Moderator processes when it is used as a
 local/self-hosted moderation API.
@@ -23,9 +23,14 @@ AI Moderator may process:
 - timestamps and request correlation IDs;
 - user context such as account age, member age, roles, and recent behavior when
   provided by the calling platform;
+- reply context, including referenced message ID, author ID, and text, when the
+  calling platform sends a Discord reply for contextual classification;
+- bounded recent-message text and timestamps from the same author when the
+  calling platform enables flood or spam analysis;
 - policy context such as guild, channel, role, and user scope;
 - rule matches, labels, confidence values, risk scores, reason codes, and
-  decision actions;
+  proposed and final decision actions, plus action-result status supplied by
+  the calling platform;
 - model metadata, model version, latency, and error details;
 - technical logs required for debugging and reliability.
 
@@ -40,6 +45,8 @@ Data is used to:
 - apply preprocessing rules and model inference;
 - resolve moderation policies;
 - return decisions to the calling platform adapter;
+- evaluate reply, spam, and flood context only when supplied by the configured
+  platform adapter;
 - support audit, debugging, evaluation, regression checks, and model
   improvement;
 - monitor service health and reliability.
@@ -58,6 +65,10 @@ change and update this policy for affected users.
 Retention depends on deployment configuration. Technical logs, audit records,
 dataset exports, and policy records should be retained only as long as needed
 for moderation, security, debugging, training, or legal requirements.
+
+For a Discord deployment, the adapter—not this API—may separately keep
+temporary role-restoration records required to return eligible roles after a
+timeout. Those records are governed by the adapter's privacy policy.
 
 Release archives and backups should exclude `.env`, logs, virtual environments,
 runtime data, and model directories unless an operator intentionally backs them

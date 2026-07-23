@@ -1,7 +1,7 @@
 # Terms of Service and Acceptable Use for AI Moderator
 
 **Effective Date:** July 10, 2026  
-**Last Updated:** July 10, 2026
+**Last Updated:** July 23, 2026
 
 These terms govern use of AI Moderator, including the local API, moderation
 pipeline, rules, policies, trained model artifacts, scripts, and documentation.
@@ -26,6 +26,13 @@ Operators and server administrators are responsible for:
 - handling appeals, false positives, and false negatives;
 - securing API keys, database credentials, model files, logs, and backups.
 
+When an integration supports automated enforcement, the operator must keep the
+platform adapter in control of Discord- or platform-specific permissions. The
+API may recommend an action; the adapter and the server policy decide whether
+to execute it. Timeout, kick, ban, role changes, and message deletion must be
+explicitly enabled by the relevant platform administrator and tested in a
+non-production environment first.
+
 ## 3. Acceptable Use
 
 You may use AI Moderator, with proper commercial permission, to:
@@ -48,10 +55,20 @@ You may not use AI Moderator to:
 - claim AI decisions are infallible or deny reasonable human review;
 - bypass API keys, access controls, or deployment security.
 
-## 5. AI Limitations
+## 5. AI Limitations and Automated Enforcement
 
 AI Moderator is an assistive system. It may be wrong. Operators must use human
 judgment for severe penalties, appeals, edge cases, and policy changes.
+
+Classifier output is not a command to punish a user. Labels, scores,
+confidence, recommendations, and rules can be incomplete, delayed, or
+incorrect. Integrations should support review workflows, audit records, and
+server-controlled enforcement modes such as recommendation-only, limited, and
+explicitly elevated automation.
+
+The service does not directly control Discord roles, delete Discord messages,
+or issue Discord punishments. Those actions are performed by the platform
+adapter under that platform's permissions and policies.
 
 ## 6. External Integrations
 

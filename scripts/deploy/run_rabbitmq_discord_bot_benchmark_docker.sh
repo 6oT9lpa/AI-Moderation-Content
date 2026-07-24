@@ -4,7 +4,8 @@ set -euo pipefail
 APP_DIR="${APP_DIR:-/opt/ai-moder}"
 COMPOSE_FILE="${COMPOSE_FILE:-docker-compose.rabbitmq-benchmark.yml}"
 OUTPUT_DIR="${OUTPUT_DIR:-${APP_DIR}/logs/rabbitmq-benchmark}"
-WORKER_SCALE_START="${WORKER_SCALE_START:-1}"
+WORKER_SCALE_START="${WORKER_SCALE_START:-${RABBITMQ_AUTOSCALER_MIN_WORKERS:-1}}"
+WORKER_READY_SECONDS="${WORKER_READY_SECONDS:-45}"
 
 cd "$APP_DIR"
 mkdir -p "$OUTPUT_DIR"
@@ -27,7 +28,7 @@ docker compose -f "$COMPOSE_FILE" up -d --scale "moderation-worker=${WORKER_SCAL
 docker compose -f "$COMPOSE_FILE" up -d autoscaler
 
 echo "waiting for worker metrics or logs"
-sleep 20
+sleep "$WORKER_READY_SECONDS"
 docker compose -f "$COMPOSE_FILE" ps
 docker compose -f "$COMPOSE_FILE" logs --tail=80 moderation-worker || true
 

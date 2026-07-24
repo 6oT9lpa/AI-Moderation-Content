@@ -4,6 +4,7 @@ import argparse
 import os
 import socket
 import sys
+from uuid import uuid4
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
@@ -11,6 +12,13 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.modules.load_testing.rabbitmq_moderation_worker import RabbitMqModerationWorker, RabbitMqModerationWorkerConfig
+
+
+def _env_bool(name: str, default: bool) -> bool:
+    value = os.environ.get(name)
+    if value is None:
+        return default
+    return value.strip().lower() not in {"0", "false", "no", "off"}
 
 
 def parse_args() -> argparse.Namespace:
@@ -24,6 +32,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--worker-id", default=os.environ.get("RABBITMQ_WORKER_ID", ""))
     parser.add_argument("--metrics-path", default=os.environ.get("RABBITMQ_WORKER_METRICS_PATH"))
     parser.add_argument("--action-dry-run", action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument(
+        "--submit-action-results",
+        action=argparse.BooleanOptionalAction,
+        default=_env_bool("RABBITMQ_WORKER_SUBMIT_ACTION_RESULTS", True),
+    )
     return parser.parse_args()
 
 
@@ -37,7 +50,8 @@ def main() -> int:
         batch_timeout_ms=args.batch_timeout_ms,
         prefetch_count=args.prefetch_count,
         action_dry_run=args.action_dry_run,
-        worker_id=args.worker_id or f"{socket.gethostname()}-{os.getpid()}",
+        submit_action_results=args.submit_action_results,
+        worker_id=args.worker_id or f"{socket.gethostname()}-{os.getpid()}-{uuid4().hex[:8]}",
         metrics_path=args.metrics_path,
     )
     RabbitMqModerationWorker(config).run_forever()

@@ -30,6 +30,7 @@ class RabbitMqModerationWorkerConfig:
     batch_timeout_ms: int = 50
     prefetch_count: int = 128
     action_dry_run: bool = True
+    submit_action_results: bool = True
     worker_id: str = f"{socket.gethostname()}-{os.getpid()}"
     metrics_path: str | None = None
 
@@ -94,7 +95,9 @@ class RabbitMqModerationWorker:
             requests = [ModerationMessageRequestSchema(**task.moderation_payload) for task in tasks]
             responses = await service.moderate_batch(requests, correlation_id_prefix=f"rabbitmq-{self._config.worker_id}")
             for task, response in zip(tasks, responses, strict=True):
-                action_response = await self._submit_action_result_if_needed(service, response.model_dump(mode="json"))
+                action_response = None
+                if self._config.submit_action_results:
+                    action_response = await self._submit_action_result_if_needed(service, response.model_dump(mode="json"))
                 result = RabbitMqModerationResult(
                     task_id=task.task_id,
                     run_id=task.run_id,

@@ -1,0 +1,94 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3.13-management
+    container_name: ai-moder-rabbitmq-benchmark
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  moderation-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.rabbitmq-worker
+    image: ai-moder-rabbitmq-worker:local
+    network_mode: host
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    env_file:
+      - .env
+    environment:
+      RABBITMQ_URL: amqp://guest:guest@127.0.0.1:5672/%2F
+      RABBITMQ_TASK_QUEUE: ai_moder.moderation.tasks
+      RABBITMQ_RESULT_QUEUE: ai_moder.moderation.results
+      RABBITMQ_WORKER_BATCH_SIZE: "32"
+      RABBITMQ_WORKER_BATCH_TIMEOUT_MS: "50"
+      RABBITMQ_WORKER_PREFETCH: "128"
+      RABBITMQ_WORKER_METRICS_PATH: /out/worker_metrics.jsonl
+      AI_MODERATOR_API_RUBERT_MODEL_DIR: /app/models/rubert-tiny2-moderation-trained
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+    volumes:
+      - ./models:/app/models:ro
+      - ./logs/rabbitmq-benchmark:/out
+
+  autoscaler:
+    build:
+      context: .
+      dockerfile: Dockerfile.rabbitmq-autoscaler
+    image: ai-moder-rabbitmq-autoscaler:local
+    network_mode: host
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    working_dir: /opt/ai-moder
+    volumes:
+      - .:/opt/ai-moder
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./logs/rabbitmq-benchmark:/out
+    command:
+      - --rabbitmq-api-url=http://guest:guest@127.0.0.1:15672
+      - --queue=ai_moder.moderation.tasks
+      - --compose-file=docker-compose.rabbitmq-benchmark.yml
+      - --service=moderation-worker
+      - --min-workers=1
+      - --mid-workers=2
+      - --max-workers=4
+      - --metrics-path=/out/worker_metrics.jsonl
+      - --gpu-memory-scale-up-limit=85
+      - --p95-scale-up-limit-ms=5000
+      - --interval-seconds=5
+
+  rabbitmq-loadtest:
+    build:
+      context: .
+      dockerfile: Dockerfile.rabbitmq-loadtest
+    image: ai-moder-rabbitmq-loadtest:local
+    network_mode: host
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+    volumes:
+      - ./logs/rabbitmq-benchmark:/out
+    command:
+      - --rabbitmq-url=amqp://guest:guest@127.0.0.1:5672/%2F
+      - --task-queue=ai_moder.moderation.tasks
+      - --result-queue=ai_moder.moderation.results
+      - --rps=20,50,100,200
+      - --duration-seconds=60
+      - --warmup-seconds=120
+      - --warmup-rps=20
+      - --pause-seconds=30
+      - --repeats=3
+      - --channels=200
+      - --users-per-rps=12
+      - --result-timeout-seconds=180
+      - --output=/out/rabbitmq_discord_bot_benchmark_summary.json

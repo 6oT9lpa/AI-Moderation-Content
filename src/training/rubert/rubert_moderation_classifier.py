@@ -74,9 +74,14 @@ class RuBertModerationClassifier:
         return self._model_dir
 
     def classify(self, text: str) -> RuBertClassificationResult:
-        model_text = self._sanitizer.sanitize(text)
+        return self.classify_batch([text])[0]
+
+    def classify_batch(self, texts: list[str] | tuple[str, ...]) -> list[RuBertClassificationResult]:
+        if not texts:
+            return []
+        model_texts = [self._sanitizer.sanitize(text) for text in texts]
         batch = self._tokenizer(
-            [model_text],
+            model_texts,
             return_tensors="pt",
             padding=True,
             truncation=True,
@@ -85,12 +90,15 @@ class RuBertModerationClassifier:
 
         with self._torch.inference_mode():
             logits = self._model(**batch).logits
-            probabilities = self._torch.sigmoid(logits).detach().cpu().tolist()[0]
+            probabilities_batch = self._torch.sigmoid(logits).detach().cpu().tolist()
 
-        scores = {
-            ModerationLabel(label): float(probability)
-            for label, probability in zip(self._label_order, probabilities)
-        }
+        return [
+            self._build_result(model_text, probabilities)
+            for model_text, probabilities in zip(model_texts, probabilities_batch, strict=True)
+        ]
+
+    def _build_result(self, model_text: str, probabilities: list[float]) -> RuBertClassificationResult:
+        scores = {ModerationLabel(label): float(probability) for label, probability in zip(self._label_order, probabilities)}
         selected = [
             label
             for label, score in scores.items()

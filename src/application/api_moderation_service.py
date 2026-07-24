@@ -155,6 +155,130 @@ class ApiModerationService:
         )
         return response
 
+    async def moderate_batch(
+        self,
+        requests: list[ModerationMessageRequestSchema] | tuple[ModerationMessageRequestSchema, ...],
+        correlation_id_prefix: str,
+    ) -> list[ModerationMessageResponseSchema]:
+        """Classify messages as a batch while preserving per-message decisions.
+
+        The deterministic preprocessing/policy/decision stages remain
+        per-message because they depend on message context and persistence.
+        ruBERT inference is batched to avoid one CUDA launch per Discord event.
+        """
+        if not requests:
+            return []
+
+        started_at_by_message = {request.message_id: perf_counter() for request in requests}
+        contexts = await asyncio.gather(*(self._preprocessor.process(self._to_preprocess_input(request)) for request in requests))
+        try:
+            rule_policy_resolutions = await asyncio.gather(
+                *(self._policy_resolver.resolve(PolicyType.MODERATION_RULE, context) for context in contexts)
+            )
+            decision_policy_resolutions = await asyncio.gather(
+                *(self._policy_resolver.resolve(PolicyType.DECISION, context) for context in contexts)
+            )
+        except Exception as exc:
+            logger.error("Batch policy resolution failed correlation_id_prefix=%s batch_size=%s", correlation_id_prefix, len(requests))
+            raise ApiResourceUnavailableError("Policy is unavailable") from exc
+
+        signals_by_index: list[list] = []
+        warnings_by_index: list[list[str]] = []
+        for context in contexts:
+            signals = []
+            for match in context.metadata.get("preprocessing_rule_matches", []):
+                signals.extend(self._signal_adapter.adapt(match))
+            signals_by_index.append(signals)
+            warnings_by_index.append([])
+
+        rubert_results = [None] * len(requests)
+        if self._rubert_classifier is None:
+            for warnings in warnings_by_index:
+                warnings.append("rubert_unavailable")
+        else:
+            try:
+                async with self._inference_semaphore:
+                    batch_results = await asyncio.to_thread(
+                        self._rubert_classifier.classify_batch,
+                        [context.normalized_text for context in contexts],
+                    )
+                rubert_results = list(batch_results)
+                for index, rubert_result in enumerate(rubert_results):
+                    signals_by_index[index].extend(
+                        self._rubert_classifier.to_signals(rubert_result, rule_policy_resolutions[index].policy)
+                    )
+            except Exception:
+                logger.warning("Batch ruBERT inference fallback correlation_id_prefix=%s batch_size=%s", correlation_id_prefix, len(requests))
+                for warnings in warnings_by_index:
+                    warnings.append("rubert_unavailable")
+
+        responses: list[ModerationMessageResponseSchema] = []
+        for index, request in enumerate(requests):
+            context = contexts[index]
+            signals = signals_by_index[index]
+            rule_policy_resolution = rule_policy_resolutions[index]
+            decision_policy_resolution = decision_policy_resolutions[index]
+            rubert_result = rubert_results[index]
+
+            phishing_signals = await self._phishing_link_service.build_signals(
+                context,
+                signals,
+                rule_policy_resolution.policy.phishing,
+            )
+            signals.extend(phishing_signals)
+
+            rule_evaluation = self._rule_engine.evaluate(
+                request.message_id,
+                signals,
+                rule_policy_resolution.policy,
+                context,
+            )
+            decision = self._decision_engine.decide(
+                request.message_id,
+                rule_evaluation,
+                decision_policy_resolution.policy,
+            )
+            try:
+                collection = await self._dataset_collector.collect(
+                    DatasetCollectionInput(context=context, rule_evaluation=rule_evaluation, decision=decision)
+                )
+            except Exception as exc:
+                logger.error("Batch dataset persistence failed correlation_id_prefix=%s message_id=%s", correlation_id_prefix, request.message_id)
+                raise ApiResourceUnavailableError("Database is unavailable") from exc
+
+            response = ModerationMessageResponseSchema(
+                correlation_id=f"{correlation_id_prefix}-{index}",
+                message_id=request.message_id,
+                labels=tuple(label.value for label in decision.labels),
+                primary_label=decision.primary_label.value,
+                rule_matches=tuple(rule_evaluation.matched_rules),
+                rubert_labels=tuple(label.value for label in rubert_result.labels) if rubert_result else (),
+                rubert_scores={label.value: round(score, 6) for label, score in rubert_result.scores.items()} if rubert_result else {},
+                rubert_thresholds={label.value: threshold for label, threshold in rubert_result.thresholds.items()} if rubert_result else {},
+                rubert_top_labels=tuple(str(item["label"]) for item in rubert_result.top_labels) if rubert_result else (),
+                risk_score=round(decision.risk_score, 4),
+                confidence=round(decision.confidence, 6),
+                risk_breakdown=tuple(item.label.value for item in rule_evaluation.risk_breakdown),
+                decision_action=decision.decision_action.value,
+                severity=decision.severity,
+                reason=decision.reason[:256],
+                policy_id=decision.policy_id,
+                policy_version=decision.policy_version,
+                execution_status=ActionExecutionStatus.PENDING.value,
+                execution_plan=tuple(action.value for action in decision.action_plan.actions),
+                dataset_event_id=collection.event_id,
+                latency_ms=round((perf_counter() - started_at_by_message[request.message_id]) * 1_000),
+                warnings=tuple(warnings_by_index[index]),
+            )
+            responses.append(response)
+
+        logger.info(
+            "Moderation batch completed correlation_id_prefix=%s batch_size=%s",
+            correlation_id_prefix,
+            len(responses),
+        )
+        return responses
+
     async def submit_feedback(
         self,
         request: ModerationFeedbackRequestSchema,

@@ -211,6 +211,8 @@ models/
 data/exports/
 data/processed/
 data/raw/
+logs/
+tmp/
 scripts/dataset/export_discord_messages.py
 
 # Ruff stuff:

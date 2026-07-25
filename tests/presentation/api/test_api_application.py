@@ -44,7 +44,7 @@ class _ServiceStub:
             reason="safe",
             policy_id="test-policy",
             policy_version="test-v1",
-            execution_status="PENDING",
+            execution_status="PENDING" if persist else "DRY_RUN",
             execution_plan=("IGNORE",),
             dataset_event_id=1 if persist else 0,
             latency_ms=0,
@@ -146,6 +146,7 @@ def test_simulation_uses_moderation_pipeline_without_dataset_event() -> None:
         response = client.post("/moderation/simulate", json=_payload(), headers=headers)
     assert response.status_code == 200
     assert response.json()["dataset_event_id"] == 0
+    assert response.json()["execution_status"] == "DRY_RUN"
 
 
 def test_unknown_request_field_is_rejected_safely() -> None:

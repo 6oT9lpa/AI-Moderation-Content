@@ -145,7 +145,7 @@ class ApiModerationService:
             reason=decision.reason[:256],
             policy_id=decision.policy_id,
             policy_version=decision.policy_version,
-            execution_status=ActionExecutionStatus.PENDING.value,
+            execution_status=(ActionExecutionStatus.PENDING if persist else ActionExecutionStatus.DRY_RUN).value,
             execution_plan=tuple(action.value for action in decision.action_plan.actions),
             dataset_event_id=dataset_event_id,
             latency_ms=round((perf_counter() - started_at) * 1_000),

@@ -11,3 +11,4 @@ class ModerationQueueItem:
     request: ModerationMessageRequestSchema
     correlation_id: str
     future: asyncio.Future[ModerationMessageResponseSchema]
+    persist: bool = True

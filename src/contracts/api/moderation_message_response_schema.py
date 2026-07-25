@@ -23,6 +23,7 @@ class ModerationMessageResponseSchema(ApiModel):
     policy_version: str = Field(max_length=128)
     execution_status: str = Field(max_length=32)
     execution_plan: tuple[str, ...] = Field(max_length=8)
-    dataset_event_id: int = Field(gt=0)
+    # Zero identifies a simulation: it deliberately has no Dataset Collector row.
+    dataset_event_id: int = Field(ge=0)
     latency_ms: int = Field(ge=0)
     warnings: tuple[str, ...] = Field(default=(), max_length=8)

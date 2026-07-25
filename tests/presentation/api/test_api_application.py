@@ -29,7 +29,7 @@ class _ServiceStub:
     async def initialize_policy_status(self) -> str:
         return "test-v1"
 
-    async def moderate(self, payload, correlation_id: str) -> ModerationMessageResponseSchema:
+    async def moderate(self, payload, correlation_id: str, *, persist: bool = True) -> ModerationMessageResponseSchema:
         return ModerationMessageResponseSchema(
             correlation_id=correlation_id,
             message_id=payload.message_id,
@@ -46,7 +46,7 @@ class _ServiceStub:
             policy_version="test-v1",
             execution_status="PENDING",
             execution_plan=("IGNORE",),
-            dataset_event_id=1,
+            dataset_event_id=1 if persist else 0,
             latency_ms=0,
         )
 
@@ -137,6 +137,15 @@ def test_moderation_requires_valid_key_and_omits_raw_text() -> None:
     assert accepted.status_code == 200
     assert "raw_text" not in accepted.text
     assert "private message body" not in accepted.text
+
+
+def test_simulation_uses_moderation_pipeline_without_dataset_event() -> None:
+    """The dashboard must not pollute training data while an admin tests a rule."""
+    headers = {"X-Internal-Api-Key": "test-key-value-1234"}
+    with _client() as client:
+        response = client.post("/moderation/simulate", json=_payload(), headers=headers)
+    assert response.status_code == 200
+    assert response.json()["dataset_event_id"] == 0
 
 
 def test_unknown_request_field_is_rejected_safely() -> None:

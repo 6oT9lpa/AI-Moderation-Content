@@ -68,6 +68,8 @@ class ApiModerationService:
         self,
         request: ModerationMessageRequestSchema,
         correlation_id: str,
+        *,
+        persist: bool = True,
     ) -> ModerationMessageResponseSchema:
         """Classify one message and persist every decision in Dataset Collector."""
         started_at = perf_counter()
@@ -114,13 +116,16 @@ class ApiModerationService:
             rule_evaluation,
             decision_policy_resolution.policy,
         )
-        try:
-            collection = await self._dataset_collector.collect(
-                DatasetCollectionInput(context=context, rule_evaluation=rule_evaluation, decision=decision)
-            )
-        except Exception as exc:
-            logger.error("Dataset persistence failed correlation_id=%s message_id=%s", correlation_id, request.message_id)
-            raise ApiResourceUnavailableError("Database is unavailable") from exc
+        dataset_event_id = 0
+        if persist:
+            try:
+                collection = await self._dataset_collector.collect(
+                    DatasetCollectionInput(context=context, rule_evaluation=rule_evaluation, decision=decision)
+                )
+                dataset_event_id = collection.event_id
+            except Exception as exc:
+                logger.error("Dataset persistence failed correlation_id=%s message_id=%s", correlation_id, request.message_id)
+                raise ApiResourceUnavailableError("Database is unavailable") from exc
 
         response = ModerationMessageResponseSchema(
             correlation_id=correlation_id,
@@ -142,16 +147,17 @@ class ApiModerationService:
             policy_version=decision.policy_version,
             execution_status=ActionExecutionStatus.PENDING.value,
             execution_plan=tuple(action.value for action in decision.action_plan.actions),
-            dataset_event_id=collection.event_id,
+            dataset_event_id=dataset_event_id,
             latency_ms=round((perf_counter() - started_at) * 1_000),
             warnings=tuple(warnings),
         )
         logger.info(
-            "Moderation API completed correlation_id=%s message_id=%s action=%s latency_ms=%s",
+            "Moderation API completed correlation_id=%s message_id=%s action=%s latency_ms=%s persisted=%s",
             correlation_id,
             request.message_id,
             response.decision_action,
             response.latency_ms,
+            persist,
         )
         return response
 

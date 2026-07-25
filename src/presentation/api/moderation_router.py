@@ -15,3 +15,13 @@ async def moderate_message(
     correlation_id: str = Depends(get_correlation_id),
 ) -> ModerationMessageResponseSchema:
     return await queue.moderate(payload, correlation_id)
+
+
+@router.post("/simulate", response_model=ModerationMessageResponseSchema)
+async def simulate_message(
+    payload: ModerationMessageRequestSchema,
+    queue: ModerationRequestQueue = Depends(get_moderation_queue),
+    correlation_id: str = Depends(get_correlation_id),
+) -> ModerationMessageResponseSchema:
+    """Run production classification without collecting data or executing an action."""
+    return await queue.moderate(payload, correlation_id, persist=False)

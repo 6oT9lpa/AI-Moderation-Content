@@ -27,18 +27,18 @@ class ModerationRequestQueue:
         await asyncio.gather(*self._workers, return_exceptions=True)
         self._workers.clear()
 
-    async def moderate(self, request: ModerationMessageRequestSchema, correlation_id: str) -> ModerationMessageResponseSchema:
+    async def moderate(self, request: ModerationMessageRequestSchema, correlation_id: str, *, persist: bool = True) -> ModerationMessageResponseSchema:
         if self._queue.full():
             raise RuntimeError("moderation queue is full")
         future: asyncio.Future[ModerationMessageResponseSchema] = asyncio.get_running_loop().create_future()
-        self._queue.put_nowait(ModerationQueueItem(request, correlation_id, future))
+        self._queue.put_nowait(ModerationQueueItem(request, correlation_id, future, persist))
         return await future
 
     async def _worker(self, worker_id: int) -> None:
         while True:
             item = await self._queue.get()
             try:
-                result = await self._service.moderate(item.request, item.correlation_id)
+                result = await self._service.moderate(item.request, item.correlation_id, persist=item.persist)
                 if not item.future.done():
                     item.future.set_result(result)
             except asyncio.CancelledError:

@@ -14,4 +14,6 @@ class UserRiskPolicy(BaseModel):
     new_account_multiplier: float = Field(default=1.15, ge=1.0)
     new_member_multiplier: float = Field(default=1.1, ge=1.0)
     repeat_violation_multiplier: float = Field(default=1.35, ge=1.0)
+    weighted_escalation_score_threshold: float = Field(default=3.0, ge=0.0)
+    weighted_escalation_multiplier: float = Field(default=1.35, ge=1.0)
     max_multiplier: float = Field(default=1.75, ge=1.0)

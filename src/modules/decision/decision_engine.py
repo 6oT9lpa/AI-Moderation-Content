@@ -72,6 +72,7 @@ class DecisionEngine:
             metadata={
                 "mode": current_policy.mode.value,
                 "dry_run": current_policy.dry_run,
+                "user_risk_multiplier": rule_evaluation.user_risk_multiplier,
             },
         )
 

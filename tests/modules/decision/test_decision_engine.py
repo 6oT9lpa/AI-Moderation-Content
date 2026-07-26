@@ -63,6 +63,28 @@ def test_decision_engine_high_risk(decision_engine):
     assert decision.action_required
 
 
+def test_decision_engine_records_weighted_user_risk_multiplier(decision_engine):
+    rule_result = RuleEvaluationResult(
+        signals=[],
+        labels=[ModerationLabel.URL],
+        primary_label=ModerationLabel.URL,
+        confidence=0.9,
+        severity=1,
+        risk_score=20.0,
+        risk_breakdown=[],
+        matched_rules=[],
+        conflicts=[],
+        model_agreement=ModelAgreement(agreeing_sources=[], disagreeing_sources=[], agreement_score=1.0),
+        user_risk_multiplier=1.35,
+        policy_id="test",
+        policy_version="1.0",
+    )
+
+    decision = decision_engine.decide("msg_weighted_history", rule_result)
+
+    assert decision.metadata["user_risk_multiplier"] == 1.35
+
+
 def test_decision_engine_delete_warn_expands_to_executable_actions():
     policy = DecisionPolicy.model_validate(
         {

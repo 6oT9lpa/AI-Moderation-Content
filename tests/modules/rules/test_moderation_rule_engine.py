@@ -285,6 +285,29 @@ def test_rule_engine_increases_existing_risk_for_new_repeat_offender():
     assert elevated.user_risk_multiplier > 1.0
 
 
+def test_rule_engine_applies_discord_weighted_escalation_score_to_decision_input():
+    signal = ModerationSignal(
+        source=SignalSource.PREPROCESSING,
+        label=ModerationLabel.URL,
+        confidence=0.9,
+        severity=1,
+        risk_weight=5,
+        reason="url",
+    )
+    context = MessageContext(
+        platform="discord", guild_id="guild", channel_id="channel", user_id="user", message_id="message",
+        created_at=datetime.now(timezone.utc),
+        raw_text="https://example.test", normalized_text="https://example.test", text_hash="hash", language="en",
+        metadata={"user_moderation_context": {"punishments": {"weighted_escalation_score": 3.0}}},
+    )
+
+    baseline = ModerationRuleEngine().evaluate("baseline", [signal])
+    elevated = ModerationRuleEngine().evaluate("elevated", [signal], context=context)
+
+    assert elevated.risk_score > baseline.risk_score
+    assert elevated.user_risk_multiplier > 1.0
+
+
 def test_rule_engine_keeps_bare_profanity_at_low_default_risk():
     result = ModerationRuleEngine().evaluate(
         "profanity",

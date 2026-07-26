@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Mapping
 from datetime import datetime, timezone
 from typing import Optional
 
@@ -127,7 +128,25 @@ class ModerationRuleEngine:
             recent_violations = 0
         if recent_violations >= settings.violation_threshold:
             multiplier *= settings.repeat_violation_multiplier
+
+        weighted_escalation_score = ModerationRuleEngine._weighted_escalation_score(context.metadata)
+        if weighted_escalation_score >= settings.weighted_escalation_score_threshold:
+            multiplier *= settings.weighted_escalation_multiplier
         return min(multiplier, settings.max_multiplier)
+
+    @staticmethod
+    def _weighted_escalation_score(metadata: Mapping[str, object]) -> float:
+        """Read the bounded Discord punishment score without trusting arbitrary metadata."""
+        user_context = metadata.get("user_moderation_context")
+        if not isinstance(user_context, Mapping):
+            return 0.0
+        punishments = user_context.get("punishments")
+        if not isinstance(punishments, Mapping):
+            return 0.0
+        try:
+            return max(0.0, float(punishments.get("weighted_escalation_score", 0.0)))
+        except (TypeError, ValueError):
+            return 0.0
 
     def _resolve_labels(
         self,

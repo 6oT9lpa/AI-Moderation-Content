@@ -46,11 +46,12 @@ def test_schema_accepts_user_moderation_context_and_update_event() -> None:
         "joined_guild_at": "2025-01-01T00:00:00+00:00",
         "account_age_days": 100,
         "guild_membership_days": 30,
-        "punishments": {"window_days": 30, "total_in_window": 2, "timeouts_in_window": 1, "ai_deleted_messages_in_window": 1, "bans_in_window": 0, "last_punishment_at": "2026-01-01T00:00:00+00:00"},
+        "punishments": {"window_days": 30, "total_in_window": 2, "timeouts_in_window": 1, "ai_deleted_messages_in_window": 1, "bans_in_window": 0, "weighted_escalation_score": 3.5, "last_punishment_at": "2026-01-01T00:00:00+00:00"},
     }
     schema = ModerationMessageRequestSchema(**payload)
     assert schema.event_type == "UPDATE"
     assert schema.user_context.punishments.total_in_window == 2
+    assert schema.user_context.punishments.weighted_escalation_score == 3.5
 
 
 def test_schema_accepts_flattened_reply_context_metadata() -> None:

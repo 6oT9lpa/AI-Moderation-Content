@@ -20,6 +20,7 @@ services:
       dockerfile: Dockerfile.rabbitmq-worker
     image: ai-moder-rabbitmq-worker:local
     network_mode: host
+    gpus: all
     depends_on:
       rabbitmq:
         condition: service_healthy
@@ -35,6 +36,11 @@ services:
       RABBITMQ_WORKER_SUBMIT_ACTION_RESULTS: "${RABBITMQ_WORKER_SUBMIT_ACTION_RESULTS:-true}"
       RABBITMQ_WORKER_METRICS_PATH: /out/worker_metrics.jsonl
       AI_MODERATOR_API_RUBERT_MODEL_DIR: /app/models/rubert-tiny2-moderation-trained
+      RUBERT_TORCH_NUM_THREADS: "${RUBERT_TORCH_NUM_THREADS:-2}"
+      RUBERT_TORCH_NUM_INTEROP_THREADS: "${RUBERT_TORCH_NUM_INTEROP_THREADS:-1}"
+      OMP_NUM_THREADS: "${OMP_NUM_THREADS:-2}"
+      MKL_NUM_THREADS: "${MKL_NUM_THREADS:-2}"
+      TOKENIZERS_PARALLELISM: "false"
       NVIDIA_VISIBLE_DEVICES: all
       NVIDIA_DRIVER_CAPABILITIES: compute,utility
     volumes:

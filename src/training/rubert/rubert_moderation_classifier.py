@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
@@ -47,6 +48,11 @@ class RuBertModerationClassifier:
 
         if not self._model_dir.exists():
             raise FileNotFoundError(f"ruBERT model directory not found: {self._model_dir}")
+
+        if torch_threads := os.environ.get("RUBERT_TORCH_NUM_THREADS"):
+            torch.set_num_threads(max(1, int(torch_threads)))
+        if interop_threads := os.environ.get("RUBERT_TORCH_NUM_INTEROP_THREADS"):
+            torch.set_num_interop_threads(max(1, int(interop_threads)))
 
         self._torch = torch
         self._tokenizer = AutoTokenizer.from_pretrained(self._model_dir, local_files_only=True)

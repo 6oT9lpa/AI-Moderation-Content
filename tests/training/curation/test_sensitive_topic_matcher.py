@@ -54,6 +54,34 @@ def test_family_threat_adds_threat_without_hate(matcher: SensitiveTopicMatcher) 
     assert annotation.severity == 5
 
 
+@pytest.mark.parametrize(
+    "text",
+    (
+        "Я убью всю твою родню",
+        "Я найду твоих родных",
+    ),
+)
+def test_family_inflections_are_detected(
+    matcher: SensitiveTopicMatcher,
+    text: str,
+) -> None:
+    assert "family" in matcher.annotate(text).topics
+
+
+@pytest.mark.parametrize(
+    "text",
+    (
+        "Я приехал из родного города",
+        "Перевод с родного языка",
+    ),
+)
+def test_ambiguous_family_adjectives_are_not_detected(
+    matcher: SensitiveTopicMatcher,
+    text: str,
+) -> None:
+    assert "family" not in matcher.annotate(text).topics
+
+
 def test_family_sexual_abuse_adds_nsfw(matcher: SensitiveTopicMatcher) -> None:
     annotation = matcher.annotate("Я изнасилую твоих родственников")
 

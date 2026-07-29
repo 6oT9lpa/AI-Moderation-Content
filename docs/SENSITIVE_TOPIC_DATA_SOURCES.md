@@ -47,3 +47,28 @@ Install the curation dependencies and run:
 .\.venv\Scripts\python.exe -m pip install -r requirements-curation.txt
 .\.venv\Scripts\python.exe scripts\training\curate_sensitive_topics.py
 ```
+
+## Gap completion sources
+
+The follow-up `complete_dataset_gaps.py` pipeline adds:
+
+- `wangyuancheng/discord-phishing-scam-clean` at revision
+  `acd7149c2cd227c296f1f4f82411160dfcd9adb7` (MIT). Only rows containing
+  the source's `<DISCORD_INVITE>` privacy placeholder are accepted.
+- `klamas/russian-toxic` at revision
+  `eea2e077780960596524fc5bffcdd473775edaed` (MIT). Only positive rows
+  where the local matcher independently confirms family-targeted `TOXIC`
+  evidence are accepted.
+- `IvanFed/russian-toxic-comments-multilabel` at revision
+  `ac1ea37cb7b85cfec6f09ba22f71d4fe487b43d7` (Apache-2.0). Only source
+  `threat=1` rows where the local matcher independently confirms an explicit
+  family-targeted threat are accepted.
+
+`INVITE` is a technical class: production sanitization replaces actual Discord
+invite URLs with `<DISCORD_INVITE>`. The pipeline therefore uses controlled
+bilingual templates containing the canonical placeholder to fill the remaining
+coverage gap without storing live invite codes.
+
+Family-only insults and threats are deliberately not labelled `HATE`. The
+project contract reserves `HATE` for protected-group attacks; family insults
+map to `TOXIC`, and family threats map to `THREAT + TOXIC`.

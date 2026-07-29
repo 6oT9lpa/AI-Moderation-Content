@@ -168,7 +168,7 @@ async def test_final_class_fixture_can_run_through_preprocessing(
 
     assert context.message_id == payload.message_id
     assert context.features is not None
-    assert context.metadata["feature_version"] == "text_preprocessor_v1"
+    assert context.metadata["feature_version"] == "text_preprocessor_v2"
     assert actual_preprocessing["preprocessing_verdict"] == expected_preprocessing["preprocessing_verdict"]
     assert actual_preprocessing["detected_labels"] == expected_preprocessing["detected_labels"]
     assert actual_preprocessing["rule_matches"] == expected_preprocessing["rule_matches"]

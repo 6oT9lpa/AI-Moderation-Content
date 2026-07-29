@@ -19,7 +19,10 @@ TRAINED_OUTPUT_DIR = Path("models/rubert-tiny2-moderation-trained")
 
 
 def _load_jsonl(path: Path) -> list[dict[str, Any]]:
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
+    # Do not use ``str.splitlines()`` here: it treats Unicode line separators
+    # such as U+2028 inside a JSON string as a physical record boundary.
+    with path.open(encoding="utf-8") as handle:
+        return [json.loads(line) for line in handle if line.strip()]
 
 
 def _build_dataset(rows: list[dict[str, Any]], tokenizer: Any, *, max_length: int) -> Any:
@@ -104,6 +107,8 @@ def train(
     *,
     dataset_dir: Path,
     output_dir: Path,
+    model_source: Path | None = None,
+    learning_rate: float | None = None,
     dry_run: bool = False,
     epochs: float | None = None,
     max_steps: int = -1,
@@ -118,9 +123,9 @@ def train(
     )
 
     config = RuBertTrainingConfig.load()
-    model_source = config.model.classifier_output_dir
-    if not model_source.exists():
-        model_source = config.model.local_base_dir
+    resolved_model_source = model_source or config.model.classifier_output_dir
+    if not resolved_model_source.exists():
+        resolved_model_source = config.model.local_base_dir
 
     train_rows = _load_jsonl(dataset_dir / "train.jsonl")
     validation_rows = _load_jsonl(dataset_dir / "validation.jsonl")
@@ -128,9 +133,9 @@ def train(
         train_rows = train_rows[:64]
         validation_rows = validation_rows[:64]
 
-    tokenizer = AutoTokenizer.from_pretrained(model_source, local_files_only=True)
+    tokenizer = AutoTokenizer.from_pretrained(resolved_model_source, local_files_only=True)
     model = AutoModelForSequenceClassification.from_pretrained(
-        model_source,
+        resolved_model_source,
         num_labels=config.label_schema.num_labels,
         id2label=config.label_schema.id2label,
         label2id=config.label_schema.label2id,
@@ -151,7 +156,7 @@ def train(
         per_device_train_batch_size=config.training.train_batch_size,
         per_device_eval_batch_size=config.training.eval_batch_size,
         gradient_accumulation_steps=config.training.gradient_accumulation_steps,
-        learning_rate=config.training.learning_rate,
+        learning_rate=learning_rate if learning_rate is not None else config.training.learning_rate,
         num_train_epochs=1 if dry_run else (epochs if epochs is not None else config.training.num_train_epochs),
         max_steps=max_steps,
         warmup_ratio=config.training.warmup_ratio,
@@ -203,6 +208,7 @@ def train(
         ),
         encoding="utf-8",
     )
+    print(f"Fine-tuned from {resolved_model_source.resolve()}")
     print(f"Saved trained model to {output_dir.resolve()}")
 
 
@@ -210,6 +216,18 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Fine-tune ruBERT tiny2 moderation classifier.")
     parser.add_argument("--dataset-dir", type=Path, default=DATASET_DIR)
     parser.add_argument("--output-dir", type=Path, default=TRAINED_OUTPUT_DIR)
+    parser.add_argument(
+        "--model-source",
+        type=Path,
+        default=None,
+        help="Existing model directory to fine-tune. Defaults to the moderation init model.",
+    )
+    parser.add_argument(
+        "--learning-rate",
+        type=float,
+        default=None,
+        help="Override the configured learning rate; useful for conservative continued fine-tuning.",
+    )
     parser.add_argument("--dry-run", action="store_true", help="Train on a tiny subset for a smoke check.")
     parser.add_argument("--epochs", type=float, default=None, help="Override config training.num_train_epochs.")
     parser.add_argument("--max-steps", type=int, default=-1, help="Stop after N optimizer steps; -1 disables.")
@@ -219,6 +237,8 @@ def main() -> None:
     train(
         dataset_dir=args.dataset_dir,
         output_dir=args.output_dir,
+        model_source=args.model_source,
+        learning_rate=args.learning_rate,
         dry_run=args.dry_run,
         epochs=args.epochs,
         max_steps=args.max_steps,

@@ -30,6 +30,4 @@ labels:
   - THREAT
   - NSFW
   - EVASION
-  - FLOOD
   - URL
-  - IMAGE_SCAM

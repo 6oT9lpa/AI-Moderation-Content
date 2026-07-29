@@ -24,6 +24,7 @@ class RuBertClassificationResult:
     scores: dict[ModerationLabel, float]
     thresholds: dict[ModerationLabel, float]
     top_labels: list[dict[str, Any]]
+    context_adjustments: tuple[str, ...] = ()
 
 
 class RuBertModerationClassifier:
@@ -112,6 +113,8 @@ class RuBertModerationClassifier:
         ]
         if any(label != ModerationLabel.SAFE for label in selected):
             selected = [label for label in selected if label != ModerationLabel.SAFE]
+        if not selected:
+            selected = [ModerationLabel.SAFE]
 
         primary_label = resolve_primary_label(selected, fallback=ModerationLabel.SAFE)
         top_labels = [
@@ -126,6 +129,7 @@ class RuBertModerationClassifier:
             scores=scores,
             thresholds=self._thresholds,
             top_labels=top_labels,
+            context_adjustments=(),
         )
 
     def to_signals(
@@ -146,6 +150,7 @@ class RuBertModerationClassifier:
                     evidence={
                         "threshold": result.thresholds.get(label),
                         "top_labels": result.top_labels,
+                        "context_adjustments": result.context_adjustments,
                         "input_redacted": True,
                     },
                     reason="rubert_tiny2_moderation_classifier",

@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import pytest
+
 from src.infrastructure.logging import get_logger
 from src.modules.preprocessing.text_feature_extractor import TextFeatureExtractor
 
@@ -87,6 +89,30 @@ def test_extract_detects_repeated_characters() -> None:
 
     assert features.has_repeated_chars is True
     assert features.repeated_char_score > 0
+
+
+def test_extract_counts_case_insensitive_repeated_words() -> None:
+    text = "плюс, ПЛЮС! плюс плюс плюс кто хочет роль"
+
+    features = TextFeatureExtractor.extract(text)
+
+    logger.info(
+        "Feature repeated words text=%r count=%s ratio=%s",
+        text,
+        features.max_word_repetition_count,
+        features.max_word_repetition_ratio,
+    )
+
+    assert features.word_count == 8
+    assert features.max_word_repetition_count == 5
+    assert features.max_word_repetition_ratio == 0.625
+
+
+def test_extract_ignores_single_character_word_repetition() -> None:
+    features = TextFeatureExtractor.extract("я я я я я пришёл")
+
+    assert features.max_word_repetition_count == 1
+    assert features.max_word_repetition_ratio == pytest.approx(1 / 6, abs=0.001)
 
 
 def test_extract_detects_shortener_and_zero_width() -> None:

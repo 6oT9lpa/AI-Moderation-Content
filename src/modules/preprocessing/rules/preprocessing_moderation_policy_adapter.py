@@ -132,6 +132,7 @@ class PreprocessingModerationPolicyAdapter:
         yield "spam.caps", settings.spam.caps
         yield "spam.emoji", settings.spam.emoji
         yield "spam.repeated_chars", settings.spam.repeated_chars
+        yield "spam.repeated_words", settings.spam.repeated_words
         yield "invite.detected", settings.invite.detected
         yield "evasion.unicode", settings.evasion.unicode
         yield "semantic.hate", settings.semantic.hate

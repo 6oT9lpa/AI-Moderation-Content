@@ -61,6 +61,9 @@ class PreprocessingRuleConfigLoader:
         return self._moderation_policy
 
     def _with_russian_profanity_dictionaries(self, settings: PreprocessingRuleSettings) -> PreprocessingRuleSettings:
+        if not (settings.russian_profanity.obscene.enabled or settings.russian_profanity.literary.enabled):
+            return settings
+
         return settings.model_copy(
             update={"russian_profanity": self._russian_profanity_dictionary_loader.load(settings.russian_profanity)},
         )

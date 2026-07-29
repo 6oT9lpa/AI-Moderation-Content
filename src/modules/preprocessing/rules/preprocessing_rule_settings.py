@@ -27,8 +27,6 @@ class PreprocessingRuleSettings(BaseModel):
     evasion: PreprocessingEvasionPolicy = Field(default_factory=PreprocessingEvasionPolicy)
     semantic: PreprocessingSemanticPolicy = Field(default_factory=PreprocessingSemanticPolicy)
     russian_profanity: PreprocessingRussianProfanityPolicy = Field(default_factory=PreprocessingRussianProfanityPolicy)
-    semantic_placeholders: dict[str, Any] = Field(default_factory=dict)
-    new_account_link_days: int = Field(default=7, ge=0)
 
     @classmethod
     def from_mapping(cls, data: Mapping[str, Any]) -> "PreprocessingRuleSettings":

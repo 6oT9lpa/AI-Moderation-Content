@@ -108,7 +108,7 @@ class TextPreprocessor:
             features=features,
             metadata={
                 **payload.metadata,
-                "feature_version": "text_preprocessor_v1",
+                "feature_version": "text_preprocessor_v2",
             },
         )
         self._validate_payload_settings(payload.metadata)

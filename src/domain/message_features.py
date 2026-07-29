@@ -32,6 +32,8 @@ class MessageFeatures:
 
     repeated_char_score: float
     has_repeated_chars: bool
+    max_word_repetition_count: int
+    max_word_repetition_ratio: float
     duplicate_text_score: float
     recent_user_messages_10s: int
     recent_user_messages_60s: int
@@ -72,6 +74,8 @@ class MessageFeatures:
             "longest_word_length": self.longest_word_length,
             "repeated_char_score": self.repeated_char_score,
             "has_repeated_chars": self.has_repeated_chars,
+            "max_word_repetition_count": self.max_word_repetition_count,
+            "max_word_repetition_ratio": self.max_word_repetition_ratio,
             "duplicate_text_score": self.duplicate_text_score,
             "recent_user_messages_10s": self.recent_user_messages_10s,
             "recent_user_messages_60s": self.recent_user_messages_60s,

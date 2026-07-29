@@ -5,6 +5,9 @@ from typing import Any, Mapping
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from src.domain.moderation.moderation_label import ModerationLabel
+from src.modules.preprocessing.rules.preprocessing_repeated_words_policy import (
+    PreprocessingRepeatedWordsPolicy,
+)
 from src.modules.preprocessing.rules.preprocessing_rule_policy import PreprocessingRulePolicy
 
 
@@ -69,6 +72,19 @@ class PreprocessingSpamPolicy(BaseModel):
             minimum_text_length=6,
         ),
     )
+    repeated_words: PreprocessingRepeatedWordsPolicy = Field(
+        default_factory=lambda: PreprocessingRepeatedWordsPolicy(
+            enabled=True,
+            labels=(ModerationLabel.SPAM,),
+            severity=2,
+            confidence=0.72,
+            reason="repeated_word_threshold_exceeded",
+            risk_weight=20,
+            threshold=5,
+            minimum_token_count=5,
+            minimum_repetition_ratio=0.5,
+        ),
+    )
 
     @model_validator(mode="before")
     @classmethod
@@ -78,7 +94,14 @@ class PreprocessingSpamPolicy(BaseModel):
 
         merged = dict(data)
 
-        for field_name in ("mass_mentions", "targeted_mass_mentions", "caps", "emoji", "repeated_chars"):
+        for field_name in (
+            "mass_mentions",
+            "targeted_mass_mentions",
+            "caps",
+            "emoji",
+            "repeated_chars",
+            "repeated_words",
+        ):
             field_value = merged.get(field_name)
 
             if isinstance(field_value, Mapping):

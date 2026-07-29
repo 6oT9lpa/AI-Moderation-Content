@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 import string
+from collections import Counter
 
 from src.domain.message_features import MessageFeatures
 from src.infrastructure.logging import get_logger
@@ -44,6 +45,7 @@ class TextFeatureExtractor:
         metric_length = len(metric_text)
         words = _WORD_RE.findall(text)
         word_count = len(words)
+        max_word_repetition_count, max_word_repetition_ratio = cls._word_repetition_features(words)
 
         letters = 0
         uppercase = 0
@@ -122,6 +124,8 @@ class TextFeatureExtractor:
             longest_word_length=max((len(word) for word in words), default=0),
             repeated_char_score=round(repeated_char_score, 3),
             has_repeated_chars=longest_repeat >= 3,
+            max_word_repetition_count=max_word_repetition_count,
+            max_word_repetition_ratio=max_word_repetition_ratio,
             duplicate_text_score=round(duplicate_text_score, 3),
             recent_user_messages_10s=recent_user_messages_10s,
             recent_user_messages_60s=recent_user_messages_60s,
@@ -150,6 +154,17 @@ class TextFeatureExtractor:
     def _is_emoji(char: str) -> bool:
         code = ord(char)
         return any(start <= code <= end for start, end in _EMOJI_RANGES)
+
+    @staticmethod
+    def _word_repetition_features(words: list[str]) -> tuple[int, float]:
+        normalized_words = [word.casefold() for word in words if len(word) >= 2]
+
+        if not normalized_words:
+            return 0, 0.0
+
+        max_repetition_count = max(Counter(normalized_words).values())
+        repetition_ratio = max_repetition_count / len(words) if words else 0.0
+        return max_repetition_count, round(repetition_ratio, 3)
 
     @staticmethod
     def _remove_urls(text: str, urls: tuple[str, ...]) -> str:

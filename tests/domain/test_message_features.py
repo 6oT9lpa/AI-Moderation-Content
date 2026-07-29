@@ -34,6 +34,8 @@ def _make_features() -> MessageFeatures:
         longest_word_length=10,
         repeated_char_score=0.3,
         has_repeated_chars=True,
+        max_word_repetition_count=3,
+        max_word_repetition_ratio=0.6,
         duplicate_text_score=0.5,
         recent_user_messages_10s=2,
         recent_user_messages_60s=4,
@@ -69,6 +71,8 @@ def test_message_features_to_dict_contains_all_fields() -> None:
     assert data["invite_count"] == 1
     assert data["has_mixed_scripts"] is True
     assert data["has_repeated_chars"] is True
+    assert data["max_word_repetition_count"] == 3
+    assert data["max_word_repetition_ratio"] == 0.6
     assert data["repeated_messages_10m"] == 2
 
 

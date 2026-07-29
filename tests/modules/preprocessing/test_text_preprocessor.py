@@ -241,7 +241,7 @@ async def test_text_preprocessor_builds_message_context(structured_test_logger) 
     assert context.member_age_days == 4
     assert context.recent_messages == ("old message",)
     assert context.metadata["source"] == "unit_test"
-    assert context.metadata["feature_version"] == "text_preprocessor_v1"
+    assert context.metadata["feature_version"] == "text_preprocessor_v2"
     assert "preprocessing_rule_matches" in context.metadata
     assert context.features is not None
     assert context.features.mention_count == 2
@@ -536,6 +536,94 @@ async def test_text_preprocessor_url_does_not_mask_caps_spam(structured_test_log
 
 
 @pytest.mark.asyncio
+async def test_text_preprocessor_detects_repeated_words_as_spam(structured_test_logger) -> None:
+    payload = MessagePreprocessInputSchema(
+        channel_id="channel-1",
+        user_id="user-1",
+        message_id="message-repeated-words",
+        raw_text="плюс плюс плюс плюс плюс плюс кто хочет роль",
+    )
+
+    context = await TextPreprocessor().process(payload)
+    _log_preprocessing_context(
+        structured_test_logger,
+        context,
+        expected={
+            "labels": ["SPAM"],
+            "rule_id": "preprocessing.spam.repeated_words",
+            "max_word_repetition_count": 6,
+        },
+    )
+
+    repeated_word_matches = [
+        match
+        for match in context.metadata["preprocessing_rule_matches"]
+        if match["rule_id"] == "preprocessing.spam.repeated_words"
+    ]
+
+    assert "SPAM" in context.metadata["preprocessing_labels"]
+    assert len(repeated_word_matches) == 1
+    assert repeated_word_matches[0]["evidence"] == {
+        "max_word_repetition_count": 6,
+        "max_word_repetition_ratio": 0.667,
+        "word_count": 9,
+        "input_redacted": True,
+    }
+
+
+@pytest.mark.asyncio
+async def test_text_preprocessor_does_not_flag_natural_word_repetition_as_spam(
+    structured_test_logger,
+) -> None:
+    payload = MessagePreprocessInputSchema(
+        channel_id="channel-1",
+        user_id="user-1",
+        message_id="message-natural-repetition",
+        raw_text="Это очень очень хороший матч",
+    )
+
+    context = await TextPreprocessor().process(payload)
+    _log_preprocessing_context(
+        structured_test_logger,
+        context,
+        expected={"labels": [], "max_word_repetition_count": 2},
+    )
+
+    assert "SPAM" not in context.metadata["preprocessing_labels"]
+    assert all(
+        match["rule_id"] != "preprocessing.spam.repeated_words"
+        for match in context.metadata["preprocessing_rule_matches"]
+    )
+
+
+@pytest.mark.asyncio
+async def test_text_preprocessor_requires_repeated_word_ratio_for_spam(
+    structured_test_logger,
+) -> None:
+    payload = MessagePreprocessInputSchema(
+        channel_id="channel-1",
+        user_id="user-1",
+        message_id="message-low-repetition-ratio",
+        raw_text="Да да да да да, я понял вас, но давайте спокойно обсудим матч",
+    )
+
+    context = await TextPreprocessor().process(payload)
+    _log_preprocessing_context(
+        structured_test_logger,
+        context,
+        expected={"labels": [], "max_word_repetition_count": 5},
+    )
+
+    assert context.features is not None
+    assert context.features.max_word_repetition_count == 5
+    assert context.features.max_word_repetition_ratio < 0.5
+    assert all(
+        match["rule_id"] != "preprocessing.spam.repeated_words"
+        for match in context.metadata["preprocessing_rule_matches"]
+    )
+
+
+@pytest.mark.asyncio
 async def test_text_preprocessor_detects_policy_blacklist_word(structured_test_logger) -> None:
     payload = MessagePreprocessInputSchema(
         channel_id="channel-1",
@@ -682,7 +770,7 @@ async def test_text_preprocessor_blacklist_word_uses_policy_payload(structured_t
 
 
 @pytest.mark.asyncio
-async def test_text_preprocessor_detects_semantic_hate_signal(structured_test_logger) -> None:
+async def test_text_preprocessor_does_not_emit_semantic_hate_signal(structured_test_logger) -> None:
     payload = MessagePreprocessInputSchema(
         channel_id="channel-1",
         user_id="user-1",
@@ -691,24 +779,14 @@ async def test_text_preprocessor_detects_semantic_hate_signal(structured_test_lo
     )
 
     context = await TextPreprocessor().process(payload)
-    _log_preprocessing_context(
-        structured_test_logger,
-        context,
-        expected={
-            "rule_id": "preprocessing.semantic.hate",
-            "labels": ["HATE"],
-            "input_redacted": True,
-        },
-    )
-
     labels = context.metadata["preprocessing_labels"]
     rules = {match["rule_id"] for match in context.metadata["preprocessing_rule_matches"]}
-    assert "HATE" in labels
-    assert "preprocessing.semantic.hate" in rules
+    assert "HATE" not in labels
+    assert "preprocessing.semantic.hate" not in rules
 
 
 @pytest.mark.asyncio
-async def test_text_preprocessor_detects_semantic_nsfw_signal(structured_test_logger) -> None:
+async def test_text_preprocessor_does_not_emit_semantic_nsfw_signal(structured_test_logger) -> None:
     payload = MessagePreprocessInputSchema(
         channel_id="channel-1",
         user_id="user-1",
@@ -717,20 +795,10 @@ async def test_text_preprocessor_detects_semantic_nsfw_signal(structured_test_lo
     )
 
     context = await TextPreprocessor().process(payload)
-    _log_preprocessing_context(
-        structured_test_logger,
-        context,
-        expected={
-            "rule_id": "preprocessing.semantic.nsfw",
-            "labels": ["NSFW"],
-            "input_redacted": True,
-        },
-    )
-
     labels = context.metadata["preprocessing_labels"]
     rules = {match["rule_id"] for match in context.metadata["preprocessing_rule_matches"]}
-    assert "NSFW" in labels
-    assert "preprocessing.semantic.nsfw" in rules
+    assert "NSFW" not in labels
+    assert "preprocessing.semantic.nsfw" not in rules
 
 
 @pytest.mark.asyncio

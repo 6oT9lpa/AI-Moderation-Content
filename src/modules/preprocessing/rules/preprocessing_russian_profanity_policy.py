@@ -19,7 +19,7 @@ class PreprocessingRussianProfanityPolicy(BaseModel):
     literary_dictionary_path: str = "configs/rules/russian_literary_profanity_words.yaml"
     obscene: PreprocessingRulePolicy = Field(
         default_factory=lambda: PreprocessingRulePolicy(
-            enabled=True,
+            enabled=False,
             labels=(ModerationLabel.PROFANITY,),
             severity=1,
             confidence=0.94,
@@ -29,7 +29,7 @@ class PreprocessingRussianProfanityPolicy(BaseModel):
     )
     literary: PreprocessingRulePolicy = Field(
         default_factory=lambda: PreprocessingRulePolicy(
-            enabled=True,
+            enabled=False,
             labels=(ModerationLabel.PROFANITY,),
             severity=1,
             confidence=0.82,

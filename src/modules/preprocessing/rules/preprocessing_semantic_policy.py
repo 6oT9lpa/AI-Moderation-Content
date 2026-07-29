@@ -16,7 +16,7 @@ class PreprocessingSemanticPolicy(BaseModel):
     politics_keywords: tuple[str, ...] = ()
     hate: PreprocessingRulePolicy = Field(
         default_factory=lambda: PreprocessingRulePolicy(
-            enabled=True,
+            enabled=False,
             labels=(ModerationLabel.HATE,),
             severity=5,
             confidence=0.82,
@@ -26,7 +26,7 @@ class PreprocessingSemanticPolicy(BaseModel):
     )
     nsfw: PreprocessingRulePolicy = Field(
         default_factory=lambda: PreprocessingRulePolicy(
-            enabled=True,
+            enabled=False,
             labels=(ModerationLabel.NSFW,),
             severity=4,
             confidence=0.82,
@@ -36,7 +36,7 @@ class PreprocessingSemanticPolicy(BaseModel):
     )
     politics: PreprocessingRulePolicy = Field(
         default_factory=lambda: PreprocessingRulePolicy(
-            enabled=True,
+            enabled=False,
             labels=(ModerationLabel.POLITICS_IRL,),
             severity=2,
             confidence=0.9,

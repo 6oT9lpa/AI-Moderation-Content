@@ -239,6 +239,28 @@ class PreprocessingRuleEngine:
                 ),
             )
 
+        if (
+            self._is_threshold_reached(
+                spam.repeated_words,
+                features.max_word_repetition_count,
+                text_length=features.text_length,
+            )
+            and features.word_count >= spam.repeated_words.minimum_token_count
+            and features.max_word_repetition_ratio >= spam.repeated_words.minimum_repetition_ratio
+        ):
+            matches.append(
+                self._build_result(
+                    "preprocessing.spam.repeated_words",
+                    spam.repeated_words,
+                    {
+                        "max_word_repetition_count": features.max_word_repetition_count,
+                        "max_word_repetition_ratio": features.max_word_repetition_ratio,
+                        "word_count": features.word_count,
+                        "input_redacted": True,
+                    },
+                ),
+            )
+
         return matches
 
     def _evaluate_invite(self, context: MessageContext) -> list[PreprocessingRuleResult]:

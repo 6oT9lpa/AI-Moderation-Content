@@ -1,0 +1,35 @@
+model:
+  base_model_name: DeepPavlov/distilrubert-base-cased-conversational
+  base_model_revision: 9b4f8c20bdc51934ef2ef586ef9afee85549cccb
+  local_base_dir: models/distilrubert-base-cased-conversational
+  classifier_output_dir: models/distilrubert-base-cased-conversational-moderation-init
+  max_length: 512
+  use_fast_tokenizer: false
+  problem_type: multi_label_classification
+
+training:
+  train_batch_size: 4
+  eval_batch_size: 8
+  gradient_accumulation_steps: 16
+  learning_rate: 0.00001
+  num_train_epochs: 2
+  warmup_ratio: 0.03
+  weight_decay: 0.01
+  fp16: true
+  gradient_checkpointing: true
+  threshold: 0.5
+
+labels:
+  - SAFE
+  - SPAM
+  - ADVERTISEMENT
+  - INVITE
+  - SCAM
+  - TOXIC
+  - PROFANITY
+  - POLITICS_IRL
+  - HATE
+  - THREAT
+  - NSFW
+  - EVASION
+  - URL

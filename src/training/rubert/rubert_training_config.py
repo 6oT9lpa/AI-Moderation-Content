@@ -18,6 +18,7 @@ class RuBertModelConfig(BaseModel):
     local_base_dir: Path = Path("models/rubert-tiny2")
     classifier_output_dir: Path = Path("models/rubert-tiny2-moderation-init")
     max_length: int = Field(default=256, gt=0)
+    use_fast_tokenizer: bool = True
     problem_type: str = "multi_label_classification"
 
 
@@ -32,6 +33,7 @@ class RuBertTrainerConfig(BaseModel):
     warmup_ratio: float = Field(default=0.1, ge=0.0, le=1.0)
     weight_decay: float = Field(default=0.01, ge=0.0)
     fp16: bool = True
+    gradient_checkpointing: bool = False
     threshold: float = Field(default=0.5, ge=0.0, le=1.0)
 
 

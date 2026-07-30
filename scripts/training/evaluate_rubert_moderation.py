@@ -29,10 +29,15 @@ def _sigmoid(values: np.ndarray) -> np.ndarray:
 
 def _predict(model_dir: Path, rows: list[dict[str, Any]], *, batch_size: int) -> tuple[np.ndarray, np.ndarray, list[str]]:
     import torch
-    from transformers import AutoModelForSequenceClassification, AutoTokenizer
+    from transformers import AutoConfig, AutoModelForSequenceClassification, AutoTokenizer
 
     config = RuBertTrainingConfig.load()
-    tokenizer = AutoTokenizer.from_pretrained(model_dir, local_files_only=True)
+    model_config = AutoConfig.from_pretrained(model_dir, local_files_only=True)
+    tokenizer = AutoTokenizer.from_pretrained(
+        model_dir,
+        local_files_only=True,
+        use_fast=getattr(model_config, "use_fast_tokenizer", True),
+    )
     model = AutoModelForSequenceClassification.from_pretrained(
         model_dir,
         local_files_only=True,

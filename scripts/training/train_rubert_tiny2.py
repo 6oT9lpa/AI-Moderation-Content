@@ -16,6 +16,7 @@ from src.training.rubert.rubert_training_config import RuBertTrainingConfig
 
 DATASET_DIR = PROJECT_ROOT / "data" / "exports" / "moderation_dataset"
 TRAINED_OUTPUT_DIR = Path("models/rubert-tiny2-moderation-trained")
+TRAINING_CONFIG = PROJECT_ROOT / "configs" / "training" / "rubert_tiny2.yaml"
 
 
 def _load_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -107,6 +108,7 @@ def train(
     *,
     dataset_dir: Path,
     output_dir: Path,
+    config_path: Path = TRAINING_CONFIG,
     model_source: Path | None = None,
     learning_rate: float | None = None,
     dry_run: bool = False,
@@ -122,7 +124,7 @@ def train(
         TrainingArguments,
     )
 
-    config = RuBertTrainingConfig.load()
+    config = RuBertTrainingConfig.load(config_path)
     resolved_model_source = model_source or config.model.classifier_output_dir
     if not resolved_model_source.exists():
         resolved_model_source = config.model.local_base_dir
@@ -133,7 +135,11 @@ def train(
         train_rows = train_rows[:64]
         validation_rows = validation_rows[:64]
 
-    tokenizer = AutoTokenizer.from_pretrained(resolved_model_source, local_files_only=True)
+    tokenizer = AutoTokenizer.from_pretrained(
+        resolved_model_source,
+        local_files_only=True,
+        use_fast=config.model.use_fast_tokenizer,
+    )
     model = AutoModelForSequenceClassification.from_pretrained(
         resolved_model_source,
         num_labels=config.label_schema.num_labels,
@@ -141,9 +147,15 @@ def train(
         label2id=config.label_schema.label2id,
         problem_type=config.model.problem_type,
         local_files_only=True,
-        use_safetensors=True,
+        use_safetensors=(resolved_model_source / "model.safetensors").is_file(),
         ignore_mismatched_sizes=True,
     )
+    # Some upstream encoder checkpoints persist diagnostic outputs in config.
+    # Trainer otherwise treats variable-length attention/hidden-state tensors as
+    # prediction logits during evaluation and cannot concatenate the batches.
+    model.config.output_attentions = False
+    model.config.output_hidden_states = False
+    model.config.use_fast_tokenizer = config.model.use_fast_tokenizer
 
     train_dataset = _build_dataset(train_rows, tokenizer, max_length=config.model.max_length)
     eval_dataset = _build_dataset(validation_rows, tokenizer, max_length=config.model.max_length)
@@ -162,6 +174,7 @@ def train(
         warmup_ratio=config.training.warmup_ratio,
         weight_decay=config.training.weight_decay,
         fp16=config.training.fp16,
+        gradient_checkpointing=config.training.gradient_checkpointing,
         group_by_length=True,
         # On Windows, spawned worker processes can stall at the first Trainer batch.
         # The tokenized Hugging Face dataset is memory-mapped, so a single loader is
@@ -216,6 +229,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Fine-tune ruBERT tiny2 moderation classifier.")
     parser.add_argument("--dataset-dir", type=Path, default=DATASET_DIR)
     parser.add_argument("--output-dir", type=Path, default=TRAINED_OUTPUT_DIR)
+    parser.add_argument("--config", type=Path, default=TRAINING_CONFIG)
     parser.add_argument(
         "--model-source",
         type=Path,
@@ -237,6 +251,7 @@ def main() -> None:
     train(
         dataset_dir=args.dataset_dir,
         output_dir=args.output_dir,
+        config_path=args.config,
         model_source=args.model_source,
         learning_rate=args.learning_rate,
         dry_run=args.dry_run,

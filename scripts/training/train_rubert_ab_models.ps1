@@ -11,6 +11,7 @@ $LogDirectory = "data\reports\rubert_ab_training_20260730"
 
 New-Item -ItemType Directory -Path $LogDirectory -Force | Out-Null
 
+$ErrorActionPreference = "Continue"
 & $Python scripts\training\train_rubert_tiny2.py `
     --config configs\training\rubert_tiny2.yaml `
     --dataset-dir $Dataset `
@@ -20,10 +21,13 @@ New-Item -ItemType Directory -Path $LogDirectory -Force | Out-Null
     --epochs 2 2>&1 |
     Tee-Object -FilePath "$LogDirectory\tiny2.log"
 
-if ($LASTEXITCODE -ne 0) {
-    throw "Tiny2 training failed with exit code $LASTEXITCODE"
+$TinyExitCode = $LASTEXITCODE
+$ErrorActionPreference = "Stop"
+if ($TinyExitCode -ne 0) {
+    throw "Tiny2 training failed with exit code $TinyExitCode"
 }
 
+$ErrorActionPreference = "Continue"
 & $Python scripts\training\train_rubert_tiny2.py `
     --config $DistilConfig `
     --dataset-dir $Dataset `
@@ -31,8 +35,10 @@ if ($LASTEXITCODE -ne 0) {
     --output-dir $DistilOutput 2>&1 |
     Tee-Object -FilePath "$LogDirectory\distilrubert.log"
 
-if ($LASTEXITCODE -ne 0) {
-    throw "DistilRuBERT training failed with exit code $LASTEXITCODE"
+$DistilExitCode = $LASTEXITCODE
+$ErrorActionPreference = "Stop"
+if ($DistilExitCode -ne 0) {
+    throw "DistilRuBERT training failed with exit code $DistilExitCode"
 }
 
 Write-Host "Both A/B models finished successfully." -ForegroundColor Green

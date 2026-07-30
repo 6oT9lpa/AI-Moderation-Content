@@ -26,7 +26,13 @@ def _load_jsonl(path: Path) -> list[dict[str, Any]]:
         return [json.loads(line) for line in handle if line.strip()]
 
 
-def _build_dataset(rows: list[dict[str, Any]], tokenizer: Any, *, max_length: int) -> Any:
+def _build_dataset(
+    rows: list[dict[str, Any]],
+    tokenizer: Any,
+    *,
+    max_length: int,
+    num_proc: int,
+) -> Any:
     from datasets import Dataset
 
     dataset = Dataset.from_list(
@@ -49,7 +55,12 @@ def _build_dataset(rows: list[dict[str, Any]], tokenizer: Any, *, max_length: in
         tokenized["labels"] = batch["labels"]
         return tokenized
 
-    return dataset.map(tokenize, batched=True, remove_columns=["text"])
+    return dataset.map(
+        tokenize,
+        batched=True,
+        num_proc=num_proc,
+        remove_columns=["text"],
+    )
 
 
 def _sigmoid(values: np.ndarray) -> np.ndarray:
@@ -157,8 +168,18 @@ def train(
     model.config.output_hidden_states = False
     model.config.use_fast_tokenizer = config.model.use_fast_tokenizer
 
-    train_dataset = _build_dataset(train_rows, tokenizer, max_length=config.model.max_length)
-    eval_dataset = _build_dataset(validation_rows, tokenizer, max_length=config.model.max_length)
+    train_dataset = _build_dataset(
+        train_rows,
+        tokenizer,
+        max_length=config.model.max_length,
+        num_proc=config.training.preprocessing_num_proc,
+    )
+    eval_dataset = _build_dataset(
+        validation_rows,
+        tokenizer,
+        max_length=config.model.max_length,
+        num_proc=config.training.preprocessing_num_proc,
+    )
     pos_weight = _calculate_pos_weight(train_rows)
     trainer_class = WeightedMultiLabelTrainer.build(pos_weight)
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer, pad_to_multiple_of=8)

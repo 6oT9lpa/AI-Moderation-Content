@@ -28,6 +28,7 @@ class RuBertTrainerConfig(BaseModel):
     train_batch_size: int = Field(default=8, gt=0)
     eval_batch_size: int = Field(default=16, gt=0)
     gradient_accumulation_steps: int = Field(default=2, gt=0)
+    preprocessing_num_proc: int = Field(default=1, gt=0)
     learning_rate: float = Field(default=3e-5, gt=0)
     num_train_epochs: int = Field(default=4, gt=0)
     warmup_ratio: float = Field(default=0.1, ge=0.0, le=1.0)

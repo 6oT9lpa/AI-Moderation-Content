@@ -1,0 +1,30 @@
+version: "ocr-policy-v1"
+ocr:
+  enabled: true
+  required: false
+  allow_partial_results: true
+  processing:
+    min_line_confidence: 0.45
+    min_mean_confidence: 0.50
+    min_text_length: 3
+    max_lines: 128
+    max_text_length: 8000
+    preserve_line_breaks: true
+    discard_low_confidence_lines: true
+    process_empty_result: false
+  normalization:
+    unicode_nfkc: true
+    normalize_whitespace: true
+    remove_control_characters: true
+    remove_zero_width_characters: true
+    redact_personal_data: true
+    redact_payment_data: true
+  moderation:
+    run_tiny2: true
+    source: "OCR"
+    merge_with_message_text: false
+    keep_attachment_provenance: true
+  failure_policy:
+    timeout: "partial"
+    unavailable: "partial"
+    invalid_result: "partial"

@@ -1,0 +1,33 @@
+version: "yolo-policy-v1"
+yolo:
+  enabled: true
+  required: false
+  allow_partial_results: true
+  inference:
+    confidence_threshold: 0.50
+    iou_threshold: 0.45
+    max_detections: 100
+  classes:
+    explicit_nudity: {enabled: true, moderation_label: "NSFW", min_confidence: 0.55, severity: 3}
+    exposed_genitals: {enabled: true, moderation_label: "NSFW", min_confidence: 0.55, severity: 3}
+    exposed_breast: {enabled: true, moderation_label: "NSFW", min_confidence: 0.60, severity: 2}
+    exposed_buttocks: {enabled: true, moderation_label: "NSFW", min_confidence: 0.65, severity: 2}
+    sexual_activity: {enabled: true, moderation_label: "NSFW", min_confidence: 0.50, severity: 3}
+    adult_toy: {enabled: true, moderation_label: "NSFW", min_confidence: 0.65, severity: 2}
+    casino_logo: {enabled: true, moderation_label: "SCAM", min_confidence: 0.65, severity: 1}
+    slot_machine_ui: {enabled: true, moderation_label: "SCAM", min_confidence: 0.60, severity: 2}
+    roulette: {enabled: true, moderation_label: "SCAM", min_confidence: 0.65, severity: 2}
+    betting_coupon: {enabled: true, moderation_label: "SCAM", min_confidence: 0.65, severity: 2}
+    gambling_banner: {enabled: true, moderation_label: "SCAM", min_confidence: 0.60, severity: 2}
+    suspicious_qr: {enabled: true, moderation_label: "SCAM", min_confidence: 0.75, severity: 1}
+    fake_giveaway_banner: {enabled: true, moderation_label: "SCAM", min_confidence: 0.60, severity: 2}
+  aggregation:
+    strategy: "max_severity"
+    require_multiple_scam_signals: false
+    combine_with_ocr: true
+    combine_with_url_signals: true
+    preserve_detector_provenance: true
+  failure_policy:
+    timeout: "partial"
+    unavailable: "partial"
+    invalid_result: "partial"

@@ -144,7 +144,7 @@ class ApiModerationService:
                 media,
                 rule_policy_resolution.policy,
                 correlation_id,
-                request.message_id,
+                request,
                 media_policy,
             )
             signals.extend(media_signals)
@@ -219,9 +219,11 @@ class ApiModerationService:
         media: MediaAnalysisBundle,
         policy: ModerationRulePolicy,
         correlation_id: str,
-        message_id: str,
+        message: ModerationMessageRequestSchema | str,
         media_policy: MediaRulePolicy | None = None,
     ) -> tuple[list[ModerationSignal], list[str]]:
+        request = message if isinstance(message, ModerationMessageRequestSchema) else None
+        message_id = request.message_id if request is not None else message
         signals: list[ModerationSignal] = []
         warnings: list[str] = []
         for attachment in media.attachments:
@@ -236,6 +238,7 @@ class ApiModerationService:
                             policy,
                             correlation_id,
                             message_id,
+                            request,
                         )
                     )
 
@@ -294,13 +297,43 @@ class ApiModerationService:
         policy: ModerationRulePolicy,
         correlation_id: str,
         message_id: str,
+        request: ModerationMessageRequestSchema | None = None,
     ) -> list[ModerationSignal]:
-        if self._rubert_classifier is None:
-            return []
         try:
-            async with self._inference_semaphore:
-                result = await asyncio.to_thread(self._rubert_classifier.classify, ocr_result.text)
+            normalized_text = ocr_result.text
             adapted: list[ModerationSignal] = []
+            if request is not None:
+                preprocess_input = self._to_preprocess_input(request)
+                metadata = dict(preprocess_input.metadata)
+                metadata.update({"source": "OCR", "attachment_id": ocr_result.attachment_id})
+                context = await self._preprocessor.process(
+                    preprocess_input.model_copy(
+                        update={"raw_text": ocr_result.text, "metadata": metadata}
+                    )
+                )
+                normalized_text = context.normalized_text
+                for match in context.metadata.get("preprocessing_rule_matches", []):
+                    for signal in self._signal_adapter.adapt(match):
+                        if signal.label == ModerationLabel.SAFE:
+                            continue
+                        adapted.append(
+                            signal.model_copy(
+                                update={
+                                    "source": SignalSource.OCR,
+                                    "evidence": {
+                                        **signal.evidence,
+                                        "attachment_id": ocr_result.attachment_id,
+                                        "ocr_model_name": ocr_result.model_name,
+                                        "ocr_model_version": ocr_result.model_version,
+                                    },
+                                    "reason": "ocr_text_preprocessing_signal",
+                                }
+                            )
+                        )
+            if self._rubert_classifier is None or not normalized_text:
+                return adapted
+            async with self._inference_semaphore:
+                result = await asyncio.to_thread(self._rubert_classifier.classify, normalized_text)
             for signal in self._rubert_classifier.to_signals(result, policy):
                 if signal.label == ModerationLabel.SAFE:
                     continue

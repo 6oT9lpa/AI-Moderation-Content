@@ -24,6 +24,7 @@ from src.infrastructure.media.disabled_image_detection_provider import DisabledI
 from src.infrastructure.media.disabled_ocr_provider import DisabledOcrProvider
 from src.infrastructure.media.http_media_downloader import HttpMediaDownloader
 from src.infrastructure.media.ocr_text_processor import OcrTextProcessor
+from src.infrastructure.media.ocr_policy_result_processor import OcrPolicyResultProcessor
 from src.infrastructure.media.paddle_ocr_provider import PaddleOcrProvider
 from src.infrastructure.media.onnx_yolo_detection_provider import OnnxYoloDetectionProvider
 from src.infrastructure.media.pillow_media_hasher import PillowMediaHasher
@@ -77,7 +78,8 @@ class ApiCompositionRoot:
             phishing_link_service=phishing_link_service,
         )
         moderation_queue = ModerationRequestQueue(service, self._settings.api_queue_workers, self._settings.api_queue_size)
-        ocr_provider = self._build_ocr_provider()
+        ocr_text_processor = OcrTextProcessor(self._settings.ocr_max_text_length)
+        ocr_provider = self._build_ocr_provider(ocr_text_processor)
         image_provider = self._build_image_provider()
         media_service = MediaModerationService(
             moderation_service=service,
@@ -114,6 +116,7 @@ class ApiCompositionRoot:
                 image_required=self._settings.yolo_required,
             ),
             media_policy_resolver=media_policy_resolver,
+            ocr_policy_processor=OcrPolicyResultProcessor(ocr_text_processor),
         )
         container = ApiContainer(
             service=service,
@@ -140,7 +143,7 @@ class ApiCompositionRoot:
         container.image_ready = image_provider.ready
         return container
 
-    def _build_ocr_provider(self):
+    def _build_ocr_provider(self, text_processor: OcrTextProcessor):
         if not self._settings.ocr_enabled:
             logger.info("OCR is disabled")
             return DisabledOcrProvider()
@@ -156,7 +159,7 @@ class ApiCompositionRoot:
                 model_checksum=self._settings.ocr_model_checksum or "",
             ),
             semaphore=asyncio.Semaphore(self._settings.ocr_inference_concurrency),
-            text_processor=OcrTextProcessor(self._settings.ocr_max_text_length),
+            text_processor=text_processor,
         )
 
     def _build_image_provider(self):

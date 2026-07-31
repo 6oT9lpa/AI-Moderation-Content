@@ -1,9 +1,11 @@
 import asyncio
+from datetime import datetime, timezone
 
 import pytest
 
 from src.application.api_moderation_service import ApiModerationService
 from src.contracts.rules.moderation_rule_policy import ModerationRulePolicy
+from src.contracts.api.moderation_message_request_schema import ModerationMessageRequestSchema
 from src.domain.media.image_detection import ImageDetection
 from src.domain.media.image_detection_result import ImageDetectionResult
 from src.domain.media.media_analysis_bundle import MediaAnalysisBundle
@@ -14,10 +16,16 @@ from src.domain.media.ocr_result import OcrResult
 from src.domain.moderation.moderation_label import ModerationLabel
 from src.domain.rules.moderation_signal import ModerationSignal
 from src.domain.rules.signal_source import SignalSource
+from src.modules.preprocessing.text_preprocessor import TextPreprocessor
+from src.modules.rules.preprocessing_signal_adapter import PreprocessingSignalAdapter
 
 
 class _RubertStub:
-    def classify(self, _text: str) -> object:
+    def __init__(self) -> None:
+        self.last_text = ""
+
+    def classify(self, text: str) -> object:
+        self.last_text = text
         return object()
 
     def to_signals(self, _result: object, _policy: ModerationRulePolicy) -> list[ModerationSignal]:
@@ -37,6 +45,8 @@ def _service() -> ApiModerationService:
     service = object.__new__(ApiModerationService)
     service._rubert_classifier = _RubertStub()
     service._inference_semaphore = asyncio.Semaphore(1)
+    service._preprocessor = TextPreprocessor()
+    service._signal_adapter = PreprocessingSignalAdapter()
     return service
 
 
@@ -62,6 +72,39 @@ async def test_ocr_scam_uses_scam_label_with_ocr_provenance() -> None:
     assert signals[0].label == ModerationLabel.SCAM
     assert signals[0].confidence == 0.8
     assert signals[0].evidence["attachment_id"] == "attachment-1"
+
+
+@pytest.mark.asyncio
+async def test_ocr_text_uses_shared_preprocessor_before_rubert() -> None:
+    service = _service()
+    request = ModerationMessageRequestSchema(
+        platform="discord",
+        guild_id="1",
+        channel_id="2",
+        user_id="3",
+        message_id="4",
+        raw_text="message text",
+        created_at=datetime.now(timezone.utc),
+    )
+    result = OcrResult(
+        attachment_id="attachment-1",
+        text="ｃａｓｉｎｏ\u200b bonus",
+        redacted_text="ｃａｓｉｎｏ bonus",
+        confidence=0.9,
+        model_name="ocr",
+        model_version="v1",
+        processing_time_ms=1,
+    )
+
+    await service._classify_ocr_text(
+        result,
+        ModerationRulePolicy(policy_id="test", version="1"),
+        "correlation",
+        "4",
+        request,
+    )
+
+    assert service._rubert_classifier.last_text == "casino bonus"
 
 
 @pytest.mark.asyncio
@@ -97,4 +140,3 @@ async def test_image_mapping_uses_scam_nsfw_and_ignores_unknown_classes() -> Non
         (SignalSource.IMAGE, ModerationLabel.SCAM),
         (SignalSource.IMAGE, ModerationLabel.NSFW),
     }
-

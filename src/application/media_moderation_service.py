@@ -13,6 +13,7 @@ from src.application.ports.media.media_downloader import MediaDownloader
 from src.application.ports.media.media_hasher import MediaHasher
 from src.application.ports.media.media_validator import MediaValidator
 from src.application.ports.media.ocr_provider import OcrProvider
+from src.application.ports.media.ocr_policy_processor import OcrPolicyProcessor
 from src.contracts.api.media_attachment_summary_schema import MediaAttachmentSummarySchema
 from src.contracts.api.media_moderation_request_schema import MediaModerationRequestSchema
 from src.contracts.api.media_moderation_response_schema import MediaModerationResponseSchema
@@ -48,6 +49,7 @@ class MediaModerationService:
         analysis_repository: MediaAnalysisResultRepository,
         runtime_config: MediaRuntimeConfig,
         media_policy_resolver: EffectiveMediaPolicyResolver | None = None,
+        ocr_policy_processor: OcrPolicyProcessor | None = None,
     ) -> None:
         self._moderation_service = moderation_service
         self._downloader = downloader
@@ -59,6 +61,7 @@ class MediaModerationService:
         self._analysis_repository = analysis_repository
         self._runtime_config = runtime_config
         self._media_policy_resolver = media_policy_resolver
+        self._ocr_policy_processor = ocr_policy_processor
 
     async def moderate(
         self,
@@ -245,6 +248,8 @@ class MediaModerationService:
                         height=validated.height,
                     )
                 )
+                if ocr_policy is not None and self._ocr_policy_processor is not None:
+                    ocr_result = self._ocr_policy_processor.apply(ocr_result, ocr_policy)
             except MediaError as exc:
                 if ocr_required:
                     return self._failed_analysis(attachment, MediaAttachmentStatus.UNAVAILABLE, exc)

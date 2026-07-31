@@ -5,6 +5,7 @@ from src.application.api_moderation_service import ApiModerationService
 from src.application.media_moderation_service import MediaModerationService
 from src.application.moderation_request_queue import ModerationRequestQueue
 from src.domain.media.media_runtime_config import MediaRuntimeConfig
+from src.domain.media.ocr_runtime_config import OcrRuntimeConfig
 from src.infrastructure.api.api_settings import ApiSettings
 from src.infrastructure.api.internal_api_key_validator import InternalApiKeyValidator
 from src.infrastructure.api.local_rate_limiter import LocalRateLimiter
@@ -130,9 +131,16 @@ class ApiCompositionRoot:
             logger.info("OCR is disabled")
             return DisabledOcrProvider()
         return PaddleOcrProvider(
-            model_dir=Path(self._settings.ocr_model_dir or ""),
+            runtime_config=OcrRuntimeConfig(
+                detection_model_dir=Path(self._settings.ocr_detection_model_dir or ""),
+                recognition_model_dir=Path(self._settings.ocr_recognition_model_dir or ""),
+                device="cpu",
+                cpu_threads=self._settings.ocr_cpu_threads,
+                inference_concurrency=self._settings.ocr_inference_concurrency,
+                timeout_seconds=self._settings.ocr_timeout_seconds,
+                model_checksum=self._settings.ocr_model_checksum or "",
+            ),
             semaphore=asyncio.Semaphore(self._settings.ocr_inference_concurrency),
-            timeout_seconds=self._settings.ocr_timeout_seconds,
             text_processor=OcrTextProcessor(self._settings.ocr_max_text_length),
         )
 

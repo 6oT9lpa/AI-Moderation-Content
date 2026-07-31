@@ -2,5 +2,5 @@
 
 # Optional local OCR runtime. Keep it separate from the base API because the
 # wheel is large and OCR is disabled unless a local model directory is set.
-paddleocr>=2.9,<4
-paddlepaddle>=3,<4
+paddleocr==3.7.0
+paddlepaddle==3.3.0

@@ -18,4 +18,3 @@ class ModerationLabel(StrEnum):
     EVASION = "EVASION"
     FLOOD = "FLOOD"
     URL = "URL"
-    IMAGE_SCAM = "IMAGE_SCAM"

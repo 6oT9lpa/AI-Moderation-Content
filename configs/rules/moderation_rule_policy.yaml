@@ -34,7 +34,6 @@ label_weights:
   EVASION: 30
   FLOOD: 10
   URL: 5
-  IMAGE_SCAM: 50
 
 confidence_thresholds:
   default_min_confidence: 0.4
@@ -42,10 +41,14 @@ confidence_thresholds:
     PREPROCESSING: 0.3
     RUBERT: 0.5
     QWEN: 0.6
+    OCR: 0.6
+    IMAGE: 0.7
     PHISHING: 0.5
   per_label_min_confidence:
     THREAT: 0.3
     HATE: 0.3
+    SCAM: 0.6
+    NSFW: 0.6
     SAFE: 0.1
 
 severity_multipliers:
@@ -115,3 +118,22 @@ phishing:
   risk_weight: 85
   reason: phishing_new_unlisted_scam_url
   suspicious_keywords: [airdrop, bonus, claim, crypto, gift, login, promo, verify, wallet]
+
+media:
+  enabled: true
+  required: false
+  allow_partial_results: true
+  image_class_to_label:
+    explicit: NSFW
+    sexual: NSFW
+    casino: SCAM
+    gambling: SCAM
+    scam-banner: SCAM
+    fake-win: SCAM
+  image_class_thresholds:
+    explicit: 0.75
+    sexual: 0.75
+    casino: 0.80
+    gambling: 0.80
+    scam-banner: 0.80
+    fake-win: 0.80

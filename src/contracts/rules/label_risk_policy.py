@@ -18,4 +18,3 @@ class LabelRiskPolicy(BaseModel):
     EVASION: float = Field(default=10.0, ge=0.0)
     FLOOD: float = Field(default=10.0, ge=0.0)
     URL: float = Field(default=10.0, ge=0.0)
-    IMAGE_SCAM: float = Field(default=10.0, ge=0.0)

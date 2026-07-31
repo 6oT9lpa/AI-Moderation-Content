@@ -50,6 +50,8 @@ class RuBertModerationClassifier:
         if not self._model_dir.exists():
             raise FileNotFoundError(f"ruBERT model directory not found: {self._model_dir}")
 
+        expected_label_order = self._read_label_order(self._model_dir / "config.json")
+
         if torch_threads := os.environ.get("RUBERT_TORCH_NUM_THREADS"):
             torch.set_num_threads(max(1, int(torch_threads)))
         if interop_threads := os.environ.get("RUBERT_TORCH_NUM_INTEROP_THREADS"):
@@ -70,7 +72,35 @@ class RuBertModerationClassifier:
             self._model.config.id2label[index]
             for index in range(self._model.config.num_labels)
         ]
+        if self._label_order != expected_label_order:
+            raise ValueError("ruBERT runtime label order differs from model metadata")
         self._thresholds = self._load_thresholds()
+
+    @staticmethod
+    def _read_label_order(config_path: Path) -> list[str]:
+        """Reject stale or malformed label metadata before model weights load."""
+        if not config_path.is_file():
+            raise FileNotFoundError(f"ruBERT model config not found: {config_path}")
+        data = json.loads(config_path.read_text(encoding="utf-8"))
+        id2label = data.get("id2label")
+        configured_num_labels = data.get("num_labels")
+        if not isinstance(id2label, dict) or not id2label:
+            raise ValueError("ruBERT model config has invalid label metadata")
+        num_labels = len(id2label)
+        if configured_num_labels is not None and configured_num_labels != num_labels:
+            raise ValueError("ruBERT model config has inconsistent label metadata")
+        try:
+            labels = [id2label[str(index)] for index in range(num_labels)]
+        except KeyError as exc:
+            raise ValueError("ruBERT model config has incomplete label metadata") from exc
+        if any(not isinstance(label, str) for label in labels) or len(set(labels)) != len(labels):
+            raise ValueError("ruBERT model labels must be unique strings")
+        try:
+            for label in labels:
+                ModerationLabel(label)
+        except ValueError as exc:
+            raise ValueError("ruBERT model config contains an unsupported moderation label") from exc
+        return labels
 
     @property
     def device(self) -> str:
@@ -190,7 +220,6 @@ class RuBertModerationClassifier:
             ModerationLabel.TOXIC: 3,
             ModerationLabel.SCAM: 4,
             ModerationLabel.NSFW: 4,
-            ModerationLabel.IMAGE_SCAM: 4,
             ModerationLabel.HATE: 5,
             ModerationLabel.THREAT: 5,
             ModerationLabel.FLOOD: 2,

@@ -3,6 +3,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from src.contracts.rules.confidence_threshold_policy import ConfidenceThresholdPolicy
 from src.contracts.rules.conflict_rule_policy import ConflictRulePolicy
 from src.contracts.rules.label_risk_policy import LabelRiskPolicy
+from src.contracts.rules.media_rule_policy import MediaRulePolicy
 from src.contracts.rules.model_agreement_policy import ModelAgreementPolicy
 from src.contracts.rules.phishing_policy import PhishingPolicy
 from src.contracts.rules.risk_score_policy import RiskScorePolicy
@@ -28,3 +29,4 @@ class ModerationRulePolicy(BaseModel):
     model_agreement: ModelAgreementPolicy = Field(default_factory=ModelAgreementPolicy)
     user_risk: UserRiskPolicy = Field(default_factory=UserRiskPolicy)
     phishing: PhishingPolicy = Field(default_factory=PhishingPolicy)
+    media: MediaRulePolicy = Field(default_factory=MediaRulePolicy)

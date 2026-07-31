@@ -41,3 +41,13 @@ python scripts/training/package_yolo_onnx.py `
 Set `YOLO_ENABLED=true`, `YOLO_MODEL_DIR` to that bundle, and choose `YOLO_DEVICE=cpu` or `cuda`.
 For CUDA install `requirements-media-gpu.txt`; for CPU install `requirements-media.txt`. Health is
 ready for CUDA only when ONNX Runtime actually activates `CUDAExecutionProvider`.
+
+Benchmark the exact production provider and retain the JSON report with the model release:
+
+```powershell
+python -m scripts.media.benchmark_onnx_yolo `
+  --model-dir E:\AI-Moderator\models\media\yolo\moderation-v1 `
+  --image E:\datasets\moderation-images\benchmark.png `
+  --device cuda --warmup 10 --iterations 100 `
+  --output E:\models\reports\moderation-v1-gtx1650.json
+```

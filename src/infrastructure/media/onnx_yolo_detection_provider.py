@@ -67,6 +67,10 @@ class OnnxYoloDetectionProvider(ImageDetectionProvider):
     def enabled(self) -> bool:
         return True
 
+    @property
+    def execution_providers(self) -> tuple[str, ...]:
+        return tuple(self._session.get_providers()) if self._session is not None else ()
+
     async def analyze(self, input_image: ImageDetectionInput) -> ImageDetectionResult:
         if self._session is None or self._manifest is None:
             raise MediaModelUnavailableError("YOLO ONNX model is unavailable")

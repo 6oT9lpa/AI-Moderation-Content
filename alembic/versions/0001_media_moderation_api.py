@@ -137,7 +137,9 @@ def upgrade() -> None:
     op.execute("UPDATE ai_analysis_results SET model_name = COALESCE(model_name, 'unknown')")
     op.execute("UPDATE ai_analysis_results SET model_version = COALESCE(model_version, 'unknown')")
     op.execute("UPDATE ai_analysis_results SET input_version = COALESCE(input_version, 'legacy')")
-    op.execute(
+    # Execute as driver SQL because SQLAlchemy's text parser interprets the
+    # colon inside the migration marker as a named bind parameter.
+    op.get_bind().exec_driver_sql(
         """
         WITH ranked AS (
             SELECT

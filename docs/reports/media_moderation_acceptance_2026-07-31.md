@@ -2,15 +2,18 @@
 
 ## Verified locally
 
-- AI-Moderator full suite: `1663 passed` (`python -m pytest -q`).
+- AI-Moderator full suite: `1663 passed, 1 skipped` (`python -m pytest -q`). The skipped test is the
+  explicitly gated disposable-PostgreSQL integration test.
 - OmniBot full Python suite: `216 passed, 41 skipped` with coverage disabled because the existing
   `.coverage` file was locked by another process.
 - Activity: `16 passed` (`npm test -- --run`) and a successful `tsc && vite build`.
 - ONNX Runtime `1.28.0` installed on Python 3.14; `pip check` reported no broken requirements.
 - CPU runtime providers: `AzureExecutionProvider`, `CPUExecutionProvider`.
 - Local GPU: NVIDIA GeForce RTX 4060 Laptop GPU, 8 GB. This is not the production GTX 1650.
-- Alembic `0001_media_moderation_api:0002_media_policy_snapshots --sql` generated both
-  `media_policy_snapshots` and `media_policy_audit` PostgreSQL tables and the revision update.
+- A disposable PostgreSQL 17 cluster accepted a clean Alembic upgrade through
+  `0002_media_policy_snapshots`. The real repository lifecycle passed: SAVE revision 1, stale-write
+  conflict, SAVE revision 2, RESET revision 3, and the exact three audit records. The runner stopped
+  and removed the cluster afterward.
 - Runtime searches found no `IMAGE_SCAM` in OmniBot. Its only AI-Moderator occurrences are negative
   tests that verify the value is rejected.
 - A real PaddleOCR CPU smoke had previously completed with three Russian/English/URL lines,
@@ -40,8 +43,6 @@ These checks were not represented as successful:
 - Training cannot start because no object-detection images, annotations or dataset YAML are present.
 - ONNX/TensorRT accuracy and latency cannot be measured because no trained detector artifact exists.
 - GTX 1650 FP16/INT8 benchmarking requires that physical production GPU and an engine built on it.
-- Online migration verification is blocked by the invalid local PostgreSQL credentials currently in
-  `.env`; no database was modified.
 - The real Discord Activity scenarios A–E require a deployed test environment, Discord session,
   test guild and explicit deployment authority. No deployment, push or remote-server mutation was
   performed.
@@ -49,3 +50,9 @@ These checks were not represented as successful:
 When those prerequisites exist, use `scripts/training/train_mit_yolo.py`, package the exported model
 with `scripts/training/package_yolo_onnx.py`, and retain the JSON result produced by
 `python -m scripts.media.benchmark_onnx_yolo` with the release artifact.
+
+The PostgreSQL lifecycle can be reproduced without using `.env` credentials:
+
+```powershell
+python -m scripts.testing.run_media_policy_postgresql_acceptance
+```

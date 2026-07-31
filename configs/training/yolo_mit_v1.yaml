@@ -1,0 +1,28 @@
+schema_version: "1"
+source:
+  repository: https://github.com/MultimediaTechLab/YOLO
+  commit: c4cb5f6f56102eceeaa7d75e23e1125cd0373eaf
+  license: MIT
+training:
+  model: v9-s
+  device: cuda
+  batch_size: 4
+  input_size: 640
+  epochs: 100
+runtime_contract:
+  output_layout: xywh_objectness_classes
+  output_transposed: false
+  allowed_labels:
+    - explicit_nudity
+    - exposed_genitals
+    - exposed_breast
+    - exposed_buttocks
+    - sexual_activity
+    - adult_toy
+    - casino_logo
+    - slot_machine_ui
+    - roulette
+    - betting_coupon
+    - gambling_banner
+    - suspicious_qr
+    - fake_giveaway_banner

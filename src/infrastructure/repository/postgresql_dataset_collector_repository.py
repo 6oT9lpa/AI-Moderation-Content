@@ -225,10 +225,12 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
             """
             INSERT INTO ai_analysis_results (
                 event_id,
+                attachment_id,
                 stage,
                 model_name,
                 model_version,
                 input_version,
+                policy_version,
                 output_json,
                 label,
                 labels_json,
@@ -239,14 +241,29 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
                 risk_breakdown_json,
                 created_at
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (
+                event_id, attachment_id, stage, model_name, model_version,
+                input_version, policy_version
+            ) DO UPDATE SET
+                output_json = EXCLUDED.output_json,
+                label = EXCLUDED.label,
+                labels_json = EXCLUDED.labels_json,
+                confidence = EXCLUDED.confidence,
+                probabilities_json = EXCLUDED.probabilities_json,
+                rule_matches_json = EXCLUDED.rule_matches_json,
+                risk_score = EXCLUDED.risk_score,
+                risk_breakdown_json = EXCLUDED.risk_breakdown_json,
+                created_at = EXCLUDED.created_at
             """,
             [
                 event_id,
+                "__message__",
                 "rule_engine",
                 "rule_engine",
                 rule_result.policy_version,
                 rule_result.policy_id,
+                rule_result.policy_version,
                 Jsonb(rule_result.model_dump(mode="json")),
                 rule_result.primary_label.value,
                 Jsonb([label.value for label in rule_result.labels]),

@@ -33,9 +33,9 @@ class DatabaseConnection:
         logger.info("Database backend initialized target=%s", redact_database_url(self.database_url))
 
     async def initialize(self) -> None:
-        await self._run_migrations()
         await self._connect()
         await self._create_tables()
+        await self._run_migrations()
 
         logger.info("Database initialized successfully")
 
@@ -366,6 +366,8 @@ class DatabaseConnection:
                 file_name TEXT,
                 file_type TEXT,
                 content_type TEXT,
+                declared_mime TEXT,
+                detected_mime TEXT,
 
                 file_size BIGINT CHECK (file_size IS NULL OR file_size >= 0),
 
@@ -386,6 +388,7 @@ class DatabaseConnection:
                     ocr_confidence IS NULL OR (ocr_confidence >= 0 AND ocr_confidence <= 1)
                 ),
                 ocr_text_hash TEXT,
+                ocr_flags_json JSONB NOT NULL DEFAULT '[]'::jsonb,
 
                 ocr_has_money BOOLEAN NOT NULL DEFAULT FALSE,
                 ocr_has_casino BOOLEAN NOT NULL DEFAULT FALSE,
@@ -396,8 +399,10 @@ class DatabaseConnection:
                 known_scam_hash_match BOOLEAN NOT NULL DEFAULT FALSE,
 
                 storage_uri TEXT,
+                retention_until TIMESTAMPTZ,
 
                 created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
                 UNIQUE (event_id, attachment_id)
             )
@@ -411,10 +416,13 @@ class DatabaseConnection:
                     REFERENCES ai_message_events(id)
                     ON DELETE CASCADE,
 
+                attachment_id TEXT NOT NULL DEFAULT '__message__',
+
                 stage TEXT NOT NULL,
                 model_name TEXT,
                 model_version TEXT,
                 input_version TEXT,
+                policy_version TEXT NOT NULL DEFAULT 'legacy',
 
                 output_json JSONB NOT NULL DEFAULT '{}'::jsonb,
 

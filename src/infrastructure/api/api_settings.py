@@ -1,4 +1,4 @@
-from pydantic import Field
+from pydantic import Field, field_validator, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -28,3 +28,64 @@ class ApiSettings(BaseSettings):
     phishing_google_safe_browsing_api_key: str | None = Field(default=None, min_length=16)
     phishing_rdap_enabled: bool = False
     phishing_request_timeout_seconds: float = Field(default=2.0, gt=0, le=10)
+
+    media_enabled: bool = False
+    media_required: bool = False
+    media_max_attachments: int = Field(default=4, ge=1, le=10)
+    media_max_file_size_bytes: int = Field(default=10_485_760, ge=1_024, le=104_857_600)
+    media_max_total_size_bytes: int = Field(default=20_971_520, ge=1_024, le=209_715_200)
+    media_max_width: int = Field(default=8_192, ge=1, le=100_000)
+    media_max_height: int = Field(default=8_192, ge=1, le=100_000)
+    media_max_pixels: int = Field(default=40_000_000, ge=1, le=100_000_000)
+    media_download_timeout_seconds: float = Field(default=10.0, gt=0.0, le=60.0)
+    media_max_redirects: int = Field(default=2, ge=0, le=5)
+    media_allowed_content_types: tuple[str, ...] = ("image/jpeg", "image/png", "image/webp")
+    media_allowed_download_hosts: tuple[str, ...] = ("cdn.discordapp.com", "media.discordapp.net")
+    media_retention_hours: int = Field(default=24, ge=1, le=720)
+    media_hash_cache_ttl: int = Field(default=24, ge=1, le=720)
+    media_input_version: str = Field(default="media-v1", min_length=1, max_length=128)
+
+    ocr_enabled: bool = False
+    ocr_required: bool = False
+    ocr_model_dir: str | None = Field(default=None, max_length=1_024)
+    ocr_inference_concurrency: int = Field(default=1, ge=1, le=8)
+    ocr_timeout_seconds: float = Field(default=20.0, gt=0.0, le=120.0)
+    ocr_max_text_length: int = Field(default=8_000, ge=1, le=32_000)
+
+    yolo_enabled: bool = False
+    yolo_required: bool = False
+    yolo_model_dir: str | None = Field(default=None, max_length=1_024)
+    yolo_inference_concurrency: int = Field(default=1, ge=1, le=8)
+    yolo_timeout_seconds: float = Field(default=20.0, gt=0.0, le=120.0)
+
+    @field_validator("media_allowed_content_types")
+    @classmethod
+    def normalize_content_types(cls, values: tuple[str, ...]) -> tuple[str, ...]:
+        normalized = tuple(dict.fromkeys(value.strip().casefold() for value in values if value.strip()))
+        if not normalized or any(not value.startswith("image/") for value in normalized):
+            raise ValueError("media_allowed_content_types must contain image MIME types")
+        return normalized
+
+    @field_validator("media_allowed_download_hosts")
+    @classmethod
+    def normalize_download_hosts(cls, values: tuple[str, ...]) -> tuple[str, ...]:
+        normalized = tuple(dict.fromkeys(value.strip().casefold().rstrip(".") for value in values if value.strip()))
+        if not normalized or any("/" in value or ":" in value for value in normalized):
+            raise ValueError("media_allowed_download_hosts must contain host names")
+        return normalized
+
+    @model_validator(mode="after")
+    def validate_media_dependencies(self) -> "ApiSettings":
+        if self.media_required and not self.media_enabled:
+            raise ValueError("media_required requires media_enabled")
+        if self.ocr_required and not self.ocr_enabled:
+            raise ValueError("ocr_required requires ocr_enabled")
+        if self.yolo_required and not self.yolo_enabled:
+            raise ValueError("yolo_required requires yolo_enabled")
+        if self.ocr_enabled and not self.ocr_model_dir:
+            raise ValueError("ocr_model_dir is required when OCR is enabled")
+        if self.yolo_enabled and not self.yolo_model_dir:
+            raise ValueError("yolo_model_dir is required when YOLO is enabled")
+        if self.media_max_total_size_bytes < self.media_max_file_size_bytes:
+            raise ValueError("media_max_total_size_bytes must be at least media_max_file_size_bytes")
+        return self

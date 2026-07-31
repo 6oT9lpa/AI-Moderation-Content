@@ -2,7 +2,7 @@ from logging.config import fileConfig
 import os
 
 from alembic import context
-from sqlalchemy import engine_from_config, pool, event
+from sqlalchemy import engine_from_config, pool
 
 config = context.config
 
@@ -41,18 +41,14 @@ def run_migrations_online() -> None:
         poolclass=pool.NullPool,
     )
 
-    if connectable.dialect.name == "sqlite":
-        @event.listens_for(connectable, "connect")
-        def enable_sqlite_foreign_keys(dbapi_connection, _connection_record):
-            cursor = dbapi_connection.cursor()
-            cursor.execute("PRAGMA foreign_keys=ON")
-            cursor.close()
+    if connectable.dialect.name != "postgresql":
+        raise RuntimeError("AI Moderator migrations require PostgreSQL")
 
     with connectable.connect() as connection:
         context.configure(
             connection=connection,
             target_metadata=None,
-            render_as_batch=True,
+            render_as_batch=False,
         )
 
         with context.begin_transaction():

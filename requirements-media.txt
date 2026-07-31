@@ -1,0 +1,6 @@
+-r requirements.txt
+
+# Optional local OCR runtime. Keep it separate from the base API because the
+# wheel is large and OCR is disabled unless a local model directory is set.
+paddleocr>=2.9,<4
+paddlepaddle>=3,<4

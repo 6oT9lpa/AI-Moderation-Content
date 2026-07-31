@@ -1,5 +1,6 @@
 ﻿alembic==1.18.5
 fastapi==0.128.0
+httpx==0.28.1
 annotated-types==0.7.0
 colorama==0.4.6
 greenlet==3.5.3
@@ -7,6 +8,7 @@ iniconfig==2.3.0
 Mako==1.3.12
 MarkupSafe==3.0.3
 packaging==26.2
+Pillow==12.3.0
 pluggy==1.6.0
 psycopg==3.3.4
 pydantic==2.13.4

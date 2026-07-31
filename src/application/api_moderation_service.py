@@ -20,11 +20,17 @@ from src.contracts.api.moderation_feedback_request_schema import ModerationFeedb
 from src.contracts.api.moderation_message_request_schema import ModerationMessageRequestSchema
 from src.contracts.api.moderation_message_response_schema import ModerationMessageResponseSchema
 from src.contracts.message_preprocess_input_schema import MessagePreprocessInputSchema
+from src.contracts.rules.moderation_rule_policy import ModerationRulePolicy
 from src.domain.action.action_execution_status import ActionExecutionStatus
 from src.domain.api.moderation_event_repository import ModerationEventRepository
 from src.domain.dto.dataset.dataset_collection_input import DatasetCollectionInput
+from src.domain.media.media_analysis_bundle import MediaAnalysisBundle
+from src.domain.media.ocr_result import OcrResult
 from src.domain.moderation.moderation_action import ModerationAction
+from src.domain.moderation.moderation_label import ModerationLabel
 from src.domain.policy.policy_type import PolicyType
+from src.domain.rules.moderation_signal import ModerationSignal
+from src.domain.rules.signal_source import SignalSource
 from src.infrastructure.logging import get_logger
 from src.modules.dataset.dataset_collector import DatasetCollector
 from src.modules.decision.decision_engine import DecisionEngine
@@ -72,6 +78,28 @@ class ApiModerationService:
         persist: bool = True,
     ) -> ModerationMessageResponseSchema:
         """Classify one message and persist every decision in Dataset Collector."""
+        response, _ = await self._moderate(request, correlation_id, persist=persist, media=None)
+        return response
+
+    async def moderate_media(
+        self,
+        request: ModerationMessageRequestSchema,
+        media: MediaAnalysisBundle,
+        correlation_id: str,
+        *,
+        persist: bool = True,
+    ) -> tuple[ModerationMessageResponseSchema, dict[str, tuple[str, ...]]]:
+        """Run one decision flow with text, OCR and image-derived signals."""
+        return await self._moderate(request, correlation_id, persist=persist, media=media)
+
+    async def _moderate(
+        self,
+        request: ModerationMessageRequestSchema,
+        correlation_id: str,
+        *,
+        persist: bool,
+        media: MediaAnalysisBundle | None,
+    ) -> tuple[ModerationMessageResponseSchema, dict[str, tuple[str, ...]]]:
         started_at = perf_counter()
         context = await self._preprocessor.process(self._to_preprocess_input(request))
         try:
@@ -104,6 +132,25 @@ class ApiModerationService:
             rule_policy_resolution.policy.phishing,
         )
         signals.extend(phishing_signals)
+
+        media_labels: dict[str, tuple[str, ...]] = {}
+        if media is not None:
+            media_signals, media_warnings = await self._build_media_signals(
+                media,
+                rule_policy_resolution.policy,
+                correlation_id,
+                request.message_id,
+            )
+            signals.extend(media_signals)
+            warnings.extend(media_warnings)
+            for attachment in media.attachments:
+                media_labels[attachment.attachment.attachment_id] = tuple(
+                    dict.fromkeys(
+                        signal.label.value
+                        for signal in media_signals
+                        if signal.evidence.get("attachment_id") == attachment.attachment.attachment_id
+                    )
+                )
 
         rule_evaluation = self._rule_engine.evaluate(
             request.message_id,
@@ -159,7 +206,116 @@ class ApiModerationService:
             response.latency_ms,
             persist,
         )
-        return response
+        return response, media_labels
+
+    async def _build_media_signals(
+        self,
+        media: MediaAnalysisBundle,
+        policy: ModerationRulePolicy,
+        correlation_id: str,
+        message_id: str,
+    ) -> tuple[list[ModerationSignal], list[str]]:
+        signals: list[ModerationSignal] = []
+        warnings: list[str] = []
+        for attachment in media.attachments:
+            warnings.extend(attachment.warnings)
+            ocr_result = attachment.ocr_result
+            if ocr_result is not None:
+                warnings.extend(ocr_result.warnings)
+                if ocr_result.text:
+                    signals.extend(
+                        await self._classify_ocr_text(
+                            ocr_result,
+                            policy,
+                            correlation_id,
+                            message_id,
+                        )
+                    )
+
+            image_result = attachment.image_result
+            if image_result is None:
+                continue
+            warnings.extend(image_result.warnings)
+            for detection in image_result.detections:
+                detector_class = detection.detector_class.strip().casefold()
+                label = policy.media.image_class_to_label.get(detector_class)
+                if label is None:
+                    continue
+                threshold = policy.media.image_class_thresholds.get(
+                    detector_class,
+                    policy.confidence_thresholds.per_source_min_confidence.get(SignalSource.IMAGE.value, 0.5),
+                )
+                if detection.confidence < threshold:
+                    continue
+                signals.append(
+                    ModerationSignal(
+                        source=SignalSource.IMAGE,
+                        label=label,
+                        confidence=detection.confidence,
+                        severity=4,
+                        risk_weight=round(getattr(policy.label_weights, label.value)),
+                        evidence={
+                            "attachment_id": attachment.attachment.attachment_id,
+                            "detector_class": detector_class,
+                            "bounding_box": detection.bounding_box,
+                            "threshold": threshold,
+                            "model_name": image_result.model_name,
+                            "model_version": image_result.model_version,
+                        },
+                        reason="image_detector_policy_mapping",
+                        rule_id=f"image.{detector_class}",
+                        model_name=image_result.model_name,
+                        model_version=image_result.model_version,
+                    )
+                )
+        return signals, list(dict.fromkeys(warnings))
+
+    async def _classify_ocr_text(
+        self,
+        ocr_result: OcrResult,
+        policy: ModerationRulePolicy,
+        correlation_id: str,
+        message_id: str,
+    ) -> list[ModerationSignal]:
+        if self._rubert_classifier is None:
+            return []
+        try:
+            async with self._inference_semaphore:
+                result = await asyncio.to_thread(self._rubert_classifier.classify, ocr_result.text)
+            adapted: list[ModerationSignal] = []
+            for signal in self._rubert_classifier.to_signals(result, policy):
+                if signal.label == ModerationLabel.SAFE:
+                    continue
+                confidence = min(signal.confidence, ocr_result.confidence or signal.confidence)
+                adapted.append(
+                    signal.model_copy(
+                        update={
+                            "source": SignalSource.OCR,
+                            "confidence": confidence,
+                            "evidence": {
+                                **signal.evidence,
+                                "attachment_id": ocr_result.attachment_id,
+                                "ocr_confidence": ocr_result.confidence,
+                                "ocr_language": ocr_result.language,
+                                "ocr_model_name": ocr_result.model_name,
+                                "ocr_model_version": ocr_result.model_version,
+                            },
+                            "reason": "ocr_text_rubert_classifier",
+                            "rule_id": f"ocr.{signal.label.value.casefold()}",
+                        }
+                    )
+                )
+            return adapted
+        except asyncio.CancelledError:
+            raise
+        except Exception:
+            logger.warning(
+                "OCR text classification fallback correlation_id=%s message_id=%s attachment_id=%s",
+                correlation_id,
+                message_id,
+                ocr_result.attachment_id,
+            )
+            return []
 
     async def moderate_batch(
         self,

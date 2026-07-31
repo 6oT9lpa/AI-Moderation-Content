@@ -7,6 +7,7 @@ from src.application.media_moderation_service import MediaModerationService
 from src.application.moderation_request_queue import ModerationRequestQueue
 from src.domain.media.media_runtime_config import MediaRuntimeConfig
 from src.domain.media.ocr_runtime_config import OcrRuntimeConfig
+from src.domain.media.yolo_runtime_config import YoloRuntimeConfig
 from src.infrastructure.api.api_settings import ApiSettings
 from src.infrastructure.api.internal_api_key_validator import InternalApiKeyValidator
 from src.infrastructure.api.local_rate_limiter import LocalRateLimiter
@@ -24,6 +25,7 @@ from src.infrastructure.media.disabled_ocr_provider import DisabledOcrProvider
 from src.infrastructure.media.http_media_downloader import HttpMediaDownloader
 from src.infrastructure.media.ocr_text_processor import OcrTextProcessor
 from src.infrastructure.media.paddle_ocr_provider import PaddleOcrProvider
+from src.infrastructure.media.onnx_yolo_detection_provider import OnnxYoloDetectionProvider
 from src.infrastructure.media.pillow_media_hasher import PillowMediaHasher
 from src.infrastructure.media.pillow_media_validator import PillowMediaValidator
 from src.infrastructure.media.yaml_media_policy_defaults_provider import YamlMediaPolicyDefaultsProvider
@@ -76,7 +78,7 @@ class ApiCompositionRoot:
         )
         moderation_queue = ModerationRequestQueue(service, self._settings.api_queue_workers, self._settings.api_queue_size)
         ocr_provider = self._build_ocr_provider()
-        image_provider = DisabledImageDetectionProvider(configured_enabled=self._settings.yolo_enabled)
+        image_provider = self._build_image_provider()
         media_service = MediaModerationService(
             moderation_service=service,
             downloader=HttpMediaDownloader(
@@ -111,6 +113,7 @@ class ApiCompositionRoot:
                 ocr_required=self._settings.ocr_required,
                 image_required=self._settings.yolo_required,
             ),
+            media_policy_resolver=media_policy_resolver,
         )
         container = ApiContainer(
             service=service,
@@ -154,6 +157,23 @@ class ApiCompositionRoot:
             ),
             semaphore=asyncio.Semaphore(self._settings.ocr_inference_concurrency),
             text_processor=OcrTextProcessor(self._settings.ocr_max_text_length),
+        )
+
+    def _build_image_provider(self):
+        if not self._settings.yolo_enabled:
+            logger.info("YOLO image detection is disabled")
+            return DisabledImageDetectionProvider()
+        return OnnxYoloDetectionProvider(
+            runtime_config=YoloRuntimeConfig(
+                model_dir=Path(self._settings.yolo_model_dir or ""),
+                device=self._settings.yolo_device,
+                inference_concurrency=self._settings.yolo_inference_concurrency,
+                timeout_seconds=self._settings.yolo_timeout_seconds,
+                confidence_threshold=self._settings.yolo_confidence_threshold,
+                iou_threshold=self._settings.yolo_iou_threshold,
+                max_detections=self._settings.yolo_max_detections,
+            ),
+            semaphore=asyncio.Semaphore(self._settings.yolo_inference_concurrency),
         )
 
     def _build_phishing_link_service(self) -> PhishingLinkService:

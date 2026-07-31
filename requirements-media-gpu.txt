@@ -1,0 +1,8 @@
+-r requirements.txt
+
+# GPU detector runtime. Do not install together with the CPU onnxruntime wheel.
+Pillow==12.3.0
+numpy>=1.26,<3
+paddleocr==3.7.0
+paddlepaddle==3.3.0
+onnxruntime-gpu==1.28.0

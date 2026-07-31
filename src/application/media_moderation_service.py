@@ -3,6 +3,7 @@ from __future__ import annotations
 from datetime import datetime, timedelta, timezone
 
 from src.application.api_moderation_service import ApiModerationService
+from src.application.effective_media_policy_resolver import EffectiveMediaPolicyResolver
 from src.application.api_resource_unavailable_error import ApiResourceUnavailableError
 from src.application.media_error import MediaError, MediaPersistenceError, MediaSecurityError, MediaValidationError
 from src.application.ports.media.image_detection_provider import ImageDetectionProvider
@@ -16,6 +17,7 @@ from src.contracts.api.media_attachment_summary_schema import MediaAttachmentSum
 from src.contracts.api.media_moderation_request_schema import MediaModerationRequestSchema
 from src.contracts.api.media_moderation_response_schema import MediaModerationResponseSchema
 from src.domain.media.image_detection_input import ImageDetectionInput
+from src.domain.media.image_detection_result import ImageDetectionResult
 from src.domain.media.media_analysis_bundle import MediaAnalysisBundle
 from src.domain.media.media_analysis_record import MediaAnalysisRecord
 from src.domain.media.media_analysis_stage import MediaAnalysisStage
@@ -23,6 +25,7 @@ from src.domain.media.media_attachment_analysis import MediaAttachmentAnalysis
 from src.domain.media.media_attachment_record import MediaAttachmentRecord
 from src.domain.media.media_attachment_status import MediaAttachmentStatus
 from src.domain.media.media_runtime_config import MediaRuntimeConfig
+from src.domain.media.media_rule_policy import MediaRulePolicy, YoloRuleSettings
 from src.domain.media.ocr_input import OcrInput
 from src.domain.media.media_attachment import MediaAttachment
 from src.domain.media.validated_media import ValidatedMedia
@@ -44,6 +47,7 @@ class MediaModerationService:
         attachment_repository: MediaAttachmentRepository,
         analysis_repository: MediaAnalysisResultRepository,
         runtime_config: MediaRuntimeConfig,
+        media_policy_resolver: EffectiveMediaPolicyResolver | None = None,
     ) -> None:
         self._moderation_service = moderation_service
         self._downloader = downloader
@@ -54,6 +58,7 @@ class MediaModerationService:
         self._attachment_repository = attachment_repository
         self._analysis_repository = analysis_repository
         self._runtime_config = runtime_config
+        self._media_policy_resolver = media_policy_resolver
 
     async def moderate(
         self,
@@ -61,6 +66,14 @@ class MediaModerationService:
         correlation_id: str,
     ) -> MediaModerationResponseSchema:
         self._validate_request_limits(request)
+        effective_policy = None
+        if self._media_policy_resolver is not None:
+            try:
+                effective_policy = await self._media_policy_resolver.resolve(
+                    request.message.platform, request.message.guild_id
+                )
+            except Exception as exc:
+                raise ApiResourceUnavailableError("Media policy is unavailable") from exc
         if not self._runtime_config.enabled:
             if self._runtime_config.required:
                 raise ApiResourceUnavailableError("Media moderation is unavailable")
@@ -109,7 +122,9 @@ class MediaModerationService:
                 )
             elif analysis.hashes is not None:
                 if validated is not None:
-                    analysis = await self._run_providers(analysis, validated)
+                    analysis = await self._run_providers(
+                        analysis, validated, effective_policy.media if effective_policy is not None else None
+                    )
                 exact_duplicates[analysis.hashes.sha256] = analysis
             analyses.append(analysis)
 
@@ -120,11 +135,14 @@ class MediaModerationService:
             raise ApiResourceUnavailableError("Required media analysis did not complete")
 
         bundle = MediaAnalysisBundle(attachments=tuple(analyses))
-        text_response, labels_by_attachment = await self._moderation_service.moderate_media(
-            request.message,
-            bundle,
-            correlation_id,
-        )
+        if effective_policy is None:
+            text_response, labels_by_attachment = await self._moderation_service.moderate_media(
+                request.message, bundle, correlation_id
+            )
+        else:
+            text_response, labels_by_attachment = await self._moderation_service.moderate_media(
+                request.message, bundle, correlation_id, media_policy=effective_policy.media
+            )
         await self._persist_analyses(
             event_id=text_response.dataset_event_id,
             guild_id=request.message.guild_id,
@@ -204,6 +222,7 @@ class MediaModerationService:
         self,
         analysis: MediaAttachmentAnalysis,
         validated: ValidatedMedia,
+        media_policy: MediaRulePolicy | None,
     ) -> MediaAttachmentAnalysis:
         attachment = analysis.attachment
         hashes = analysis.hashes
@@ -211,7 +230,11 @@ class MediaModerationService:
             return analysis
         warnings: list[str] = []
         ocr_result = None
-        if self._ocr_provider.enabled and self._ocr_provider.ready:
+        ocr_policy = media_policy.ocr.ocr if media_policy is not None else None
+        yolo_policy = media_policy.yolo.yolo if media_policy is not None else None
+        ocr_enabled = ocr_policy.enabled if ocr_policy is not None else self._ocr_provider.enabled
+        ocr_required = ocr_policy.required if ocr_policy is not None else self._runtime_config.ocr_required
+        if ocr_enabled and self._ocr_provider.enabled and self._ocr_provider.ready:
             try:
                 ocr_result = await self._ocr_provider.analyze(
                     OcrInput(
@@ -223,29 +246,36 @@ class MediaModerationService:
                     )
                 )
             except MediaError as exc:
-                if self._runtime_config.ocr_required:
+                if ocr_required:
                     return self._failed_analysis(attachment, MediaAttachmentStatus.UNAVAILABLE, exc)
                 warnings.append(exc.code)
         else:
-            warnings.append("ocr_unavailable" if self._ocr_provider.enabled else "ocr_disabled")
+            warnings.append("ocr_unavailable" if ocr_enabled else "ocr_disabled")
 
-        try:
-            image_result = await self._image_provider.analyze(
-                ImageDetectionInput(
-                    attachment_id=attachment.attachment_id,
-                    image_bytes=validated.analysis_bytes,
-                    sha256=hashes.sha256,
-                    width=validated.width,
-                    height=validated.height,
+        image_result = None
+        yolo_enabled = yolo_policy.enabled if yolo_policy is not None else self._image_provider.enabled
+        yolo_required = yolo_policy.required if yolo_policy is not None else self._runtime_config.image_required
+        if yolo_enabled:
+            try:
+                image_result = await self._image_provider.analyze(
+                    ImageDetectionInput(
+                        attachment_id=attachment.attachment_id,
+                        image_bytes=validated.analysis_bytes,
+                        sha256=hashes.sha256,
+                        width=validated.width,
+                        height=validated.height,
+                    )
                 )
-            )
-        except MediaError as exc:
-            if self._runtime_config.image_required:
-                return self._failed_analysis(attachment, MediaAttachmentStatus.UNAVAILABLE, exc)
-            image_result = None
-            warnings.append(exc.code)
-        if self._runtime_config.image_required and not self._image_provider.ready:
+            except MediaError as exc:
+                if yolo_required:
+                    return self._failed_analysis(attachment, MediaAttachmentStatus.UNAVAILABLE, exc)
+                warnings.append(exc.code)
+        else:
+            warnings.append("image_provider_disabled")
+        if yolo_required and not self._image_provider.ready:
             return self._failed_analysis(attachment, MediaAttachmentStatus.UNAVAILABLE, MediaError("image provider unavailable"))
+        if image_result is not None and yolo_policy is not None:
+            image_result = self._apply_yolo_policy(image_result, yolo_policy)
         if image_result is not None:
             warnings.extend(image_result.warnings)
         return analysis.model_copy(
@@ -260,6 +290,41 @@ class MediaModerationService:
                 },
             },
         )
+
+    @classmethod
+    def _apply_yolo_policy(
+        cls, result: ImageDetectionResult, policy: YoloRuleSettings
+    ) -> ImageDetectionResult:
+        candidates = [
+            detection
+            for detection in result.detections
+            if (
+                (class_policy := policy.classes.get(detection.detector_class.strip().casefold())) is not None
+                and class_policy.enabled
+                and detection.confidence >= max(policy.inference.confidence_threshold, class_policy.min_confidence)
+            )
+        ]
+        kept = []
+        for candidate in sorted(candidates, key=lambda item: item.confidence, reverse=True):
+            if all(
+                candidate.detector_class != accepted.detector_class
+                or candidate.bounding_box is None
+                or accepted.bounding_box is None
+                or cls._box_iou(candidate.bounding_box, accepted.bounding_box) <= policy.inference.iou_threshold
+                for accepted in kept
+            ):
+                kept.append(candidate)
+        return result.model_copy(update={"detections": tuple(kept[: policy.inference.max_detections])})
+
+    @staticmethod
+    def _box_iou(left: tuple[float, float, float, float], right: tuple[float, float, float, float]) -> float:
+        intersection_width = max(0.0, min(left[2], right[2]) - max(left[0], right[0]))
+        intersection_height = max(0.0, min(left[3], right[3]) - max(left[1], right[1]))
+        intersection = intersection_width * intersection_height
+        left_area = max(0.0, left[2] - left[0]) * max(0.0, left[3] - left[1])
+        right_area = max(0.0, right[2] - right[0]) * max(0.0, right[3] - right[1])
+        union = left_area + right_area - intersection
+        return intersection / union if union else 0.0
 
     @staticmethod
     def _failed_analysis(

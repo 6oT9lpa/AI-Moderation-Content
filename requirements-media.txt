@@ -4,3 +4,4 @@
 # wheel is large and OCR is disabled unless a local model directory is set.
 paddleocr==3.7.0
 paddlepaddle==3.3.0
+onnxruntime==1.28.0

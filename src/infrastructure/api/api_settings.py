@@ -62,8 +62,12 @@ class ApiSettings(BaseSettings):
     yolo_enabled: bool = False
     yolo_required: bool = False
     yolo_model_dir: str | None = Field(default=None, max_length=1_024)
+    yolo_device: str = Field(default="cpu", pattern=r"^(cpu|cuda)$")
     yolo_inference_concurrency: int = Field(default=1, ge=1, le=8)
     yolo_timeout_seconds: float = Field(default=20.0, gt=0.0, le=120.0)
+    yolo_confidence_threshold: float = Field(default=0.0, ge=0.0, le=1.0)
+    yolo_iou_threshold: float = Field(default=1.0, ge=0.0, le=1.0)
+    yolo_max_detections: int = Field(default=256, ge=1, le=256)
 
     @field_validator("media_allowed_content_types")
     @classmethod

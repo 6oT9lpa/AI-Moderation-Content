@@ -25,6 +25,7 @@ from src.domain.action.action_execution_status import ActionExecutionStatus
 from src.domain.api.moderation_event_repository import ModerationEventRepository
 from src.domain.dto.dataset.dataset_collection_input import DatasetCollectionInput
 from src.domain.media.media_analysis_bundle import MediaAnalysisBundle
+from src.domain.media.media_rule_policy import MediaRulePolicy
 from src.domain.media.ocr_result import OcrResult
 from src.domain.moderation.moderation_action import ModerationAction
 from src.domain.moderation.moderation_label import ModerationLabel
@@ -78,7 +79,7 @@ class ApiModerationService:
         persist: bool = True,
     ) -> ModerationMessageResponseSchema:
         """Classify one message and persist every decision in Dataset Collector."""
-        response, _ = await self._moderate(request, correlation_id, persist=persist, media=None)
+        response, _ = await self._moderate(request, correlation_id, persist=persist, media=None, media_policy=None)
         return response
 
     async def moderate_media(
@@ -88,9 +89,12 @@ class ApiModerationService:
         correlation_id: str,
         *,
         persist: bool = True,
+        media_policy: MediaRulePolicy | None = None,
     ) -> tuple[ModerationMessageResponseSchema, dict[str, tuple[str, ...]]]:
         """Run one decision flow with text, OCR and image-derived signals."""
-        return await self._moderate(request, correlation_id, persist=persist, media=media)
+        return await self._moderate(
+            request, correlation_id, persist=persist, media=media, media_policy=media_policy
+        )
 
     async def _moderate(
         self,
@@ -99,6 +103,7 @@ class ApiModerationService:
         *,
         persist: bool,
         media: MediaAnalysisBundle | None,
+        media_policy: MediaRulePolicy | None,
     ) -> tuple[ModerationMessageResponseSchema, dict[str, tuple[str, ...]]]:
         started_at = perf_counter()
         context = await self._preprocessor.process(self._to_preprocess_input(request))
@@ -140,6 +145,7 @@ class ApiModerationService:
                 rule_policy_resolution.policy,
                 correlation_id,
                 request.message_id,
+                media_policy,
             )
             signals.extend(media_signals)
             warnings.extend(media_warnings)
@@ -214,6 +220,7 @@ class ApiModerationService:
         policy: ModerationRulePolicy,
         correlation_id: str,
         message_id: str,
+        media_policy: MediaRulePolicy | None = None,
     ) -> tuple[list[ModerationSignal], list[str]]:
         signals: list[ModerationSignal] = []
         warnings: list[str] = []
@@ -238,13 +245,24 @@ class ApiModerationService:
             warnings.extend(image_result.warnings)
             for detection in image_result.detections:
                 detector_class = detection.detector_class.strip().casefold()
-                label = policy.media.image_class_to_label.get(detector_class)
-                if label is None:
-                    continue
-                threshold = policy.media.image_class_thresholds.get(
-                    detector_class,
-                    policy.confidence_thresholds.per_source_min_confidence.get(SignalSource.IMAGE.value, 0.5),
+                class_policy = (
+                    media_policy.yolo.yolo.classes.get(detector_class) if media_policy is not None else None
                 )
+                if media_policy is not None:
+                    if class_policy is None or not class_policy.enabled:
+                        continue
+                    label = ModerationLabel(class_policy.moderation_label)
+                    threshold = class_policy.min_confidence
+                    severity = class_policy.severity
+                else:
+                    label = policy.media.image_class_to_label.get(detector_class)
+                    if label is None:
+                        continue
+                    threshold = policy.media.image_class_thresholds.get(
+                        detector_class,
+                        policy.confidence_thresholds.per_source_min_confidence.get(SignalSource.IMAGE.value, 0.5),
+                    )
+                    severity = 4
                 if detection.confidence < threshold:
                     continue
                 signals.append(
@@ -252,7 +270,7 @@ class ApiModerationService:
                         source=SignalSource.IMAGE,
                         label=label,
                         confidence=detection.confidence,
-                        severity=4,
+                        severity=severity,
                         risk_weight=round(getattr(policy.label_weights, label.value)),
                         evidence={
                             "attachment_id": attachment.attachment.attachment_id,

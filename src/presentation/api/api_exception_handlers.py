@@ -5,6 +5,7 @@ from fastapi.responses import JSONResponse
 from src.application.api_conflict_error import ApiConflictError
 from src.application.api_not_found_error import ApiNotFoundError
 from src.application.api_resource_unavailable_error import ApiResourceUnavailableError
+from src.application.media_error import MediaError, MediaPersistenceError, MediaValidationError
 from src.contracts.api.api_error_schema import ApiErrorSchema
 from src.infrastructure.logging import get_logger
 
@@ -17,6 +18,7 @@ def register_api_exception_handlers(app: FastAPI) -> None:
     app.add_exception_handler(ApiNotFoundError, _not_found_error)
     app.add_exception_handler(ApiConflictError, _conflict_error)
     app.add_exception_handler(ApiResourceUnavailableError, _unavailable_error)
+    app.add_exception_handler(MediaError, _media_error)
     app.add_exception_handler(Exception, _unexpected_error)
 
 
@@ -40,6 +42,13 @@ async def _conflict_error(request: Request, _: ApiConflictError) -> JSONResponse
 
 async def _unavailable_error(request: Request, _: ApiResourceUnavailableError) -> JSONResponse:
     return _safe_response(request, 503, "dependency_unavailable", "A required service is unavailable")
+
+
+async def _media_error(request: Request, error: MediaError) -> JSONResponse:
+    status_code = 422 if isinstance(error, MediaValidationError) else 503
+    if isinstance(error, MediaPersistenceError):
+        status_code = 503
+    return _safe_response(request, status_code, error.code, "Media could not be processed")
 
 
 async def _unexpected_error(request: Request, error: Exception) -> JSONResponse:

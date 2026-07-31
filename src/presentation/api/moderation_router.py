@@ -1,9 +1,12 @@
 from fastapi import APIRouter, Depends
 
 from src.application.moderation_request_queue import ModerationRequestQueue
+from src.application.media_moderation_service import MediaModerationService
+from src.contracts.api.media_moderation_request_schema import MediaModerationRequestSchema
+from src.contracts.api.media_moderation_response_schema import MediaModerationResponseSchema
 from src.contracts.api.moderation_message_request_schema import ModerationMessageRequestSchema
 from src.contracts.api.moderation_message_response_schema import ModerationMessageResponseSchema
-from src.presentation.api.dependencies import get_correlation_id, get_moderation_queue, require_internal_api_key
+from src.presentation.api.dependencies import get_correlation_id, get_media_service, get_moderation_queue, require_internal_api_key
 
 router = APIRouter(prefix="/moderation", tags=["moderation"], dependencies=[Depends(require_internal_api_key)])
 
@@ -15,6 +18,15 @@ async def moderate_message(
     correlation_id: str = Depends(get_correlation_id),
 ) -> ModerationMessageResponseSchema:
     return await queue.moderate(payload, correlation_id)
+
+
+@router.post("/media", response_model=MediaModerationResponseSchema)
+async def moderate_media(
+    payload: MediaModerationRequestSchema,
+    service: MediaModerationService = Depends(get_media_service),
+    correlation_id: str = Depends(get_correlation_id),
+) -> MediaModerationResponseSchema:
+    return await service.moderate(payload, correlation_id)
 
 
 @router.post("/simulate", response_model=ModerationMessageResponseSchema)

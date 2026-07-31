@@ -51,6 +51,8 @@ def create_api_application(
             yield
         finally:
             await runtime_container.moderation_queue.stop()
+            if runtime_container.media_service is not None:
+                await runtime_container.media_service.close()
             await runtime_container.database.close()
             logger.info("Local moderator API stopped")
 

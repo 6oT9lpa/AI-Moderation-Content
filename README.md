@@ -23,6 +23,9 @@ Ready components:
 - decision engine with action bundles;
 - action policy and dry-run capable action executor;
 - health endpoint that reports database, policy, and ruBERT readiness;
+- a separate, disabled-by-default media endpoint with SSRF-safe Discord CDN
+  downloading, decoded-image validation, exact/perceptual hashes, OCR integration,
+  and a versioned image-detector port;
 - deployment scripts for `/opt/ai-moder`;
 - training, evaluation, and model utility scripts;
 - load-testing module and local testing script.
@@ -61,9 +64,8 @@ comparing runs with different training schedules.
 Per-label precision, recall, and F1 expose uneven model quality that aggregate
 metrics can hide. `TOXIC` has the lowest recall among labels with meaningful
 held-out support (`0.7816`) and remains a priority for additional hard examples.
-`FLOOD` has only one held-out example and `IMAGE_SCAM` has none, so these labels
-must remain primarily rule-engine driven until representative test coverage is
-added.
+`FLOOD` has only one held-out example, so it must remain primarily
+rule-engine driven until representative test coverage is added.
 
 ![Test quality by moderation label](./docs/images/training/test_per_label_metrics.png)
 
@@ -111,6 +113,11 @@ flowchart LR
 flowchart LR
     A[Discord or platform adapter] --> B[Local FastAPI API]
     B --> C[Text preprocessing]
+    B --> M[Media ingest and validation]
+    M --> N[OCR provider]
+    M --> O[Image detector provider]
+    N --> F
+    O --> F
     C --> D[Preprocessing rules]
     C --> E[ruBERT classifier]
     D --> F[Moderation rule engine]
@@ -145,11 +152,46 @@ Important endpoints:
 
 - `GET /health` - database, policy, and model readiness;
 - `POST /moderation/messages` - analyze a platform message;
+- `POST /moderation/media` - analyze one message and its image attachments in
+  one shared moderation decision;
 - `GET /api/policies/effective` - inspect effective policies.
 
 The API should be protected by an internal API key and network boundary. In the
 OmniBot deployment it listens on localhost and is called by the Discord bot
 backend.
+
+Media request example:
+
+```json
+{
+  "message": {
+    "platform": "discord",
+    "message_id": "1234567890",
+    "guild_id": "100",
+    "channel_id": "200",
+    "user_id": "300",
+    "timestamp": "2026-07-31T12:00:00Z",
+    "raw_text": "message caption",
+    "has_attachments": true,
+    "attachment_count": 1
+  },
+  "attachments": [
+    {
+      "attachment_id": "400",
+      "download_url": "https://cdn.discordapp.com/attachments/example/image.png",
+      "file_name": "image.png",
+      "content_type": "image/png",
+      "file_size": 12345,
+      "width": 640,
+      "height": 480
+    }
+  ]
+}
+```
+
+The response extends the regular moderation response with attachment status,
+detected MIME, hashes, language/confidence, labels, warnings, stage latency, and
+safe model identifiers. It never returns full OCR text.
 
 ## Configuration
 
@@ -164,6 +206,48 @@ API_RUBERT_REQUIRED=true
 API_RUBERT_MODEL_DIR=models/rubert-tiny2-moderation-trained
 LOG_LEVEL=INFO
 ```
+
+Media moderation is off by default. Its complete settings are documented in
+`.env.example`; the important switches are `AI_MODERATOR_MEDIA_ENABLED`,
+`AI_MODERATOR_MEDIA_REQUIRED`, the per-file/request/dimension limits, the exact
+Discord CDN host allowlist, retention, cache TTL, and separately validated OCR
+and YOLO settings.
+
+Downloads accept HTTPS from configured hosts only. Every initial and redirected
+host is resolved and rejected if any destination is non-public; system proxies
+are disabled. Responses are streamed under a hard byte limit and then decoded
+as JPEG, PNG, or static WebP. Declared metadata is advisory: decoded MIME,
+dimensions, pixel count, animation state, and decompression-bomb limits are
+checked independently. Image bytes and full temporary URLs are not logged.
+
+The optional PaddleOCR adapter is installed separately from
+`requirements-media.txt`, loads once per process, and uses its own concurrency
+and timeout limits. OCR output is normalized, sensitive values are redacted
+before persistence, and the unredacted value is used only transiently for the
+existing semantic classifier. The image-detector/YOLO port and policy mapping
+are present, but no detector implementation or model is shipped; enabling it
+therefore reports unavailable instead of returning synthetic detections.
+
+Media metadata and versioned analysis results are stored in PostgreSQL. Original
+image bytes are not persisted. Redacted OCR fields use
+`AI_MODERATOR_MEDIA_RETENTION_HOURS`; deployments should run their normal
+retention cleanup against `retention_until`. Cached results are considered
+compatible only when model name/version, input pipeline version, and policy
+version all match.
+
+`GET /health` reports `media`, `ocr`, and `image` independently as `disabled`,
+`ready`, or `unavailable`. A required component affects the overall `degraded`
+status; an optional unavailable provider produces an explicit request warning.
+
+Apply the PostgreSQL schema before starting an updated service:
+
+```powershell
+.\.venv\Scripts\alembic.exe upgrade head
+```
+
+The revision is additive, idempotently fills version fields for existing rows,
+and adds unique keys used by repeat message/attachment requests. SQLite is not
+a supported runtime or migration target.
 
 Model artifacts are intentionally not packed into release archives by default.
 Deploy the trained model separately into:
@@ -225,6 +309,7 @@ Targeted examples:
 
 ```bash
 python -m pytest tests/modules/preprocessing tests/presentation/api
+python -m pytest tests/application tests/contracts/api tests/infrastructure/media
 python scripts/testing/run_moderation_load_test.py --base-url http://127.0.0.1:8000
 ```
 

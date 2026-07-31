@@ -10,7 +10,12 @@ class HealthResponseSchema(ApiModel):
     database_status: str = Field(pattern=r"^(ready|unavailable)$")
     rubert_status: str = Field(pattern=r"^(ready|unavailable|disabled)$")
     policy_status: str = Field(pattern=r"^(ready|unavailable)$")
+    media_ingestion_status: str = Field(default="disabled", pattern=r"^(ready|unavailable|disabled)$")
+    ocr_status: str = Field(default="disabled", pattern=r"^(ready|unavailable|disabled)$")
+    image_provider_status: str = Field(default="disabled", pattern=r"^(ready|unavailable|disabled)$")
     policy_version: str | None = Field(default=None, max_length=128)
     model_id: str | None = Field(default=None, max_length=128)
+    ocr_model_id: str | None = Field(default=None, max_length=128)
+    image_model_id: str | None = Field(default=None, max_length=128)
     timestamp: datetime
     correlation_id: str = Field(min_length=1, max_length=64)

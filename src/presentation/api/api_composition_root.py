@@ -2,7 +2,9 @@ import asyncio
 from pathlib import Path
 
 from src.application.api_moderation_service import ApiModerationService
+from src.application.media_moderation_service import MediaModerationService
 from src.application.moderation_request_queue import ModerationRequestQueue
+from src.domain.media.media_runtime_config import MediaRuntimeConfig
 from src.infrastructure.api.api_settings import ApiSettings
 from src.infrastructure.api.internal_api_key_validator import InternalApiKeyValidator
 from src.infrastructure.api.local_rate_limiter import LocalRateLimiter
@@ -15,6 +17,15 @@ from src.infrastructure.repository.postgresql_dataset_collector_repository impor
 from src.infrastructure.repository.postgresql_moderation_event_repository import PostgresqlModerationEventRepository
 from src.infrastructure.repository.postgresql_policy_repository import PostgresqlPolicyRepository
 from src.infrastructure.logging import get_logger
+from src.infrastructure.media.disabled_image_detection_provider import DisabledImageDetectionProvider
+from src.infrastructure.media.disabled_ocr_provider import DisabledOcrProvider
+from src.infrastructure.media.http_media_downloader import HttpMediaDownloader
+from src.infrastructure.media.ocr_text_processor import OcrTextProcessor
+from src.infrastructure.media.paddle_ocr_provider import PaddleOcrProvider
+from src.infrastructure.media.pillow_media_hasher import PillowMediaHasher
+from src.infrastructure.media.pillow_media_validator import PillowMediaValidator
+from src.infrastructure.repository.postgresql_media_analysis_result_repository import PostgresqlMediaAnalysisResultRepository
+from src.infrastructure.repository.postgresql_media_attachment_repository import PostgresqlMediaAttachmentRepository
 from src.modules.dataset.dataset_collector import DatasetCollector
 from src.modules.decision.decision_engine import DecisionEngine
 from src.modules.policy.policy_resolver import PolicyResolver
@@ -53,6 +64,43 @@ class ApiCompositionRoot:
             phishing_link_service=phishing_link_service,
         )
         moderation_queue = ModerationRequestQueue(service, self._settings.api_queue_workers, self._settings.api_queue_size)
+        ocr_provider = self._build_ocr_provider()
+        image_provider = DisabledImageDetectionProvider(configured_enabled=self._settings.yolo_enabled)
+        media_service = MediaModerationService(
+            moderation_service=service,
+            downloader=HttpMediaDownloader(
+                allowed_hosts=self._settings.media_allowed_download_hosts,
+                max_file_size_bytes=self._settings.media_max_file_size_bytes,
+                timeout_seconds=self._settings.media_download_timeout_seconds,
+                max_redirects=self._settings.media_max_redirects,
+            ),
+            validator=PillowMediaValidator(
+                allowed_content_types=self._settings.media_allowed_content_types,
+                max_width=self._settings.media_max_width,
+                max_height=self._settings.media_max_height,
+                max_pixels=self._settings.media_max_pixels,
+            ),
+            hasher=PillowMediaHasher(),
+            ocr_provider=ocr_provider,
+            image_provider=image_provider,
+            attachment_repository=PostgresqlMediaAttachmentRepository(database),
+            analysis_repository=PostgresqlMediaAnalysisResultRepository(database),
+            runtime_config=MediaRuntimeConfig(
+                enabled=self._settings.media_enabled,
+                required=self._settings.media_required,
+                max_attachments=self._settings.media_max_attachments,
+                max_file_size_bytes=self._settings.media_max_file_size_bytes,
+                max_total_size_bytes=self._settings.media_max_total_size_bytes,
+                max_width=self._settings.media_max_width,
+                max_height=self._settings.media_max_height,
+                max_pixels=self._settings.media_max_pixels,
+                retention_hours=self._settings.media_retention_hours,
+                hash_cache_ttl_hours=self._settings.media_hash_cache_ttl,
+                input_version=self._settings.media_input_version,
+                ocr_required=self._settings.ocr_required,
+                image_required=self._settings.yolo_required,
+            ),
+        )
         container = ApiContainer(
             service=service,
             database=database,
@@ -60,12 +108,33 @@ class ApiCompositionRoot:
             rate_limiter=LocalRateLimiter(self._settings.api_rate_limit, self._settings.api_rate_window_seconds),
             inference_semaphore=inference_semaphore,
             moderation_queue=moderation_queue,
+            media_service=media_service,
         )
         container.rubert_enabled = self._settings.api_rubert_enabled
         container.rubert_required = self._settings.api_rubert_required
         container.rubert_ready = classifier is not None
-        container.model_id = str(classifier.model_dir) if classifier else None
+        container.model_id = classifier.model_dir.name if classifier else None
+        container.media_enabled = self._settings.media_enabled
+        container.media_required = self._settings.media_required
+        container.media_ready = True
+        container.ocr_enabled = self._settings.ocr_enabled
+        container.ocr_required = self._settings.ocr_required
+        container.ocr_ready = ocr_provider.ready
+        container.image_enabled = self._settings.yolo_enabled
+        container.image_required = self._settings.yolo_required
+        container.image_ready = image_provider.ready
         return container
+
+    def _build_ocr_provider(self):
+        if not self._settings.ocr_enabled:
+            logger.info("OCR is disabled")
+            return DisabledOcrProvider()
+        return PaddleOcrProvider(
+            model_dir=Path(self._settings.ocr_model_dir or ""),
+            semaphore=asyncio.Semaphore(self._settings.ocr_inference_concurrency),
+            timeout_seconds=self._settings.ocr_timeout_seconds,
+            text_processor=OcrTextProcessor(self._settings.ocr_max_text_length),
+        )
 
     def _build_phishing_link_service(self) -> PhishingLinkService:
         if not self._settings.phishing_enabled:

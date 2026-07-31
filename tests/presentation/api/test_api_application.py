@@ -6,6 +6,9 @@ from fastapi.testclient import TestClient
 from src.contracts.api.api_ack_schema import ApiAckSchema
 from src.contracts.api.effective_policy_response_schema import EffectivePolicyResponseSchema
 from src.contracts.api.moderation_message_response_schema import ModerationMessageResponseSchema
+from src.contracts.api.media_attachment_summary_schema import MediaAttachmentSummarySchema
+from src.contracts.api.media_moderation_response_schema import MediaModerationResponseSchema
+from src.domain.media.media_attachment_status import MediaAttachmentStatus
 from src.application.moderation_request_queue import ModerationRequestQueue
 from src.infrastructure.api.api_settings import ApiSettings
 from src.infrastructure.api.internal_api_key_validator import InternalApiKeyValidator
@@ -60,12 +63,57 @@ class _ServiceStub:
         return EffectivePolicyResponseSchema(correlation_id=correlation_id, policies=())
 
 
+class _MediaServiceStub:
+    def __init__(self) -> None:
+        self.calls = 0
+
+    async def moderate(self, payload, correlation_id: str) -> MediaModerationResponseSchema:
+        self.calls += 1
+        return MediaModerationResponseSchema(
+            correlation_id=correlation_id,
+            message_id=payload.message.message_id,
+            labels=("SCAM",),
+            primary_label="SCAM",
+            rule_matches=(),
+            rubert_labels=(),
+            risk_score=70,
+            risk_breakdown=("SCAM",),
+            decision_action="DELETE_WARN",
+            severity=4,
+            reason="media",
+            policy_id="test-policy",
+            policy_version="test-v1",
+            execution_status="PENDING",
+            execution_plan=("DELETE", "WARN"),
+            dataset_event_id=1,
+            latency_ms=1,
+            attachments=(
+                MediaAttachmentSummarySchema(
+                    attachment_id=payload.attachments[0].attachment_id,
+                    status=MediaAttachmentStatus.ANALYZED,
+                    detected_mime="image/png",
+                    labels=("SCAM",),
+                ),
+            ),
+        )
+
+    async def close(self) -> None:
+        return None
+
+
 def _client(
     rate_limit: int = 10,
     *,
     rubert_enabled: bool = True,
     rubert_required: bool = True,
     rubert_ready: bool = False,
+    media_enabled: bool = False,
+    media_required: bool = False,
+    media_ready: bool = False,
+    ocr_enabled: bool = False,
+    ocr_required: bool = False,
+    ocr_ready: bool = False,
+    media_service=None,
 ) -> TestClient:
     settings = ApiSettings(
         internal_api_key="test-key-value-1234",
@@ -81,10 +129,17 @@ def _client(
         rate_limiter=LocalRateLimiter(rate_limit, 60),
         inference_semaphore=asyncio.Semaphore(1),
         moderation_queue=ModerationRequestQueue(service, 1, 10),
+        media_service=media_service,
     )
     container.rubert_enabled = rubert_enabled
     container.rubert_required = rubert_required
     container.rubert_ready = rubert_ready
+    container.media_enabled = media_enabled
+    container.media_required = media_required
+    container.media_ready = media_ready
+    container.ocr_enabled = ocr_enabled
+    container.ocr_required = ocr_required
+    container.ocr_ready = ocr_ready
     return TestClient(create_api_application("postgresql://unused", settings, container))
 
 
@@ -128,6 +183,23 @@ def test_health_allows_disabled_rubert() -> None:
     assert response.json()["rubert_status"] == "disabled"
 
 
+def test_health_degrades_only_for_required_unavailable_media_stage() -> None:
+    with _client(
+        rubert_ready=True,
+        media_enabled=True,
+        media_required=True,
+        media_ready=True,
+        ocr_enabled=True,
+        ocr_required=True,
+        ocr_ready=False,
+    ) as client:
+        response = client.get("/health")
+    assert response.status_code == 200
+    assert response.json()["status"] == "degraded"
+    assert response.json()["media_ingestion_status"] == "ready"
+    assert response.json()["ocr_status"] == "unavailable"
+
+
 def test_moderation_requires_valid_key_and_omits_raw_text() -> None:
     logger.info("API test expected=401_then_200 actual=moderation auth flow")
     with _client() as client:
@@ -158,6 +230,34 @@ def test_unknown_request_field_is_rejected_safely() -> None:
     assert response.status_code == 422
     assert response.json()["code"] == "invalid_request"
     assert "private message body" not in response.text
+
+
+def test_media_endpoint_returns_one_unified_decision_and_safe_attachment_summary() -> None:
+    media_service = _MediaServiceStub()
+    message = _payload()
+    message.update({"has_attachments": True, "attachment_count": 1})
+    body = {
+        "message": message,
+        "attachments": [
+            {
+                "attachment_id": "10",
+                "download_url": "https://cdn.discordapp.com/attachments/1/2/image.png",
+                "content_type": "image/png",
+                "file_size": 100,
+            }
+        ],
+    }
+    with _client(media_service=media_service) as client:
+        response = client.post(
+            "/moderation/media",
+            json=body,
+            headers={"X-Internal-Api-Key": "test-key-value-1234"},
+        )
+    assert response.status_code == 200
+    assert media_service.calls == 1
+    assert response.json()["decision_action"] == "DELETE_WARN"
+    assert response.json()["attachments"][0]["labels"] == ["SCAM"]
+    assert "ocr_text" not in response.text
 
 
 def test_rate_limit_returns_safe_error() -> None:

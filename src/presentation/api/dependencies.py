@@ -1,6 +1,8 @@
 from fastapi import Header, HTTPException, Request, status
 
 from src.application.api_moderation_service import ApiModerationService
+from src.application.api_resource_unavailable_error import ApiResourceUnavailableError
+from src.application.media_moderation_service import MediaModerationService
 from src.application.moderation_request_queue import ModerationRequestQueue
 
 
@@ -10,6 +12,13 @@ def get_api_service(request: Request) -> ApiModerationService:
 
 def get_moderation_queue(request: Request) -> ModerationRequestQueue:
     return request.app.state.container.moderation_queue
+
+
+def get_media_service(request: Request) -> MediaModerationService:
+    service = request.app.state.container.media_service
+    if service is None:
+        raise ApiResourceUnavailableError("Media moderation is unavailable")
+    return service
 
 
 def get_correlation_id(request: Request) -> str:

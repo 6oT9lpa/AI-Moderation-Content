@@ -2,6 +2,7 @@ import asyncio
 from pathlib import Path
 
 from src.application.api_moderation_service import ApiModerationService
+from src.application.effective_media_policy_resolver import EffectiveMediaPolicyResolver
 from src.application.media_moderation_service import MediaModerationService
 from src.application.moderation_request_queue import ModerationRequestQueue
 from src.domain.media.media_runtime_config import MediaRuntimeConfig
@@ -25,8 +26,10 @@ from src.infrastructure.media.ocr_text_processor import OcrTextProcessor
 from src.infrastructure.media.paddle_ocr_provider import PaddleOcrProvider
 from src.infrastructure.media.pillow_media_hasher import PillowMediaHasher
 from src.infrastructure.media.pillow_media_validator import PillowMediaValidator
+from src.infrastructure.media.yaml_media_policy_defaults_provider import YamlMediaPolicyDefaultsProvider
 from src.infrastructure.repository.postgresql_media_analysis_result_repository import PostgresqlMediaAnalysisResultRepository
 from src.infrastructure.repository.postgresql_media_attachment_repository import PostgresqlMediaAttachmentRepository
+from src.infrastructure.repository.postgresql_media_policy_repository import PostgresqlMediaPolicyRepository
 from src.modules.dataset.dataset_collector import DatasetCollector
 from src.modules.decision.decision_engine import DecisionEngine
 from src.modules.policy.policy_resolver import PolicyResolver
@@ -47,6 +50,13 @@ class ApiCompositionRoot:
 
     def build(self) -> ApiContainer:
         database = DatabaseConnection(self._database_url)
+        media_policy_resolver = EffectiveMediaPolicyResolver(
+            PostgresqlMediaPolicyRepository(database),
+            YamlMediaPolicyDefaultsProvider(
+                ocr_path=Path(self._settings.media_ocr_policy_path),
+                yolo_path=Path(self._settings.media_yolo_policy_path),
+            ),
+        )
         policy_repository = PostgresqlPolicyRepository(database)
         policy_resolver = PolicyResolver(policy_repository)
         inference_semaphore = asyncio.Semaphore(self._settings.api_inference_concurrency)
@@ -110,6 +120,7 @@ class ApiCompositionRoot:
             inference_semaphore=inference_semaphore,
             moderation_queue=moderation_queue,
             media_service=media_service,
+            media_policy_resolver=media_policy_resolver,
         )
         container.rubert_enabled = self._settings.api_rubert_enabled
         container.rubert_required = self._settings.api_rubert_required

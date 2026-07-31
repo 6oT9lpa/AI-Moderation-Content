@@ -1,0 +1,2 @@
+class MediaPolicyConflictError(Exception):
+    pass

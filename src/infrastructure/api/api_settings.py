@@ -44,6 +44,8 @@ class ApiSettings(BaseSettings):
     media_retention_hours: int = Field(default=24, ge=1, le=720)
     media_hash_cache_ttl: int = Field(default=24, ge=1, le=720)
     media_input_version: str = Field(default="media-v1", min_length=1, max_length=128)
+    media_ocr_policy_path: str = "configs/policies/ocr_rules.yaml"
+    media_yolo_policy_path: str = "configs/policies/yolo_rules.yaml"
 
     ocr_enabled: bool = False
     ocr_required: bool = False

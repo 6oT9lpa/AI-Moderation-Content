@@ -6,6 +6,7 @@ from src.application.moderation_request_queue import ModerationRequestQueue
 from src.infrastructure.api.internal_api_key_validator import InternalApiKeyValidator
 from src.infrastructure.api.local_rate_limiter import LocalRateLimiter
 from src.infrastructure.database.connection import DatabaseConnection
+from src.application.effective_media_policy_resolver import EffectiveMediaPolicyResolver
 
 
 class ApiContainer:
@@ -18,6 +19,7 @@ class ApiContainer:
         inference_semaphore: asyncio.Semaphore,
         moderation_queue: ModerationRequestQueue,
         media_service: MediaModerationService | None = None,
+        media_policy_resolver: EffectiveMediaPolicyResolver | None = None,
     ) -> None:
         self.service = service
         self.database = database
@@ -26,6 +28,7 @@ class ApiContainer:
         self.inference_semaphore = inference_semaphore
         self.moderation_queue = moderation_queue
         self.media_service = media_service
+        self.media_policy_resolver = media_policy_resolver
         self.database_ready = False
         self.rubert_ready = False
         self.rubert_enabled = True

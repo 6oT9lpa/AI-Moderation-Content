@@ -3,6 +3,7 @@ from fastapi import Header, HTTPException, Request, status
 from src.application.api_moderation_service import ApiModerationService
 from src.application.api_resource_unavailable_error import ApiResourceUnavailableError
 from src.application.media_moderation_service import MediaModerationService
+from src.application.effective_media_policy_resolver import EffectiveMediaPolicyResolver
 from src.application.moderation_request_queue import ModerationRequestQueue
 
 
@@ -23,6 +24,13 @@ def get_media_service(request: Request) -> MediaModerationService:
 
 def get_correlation_id(request: Request) -> str:
     return request.state.correlation_id
+
+
+def get_media_policy_resolver(request: Request) -> EffectiveMediaPolicyResolver:
+    resolver = request.app.state.container.media_policy_resolver
+    if resolver is None:
+        raise ApiResourceUnavailableError("Media policy is unavailable")
+    return resolver
 
 
 async def require_internal_api_key(

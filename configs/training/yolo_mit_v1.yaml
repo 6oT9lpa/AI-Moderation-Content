@@ -10,7 +10,7 @@ training:
   input_size: 640
   epochs: 100
 runtime_contract:
-  output_layout: xywh_objectness_classes
+  output_layout: xywh_classes
   output_transposed: false
   allowed_labels:
     - explicit_nudity

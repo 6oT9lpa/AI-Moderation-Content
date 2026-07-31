@@ -2,7 +2,7 @@
 
 ## Verified locally
 
-- AI-Moderator full suite: `1663 passed, 1 skipped` (`python -m pytest -q`). The skipped test is the
+- AI-Moderator full suite: `1666 passed, 1 skipped` (`python -m pytest -q`). The skipped test is the
   explicitly gated disposable-PostgreSQL integration test.
 - OmniBot full Python suite: `216 passed, 41 skipped` with coverage disabled because the existing
   `.coverage` file was locked by another process.
@@ -18,6 +18,17 @@
   tests that verify the value is rejected.
 - A real PaddleOCR CPU smoke had previously completed with three Russian/English/URL lines,
   mean confidence `0.9693473`, and `1507 ms` latency using the verified local model bundle.
+- The pinned MIT YOLO checkout completed a real one-epoch CUDA/AMP smoke on its official five-image
+  mock train/validation fixture with YOLO v9-s (`9.8M` trainable parameters) and an RTX 4060 Laptop
+  GPU. This required Python `3.13.14` and `lightning==2.5.6`; Python 3.14 and Lightning 2.6 were
+  incompatible with that pinned upstream CLI/progress-bar implementation.
+- The smoke checkpoint (`80,140,918` bytes) exported through the repository adapter to a
+  `29,112,771` byte ONNX graph. ONNX Runtime verified one dynamic-batch input and a finite
+  `(1, 2100, 84)` `xywh + class probabilities` output.
+- The checksum-packaged smoke graph loaded through the exact production provider. Five CPU runs on
+  the upstream demo image measured mean `4407.204 ms`, p95 `4566.939 ms`, and `0.227 images/s`.
+  These values prove execution only; a one-epoch mock model is neither an accuracy candidate nor a
+  production performance result.
 
 ## Implemented commits
 
@@ -31,6 +42,7 @@ AI-Moderator:
 - `2f7b49a` production-provider benchmark runner.
 - `3c892f9` OCR policy filtering followed by shared preprocessing and Tiny2.
 - `da4a0f7` Alembic psycopg 3 URL handling.
+- Verified CUDA training wrapper and runtime-compatible ONNX export adapter.
 
 OmniBot:
 
@@ -40,15 +52,18 @@ OmniBot:
 
 These checks were not represented as successful:
 
-- Training cannot start because no object-detection images, annotations or dataset YAML are present.
-- ONNX/TensorRT accuracy and latency cannot be measured because no trained detector artifact exists.
+- Production training cannot start because no moderation object-detection images, annotations or
+  dataset YAML are present. Only the upstream mock fixture was used.
+- Production ONNX/TensorRT accuracy and latency cannot be measured because no trained moderation
+  detector artifact exists. The mock ONNX execution evidence above must not be used as model quality.
 - GTX 1650 FP16/INT8 benchmarking requires that physical production GPU and an engine built on it.
 - The real Discord Activity scenarios A–E require a deployed test environment, Discord session,
   test guild and explicit deployment authority. No deployment, push or remote-server mutation was
   performed.
 
-When those prerequisites exist, use `scripts/training/train_mit_yolo.py`, package the exported model
-with `scripts/training/package_yolo_onnx.py`, and retain the JSON result produced by
+When those prerequisites exist, use `scripts/training/train_mit_yolo.py`, export the selected
+checkpoint with `scripts/training/export_mit_yolo_onnx.py`, package it with
+`scripts/training/package_yolo_onnx.py`, and retain the JSON result produced by
 `python -m scripts.media.benchmark_onnx_yolo` with the release artifact.
 
 The PostgreSQL lifecycle can be reproduced without using `.env` credentials:

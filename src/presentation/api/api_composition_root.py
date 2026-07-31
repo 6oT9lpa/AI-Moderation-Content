@@ -136,6 +136,7 @@ class ApiCompositionRoot:
                 recognition_model_dir=Path(self._settings.ocr_recognition_model_dir or ""),
                 device="cpu",
                 cpu_threads=self._settings.ocr_cpu_threads,
+                enable_mkldnn=self._settings.ocr_enable_mkldnn,
                 inference_concurrency=self._settings.ocr_inference_concurrency,
                 timeout_seconds=self._settings.ocr_timeout_seconds,
                 model_checksum=self._settings.ocr_model_checksum or "",

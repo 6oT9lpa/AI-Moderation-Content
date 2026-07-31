@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import asyncio
-import hashlib
 from collections.abc import Callable
 from importlib.metadata import PackageNotFoundError, version
 from io import BytesIO
@@ -19,6 +18,7 @@ from src.domain.media.ocr_result import OcrResult
 from src.domain.media.ocr_runtime_config import OcrRuntimeConfig
 from src.infrastructure.logging import get_logger
 from src.infrastructure.media.ocr_text_processor import OcrTextProcessor
+from scripts.media.compute_ocr_model_checksum import calculate_bundle_checksum
 
 logger = get_logger(__name__)
 
@@ -145,27 +145,14 @@ class PaddleOcrProvider(OcrProvider):
             use_textline_orientation=False,
             device=runtime_config.device,
             cpu_threads=runtime_config.cpu_threads,
+            enable_mkldnn=runtime_config.enable_mkldnn,
         )
 
     @staticmethod
     def _verify_model_checksum(runtime_config: OcrRuntimeConfig) -> None:
-        digest = hashlib.sha256()
-        roots = (
-            ("det", runtime_config.detection_model_dir),
-            ("rec", runtime_config.recognition_model_dir),
+        actual_checksum = calculate_bundle_checksum(
+            runtime_config.detection_model_dir,
+            runtime_config.recognition_model_dir,
         )
-        files = sorted(
-            (prefix, path, path.relative_to(root).as_posix())
-            for prefix, root in roots
-            for path in root.rglob("*")
-            if path.is_file()
-        )
-        if not files:
-            raise ValueError("OCR model directories contain no files")
-        for prefix, path, relative_path in files:
-            digest.update(f"{prefix}/{relative_path}\0".encode("utf-8"))
-            with path.open("rb") as model_file:
-                for chunk in iter(lambda: model_file.read(1024 * 1024), b""):
-                    digest.update(chunk)
-        if digest.hexdigest() != runtime_config.model_checksum:
+        if actual_checksum != runtime_config.model_checksum:
             raise ValueError("OCR model checksum mismatch")

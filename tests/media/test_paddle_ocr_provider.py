@@ -1,5 +1,4 @@
 import asyncio
-import hashlib
 from pathlib import Path
 
 import pytest
@@ -8,6 +7,7 @@ from src.domain.media.ocr_input import OcrInput
 from src.domain.media.ocr_runtime_config import OcrRuntimeConfig
 from src.infrastructure.media.ocr_text_processor import OcrTextProcessor
 from src.infrastructure.media.paddle_ocr_provider import PaddleOcrProvider
+from scripts.media.compute_ocr_model_checksum import calculate_bundle_checksum
 
 
 class _Prediction:
@@ -76,17 +76,15 @@ def _runtime(tmp_path: Path) -> OcrRuntimeConfig:
     rec.mkdir()
     (det / "inference.json").write_text("det", encoding="utf-8")
     (rec / "inference.json").write_text("rec", encoding="utf-8")
-    digest = hashlib.sha256()
-    digest.update(b"det/inference.json\0det")
-    digest.update(b"rec/inference.json\0rec")
     return OcrRuntimeConfig(
         detection_model_dir=det,
         recognition_model_dir=rec,
         device="cpu",
         cpu_threads=2,
+        enable_mkldnn=False,
         inference_concurrency=1,
         timeout_seconds=5.0,
-        model_checksum=digest.hexdigest(),
+        model_checksum=calculate_bundle_checksum(det, rec),
     )
 
 

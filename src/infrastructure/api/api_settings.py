@@ -52,6 +52,7 @@ class ApiSettings(BaseSettings):
     ocr_recognition_model_dir: str | None = Field(default=None, max_length=1_024)
     ocr_model_checksum: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
     ocr_cpu_threads: int = Field(default=4, ge=1, le=64)
+    ocr_enable_mkldnn: bool = False
     ocr_inference_concurrency: int = Field(default=1, ge=1, le=8)
     ocr_timeout_seconds: float = Field(default=20.0, gt=0.0, le=120.0)
     ocr_max_text_length: int = Field(default=8_000, ge=1, le=32_000)

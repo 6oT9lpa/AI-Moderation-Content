@@ -10,6 +10,7 @@ class OcrRuntimeConfig(BaseModel):
     recognition_model_dir: Path
     device: str = Field(pattern=r"^cpu$")
     cpu_threads: int = Field(strict=True, ge=1, le=64)
+    enable_mkldnn: bool = False
     inference_concurrency: int = Field(strict=True, ge=1, le=8)
     timeout_seconds: float = Field(strict=True, gt=0.0, le=120.0)
     model_checksum: str = Field(pattern=r"^[0-9a-f]{64}$")

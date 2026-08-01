@@ -13,13 +13,10 @@ from src.training.curation.sensitive_topic_matcher import SensitiveTopicMatcher
 
 
 TRAINING_CONFIG = Path("configs/training/rubert_tiny2.yaml")
-CURATION_CONFIG = Path("configs/training/sensitive_topic_curation.yaml")
-
-
-def _adapter() -> RussianFamilyToxicAdapter:
+def _adapter(matcher: SensitiveTopicMatcher) -> RussianFamilyToxicAdapter:
     return RussianFamilyToxicAdapter(
         schema=ModerationDatasetSchema.from_training_config(TRAINING_CONFIG),
-        matcher=SensitiveTopicMatcher.from_yaml(CURATION_CONFIG),
+        matcher=matcher,
         split_assigner=DatasetSplitAssigner(
             validation_fraction=0.01,
             seed="test-family-source",
@@ -27,11 +24,13 @@ def _adapter() -> RussianFamilyToxicAdapter:
     )
 
 
-def test_adapter_keeps_independently_confirmed_family_threat() -> None:
+def test_adapter_keeps_independently_confirmed_family_threat(
+    sensitive_topic_matcher: SensitiveTopicMatcher,
+) -> None:
     handles = {"train": io.StringIO(), "validation": io.StringIO()}
     counts: Counter[str] = Counter()
 
-    _adapter()._write_if_targeted(
+    _adapter(sensitive_topic_matcher)._write_if_targeted(
         text="я убью твою мать",
         required_label=ModerationLabel.THREAT,
         record_id="source-1",
@@ -50,11 +49,13 @@ def test_adapter_keeps_independently_confirmed_family_threat() -> None:
     ) == 1
 
 
-def test_adapter_sends_incidental_family_mention_to_review() -> None:
+def test_adapter_sends_incidental_family_mention_to_review(
+    sensitive_topic_matcher: SensitiveTopicMatcher,
+) -> None:
     handles = {"train": io.StringIO(), "validation": io.StringIO()}
     counts: Counter[str] = Counter()
 
-    _adapter()._write_if_targeted(
+    _adapter(sensitive_topic_matcher)._write_if_targeted(
         text="мой брат дальнобойщик, а преступников надо убить",
         required_label=ModerationLabel.THREAT,
         record_id="source-2",

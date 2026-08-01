@@ -10,13 +10,13 @@ from src.training.curation.sensitive_topic_matcher import SensitiveTopicMatcher
 
 
 TRAINING_CONFIG = Path("configs/training/rubert_tiny2.yaml")
-CURATION_CONFIG = Path("configs/training/sensitive_topic_curation.yaml")
-
-
-def test_family_threat_builder_never_generates_hate(tmp_path: Path) -> None:
+def test_family_threat_builder_never_generates_hate(
+    tmp_path: Path,
+    sensitive_topic_matcher: SensitiveTopicMatcher,
+) -> None:
     builder = FamilyThreatAugmentationBuilder(
         schema=ModerationDatasetSchema.from_training_config(TRAINING_CONFIG),
-        matcher=SensitiveTopicMatcher.from_yaml(CURATION_CONFIG),
+        matcher=sensitive_topic_matcher,
         split_assigner=DatasetSplitAssigner(
             validation_fraction=0.15,
             seed="test-family-threats",

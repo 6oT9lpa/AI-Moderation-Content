@@ -6,9 +6,11 @@ from src.training.curation.sensitive_topic_matcher import SensitiveTopicMatcher
 from src.training.curation.sensitive_topic_relabeler import SensitiveTopicRelabeler
 
 
-def test_relabeler_adds_family_threat_and_writes_change(tmp_path: Path) -> None:
+def test_relabeler_adds_family_threat_and_writes_change(
+    tmp_path: Path,
+    sensitive_topic_matcher: SensitiveTopicMatcher,
+) -> None:
     schema = ModerationDatasetSchema.from_training_config("configs/training/rubert_tiny2.yaml")
-    matcher = SensitiveTopicMatcher.from_yaml("configs/training/sensitive_topic_curation.yaml")
     input_path = tmp_path / "input.jsonl"
     output_path = tmp_path / "output.jsonl"
     changes_path = tmp_path / "changes.jsonl"
@@ -27,7 +29,7 @@ def test_relabeler_adds_family_threat_and_writes_change(tmp_path: Path) -> None:
         encoding="utf-8",
     )
 
-    report = SensitiveTopicRelabeler(schema=schema, matcher=matcher).relabel_file(
+    report = SensitiveTopicRelabeler(schema=schema, matcher=sensitive_topic_matcher).relabel_file(
         input_path=input_path,
         output_path=output_path,
         changes_path=changes_path,
@@ -40,9 +42,11 @@ def test_relabeler_adds_family_threat_and_writes_change(tmp_path: Path) -> None:
     assert changes_path.read_text(encoding="utf-8").strip()
 
 
-def test_relabeler_does_not_change_neutral_family_text(tmp_path: Path) -> None:
+def test_relabeler_does_not_change_neutral_family_text(
+    tmp_path: Path,
+    sensitive_topic_matcher: SensitiveTopicMatcher,
+) -> None:
     schema = ModerationDatasetSchema.from_training_config("configs/training/rubert_tiny2.yaml")
-    matcher = SensitiveTopicMatcher.from_yaml("configs/training/sensitive_topic_curation.yaml")
     input_path = tmp_path / "input.jsonl"
     output_path = tmp_path / "output.jsonl"
     input_path.write_text(
@@ -59,7 +63,7 @@ def test_relabeler_does_not_change_neutral_family_text(tmp_path: Path) -> None:
         encoding="utf-8",
     )
 
-    report = SensitiveTopicRelabeler(schema=schema, matcher=matcher).relabel_file(
+    report = SensitiveTopicRelabeler(schema=schema, matcher=sensitive_topic_matcher).relabel_file(
         input_path=input_path,
         output_path=output_path,
         changes_path=tmp_path / "changes.jsonl",

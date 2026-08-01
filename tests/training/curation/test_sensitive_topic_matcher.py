@@ -1,17 +1,7 @@
-from pathlib import Path
-
 import pytest
 
 from src.domain.moderation.moderation_label import ModerationLabel
 from src.training.curation.sensitive_topic_matcher import SensitiveTopicMatcher
-
-
-CONFIG_PATH = Path("configs/training/sensitive_topic_curation.yaml")
-
-
-@pytest.fixture(scope="module")
-def matcher() -> SensitiveTopicMatcher:
-    return SensitiveTopicMatcher.from_yaml(CONFIG_PATH)
 
 
 @pytest.mark.parametrize(
@@ -23,31 +13,31 @@ def matcher() -> SensitiveTopicMatcher:
     ),
 )
 def test_matcher_detects_targeted_harm(
-    matcher: SensitiveTopicMatcher,
+    sensitive_topic_matcher: SensitiveTopicMatcher,
     text: str,
     topic: str,
 ) -> None:
-    annotation = matcher.annotate(text)
+    annotation = sensitive_topic_matcher.annotate(text)
 
     assert topic in annotation.topics
     assert ModerationLabel.TOXIC in annotation.labels
 
 
-def test_racial_degradation_adds_hate(matcher: SensitiveTopicMatcher) -> None:
-    annotation = matcher.annotate("Все чернокожие тупые и хуже животных")
+def test_racial_degradation_adds_hate(sensitive_topic_matcher: SensitiveTopicMatcher) -> None:
+    annotation = sensitive_topic_matcher.annotate("Все чернокожие тупые и хуже животных")
 
     assert set(annotation.labels) >= {ModerationLabel.HATE, ModerationLabel.TOXIC}
     assert annotation.severity == 4
 
 
-def test_gender_degradation_adds_hate(matcher: SensitiveTopicMatcher) -> None:
-    annotation = matcher.annotate("Women are inferior and stupid")
+def test_gender_degradation_adds_hate(sensitive_topic_matcher: SensitiveTopicMatcher) -> None:
+    annotation = sensitive_topic_matcher.annotate("Women are inferior and stupid")
 
     assert set(annotation.labels) >= {ModerationLabel.HATE, ModerationLabel.TOXIC}
 
 
-def test_family_threat_adds_threat_without_hate(matcher: SensitiveTopicMatcher) -> None:
-    annotation = matcher.annotate("Я найду твою семью и убью")
+def test_family_threat_adds_threat_without_hate(sensitive_topic_matcher: SensitiveTopicMatcher) -> None:
+    annotation = sensitive_topic_matcher.annotate("Я найду твою семью и убью")
 
     assert set(annotation.labels) >= {ModerationLabel.THREAT, ModerationLabel.TOXIC}
     assert ModerationLabel.HATE not in annotation.labels
@@ -62,10 +52,10 @@ def test_family_threat_adds_threat_without_hate(matcher: SensitiveTopicMatcher) 
     ),
 )
 def test_family_inflections_are_detected(
-    matcher: SensitiveTopicMatcher,
+    sensitive_topic_matcher: SensitiveTopicMatcher,
     text: str,
 ) -> None:
-    assert "family" in matcher.annotate(text).topics
+    assert "family" in sensitive_topic_matcher.annotate(text).topics
 
 
 @pytest.mark.parametrize(
@@ -76,14 +66,14 @@ def test_family_inflections_are_detected(
     ),
 )
 def test_ambiguous_family_adjectives_are_not_detected(
-    matcher: SensitiveTopicMatcher,
+    sensitive_topic_matcher: SensitiveTopicMatcher,
     text: str,
 ) -> None:
-    assert "family" not in matcher.annotate(text).topics
+    assert "family" not in sensitive_topic_matcher.annotate(text).topics
 
 
-def test_family_sexual_abuse_adds_nsfw(matcher: SensitiveTopicMatcher) -> None:
-    annotation = matcher.annotate("Я изнасилую твоих родственников")
+def test_family_sexual_abuse_adds_nsfw(sensitive_topic_matcher: SensitiveTopicMatcher) -> None:
+    annotation = sensitive_topic_matcher.annotate("Я изнасилую твоих родственников")
 
     assert set(annotation.labels) >= {
         ModerationLabel.NSFW,
@@ -93,9 +83,9 @@ def test_family_sexual_abuse_adds_nsfw(matcher: SensitiveTopicMatcher) -> None:
 
 
 def test_gender_sexual_context_is_not_automatically_toxic(
-    matcher: SensitiveTopicMatcher,
+    sensitive_topic_matcher: SensitiveTopicMatcher,
 ) -> None:
-    annotation = matcher.annotate("The woman discussed sex in an interview")
+    annotation = sensitive_topic_matcher.annotate("The woman discussed sex in an interview")
 
     assert annotation.labels == (ModerationLabel.NSFW,)
 
@@ -110,10 +100,10 @@ def test_gender_sexual_context_is_not_automatically_toxic(
     ),
 )
 def test_matcher_does_not_autolabel_neutral_or_counter_context(
-    matcher: SensitiveTopicMatcher,
+    sensitive_topic_matcher: SensitiveTopicMatcher,
     text: str,
 ) -> None:
-    annotation = matcher.annotate(text)
+    annotation = sensitive_topic_matcher.annotate(text)
 
     assert annotation.labels == ()
 
@@ -138,9 +128,9 @@ def test_matcher_does_not_autolabel_neutral_or_counter_context(
     ),
 )
 def test_matcher_does_not_bind_distant_harm_to_sensitive_topic(
-    matcher: SensitiveTopicMatcher,
+    sensitive_topic_matcher: SensitiveTopicMatcher,
     text: str,
 ) -> None:
-    annotation = matcher.annotate(text)
+    annotation = sensitive_topic_matcher.annotate(text)
 
     assert annotation.labels == ()

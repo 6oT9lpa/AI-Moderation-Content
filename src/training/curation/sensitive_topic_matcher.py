@@ -35,6 +35,15 @@ class SensitiveTopicMatcher:
     @classmethod
     def from_yaml(cls, path: str | Path) -> "SensitiveTopicMatcher":
         raw = yaml.safe_load(Path(path).read_text(encoding="utf-8")) or {}
+        return cls.from_mapping(raw)
+
+    @classmethod
+    def from_mapping(cls, raw: Mapping[str, Any]) -> "SensitiveTopicMatcher":
+        """Build from validated caller-owned policy data.
+
+        Offline tooling may still load YAML, while runtime-independent tests and
+        embedded workflows can supply explicit versioned policy data directly.
+        """
         topics = raw.get("topics", {})
         harm = raw.get("harm", {})
         counter = raw.get("counter_context", {})

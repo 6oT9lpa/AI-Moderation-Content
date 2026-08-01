@@ -11,4 +11,5 @@ class ModerationAction(StrEnum):
     DELETE = "DELETE"
     DELETE_WARN = "DELETE_WARN"
     TIMEOUT = "TIMEOUT"
+    KICK = "KICK"
     BAN = "BAN"

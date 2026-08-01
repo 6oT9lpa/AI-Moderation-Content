@@ -29,6 +29,9 @@ class RecordingActionClient(PlatformActionClient):
     async def timeout_user(self, request: ActionExecutionRequest) -> ActionExecutionResult:
         return self._record(ModerationAction.TIMEOUT)
 
+    async def kick_user(self, request: ActionExecutionRequest) -> ActionExecutionResult:
+        return self._record(ModerationAction.KICK)
+
     async def ban_user(self, request: ActionExecutionRequest) -> ActionExecutionResult:
         return self._record(ModerationAction.BAN)
 
@@ -132,6 +135,17 @@ async def test_full_success_returns_success():
     assert result.status == ActionExecutionStatus.SUCCESS
 
 
+async def test_kick_executes_through_canonical_action_contract():
+    client = RecordingActionClient()
+    executor = ActionExecutor(_action_policy(), client)
+
+    result = await executor.execute(_request(_decision([ModerationAction.KICK])))
+
+    assert client.calls == [ModerationAction.KICK]
+    assert result.status == ActionExecutionStatus.SUCCESS
+    assert result.steps[0].action == ModerationAction.KICK
+
+
 async def test_decision_engine_action_plan_is_passed_to_action_executor():
     policy = DecisionPolicy.model_validate(
         {
@@ -185,9 +199,15 @@ def _action_policy(
             ModerationAction.WARN,
             ModerationAction.DELETE,
             ModerationAction.TIMEOUT,
+            ModerationAction.KICK,
             ModerationAction.BAN,
         ],
-        destructive_actions=[ModerationAction.DELETE, ModerationAction.TIMEOUT, ModerationAction.BAN],
+        destructive_actions=[
+            ModerationAction.DELETE,
+            ModerationAction.TIMEOUT,
+            ModerationAction.KICK,
+            ModerationAction.BAN,
+        ],
         require_review_for_actions=require_review_for_actions or [],
         retry_policy={"max_attempts": 1, "backoff_seconds": 0},
     )
@@ -218,7 +238,7 @@ def _decision(actions: list[ModerationAction]) -> ModerationDecision:
                 "label_overrides": {
                     "SPAM": actions[0].value,
                 },
-                "action_priority": ["BAN", "TIMEOUT", "DELETE", "WARN", "REVIEW", "LOG", "IGNORE"],
+                "action_priority": ["BAN", "KICK", "TIMEOUT", "DELETE", "WARN", "REVIEW", "LOG", "IGNORE"],
             }
         )
     ).decide("msg_action", rule_result)

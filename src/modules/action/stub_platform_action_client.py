@@ -19,6 +19,9 @@ class StubPlatformActionClient(PlatformActionClient):
     async def timeout_user(self, request: ActionExecutionRequest) -> ActionExecutionResult:
         return self._success("TIMEOUT", request)
 
+    async def kick_user(self, request: ActionExecutionRequest) -> ActionExecutionResult:
+        return self._success("KICK", request)
+
     async def ban_user(self, request: ActionExecutionRequest) -> ActionExecutionResult:
         return self._success("BAN", request)
 

@@ -20,6 +20,10 @@ class PlatformActionClient(ABC):
         raise NotImplementedError
 
     @abstractmethod
+    async def kick_user(self, request: ActionExecutionRequest) -> ActionExecutionResult:
+        raise NotImplementedError
+
+    @abstractmethod
     async def ban_user(self, request: ActionExecutionRequest) -> ActionExecutionResult:
         raise NotImplementedError
 

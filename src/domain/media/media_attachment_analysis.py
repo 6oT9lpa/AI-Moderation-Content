@@ -15,6 +15,7 @@ class MediaAttachmentAnalysis(BaseModel):
     detected_mime: str | None = None
     actual_file_size: int | None = Field(default=None, gt=0)
     hashes: MediaHashes | None = None
+    known_hash_match: bool = False
     width: int | None = Field(default=None, gt=0)
     height: int | None = Field(default=None, gt=0)
     ocr_result: OcrResult | None = None

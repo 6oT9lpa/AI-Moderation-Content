@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import asyncio
 import json
+from dataclasses import dataclass
+from datetime import datetime, timezone
 from itertools import count
 
 from src.infrastructure.logging import get_logger
@@ -10,15 +12,28 @@ from src.infrastructure.queue.moderation_task import ModerationTask
 logger = get_logger(__name__)
 
 
+@dataclass(frozen=True, slots=True)
+class DeadLetter:
+    task: ModerationTask
+    error_type: str
+    error_message: str
+    failed_at: datetime
+
+
 class ModerationQueue:
-    def __init__(self, *, max_size: int = 10000, max_payload_bytes: int = 65_536) -> None:
+    def __init__(
+        self, *, max_size: int = 10000, max_payload_bytes: int = 65_536
+    ) -> None:
         if max_payload_bytes <= 0:
             raise ValueError("max_payload_bytes must be greater than zero")
-        self._queue: asyncio.PriorityQueue[tuple[int, int, ModerationTask]] = asyncio.PriorityQueue(
-            maxsize=max_size,
+        self._queue: asyncio.PriorityQueue[tuple[int, int, ModerationTask]] = (
+            asyncio.PriorityQueue(
+                maxsize=max_size,
+            )
         )
         self._sequence = count()
         self._closed = False
+        self._dead_letters: list[DeadLetter] = []
         self._max_payload_bytes = max_payload_bytes
         logger.info("Moderation queue initialized max_size=%s", max_size)
 
@@ -67,6 +82,26 @@ class ModerationQueue:
     def close(self) -> None:
         self._closed = True
         logger.info("Moderation queue closed queue_size=%s", self.size)
+
+    def dead_letter(self, task: ModerationTask, error: Exception) -> None:
+        self._dead_letters.append(
+            DeadLetter(
+                task=task,
+                error_type=type(error).__name__,
+                error_message=str(error)[:512],
+                failed_at=datetime.now(timezone.utc),
+            )
+        )
+        logger.error(
+            "Moderation task moved to dead letter correlation_id=%s attempts=%s error_type=%s",
+            task.correlation_id,
+            task.attempts,
+            type(error).__name__,
+        )
+
+    @property
+    def dead_letters(self) -> tuple[DeadLetter, ...]:
+        return tuple(self._dead_letters)
 
     @property
     def size(self) -> int:

@@ -24,6 +24,7 @@ def test_moderation_taxonomy_contains_roadmap_values() -> None:
     assert ModerationLabel.SAFE.value == "SAFE"
     assert ModerationLabel.URL.value == "URL"
     assert ModerationAction.DELETE_WARN.value == "DELETE_WARN"
+    assert ModerationAction.KICK.value == "KICK"
     assert DatasetSource.MANUAL_SYNTHETIC.value == "manual_synthetic"
     assert FeedbackType.APPEAL_REJECTED.value == "appeal_rejected"
 

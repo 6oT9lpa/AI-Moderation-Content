@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import datetime, timezone
 from typing import Any
 from uuid import uuid4
@@ -21,3 +21,6 @@ class ModerationTask:
     @property
     def partition_key(self) -> str:
         return f"{self.source_platform}:{self.space_id}:{self.channel_id}"
+
+    def next_attempt(self) -> "ModerationTask":
+        return replace(self, attempts=self.attempts + 1)

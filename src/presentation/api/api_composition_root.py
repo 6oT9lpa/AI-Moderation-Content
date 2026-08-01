@@ -28,6 +28,7 @@ from src.infrastructure.media.ocr_policy_result_processor import OcrPolicyResult
 from src.infrastructure.media.paddle_ocr_provider import PaddleOcrProvider
 from src.infrastructure.media.onnx_yolo_detection_provider import OnnxYoloDetectionProvider
 from src.infrastructure.media.pillow_media_hasher import PillowMediaHasher
+from src.infrastructure.media.json_known_scam_hash_matcher import JsonKnownScamHashMatcher
 from src.infrastructure.media.pillow_media_validator import PillowMediaValidator
 from src.infrastructure.media.yaml_media_policy_defaults_provider import YamlMediaPolicyDefaultsProvider
 from src.infrastructure.repository.postgresql_media_analysis_result_repository import PostgresqlMediaAnalysisResultRepository
@@ -117,6 +118,14 @@ class ApiCompositionRoot:
             ),
             media_policy_resolver=media_policy_resolver,
             ocr_policy_processor=OcrPolicyResultProcessor(ocr_text_processor),
+            known_scam_hash_matcher=(
+                JsonKnownScamHashMatcher.from_file(
+                    Path(self._settings.media_known_scam_hash_registry_path),
+                    max_phash_distance=self._settings.media_known_scam_phash_distance,
+                )
+                if self._settings.media_known_scam_hash_registry_path
+                else None
+            ),
         )
         container = ApiContainer(
             service=service,

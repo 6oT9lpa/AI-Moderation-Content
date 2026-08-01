@@ -228,6 +228,7 @@ class ActionExecutor:
             ModerationAction.DELETE: client.delete_message,
             ModerationAction.WARN: client.warn_user,
             ModerationAction.TIMEOUT: client.timeout_user,
+            ModerationAction.KICK: client.kick_user,
             ModerationAction.BAN: client.ban_user,
             ModerationAction.REVIEW: client.create_review,
             ModerationAction.LOG: client.log_action,

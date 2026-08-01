@@ -84,3 +84,60 @@ async def test_moderation_queue_rejects_oversized_or_non_json_payloads() -> None
                 payload={"object": object()},
             )
         )
+
+
+@pytest.mark.asyncio
+async def test_worker_retries_then_dead_letters_failed_task() -> None:
+    queue = ModerationQueue(max_size=10)
+    handled_attempts: list[int] = []
+
+    async def fail(task: ModerationTask) -> None:
+        handled_attempts.append(task.attempts)
+        raise RuntimeError("provider unavailable")
+
+    worker = QueueWorker(queue, fail, worker_count=1, max_attempts=3, retry_backoff_seconds=0)
+    await worker.start()
+    await queue.publish(
+        ModerationTask(
+            source_platform="discord",
+            space_id="guild-1",
+            channel_id="channel-1",
+            message_id="message-failed",
+            payload={"text": "retry me"},
+        )
+    )
+
+    await asyncio.wait_for(queue.join(), timeout=5)
+    await worker.stop()
+
+    assert handled_attempts == [0, 1, 2]
+    assert len(queue.dead_letters) == 1
+    assert queue.dead_letters[0].task.attempts == 3
+    assert queue.dead_letters[0].error_type == "RuntimeError"
+
+
+@pytest.mark.asyncio
+async def test_worker_stop_drains_in_flight_tasks() -> None:
+    queue = ModerationQueue(max_size=10)
+    completed = asyncio.Event()
+
+    async def handle(_: ModerationTask) -> None:
+        await asyncio.sleep(0.01)
+        completed.set()
+
+    worker = QueueWorker(queue, handle, worker_count=1)
+    await worker.start()
+    await queue.publish(
+        ModerationTask(
+            source_platform="discord",
+            space_id="guild-1",
+            channel_id="channel-1",
+            message_id="message-drain",
+            payload={"text": "finish me"},
+        )
+    )
+
+    await worker.stop(drain=True)
+
+    assert completed.is_set()
+    assert queue.size == 0

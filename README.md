@@ -142,10 +142,10 @@ Core principles:
 
 ## API
 
-Main local service:
+Canonical local/production service (also selects a psycopg-compatible event loop on Windows):
 
 ```text
-uvicorn main_api:app --host 127.0.0.1 --port 8000 --no-proxy-headers
+python main_api.py
 ```
 
 Important endpoints:
@@ -154,11 +154,30 @@ Important endpoints:
 - `POST /moderation/messages` - analyze a platform message;
 - `POST /moderation/media` - analyze one message and its image attachments in
   one shared moderation decision;
+- `POST /moderation/feedback` - persist idempotent moderator feedback linked by
+  event ID or guild-scoped message ID;
+- `POST /actions/result` - persist terminal platform execution results;
 - `GET /api/policies/effective` - inspect effective policies.
 
 The API should be protected by an internal API key and network boundary. In the
 OmniBot deployment it listens on localhost and is called by the Discord bot
 backend.
+
+Database schema changes are owned exclusively by Alembic and applied during
+startup; runtime repositories never issue DDL. Request correlation IDs are
+persisted across the moderation event, action result, and feedback lineage.
+The action contract includes `KICK`; unknown action values are rejected by the
+API contract rather than mapped to a stronger fallback action.
+
+The optional known-scam registry is a JSON array of objects containing a
+validated `sha256`, `phash`, or both. Exact SHA-256 matches and pHash matches
+within `AI_MODERATOR_MEDIA_KNOWN_SCAM_PHASH_DISTANCE` produce an explicit SCAM
+signal. Promotion from shadow mode can be gated with
+`scripts/evaluation/check_shadow_acceptance.py`.
+
+Production startup and inference do not read
+`configs/training/sensitive_topic_curation.yaml`; curation tests use explicit
+in-memory policies instead of restoring that retired training fixture.
 
 Media request example:
 

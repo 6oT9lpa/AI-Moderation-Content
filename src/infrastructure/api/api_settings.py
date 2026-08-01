@@ -46,6 +46,8 @@ class ApiSettings(BaseSettings):
     media_input_version: str = Field(default="media-v1", min_length=1, max_length=128)
     media_ocr_policy_path: str = "configs/policies/ocr_rules.yaml"
     media_yolo_policy_path: str = "configs/policies/yolo_rules.yaml"
+    media_known_scam_hash_registry_path: str | None = Field(default=None, max_length=1_024)
+    media_known_scam_phash_distance: int = Field(default=6, ge=0, le=64)
 
     ocr_enabled: bool = False
     ocr_required: bool = False

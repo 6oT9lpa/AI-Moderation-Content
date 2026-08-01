@@ -8,7 +8,7 @@ from src.domain.action.action_execution_status import ActionExecutionStatus
 from src.domain.dataset.dataset_collector_repository import DatasetCollectorRepository
 from src.domain.dto.dataset.dataset_collection_record import DatasetCollectionRecord
 from src.domain.dto.dataset.dataset_collection_result import DatasetCollectionResult
-from src.infrastructure.database.connection import DatabaseConnection
+from src.infrastructure.database.connection import DatabaseConnection, DatabaseSession
 from src.infrastructure.logging.logger import get_logger
 
 logger = get_logger(__name__)
@@ -22,16 +22,19 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
         self,
         record: DatasetCollectionRecord,
     ) -> DatasetCollectionResult:
-        await self._purge_expired_collections()
-        event_id = await self._upsert_event(record)
-        await self._upsert_features(event_id, record)
-        await self._insert_rule_analysis(event_id, record)
-        decision_id = await self._insert_decision(event_id, record)
+        async with self._database.transaction() as transaction:
+            await self._purge_expired_collections(transaction)
+            event_id = await self._upsert_event(transaction, record)
+            await self._upsert_features(transaction, event_id, record)
+            await self._insert_rule_analysis(transaction, event_id, record)
+            decision_id = await self._insert_decision(transaction, event_id, record)
 
-        if record.feedback is not None:
-            await self._insert_feedback(event_id, decision_id, record)
+            if record.feedback is not None:
+                await self._insert_feedback(transaction, event_id, decision_id, record)
 
-        training_example = record.training_example.model_copy(update={"event_id": event_id})
+        training_example = record.training_example.model_copy(
+            update={"event_id": event_id}
+        )
         logger.info(
             "Dataset collection persisted event_id=%s decision_id=%s message_id=%s",
             event_id,
@@ -44,13 +47,15 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
             training_example=training_example,
         )
 
-    async def _purge_expired_collections(self) -> None:
-        await self._database.execute(
+    async def _purge_expired_collections(self, database: DatabaseSession) -> None:
+        await database.execute(
             "DELETE FROM ai_message_events WHERE retention_until IS NOT NULL AND retention_until <= CURRENT_TIMESTAMP"
         )
 
-    async def _upsert_event(self, record: DatasetCollectionRecord) -> int:
-        result = await self._database.execute(
+    async def _upsert_event(
+        self, database: DatabaseSession, record: DatasetCollectionRecord
+    ) -> int:
+        result = await database.execute(
             """
             INSERT INTO ai_message_events (
                 platform,
@@ -110,13 +115,20 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
             ],
         )
         if result.lastrowid is None:
-            raise RuntimeError(f"Dataset event was not returned message_id={record.message_id}")
+            raise RuntimeError(
+                f"Dataset event was not returned message_id={record.message_id}"
+            )
 
         return result.lastrowid
 
-    async def _upsert_features(self, event_id: int, record: DatasetCollectionRecord) -> None:
+    async def _upsert_features(
+        self,
+        database: DatabaseSession,
+        event_id: int,
+        record: DatasetCollectionRecord,
+    ) -> None:
         features = record.features
-        await self._database.execute(
+        await database.execute(
             """
             INSERT INTO ai_message_features (
                 event_id,
@@ -213,15 +225,22 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
                     {
                         **features,
                         **record.metadata,
-                        "training_example": record.training_example.model_dump(mode="json"),
+                        "training_example": record.training_example.model_dump(
+                            mode="json"
+                        ),
                     }
                 ),
             ],
         )
 
-    async def _insert_rule_analysis(self, event_id: int, record: DatasetCollectionRecord) -> None:
+    async def _insert_rule_analysis(
+        self,
+        database: DatabaseSession,
+        event_id: int,
+        record: DatasetCollectionRecord,
+    ) -> None:
         rule_result = record.rule_evaluation
-        await self._database.execute(
+        await database.execute(
             """
             INSERT INTO ai_analysis_results (
                 event_id,
@@ -271,15 +290,25 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
                 Jsonb({}),
                 Jsonb(rule_result.matched_rules),
                 round(rule_result.risk_score),
-                Jsonb([item.model_dump(mode="json") for item in rule_result.risk_breakdown]),
+                Jsonb(
+                    [
+                        item.model_dump(mode="json")
+                        for item in rule_result.risk_breakdown
+                    ]
+                ),
                 rule_result.created_at,
             ],
         )
 
-    async def _insert_decision(self, event_id: int, record: DatasetCollectionRecord) -> int | None:
+    async def _insert_decision(
+        self,
+        database: DatabaseSession,
+        event_id: int,
+        record: DatasetCollectionRecord,
+    ) -> int | None:
         action_status = record.action_result.status if record.action_result else None
         action_success = self._is_action_success(action_status)
-        result = await self._database.execute(
+        result = await database.execute(
             """
             INSERT INTO ai_moderation_decisions (
                 event_id,
@@ -295,6 +324,15 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
                 created_at
             )
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+            ON CONFLICT (event_id, policy_version, decision_action, created_at)
+            DO UPDATE SET
+                severity = EXCLUDED.severity,
+                reason_code = EXCLUDED.reason_code,
+                reason_text = EXCLUDED.reason_text,
+                action_taken = EXCLUDED.action_taken,
+                action_success = EXCLUDED.action_success,
+                platform_error = EXCLUDED.platform_error,
+                review_status = EXCLUDED.review_status
             RETURNING id
             """,
             [
@@ -315,6 +353,7 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
 
     async def _insert_feedback(
         self,
+        database: DatabaseSession,
         event_id: int,
         decision_id: int | None,
         record: DatasetCollectionRecord,
@@ -323,7 +362,7 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
         if feedback is None:
             return
 
-        await self._database.execute(
+        await database.execute(
             """
             INSERT INTO ai_feedback_labels (
                 event_id,
@@ -341,9 +380,11 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
                 annotator_confidence,
                 annotation_source,
                 notes,
+                idempotency_key,
                 created_at
             )
-            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP)
+            ON CONFLICT (idempotency_key) WHERE idempotency_key IS NOT NULL DO NOTHING
             """,
             [
                 event_id,
@@ -352,7 +393,11 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
                 feedback.primary_label.value if feedback.primary_label else None,
                 feedback.scam_subtype,
                 feedback.severity,
-                feedback.recommended_action.value if feedback.recommended_action else None,
+                (
+                    feedback.recommended_action.value
+                    if feedback.recommended_action
+                    else None
+                ),
                 feedback.moderator_id,
                 feedback.feedback_type.value,
                 feedback.is_false_positive,
@@ -361,6 +406,7 @@ class PostgresqlDatasetCollectorRepository(DatasetCollectorRepository):
                 feedback.annotator_confidence,
                 feedback.annotation_source,
                 feedback.notes,
+                f"dataset:{event_id}:{decision_id}:{feedback.annotation_source}:{feedback.feedback_type.value}",
             ],
         )
 

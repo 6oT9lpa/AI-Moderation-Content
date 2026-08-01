@@ -19,6 +19,9 @@ class DryRunActionClient(PlatformActionClient):
     async def timeout_user(self, request: ActionExecutionRequest) -> ActionExecutionResult:
         return self._dry_run("TIMEOUT", request)
 
+    async def kick_user(self, request: ActionExecutionRequest) -> ActionExecutionResult:
+        return self._dry_run("KICK", request)
+
     async def ban_user(self, request: ActionExecutionRequest) -> ActionExecutionResult:
         return self._dry_run("BAN", request)
 

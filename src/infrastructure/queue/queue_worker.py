@@ -23,9 +23,13 @@ class QueueWorker:
         *,
         worker_count: int = 4,
         thread_count: int | None = None,
+        max_attempts: int = 3,
+        retry_backoff_seconds: float = 0.05,
     ) -> None:
         if worker_count <= 0:
             raise ValueError("worker_count must be greater than 0")
+        if max_attempts <= 0:
+            raise ValueError("max_attempts must be greater than 0")
 
         self._queue = queue
         self._handler = handler
@@ -33,6 +37,8 @@ class QueueWorker:
         self._executor = ThreadPoolExecutor(max_workers=thread_count or worker_count)
         self._tasks: list[asyncio.Task[None]] = []
         self._stopping = asyncio.Event()
+        self._max_attempts = max_attempts
+        self._retry_backoff_seconds = max(0.0, retry_backoff_seconds)
 
         logger.info(
             "Queue worker initialized worker_count=%s thread_count=%s",
@@ -47,13 +53,27 @@ class QueueWorker:
 
         self._stopping.clear()
         self._tasks = [
-            asyncio.create_task(self._run_worker(worker_index), name=f"moderation-worker-{worker_index}")
+            asyncio.create_task(
+                self._run_worker(worker_index), name=f"moderation-worker-{worker_index}"
+            )
             for worker_index in range(self._worker_count)
         ]
         logger.info("Queue worker pool started worker_count=%s", self._worker_count)
 
-    async def stop(self) -> None:
+    async def stop(
+        self, *, drain: bool = True, drain_timeout_seconds: float = 30.0
+    ) -> None:
         logger.info("Queue worker stop requested active_workers=%s", len(self._tasks))
+        self._queue.close()
+        if drain and self._tasks:
+            try:
+                await asyncio.wait_for(
+                    self._queue.join(), timeout=drain_timeout_seconds
+                )
+            except TimeoutError:
+                logger.error(
+                    "Queue worker drain timed out queue_size=%s", self._queue.size
+                )
         self._stopping.set()
 
         for task in self._tasks:
@@ -117,6 +137,18 @@ class QueueWorker:
                 exc,
                 exc_info=True,
             )
-            raise
+            attempted = task.next_attempt()
+            if attempted.attempts < self._max_attempts and not self._queue.is_closed:
+                if self._retry_backoff_seconds:
+                    await asyncio.sleep(self._retry_backoff_seconds)
+                await self._queue.publish(attempted)
+                logger.warning(
+                    "Queue task scheduled for retry correlation_id=%s attempt=%s/%s",
+                    task.correlation_id,
+                    attempted.attempts + 1,
+                    self._max_attempts,
+                )
+            else:
+                self._queue.dead_letter(attempted, exc)
         finally:
             self._queue.task_done()
